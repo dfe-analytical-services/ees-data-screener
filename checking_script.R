@@ -1,8 +1,5 @@
+# We need notes here
 
-# For some reason tidyverse took hours to install on my laptop probably 
-# better going with individual packages instead (readr, ggplot2, dplyr etc)
-# Cam - I already had it installed, so only needed to call from the library and that took no time at all
-# so I have left it for now
 
 # only need to run this line if you don't already have it installed
 #install.packages('tidyverse')
