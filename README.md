@@ -1,4 +1,4 @@
-#**Data-screener checks that we want**
+# **Data-screener checks that we want**
 ###### These are the notes I had (CR), I've also reordered the main script so it resembles this
 
 ## DATA FILE VALIDATION
