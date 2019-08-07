@@ -48,6 +48,7 @@ Col_type - is this one of 'Filter' or 'Indicator'
 ***
 Label - is this filled in for every row - can we flag the specific row there isn't a label?
 - i.e. you need to add a label for your school_type column
+- there shouldn't be any duplicate values in this column
 ***
 Indicator grouping - is this blank for all filters?
 - can we extract these and show in a list
