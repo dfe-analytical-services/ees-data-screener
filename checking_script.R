@@ -10,8 +10,8 @@ library(tidyverse)
 metadata <- read_csv("data_metadata/absence_in_prus.meta.csv")
 dataset <- read_csv("data_metadata/absence_in_prus.csv")
 
-metadata <- read_csv("data_metadata/3digit_illegal.meta.csv")
-dataset <- read_csv("data_metadata/3digit_illegal.csv")
+metadata <- read_csv("data_metadata/missing_meta_labels.meta.csv")
+dataset <- read_csv("data_metadata/missing_meta_labels.csv")
 
 # -------------------------------------
 ### DATA FILE VALIDATION
@@ -177,10 +177,23 @@ col_type_check(metadata)
 # - i.e. you need to add a label for your school_type column
 # - there shouldn't be any duplicate values in this column
 
+meta_label_check <- function(data) {
+  
+if(any(is.na(data$label))) warning(paste('There are labels missing in ', sum(is.na(data$label)), 'rows'))
+if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('Atleast one of the labels is duplicated')
+  
+}
+
+meta_label_check(metadata)
+
+
+
 # -------------------------------------
 # indicator grouping - is this blank for all filters?
 # - can we extract these and show in a list
 # -- 'here are groups for your indicators as they will appear, please check these are correct'.
+
+
 
 # -------------------------------------
 # Unit validation? indicator unit column
@@ -194,6 +207,8 @@ col_type_check(metadata)
 # -------------------------------------
 # filter_grouping column
 # - should be blank for all indicators
+
+[to this one]
 
 # -------------------------------------
 ### CROSS VALIDATION OF METADATA AND DATA FILE
