@@ -10,7 +10,7 @@ library(tidyverse)
 metadata <- read_csv("data_metadata/absence_in_prus.meta.csv")
 dataset <- read_csv("data_metadata/absence_in_prus.csv")
 
-metadata <- read_csv("data_metadata/missing_meta_labels.meta.csv")
+metadata <- read_csv("data_metadata/filter_group.meta.csv")
 dataset <- read_csv("data_metadata/missing_meta_labels.csv")
 
 # -------------------------------------
@@ -182,6 +182,7 @@ meta_label_check <- function(data) {
 if(any(is.na(data$label))) warning(paste('There are labels missing in ', sum(is.na(data$label)), 'rows'))
 if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('Atleast one of the labels is duplicated')
   
+  'passed'
 }
 
 meta_label_check(metadata)
@@ -191,7 +192,16 @@ meta_label_check(metadata)
 # - can we extract these and show in a list
 # -- 'here are groups for your indicators as they will appear, please check these are correct'.
 
+meta_indicator_group_check <- function(data) {
+  
+  filters <- data %>% filter(data$col_type =='Filters')
+  
+  if(any(!is.na(filters$indicator_grouping))) warning('Filter variables cannot have a indicator_grouping assigned to them')  
+  
+  'passed'
+}
 
+meta_indicator_group_check(metadata)
 
 # -------------------------------------
 # Unit validation? indicator unit column
@@ -205,6 +215,17 @@ meta_label_check(metadata)
 # -------------------------------------
 # filter_grouping column
 # - should be blank for all indicators
+
+meta_filter_group_check <- function(data) {
+  
+  indicators <- data %>% filter(data$col_type =='Indicator')
+    
+  if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter_group assigned to them')  
+  
+  'passed'
+}
+
+meta_filter_group_check(metadata)
 
 # -------------------------------------
 ### CROSS VALIDATION OF METADATA AND DATA FILE
