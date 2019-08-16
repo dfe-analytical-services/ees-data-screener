@@ -186,8 +186,6 @@ if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning(
 
 meta_label_check(metadata)
 
-
-
 # -------------------------------------
 # indicator grouping - is this blank for all filters?
 # - can we extract these and show in a list
@@ -207,8 +205,6 @@ meta_label_check(metadata)
 # -------------------------------------
 # filter_grouping column
 # - should be blank for all indicators
-
-[to this one]
 
 # -------------------------------------
 ### CROSS VALIDATION OF METADATA AND DATA FILE
