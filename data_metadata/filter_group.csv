@@ -1,0 +1,31 @@
+time_period,time_identifier,geographic_level,country_code,country_name,school_type,characteristic_group,characteristic,pupil_numbers
+201617,Academic year,National,E92000001,England,Primary,Total,Total,100000
+201617,Academic year,National,E92000001,England,Primary,FSM,Eligible,30000
+201617,Academic year,National,E92000001,England,Primary,FSM,Not Eligible,65000
+201617,Academic year,National,E92000001,England,Primary,FSM,Unclassified,5000
+201617,Academic year,National,E92000001,England,Primary,First Language,English,80000
+201617,Academic year,National,E92000001,England,Primary,First Language,Other than English,18000
+201617,Academic year,National,E92000001,England,Primary,First Language,Unclassified,2000
+201617,Academic year,National,E92000001,England,Primary,Age,Less than 5,5000
+201617,Academic year,National,E92000001,England,Primary,Age,5,15000
+201617,Academic year,National,E92000001,England,Primary,Age,6,12000
+201617,Academic year,National,E92000001,England,Primary,Age,7,14000
+201617,Academic year,National,E92000001,England,Primary,Age,8,15000
+201617,Academic year,National,E92000001,England,Primary,Age,9,18000
+201617,Academic year,National,E92000001,England,Primary,Age,10,9000
+201617,Academic year,National,E92000001,England,Primary,Age,More than 10,12000
+201617,Academic year,National,E92000001,England,Secondary,Total,Total,100000
+201617,Academic year,National,E92000001,England,Secondary,FSM,Eligible,30000
+201617,Academic year,National,E92000001,England,Secondary,FSM,Not Eligible,65000
+201617,Academic year,National,E92000001,England,Secondary,FSM,Unclassified,5000
+201617,Academic year,National,E92000001,England,Secondary,First Language,English,80000
+201617,Academic year,National,E92000001,England,Secondary,First Language,Other than English,18000
+201617,Academic year,National,E92000001,England,Secondary,First Language,Unclassified,2000
+201617,Academic year,National,E92000001,England,Secondary,Age,Less than 5,5000
+201617,Academic year,National,E92000001,England,Secondary,Age,5,15000
+201617,Academic year,National,E92000001,England,Secondary,Age,6,12000
+201617,Academic year,National,E92000001,England,Secondary,Age,7,14000
+201617,Academic year,National,E92000001,England,Secondary,Age,8,15000
+201617,Academic year,National,E92000001,England,Secondary,Age,9,18000
+201617,Academic year,National,E92000001,England,Secondary,Age,10,9000
+201617,Academic year,National,E92000001,England,Secondary,Age,More than 10,12000

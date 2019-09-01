@@ -10,21 +10,23 @@ library(tidyverse)
 metadata <- read_csv("data_metadata/absence_in_prus.meta.csv")
 dataset <- read_csv("data_metadata/absence_in_prus.csv")
 
+metadata <- read_csv("data_metadata/filter_group.meta.csv")
+dataset <- read_csv("data_metadata/missing_meta_labels.csv")
+
 # -------------------------------------
 ### DATA FILE VALIDATION
 # -------------------------------------
 
+# all tests below this point will need testing with the test data to make sure they fail correctly as well as pass correctly
+
 # check that the compulsory columns exist
 comp_col_check <- function(data) {
   
-  if(!"geographic_level" %in% names(data)) stop("geographic_level is missing")
-  if(!"time_identifier" %in% names(data)) stop("time_identifier is missing")
-  if(!"country_code" %in% names(data)) stop("country_code is missing")
-  if(!"country_name" %in% names(data)) stop("country_name is missing")
-  if(!"time_period" %in% names(data)) stop("time_period is missing") 
-  
-  #commented out as it's not a requirement  
-  #if(!any(grepl('[:upper:]',names(data)))) stop("there are upper case letters in column names")
+  if(!"geographic_level" %in% names(data)) warning("geographic_level is missing")
+  if(!"time_identifier" %in% names(data)) warning("time_identifier is missing")
+  if(!"country_code" %in% names(data)) warning("country_code is missing")
+  if(!"country_name" %in% names(data)) warning("country_name is missing")
+  if(!"time_period" %in% names(data)) warning("time_period is missing") 
   
   'passed'  
 }
@@ -49,8 +51,24 @@ time_period_check(dataset)
 # write a check for the 6 digit number only being consecutive years
 # - could use the 101 thing to work it out
 
+time_period_check_consecutive <- function(data) {
+  
+currentyear <- strtoi(substr(dataset$time_period,3,4))
+
+nextyear <- strtoi(substr(dataset$time_period,5,6))
+  
+  if (((currentyear+1)!=nextyear)&(!any(grepl("^[0-9]{6,6}$",dataset$time_period))))
+      stop("6 digit time_period values must show consecutive years, e.g. 201617")
+  
+  'passed'
+}
+
+time_period_check_consecutive(dataset)
+
 # -------------------------------------
 # no crossing of time indentifiers - print the unique/distinct values from that column for now
+
+unique(dataset$time_identifier)
 
 # -------------------------------------
 # flag for commas
@@ -157,11 +175,33 @@ col_type_check(metadata)
 # -------------------------------------
 # label - is this filled in for every row - can we flag the specific row there isn't a label?
 # - i.e. you need to add a label for your school_type column
+# - there shouldn't be any duplicate values in this column
+
+meta_label_check <- function(data) {
+  
+if(any(is.na(data$label))) warning(paste('There are labels missing in ', sum(is.na(data$label)), 'rows'))
+if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('Atleast one of the labels is duplicated')
+  
+  'passed'
+}
+
+meta_label_check(metadata)
 
 # -------------------------------------
 # indicator grouping - is this blank for all filters?
 # - can we extract these and show in a list
 # -- 'here are groups for your indicators as they will appear, please check these are correct'.
+
+meta_indicator_group_check <- function(data) {
+  
+  filters <- data %>% filter(data$col_type =='Filters')
+  
+  if(any(!is.na(filters$indicator_grouping))) warning('Filter variables cannot have a indicator_grouping assigned to them')  
+  
+  'passed'
+}
+
+meta_indicator_group_check(metadata)
 
 # -------------------------------------
 # Unit validation? indicator unit column
@@ -175,6 +215,17 @@ col_type_check(metadata)
 # -------------------------------------
 # filter_grouping column
 # - should be blank for all indicators
+
+meta_filter_group_check <- function(data) {
+  
+  indicators <- data %>% filter(data$col_type =='Indicator')
+    
+  if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter_group assigned to them')  
+  
+  'passed'
+}
+
+meta_filter_group_check(metadata)
 
 # -------------------------------------
 ### CROSS VALIDATION OF METADATA AND DATA FILE
