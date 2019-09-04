@@ -206,7 +206,20 @@ meta_indicator_group_check(metadata)
 # -------------------------------------
 # Unit validation? indicator unit column
 # - something about units
+
+
 # - should be blank for all filters
+
+meta_unit_check <- function(data) {
+  
+  filters <- data %>% filter(data$col_type =='Filter')
+  
+  if(any(!is.na(filters$indicator_unit))) warning('Filter variables cannot have an indicator unit assigned to them')  
+  
+  'passed'
+}
+
+meta_unit_check(metadata)
 
 # -------------------------------------
 # filter_hint should be blank for indicators
