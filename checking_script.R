@@ -135,8 +135,6 @@ meta_col_check <- function(data) {
   if(!"filter_hint" %in% names(data)) warning("filter_hint is missing")
   if(!"filter_grouping_column" %in% names(data)) warning("filter_grouping_column is missing") 
   
-  
-  # need a way to make sure that it doesn't say passed when there is warnings?  
   'passed'  
 }
 
@@ -145,6 +143,7 @@ meta_col_check(metadata)
 # -------------------------------------
 # flag for commas
 # - more complex, but can we somehow flag for an individual column?
+
 # currently commented out as the function is already defined
 #comma_check <- function(data) {
   
@@ -170,6 +169,19 @@ meta_name_check(metadata)
 
 # - check that no value in here has any spaces
 # - also then something to check if it's a column that shouldn't be in? Maybe from the list of possible time/geography ones
+
+comp_col_check_meta <- function(data) {
+  
+  if("geographic_level" %in% metadata$col_name) warning("geographic_level should not be in the metadata")
+  if("time_identifier" %in% metadata$col_name) warning("time_identifier should not be in the metadata")
+  if("country_code" %in% metadata$col_name) warning("country_code should not be in the metadata")
+  if("country_name" %in% metadata$col_name) warning("country_name should not be in the metadata")
+  if("time_period" %in% metadata$col_name) warning("time_period should not be in the metadata") 
+  
+  'passed'  
+}
+
+comp_col_check_meta(metadata)
 
 # -------------------------------------
 # col_type - is this one of 'Filter' or 'Indicator'
