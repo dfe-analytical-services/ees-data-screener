@@ -209,8 +209,20 @@ meta_indicator_group_check(metadata)
 # - should be blank for all filters
 
 # -------------------------------------
-# filter_hint should be blank for indicators, again can we flag at row level?
-# - also add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
+# filter_hint should be blank for indicators
+# - perhaps we can flag at row level?
+# - a furtherthing would be add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
+
+meta_filter_hint_check <- function(data) {
+  
+  indicators <- data %>% filter(data$col_type =='Indicator')
+  
+  if(any(!is.na(indicators$filter_hint))) warning('Indicator variables cannot have a filter hint assigned to them')  
+  
+  'passed'
+}
+
+meta_filter_hint_check(metadata)
 
 # -------------------------------------
 # filter_grouping column
@@ -220,7 +232,7 @@ meta_filter_group_check <- function(data) {
   
   indicators <- data %>% filter(data$col_type =='Indicator')
     
-  if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter_group assigned to them')  
+  if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter group assigned to them')  
   
   'passed'
 }
