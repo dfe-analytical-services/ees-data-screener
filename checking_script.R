@@ -145,8 +145,7 @@ meta_col_check(metadata)
 # -------------------------------------
 # flag for commas
 # - more complex, but can we somehow flag for an individual column?
-# checking for commas in the data file - currently commented out as the function is already defined
-
+# currently commented out as the function is already defined
 #comma_check <- function(data) {
   
  # if(is.element(",",unlist(data))) stop("There are commas in your file")
@@ -158,6 +157,17 @@ comma_check(metadata)
 
 # -------------------------------------
 # is col_name completed for every row
+
+meta_name_check <- function(data) {
+  
+  if(any(is.na(data$col_name))) warning(paste('There are names missing in ', sum(is.na(data$col_name)), 'rows'))
+  if(any(metadata$col_name %in% metadata$col_name[duplicated(metadata$col_name)])) warning('At least one of the variable names is duplicated')
+  
+  'passed'
+}
+
+meta_name_check(metadata)
+
 # - check that no value in here has any spaces
 # - also then something to check if it's a column that shouldn't be in? Maybe from the list of possible time/geography ones
 
@@ -180,7 +190,7 @@ col_type_check(metadata)
 meta_label_check <- function(data) {
   
 if(any(is.na(data$label))) warning(paste('There are labels missing in ', sum(is.na(data$label)), 'rows'))
-if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('Atleast one of the labels is duplicated')
+if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('At least one of the labels is duplicated')
   
   'passed'
 }
