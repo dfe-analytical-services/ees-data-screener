@@ -168,6 +168,16 @@ meta_name_check <- function(data) {
 meta_name_check(metadata)
 
 # - check that no value in here has any spaces
+
+meta_name_spaces_check <- function(data) {
+  
+  if (any(grepl('\\s',metadata$col_name))) stop("there are spaces in column names")
+  
+  'passed'
+}
+
+meta_name_spaces_check(dataset)
+
 # - also then something to check if it's a column that shouldn't be in? Maybe from the list of possible time/geography ones
 
 comp_col_check_meta <- function(data) {
