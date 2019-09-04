@@ -204,13 +204,26 @@ meta_indicator_group_check <- function(data) {
 meta_indicator_group_check(metadata)
 
 # -------------------------------------
-# Unit validation? indicator unit column
-# - something about units
+# Validation for the indicator units
 
+meta_indicator_unit_check <- function(data) {
+  
+  indicators <- data %>% filter(data$col_type =='Indicator')
+  
+  if((!"£" %in% indicators$indicator_unit)&
+     (!"%" %in% indicators$indicator_unit)&
+     (!"" %in% indicators$indicator_unit))
+     
+  warning('There is an invalid indicator unit in the metadata')  
+    
+  'passed'
+}
+
+meta_indicator_unit_check(metadata)
 
 # - should be blank for all filters
 
-meta_unit_check <- function(data) {
+meta_filter_unit_check <- function(data) {
   
   filters <- data %>% filter(data$col_type =='Filter')
   
@@ -219,7 +232,7 @@ meta_unit_check <- function(data) {
   'passed'
 }
 
-meta_unit_check(metadata)
+meta_filter_unit_check(metadata)
 
 # -------------------------------------
 # filter_hint should be blank for indicators
