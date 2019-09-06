@@ -105,7 +105,7 @@ time_identifier_check(dataset)
 
 # -------------------------------------
 # flag for commas
-# - use a loop across every column to flag the ones that have commas
+# - FUTURE - use a loop across every column to flag the ones that have commas
 
 comma_check <- function(data) {
 
@@ -131,8 +131,8 @@ data_spaces_check <- function(data) {
 data_spaces_check(dataset)
 
 # -------------------------------------
-# character limits? maybe something to decide on good practice once the platform is closer to ready
-# - for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
+# FUTURE - character limits? maybe something to decide on good practice once the platform is closer to ready
+# FUTURE - for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
 
 # -------------------------------------
 # Do we have the right levels for the amount of data
@@ -141,14 +141,14 @@ data_spaces_check(dataset)
 # - actually testing this
 
 # -------------------------------------
-# geo codes are relevant to year of data (very optimistic, leave for now)
+# FUTURE - geo codes are relevant to year of data (very optimistic, leave for now)
 
 # -------------------------------------
 ### METADATA VALIDATION
 # -------------------------------------
 
 # check all columns exist
-# - may want to add additional text at some point that highlights columns might be there but might just be labelled incorrectly
+# - FUTURE - may want to add additional text at some point that highlights columns might be there but might just be labelled incorrectly
 
 meta_col_check <- function(data) {
   
@@ -167,7 +167,7 @@ meta_col_check(metadata)
 
 # -------------------------------------
 # flag for commas
-# - more complex, but can we somehow flag for an individual column?
+# - FUTURE - more complex, but can we somehow flag for an individual column?
 
 # currently commented out as the function is already defined
 #comma_check <- function(data) {
@@ -246,8 +246,8 @@ meta_label_check(metadata)
 
 # -------------------------------------
 # indicator grouping - is this blank for all filters?
-# - can we extract these and show in a list
-# -- 'here are groups for your indicators as they will appear, please check these are correct'.
+# - FUTURE - can we extract these and show in a list
+# - 'here are groups for your indicators as they will appear, please check these are correct'.
 
 meta_indicator_group_check <- function(data) {
   
@@ -293,8 +293,8 @@ meta_filter_unit_check(metadata)
 
 # -------------------------------------
 # filter_hint should be blank for indicators
-# - perhaps we can flag at row level?
-# - a furtherthing would be add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
+# - FUTURE - perhaps we can flag at row level?
+# - FUTURE - a furtherthing would be add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
 
 meta_filter_hint_check <- function(data) {
   
@@ -346,7 +346,7 @@ meta_filter_group_check(metadata)
 # filters contain ‘total’ level
 
 # -------------------------------------
-# empty indicators - maybe output the percentage of all indicator values that are blank?
+# FUTURE - empty indicators - maybe output the percentage of all indicator values that are blank?
 
 # -------------------------------------
 # consistency in levels and ‘unique’ (geog and filter) 
