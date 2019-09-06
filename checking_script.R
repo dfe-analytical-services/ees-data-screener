@@ -135,8 +135,6 @@ meta_col_check <- function(data) {
   if(!"filter_hint" %in% names(data)) warning("filter_hint is missing")
   if(!"filter_grouping_column" %in% names(data)) warning("filter_grouping_column is missing") 
   
-  
-  # need a way to make sure that it doesn't say passed when there is warnings?  
   'passed'  
 }
 
@@ -145,8 +143,8 @@ meta_col_check(metadata)
 # -------------------------------------
 # flag for commas
 # - more complex, but can we somehow flag for an individual column?
-# checking for commas in the data file - currently commented out as the function is already defined
 
+# currently commented out as the function is already defined
 #comma_check <- function(data) {
   
  # if(is.element(",",unlist(data))) stop("There are commas in your file")
@@ -158,8 +156,42 @@ comma_check(metadata)
 
 # -------------------------------------
 # is col_name completed for every row
+
+meta_name_check <- function(data) {
+  
+  if(any(is.na(data$col_name))) warning(paste('There are names missing in ', sum(is.na(data$col_name)), 'rows'))
+  if(any(metadata$col_name %in% metadata$col_name[duplicated(metadata$col_name)])) warning('At least one of the variable names is duplicated')
+  
+  'passed'
+}
+
+meta_name_check(metadata)
+
 # - check that no value in here has any spaces
+
+meta_name_spaces_check <- function(data) {
+  
+  if (any(grepl('\\s',metadata$col_name))) stop("there are spaces in column names")
+  
+  'passed'
+}
+
+meta_name_spaces_check(dataset)
+
 # - also then something to check if it's a column that shouldn't be in? Maybe from the list of possible time/geography ones
+
+comp_col_check_meta <- function(data) {
+  
+  if("geographic_level" %in% metadata$col_name) warning("geographic_level should not be in the metadata")
+  if("time_identifier" %in% metadata$col_name) warning("time_identifier should not be in the metadata")
+  if("country_code" %in% metadata$col_name) warning("country_code should not be in the metadata")
+  if("country_name" %in% metadata$col_name) warning("country_name should not be in the metadata")
+  if("time_period" %in% metadata$col_name) warning("time_period should not be in the metadata") 
+  
+  'passed'  
+}
+
+comp_col_check_meta(metadata)
 
 # -------------------------------------
 # col_type - is this one of 'Filter' or 'Indicator'
@@ -180,7 +212,7 @@ col_type_check(metadata)
 meta_label_check <- function(data) {
   
 if(any(is.na(data$label))) warning(paste('There are labels missing in ', sum(is.na(data$label)), 'rows'))
-if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('Atleast one of the labels is duplicated')
+if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('At least one of the labels is duplicated')
   
   'passed'
 }
@@ -204,13 +236,51 @@ meta_indicator_group_check <- function(data) {
 meta_indicator_group_check(metadata)
 
 # -------------------------------------
-# Unit validation? indicator unit column
-# - something about units
+# Validation for the indicator units
+
+meta_indicator_unit_check <- function(data) {
+  
+  indicators <- data %>% filter(data$col_type =='Indicator')
+  
+  if((!"£" %in% indicators$indicator_unit)&
+     (!"%" %in% indicators$indicator_unit)&
+     (!"" %in% indicators$indicator_unit))
+     
+  warning('There is an invalid indicator unit in the metadata')  
+    
+  'passed'
+}
+
+meta_indicator_unit_check(metadata)
+
 # - should be blank for all filters
 
+meta_filter_unit_check <- function(data) {
+  
+  filters <- data %>% filter(data$col_type =='Filter')
+  
+  if(any(!is.na(filters$indicator_unit))) warning('Filter variables cannot have an indicator unit assigned to them')  
+  
+  'passed'
+}
+
+meta_filter_unit_check(metadata)
+
 # -------------------------------------
-# filter_hint should be blank for indicators, again can we flag at row level?
-# - also add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
+# filter_hint should be blank for indicators
+# - perhaps we can flag at row level?
+# - a furtherthing would be add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
+
+meta_filter_hint_check <- function(data) {
+  
+  indicators <- data %>% filter(data$col_type =='Indicator')
+  
+  if(any(!is.na(indicators$filter_hint))) warning('Indicator variables cannot have a filter hint assigned to them')  
+  
+  'passed'
+}
+
+meta_filter_hint_check(metadata)
 
 # -------------------------------------
 # filter_grouping column
@@ -220,7 +290,7 @@ meta_filter_group_check <- function(data) {
   
   indicators <- data %>% filter(data$col_type =='Indicator')
     
-  if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter_group assigned to them')  
+  if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter group assigned to them')  
   
   'passed'
 }
