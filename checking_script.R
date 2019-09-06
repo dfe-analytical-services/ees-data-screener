@@ -138,7 +138,22 @@ data_spaces_check(dataset)
 # Do we have the right levels for the amount of data
 # - Setting up the levels and required columns
 
-# - actually testing this
+National <- c("country_code","country_name")
+Regional <- c("country_code","country_name","region_code","region_name")
+LA <- c("country_code","country_name","region_code","region_name","old_la_code","new_la_code","la_name")
+RSC <- c("country_code","country_name","rsc_name")
+PCon <- c("country_code","country_name","pcon_code","pcon_name")
+LAD <- c("country_code","country_name","lad_code","lad_name")
+LEP <- c("country_code","country_name","local_enterprise_partnership_code","local_enterprise_partnership_name")
+MCA <- c("country_code","country_name","mayoral_combined_authority_code","mayoral_combined_authority_name")
+OpportunityArea <- c("country_code","country_name","opportunity_area_code","opportunity_area_name")
+Ward <- c("country_code","country_name","ward_code","ward_name")
+MAT <- c("country_code","country_name","trust_id","trust_name")
+Sponsor <- c("country_code","country_name","sponsor_id","sponsor_name")
+
+# SCHOOL LEVEL DATA IS NOT YET SUPPORTED
+
+# - actually testing this, are the above present and completed 
 
 # -------------------------------------
 # FUTURE - geo codes are relevant to year of data (very optimistic, leave for now)
