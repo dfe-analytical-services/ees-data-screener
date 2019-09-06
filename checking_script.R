@@ -102,21 +102,13 @@ data_spaces_check(dataset)
 # - for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
 
 # -------------------------------------
-# do any other valid geography columns exist
-# - if so, are these valid?
-# - if so, are the minimum ones there that we expect based on the level column
+# Do we have the right levels for the amount of data
+# - Setting up the levels and required columns
+
+# - actually testing this
 
 # -------------------------------------
-# geo codes are relevant to year of data (optimistic?)
-
-# -------------------------------------
-# consistency in levels and ‘unique’ (geog and filter)
-
-# -------------------------------------
-# filters contain ‘total’ level
-
-# -------------------------------------
-# empty indicators - maybe output the percentage of all indicator values that are blank?
+# geo codes are relevant to year of data (very optimistic, leave for now)
 
 # -------------------------------------
 ### METADATA VALIDATION
@@ -315,4 +307,15 @@ meta_filter_group_check(metadata)
 # filter_group column has less levels than filter column in the data file
 
 # -------------------------------------
-# filters in the metadata file should have more than one value - flag when they only have one
+# filters should have more than one value - flag when they only have one
+
+# -------------------------------------
+# filters contain ‘total’ level
+
+# -------------------------------------
+# empty indicators - maybe output the percentage of all indicator values that are blank?
+
+# -------------------------------------
+# consistency in levels and ‘unique’ (geog and filter) 
+# Think this means that each level should have a consistent amount of filters completed, and that each row should be unique?
+# Check this somehow with an initial validation, and then count the distinct rows and see if that equals the number of rows
