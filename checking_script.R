@@ -1,5 +1,5 @@
 # only need to run this line if you don't already have it installed
-#install.packages('tidyverse')
+# install.packages('tidyverse')
 
 library(tidyverse)
 
@@ -52,7 +52,7 @@ time_period_check(dataset)
 
 # -------------------------------------
 # write a check for the 6 digit number only being consecutive years
-# - could use the 101 thing to work it out
+# - NEEDS WORK - could use the 101 thing to work it out
 
 time_period_check_consecutive <- function(data) {
   
@@ -135,25 +135,38 @@ data_spaces_check(dataset)
 # FUTURE - for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
 
 # -------------------------------------
-# Do we have the right levels for the amount of data
+# NEEDS WORK - Do we have the right levels for the amount of data
 # - Setting up the levels and required columns
 
-National <- c("country_code","country_name")
-Regional <- c("country_code","country_name","region_code","region_name")
-LA <- c("country_code","country_name","region_code","region_name","old_la_code","new_la_code","la_name")
-RSC <- c("country_code","country_name","rsc_name")
-PCon <- c("country_code","country_name","pcon_code","pcon_name")
-LAD <- c("country_code","country_name","lad_code","lad_name")
-LEP <- c("country_code","country_name","local_enterprise_partnership_code","local_enterprise_partnership_name")
-MCA <- c("country_code","country_name","mayoral_combined_authority_code","mayoral_combined_authority_name")
-OpportunityArea <- c("country_code","country_name","opportunity_area_code","opportunity_area_name")
-Ward <- c("country_code","country_name","ward_code","ward_name")
-MAT <- c("country_code","country_name","trust_id","trust_name")
-Sponsor <- c("country_code","country_name","sponsor_id","sponsor_name")
+National_required <- c("country_code","country_name")
+Regional_required <- c("country_code","country_name","region_code","region_name")
+LA_required <- c("country_code","country_name","region_code","region_name","old_la_code","new_la_code","la_name")
+RSC_required <- c("country_code","country_name","rsc_name")
+PCon_required <- c("country_code","country_name","pcon_code","pcon_name")
+LAD_required <- c("country_code","country_name","lad_code","lad_name")
+LEP_required <- c("country_code","country_name","local_enterprise_partnership_code","local_enterprise_partnership_name")
+MCA_required <- c("country_code","country_name","mayoral_combined_authority_code","mayoral_combined_authority_name")
+OpportunityArea_required <- c("country_code","country_name","opportunity_area_code","opportunity_area_name")
+Ward_required <- c("country_code","country_name","ward_code","ward_name")
+MAT_required <- c("country_code","country_name","trust_id","trust_name")
+Sponsor_required <- c("country_code","country_name","sponsor_id","sponsor_name")
 
 # SCHOOL LEVEL DATA IS NOT YET SUPPORTED
 
-# - actually testing this, are the above present and completed 
+# - NEEDS WORK - actually testing this, are the above present?
+
+# - NEEDS WORK - are the geography columns completed for the right levels
+
+geography_level_check <- function(data) {
+  
+  National <- filter(dataset$geographic_level =='National')
+  
+  if(any(!is.na(National$country_name))) warning('The country_name column must be completed for national level data')  
+  
+  'passed'
+}
+
+geography_level_check(dataset)
 
 # -------------------------------------
 # FUTURE - geo codes are relevant to year of data (very optimistic, leave for now)
@@ -266,7 +279,7 @@ meta_label_check(metadata)
 
 meta_indicator_group_check <- function(data) {
   
-  filters <- data %>% filter(data$col_type =='Filters')
+  filters <- data %>% filter(data$col_type =='Filter')
   
   if(any(!is.na(filters$indicator_grouping))) warning('Filter variables cannot have a indicator_grouping assigned to them')  
   
@@ -338,7 +351,7 @@ meta_filter_group_check <- function(data) {
 meta_filter_group_check(metadata)
 
 # -------------------------------------
-### CROSS VALIDATION OF METADATA AND DATA FILE
+### CROSS VALIDATION OF METADATA AND DATA FILE - ALL NEED WORK
 # -------------------------------------
 
 # for each col__name in the metadata check these each appear in the data file
