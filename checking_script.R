@@ -59,7 +59,7 @@ nextyear <- strtoi(substr(dataset$time_period,5,6))
   
   if (((currentyear+1)!=nextyear)&(!any(grepl("^[0-9]{6,6}$",dataset$time_period))))
       stop("6 digit time_period values must show consecutive years, e.g. 201617")
-  
+  #this is failing because of the issue of the condition only looking at 1 element - need to work out the alternative
   'passed'
 }
 
@@ -89,8 +89,19 @@ acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring 
   
   time_identifier <- unique(dataset$time_identifier)
 
-  if(!time_identifier %in% acceptable_time_identifiers) warning("There is at least one invalid time identifier value present")
- #this is failing because the first argument can only have one element, write out long? 
+  identifier_test <- intersect(time_identifier,acceptable_time_identifiers)
+  
+  
+  #if(time_identifier!=identifier_test) warning("There is at least one invalid time identifier value present")
+  
+  #if(!time_identifier %in% acceptable_time_identifiers) warning("There is at least one invalid time identifier value present")
+ 
+  # the above don't work as the condition has more than one element in there
+  
+  all.equal(identifier_test,time_identifier)
+  which(identifier_test != time_identifier)
+  # these two don't seem to be working either
+  
   'passed'  
 }
 
