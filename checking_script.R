@@ -121,7 +121,7 @@ comma_check(dataset)
 
 data_spaces_check <- function(data) {
   
-  names <- dataset$col_name
+  names <- names(dataset)
   
   if (any(grepl('\\s',names))) stop("there are spaces in column names")
   
