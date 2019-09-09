@@ -20,6 +20,7 @@ dataset <- read_csv("data_metadata/missing_meta_labels.csv")
 metadata <- read_csv("data_metadata/3digit_illegal.meta.csv")
 dataset <- read_csv("data_metadata/3digit_illegal.csv")
 
+
 metadata <- read_csv("data_metadata/6digit_dodgy.meta.csv")
 dataset <- read_csv("data_metadata/6digit_dodgy.csv")
 
@@ -98,17 +99,47 @@ time_period_check_consecutive(dataset)
 # -------------------------------------
 # no crossing of time indentifiers - print the unique/distinct values from that column for now
 
+print("Check the following list for crossing of conceptually different values") 
 unique(dataset$time_identifier)
 
 # -------------------------------------
+# are the time identifier values valid?
+
+time_identifier_check <- function(data) {
+
+acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring term","Up until 31st March",
+  "January","February","March","April","May","June","July","August","September","October","November","Decemeber",
+  "Calendar year","Calendar year Q1","Calendar year Q2","Calendar year Q3","Calendar year Q4",
+  "Calendar year Q1-2","Calendar year Q1-3","Calendar year Q1-4","Calendar year Q2-3","Calendar year Q2-4","Calendar year Q3-4",
+  "Financial year","Financial year Q1","Financial year Q2","Financial year Q3","Financial year Q4",
+  "Financial year Q1-2","Financial year Q1-3","Financial year Q1-4","Financial year Q2-3","Financial year Q2-4","Financial year Q3-4",
+  "Academic year","Academic year Q1","Academic year Q2","Academic year Q3","Academic year Q4",
+  "Academic year Q1-2","Academic year Q1-3","Academic year Q1-4","Academic year Q2-3","Academic year Q2-4","Academic year Q3-4",
+  "Tax year","Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4",
+  "Tax year Q1-2","Tax year Q1-3","Tax year Q1-4","Tax year Q2-3","Tax year Q2-4","Tax year Q3-4")
+  
+  time_identifier <- unique(dataset$time_identifier)
+
+  identifier_test <- intersect(time_identifier,acceptable_time_identifiers)
+  
+  if(FALSE == identical(identifier_test,time_identifier)) warning("There is an invalid time_identifier")
+  
+ message('passed')
+  
+ }
+
+time_identifier_check(dataset)
+
+# -------------------------------------
 # flag for commas
-# - use a loop across every column to flag the ones that have commas
+# - FUTURE - use a loop across every column to flag the ones that have commas
 
 comma_check <- function(data) {
 
   if(is.element(",",unlist(data))) stop("There are commas in your file")
 
   message('passed')
+  
 }
 
 comma_check(dataset)
@@ -117,41 +148,63 @@ comma_check(dataset)
 # Checking datafile for spaces in variable names
 
 data_spaces_check <- function(data) {
-  
-  if (any(grepl('\\s',names(dataset)))) stop("there are spaces in column names")
-  
+    
+  if (any(grepl('\\s',names(dataset)))) stop("There are spaces in column names")
+
   message('passed')
+
 }
 
 data_spaces_check(dataset)
 
 # -------------------------------------
-# character limits? maybe something to decide on good practice once the platform is closer to ready
-# - for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
+# FUTURE - character limits? maybe something to decide on good practice once the platform is closer to ready
+# FUTURE - for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
 
 # -------------------------------------
-# do any other valid geography columns exist
-# - if so, are these valid?
-# - if so, are the minimum ones there that we expect based on the level column
+# NEEDS WORK - Do we have the right levels for the amount of data
+# - Setting up the levels and required columns
+
+National_required <- c("country_code","country_name")
+Regional_required <- c("country_code","country_name","region_code","region_name")
+LA_required <- c("country_code","country_name","region_code","region_name","old_la_code","new_la_code","la_name")
+RSC_required <- c("country_code","country_name","rsc_name")
+PCon_required <- c("country_code","country_name","pcon_code","pcon_name")
+LAD_required <- c("country_code","country_name","lad_code","lad_name")
+LEP_required <- c("country_code","country_name","local_enterprise_partnership_code","local_enterprise_partnership_name")
+MCA_required <- c("country_code","country_name","mayoral_combined_authority_code","mayoral_combined_authority_name")
+OpportunityArea_required <- c("country_code","country_name","opportunity_area_code","opportunity_area_name")
+Ward_required <- c("country_code","country_name","ward_code","ward_name")
+MAT_required <- c("country_code","country_name","trust_id","trust_name")
+Sponsor_required <- c("country_code","country_name","sponsor_id","sponsor_name")
+
+# SCHOOL LEVEL DATA IS NOT YET SUPPORTED
+
+# - NEEDS WORK - actually testing this, are the above present?
+
+# - NEEDS WORK - are the geography columns completed for the right levels
+
+geography_level_check <- function(data) {
+  
+  National <- filter(dataset$geographic_level =='National')
+  
+  if(any(!is.na(National$country_name))) warning('The country_name column must be completed for national level data')  
+  
+  message('passed')
+  
+}
+
+geography_level_check(dataset)
 
 # -------------------------------------
-# geo codes are relevant to year of data (optimistic?)
-
-# -------------------------------------
-# consistency in levels and ‘unique’ (geog and filter)
-
-# -------------------------------------
-# filters contain ‘total’ level
-
-# -------------------------------------
-# empty indicators - maybe output the percentage of all indicator values that are blank?
+# FUTURE - geo codes are relevant to year of data (very optimistic, leave for now)
 
 # -------------------------------------
 ### METADATA VALIDATION FUNCTIONS
 # -------------------------------------
 
 # check all columns exist
-# - may want to add additional text at some point that highlights columns might be there but might just be labelled incorrectly
+# - FUTURE - may want to add additional text at some point that highlights columns might be there but might just be labelled incorrectly
 
 meta_col_check <- function(data) {
   
@@ -164,13 +217,14 @@ meta_col_check <- function(data) {
   if(!"filter_grouping_column" %in% names(data)) warning("filter_grouping_column is missing") 
   
   message('passed')  
+  
 }
 
 meta_col_check(metadata)
 
 # -------------------------------------
 # flag for commas
-# - more complex, but can we somehow flag for an individual column?
+# - FUTURE - more complex, but can we somehow flag for an individual column?
 
 # currently commented out as the function is already defined
 #comma_check <- function(data) {
@@ -191,6 +245,7 @@ meta_name_check <- function(data) {
   if(any(metadata$col_name %in% metadata$col_name[duplicated(metadata$col_name)])) warning('At least one of the variable names is duplicated')
   
   message('passed')
+  
 }
 
 meta_name_check(metadata)
@@ -202,6 +257,7 @@ meta_name_spaces_check <- function(data) {
   if (any(grepl('\\s',metadata$col_name))) stop("there are spaces in column names")
   
   message('passed')
+  
 }
 
 meta_name_spaces_check(dataset)
@@ -217,6 +273,7 @@ comp_col_check_meta <- function(data) {
   if("time_period" %in% metadata$col_name) warning("time_period should not be in the metadata") 
   
   message('passed')  
+  
 }
 
 comp_col_check_meta(metadata)
@@ -225,9 +282,12 @@ comp_col_check_meta(metadata)
 # col_type - is this one of 'Filter' or 'Indicator'
 
 col_type_check <- function(data) {
+  
   if((!"Filter" %in% metadata$col_type)&(!"Indicator" %in% metadata$col_type))
     stop("col_type must either be 'Filter' or 'Indicator'")
+  
   message('passed')
+  
 }
 
 col_type_check(metadata)
@@ -243,22 +303,23 @@ if(any(is.na(data$label))) warning(paste('There are labels missing in ', sum(is.
 if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('At least one of the labels is duplicated')
   
   message('passed')
+  
 }
 
 meta_label_check(metadata)
 
 # -------------------------------------
 # indicator grouping - is this blank for all filters?
-# - can we extract these and show in a list
-# -- 'here are groups for your indicators as they will appear, please check these are correct'.
+# - FUTURE - can we extract these and show in a list
+# - 'here are groups for your indicators as they will appear, please check these are correct'.
 
 meta_indicator_group_check <- function(data) {
   
   filters <- data %>% filter(data$col_type =='Filter')
-    
   if(any(!is.na(filters$indicator_grouping))) warning('Filter variables cannot have a indicator_grouping assigned to them')  
   
   message('passed')
+  
 }
 
 meta_indicator_group_check(metadata)
@@ -277,6 +338,7 @@ indicators <- data %>% filter(data$col_type =='Indicator')
   warning('There is an invalid indicator unit in the metadata')  
     
   message('passed')
+  
 }
 
 meta_indicator_unit_check(metadata)
@@ -290,14 +352,15 @@ meta_filter_unit_check <- function(data) {
   if(any(!is.na(filters$indicator_unit))) warning('Filter variables cannot have an indicator unit assigned to them')  
   
   message('passed')
+  
 }
 
 meta_filter_unit_check(metadata)
 
 # -------------------------------------
 # filter_hint should be blank for indicators
-# - perhaps we can flag at row level?
-# - a furtherthing would be add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
+# - FUTURE - perhaps we can flag at row level?
+# - FUTURE - a furtherthing would be add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
 
 meta_filter_hint_check <- function(data) {
   
@@ -306,6 +369,7 @@ meta_filter_hint_check <- function(data) {
   if(any(!is.na(indicators$filter_hint))) warning('Indicator variables cannot have a filter hint assigned to them')  
   
   message('passed')
+  
 }
 
 meta_filter_hint_check(metadata)
@@ -321,6 +385,7 @@ meta_filter_group_check <- function(data) {
   if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter group assigned to them')  
   
   message('passed')
+  
 }
 
 meta_filter_group_check(metadata)
@@ -333,6 +398,7 @@ meta_filter_group_check(metadata)
 
 for(i in metadata$col_type) {
   if(!i %in% names(dataset)) warning("You have listed a variable in the metadata that is not present in the data file")
+  
 }
 
 # - flag any that aren't in the data file
@@ -381,6 +447,7 @@ filter_levels_check <- function(data) {
 apply(dfilters,length(unique(dfilters)))
 
   }
+
 filter_levels_check(dataset)
 # -------------------------------------
 ### FUNCTIONS TO RUN - TO MOVE TO A DIFFERENT SCRIPT
