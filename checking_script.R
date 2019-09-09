@@ -307,6 +307,15 @@ meta_filter_group_check(metadata)
 
 # -------------------------------------
 # rows in meta < cols in data file
+row_check <- function(dataset,metadata) {
+
+  if(ncol(dataset)<nrow(metadata)) stop('There are too many rows in the metadata, or too few columns in the data file')
+  
+  'passed'
+  
+}
+
+row_check(dataset,metadata)
 
 # -------------------------------------
 # filter_grouping anything in this column should be in the vector for column names for the data file
