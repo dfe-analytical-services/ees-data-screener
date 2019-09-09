@@ -48,7 +48,7 @@ comp_col_check <- function(data) {
   if(!"country_name" %in% names(data)) warning("country_name is missing")
   if(!"time_period" %in% names(data)) warning("time_period is missing") 
   
-  'passed'  
+  message('passed')  
 }
 
 comp_col_check(dataset)
@@ -62,7 +62,7 @@ time_period_check <- function(data) {
   if ((!any(grepl("^[0-9]{4,4}$",dataset$time_period)))&(!any(grepl("^[0-9]{6,6}$",dataset$time_period)))) 
     stop("time_period must be a four or six digit number e.g. 2016 or 201617")
   
-  'passed'
+  message('passed')
 }
 
 time_period_check(dataset)
@@ -98,7 +98,7 @@ comma_check <- function(data) {
 
   if(is.element(",",unlist(data))) stop("There are commas in your file")
 
-  'passed'
+  message('passed')
 }
 
 comma_check(dataset)
@@ -112,7 +112,7 @@ data_spaces_check <- function(data) {
   
   if (any(grepl('\\s',names))) stop("there are spaces in column names")
   
-  'passed'
+  message('passed')
 }
 
 data_spaces_check(dataset)
@@ -155,7 +155,7 @@ meta_col_check <- function(data) {
   if(!"filter_hint" %in% names(data)) warning("filter_hint is missing")
   if(!"filter_grouping_column" %in% names(data)) warning("filter_grouping_column is missing") 
   
-  'passed'  
+  message('passed')  
 }
 
 meta_col_check(metadata)
@@ -169,7 +169,7 @@ meta_col_check(metadata)
   
  # if(is.element(",",unlist(data))) stop("There are commas in your file")
   
-  #'passed'
+  #message('passed')
 #}
 
 comma_check(metadata)
@@ -182,7 +182,7 @@ meta_name_check <- function(data) {
   if(any(is.na(data$col_name))) warning(paste('There are names missing in ', sum(is.na(data$col_name)), 'rows'))
   if(any(metadata$col_name %in% metadata$col_name[duplicated(metadata$col_name)])) warning('At least one of the variable names is duplicated')
   
-  'passed'
+  message('passed')
 }
 
 meta_name_check(metadata)
@@ -193,7 +193,7 @@ meta_name_spaces_check <- function(data) {
   
   if (any(grepl('\\s',metadata$col_name))) stop("there are spaces in column names")
   
-  'passed'
+  message('passed')
 }
 
 meta_name_spaces_check(dataset)
@@ -208,7 +208,7 @@ comp_col_check_meta <- function(data) {
   if("country_name" %in% metadata$col_name) warning("country_name should not be in the metadata")
   if("time_period" %in% metadata$col_name) warning("time_period should not be in the metadata") 
   
-  'passed'  
+  message('passed')  
 }
 
 comp_col_check_meta(metadata)
@@ -219,7 +219,7 @@ comp_col_check_meta(metadata)
 col_type_check <- function(data) {
   if((!"Filter" %in% metadata$col_type)&(!"Indicator" %in% metadata$col_type))
     stop("col_type must either be 'Filter' or 'Indicator'")
-  'passed'
+  message('passed')
 }
 
 col_type_check(metadata)
@@ -234,7 +234,7 @@ meta_label_check <- function(data) {
 if(any(is.na(data$label))) warning(paste('There are labels missing in ', sum(is.na(data$label)), 'rows'))
 if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('At least one of the labels is duplicated')
   
-  'passed'
+  message('passed')
 }
 
 meta_label_check(metadata)
@@ -250,7 +250,7 @@ meta_indicator_group_check <- function(data) {
     
   if(any(!is.na(filters$indicator_grouping))) warning('Filter variables cannot have a indicator_grouping assigned to them')  
   
-  'passed'
+  message('passed')
 }
 
 meta_indicator_group_check(metadata)
@@ -268,7 +268,7 @@ indicators <- data %>% filter(data$col_type =='Indicator')
      
   warning('There is an invalid indicator unit in the metadata')  
     
-  'passed'
+  message('passed')
 }
 
 meta_indicator_unit_check(metadata)
@@ -281,7 +281,7 @@ meta_filter_unit_check <- function(data) {
   
   if(any(!is.na(filters$indicator_unit))) warning('Filter variables cannot have an indicator unit assigned to them')  
   
-  'passed'
+  message('passed')
 }
 
 meta_filter_unit_check(metadata)
@@ -297,7 +297,7 @@ meta_filter_hint_check <- function(data) {
   
   if(any(!is.na(indicators$filter_hint))) warning('Indicator variables cannot have a filter hint assigned to them')  
   
-  'passed'
+  message('passed')
 }
 
 meta_filter_hint_check(metadata)
@@ -312,7 +312,7 @@ meta_filter_group_check <- function(data) {
     
   if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter group assigned to them')  
   
-  'passed'
+  message('passed')
 }
 
 meta_filter_group_check(metadata)
@@ -332,7 +332,7 @@ row_check <- function(dataset,metadata) {
 
   if(ncol(dataset)<nrow(metadata)) stop('There are too many rows in the metadata, or too few columns in the data file')
   
-  'passed'
+  message('passed')
   
 }
 
