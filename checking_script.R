@@ -17,6 +17,11 @@ dataset <- read_csv("data_metadata/absence_in_prus.csv")
 metadata <- read_csv("data_metadata/filter_group.meta.csv")
 dataset <- read_csv("data_metadata/missing_meta_labels.csv")
 
+metadata <- read_csv("data_metadata/3digit_illegal.meta.csv")
+dataset <- read_csv("data_metadata/3digit_illegal.csv")
+
+metadata <- read_csv("data_metadata/6digit_dodgy.meta.csv")
+dataset <- read_csv("data_metadata/6digit_dodgy.csv")
 
 # -------------------------------------
 # SETTING UP
@@ -72,15 +77,17 @@ time_period_check(dataset)
 # - could use the 101 thing to work it out
 
 time_period_check_consecutive <- function(data) {
-  
-currentyear <- strtoi(substr(dataset$time_period,3,4))
 
-nextyear <- strtoi(substr(dataset$time_period,5,6))
+if ((!any(grepl("^[0-9]{6,6}$",dataset$time_period)))) warning("Ignore this test as there aren't six digit years")
+    
+currentyearend <- as.numeric(substr(dataset$time_period,3,4))
+nextyearend <- as.numeric(substr(dataset$time_period,5,6))
+
+check <- any(((currentyearend+1)==nextyearend)==FALSE)
   
-  if (((currentyear+1)!=nextyear)&(!any(grepl("^[0-9]{6,6}$",dataset$time_period))))
-      stop("6 digit time_period values must show consecutive years, e.g. 201617")
-  
-  'passed'
+if(check==TRUE) warning("when time_period is 6 digits, the years must be consecutive")
+      
+  message('passed')
 }
 
 time_period_check_consecutive(dataset)
@@ -108,9 +115,7 @@ comma_check(dataset)
 
 data_spaces_check <- function(data) {
   
-  names <- dataset$col_name
-  
-  if (any(grepl('\\s',names))) stop("there are spaces in column names")
+  if (any(grepl('\\s',names(dataset)))) stop("there are spaces in column names")
   
   message('passed')
 }
