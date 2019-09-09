@@ -1,5 +1,9 @@
+# -------------------------------------
+# PACKAGES
+# -------------------------------------
+
 # only need to run this line if you don't already have it installed
-#install.packages('tidyverse')
+# install.packages('tidyverse')
 
 library(tidyverse)
 
@@ -13,8 +17,24 @@ dataset <- read_csv("data_metadata/absence_in_prus.csv")
 metadata <- read_csv("data_metadata/filter_group.meta.csv")
 dataset <- read_csv("data_metadata/missing_meta_labels.csv")
 
+
 # -------------------------------------
-### DATA FILE VALIDATION
+# SETTING UP
+# -------------------------------------
+
+# Metadata slices
+mfilters <- filter(metadata,col_type=="Filter")
+mindicators <- filter(metadata,col_type=="Indicator")
+
+# Datafile slices
+filternames <- c(mfilters$col_name) 
+indicatornames <- c(mindicators$col_name)
+
+dfilters <- select(dataset, filternames)
+dindicators <- select(dataset, indicatornames)
+
+# -------------------------------------
+### DATA FILE VALIDATION FUNCTIONS
 # -------------------------------------
 
 # all tests below this point will need testing with the test data to make sure they fail correctly as well as pass correctly
@@ -119,7 +139,7 @@ data_spaces_check(dataset)
 # empty indicators - maybe output the percentage of all indicator values that are blank?
 
 # -------------------------------------
-### METADATA VALIDATION
+### METADATA VALIDATION FUNCTIONS
 # -------------------------------------
 
 # check all columns exist
@@ -226,8 +246,8 @@ meta_label_check(metadata)
 
 meta_indicator_group_check <- function(data) {
   
-  filters <- data %>% filter(data$col_type =='Filters')
-  
+  filters <- data %>% filter(data$col_type =='Filter')
+    
   if(any(!is.na(filters$indicator_grouping))) warning('Filter variables cannot have a indicator_grouping assigned to them')  
   
   'passed'
@@ -240,7 +260,7 @@ meta_indicator_group_check(metadata)
 
 meta_indicator_unit_check <- function(data) {
   
-  indicators <- data %>% filter(data$col_type =='Indicator')
+indicators <- data %>% filter(data$col_type =='Indicator')
   
   if((!"£" %in% indicators$indicator_unit)&
      (!"%" %in% indicators$indicator_unit)&
@@ -298,7 +318,7 @@ meta_filter_group_check <- function(data) {
 meta_filter_group_check(metadata)
 
 # -------------------------------------
-### CROSS VALIDATION OF METADATA AND DATA FILE
+### CROSS VALIDATION OF METADATA AND DATA FILE FUNCTIONS
 # -------------------------------------
 
 # for each col__name in the metadata check these each appear in the data file
@@ -307,6 +327,7 @@ meta_filter_group_check(metadata)
 
 # -------------------------------------
 # rows in meta < cols in data file
+
 row_check <- function(dataset,metadata) {
 
   if(ncol(dataset)<nrow(metadata)) stop('There are too many rows in the metadata, or too few columns in the data file')
@@ -325,3 +346,12 @@ row_check(dataset,metadata)
 
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
+
+# -------------------------------------
+### FUNCTIONS TO RUN - TO MOVE TO A DIFFERENT SCRIPT
+# -------------------------------------
+
+# in here
+# load the data files
+# chunk up for the functions
+# list of the functions
