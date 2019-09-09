@@ -96,9 +96,9 @@ acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring 
 
   identifier_test <- intersect(time_identifier,acceptable_time_identifiers)
   
-  if(FALSE == identical(identifier_test,time_identifier)) warning("there is an invalid time_identifier")
+  if(FALSE == identical(identifier_test,time_identifier)) warning("There is an invalid time_identifier")
   
- 'passed'  
+ 'passed'
  }
 
 time_identifier_check(dataset)
