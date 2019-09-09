@@ -1,5 +1,5 @@
 # only need to run this line if you don't already have it installed
-#install.packages('tidyverse')
+# install.packages('tidyverse')
 
 library(tidyverse)
 
@@ -12,6 +12,9 @@ dataset <- read_csv("data_metadata/absence_in_prus.csv")
 
 metadata <- read_csv("data_metadata/filter_group.meta.csv")
 dataset <- read_csv("data_metadata/missing_meta_labels.csv")
+
+metadata <- read_csv("data_metadata/3digit_illegal.meta.csv")
+dataset <- read_csv("data_metadata/3digit_illegal.csv")
 
 # -------------------------------------
 ### DATA FILE VALIDATION
@@ -49,7 +52,7 @@ time_period_check(dataset)
 
 # -------------------------------------
 # write a check for the 6 digit number only being consecutive years
-# - could use the 101 thing to work it out
+# - NEEDS WORK - could use the 101 thing to work it out
 
 time_period_check_consecutive <- function(data) {
   
@@ -58,8 +61,10 @@ currentyear <- strtoi(substr(dataset$time_period,3,4))
 nextyear <- strtoi(substr(dataset$time_period,5,6))
   
   if (((currentyear+1)!=nextyear)&(!any(grepl("^[0-9]{6,6}$",dataset$time_period))))
+    
+    
       stop("6 digit time_period values must show consecutive years, e.g. 201617")
-  
+  #this is failing because of the issue of the condition only looking at 1 element - need to work out the alternative
   'passed'
 }
 
@@ -68,11 +73,39 @@ time_period_check_consecutive(dataset)
 # -------------------------------------
 # no crossing of time indentifiers - print the unique/distinct values from that column for now
 
+print("Check the following list for crossing of conceptually different values") 
 unique(dataset$time_identifier)
 
 # -------------------------------------
+# are the time identifier values valid?
+
+time_identifier_check <- function(data) {
+
+acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring term","Up until 31st March",
+  "January","February","March","April","May","June","July","August","September","October","November","Decemeber",
+  "Calendar year","Calendar year Q1","Calendar year Q2","Calendar year Q3","Calendar year Q4",
+  "Calendar year Q1-2","Calendar year Q1-3","Calendar year Q1-4","Calendar year Q2-3","Calendar year Q2-4","Calendar year Q3-4",
+  "Financial year","Financial year Q1","Financial year Q2","Financial year Q3","Financial year Q4",
+  "Financial year Q1-2","Financial year Q1-3","Financial year Q1-4","Financial year Q2-3","Financial year Q2-4","Financial year Q3-4",
+  "Academic year","Academic year Q1","Academic year Q2","Academic year Q3","Academic year Q4",
+  "Academic year Q1-2","Academic year Q1-3","Academic year Q1-4","Academic year Q2-3","Academic year Q2-4","Academic year Q3-4",
+  "Tax year","Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4",
+  "Tax year Q1-2","Tax year Q1-3","Tax year Q1-4","Tax year Q2-3","Tax year Q2-4","Tax year Q3-4")
+  
+  time_identifier <- unique(dataset$time_identifier)
+
+  identifier_test <- intersect(time_identifier,acceptable_time_identifiers)
+  
+  if(FALSE == identical(identifier_test,time_identifier)) warning("There is an invalid time_identifier")
+  
+ 'passed'
+ }
+
+time_identifier_check(dataset)
+
+# -------------------------------------
 # flag for commas
-# - use a loop across every column to flag the ones that have commas
+# - FUTURE - use a loop across every column to flag the ones that have commas
 
 comma_check <- function(data) {
 
@@ -88,7 +121,7 @@ comma_check(dataset)
 
 data_spaces_check <- function(data) {
   
-  names <- dataset$col_name
+  names <- names(dataset)
   
   if (any(grepl('\\s',names))) stop("there are spaces in column names")
   
@@ -98,32 +131,52 @@ data_spaces_check <- function(data) {
 data_spaces_check(dataset)
 
 # -------------------------------------
-# character limits? maybe something to decide on good practice once the platform is closer to ready
-# - for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
+# FUTURE - character limits? maybe something to decide on good practice once the platform is closer to ready
+# FUTURE - for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
 
 # -------------------------------------
-# do any other valid geography columns exist
-# - if so, are these valid?
-# - if so, are the minimum ones there that we expect based on the level column
+# NEEDS WORK - Do we have the right levels for the amount of data
+# - Setting up the levels and required columns
+
+National_required <- c("country_code","country_name")
+Regional_required <- c("country_code","country_name","region_code","region_name")
+LA_required <- c("country_code","country_name","region_code","region_name","old_la_code","new_la_code","la_name")
+RSC_required <- c("country_code","country_name","rsc_name")
+PCon_required <- c("country_code","country_name","pcon_code","pcon_name")
+LAD_required <- c("country_code","country_name","lad_code","lad_name")
+LEP_required <- c("country_code","country_name","local_enterprise_partnership_code","local_enterprise_partnership_name")
+MCA_required <- c("country_code","country_name","mayoral_combined_authority_code","mayoral_combined_authority_name")
+OpportunityArea_required <- c("country_code","country_name","opportunity_area_code","opportunity_area_name")
+Ward_required <- c("country_code","country_name","ward_code","ward_name")
+MAT_required <- c("country_code","country_name","trust_id","trust_name")
+Sponsor_required <- c("country_code","country_name","sponsor_id","sponsor_name")
+
+# SCHOOL LEVEL DATA IS NOT YET SUPPORTED
+
+# - NEEDS WORK - actually testing this, are the above present?
+
+# - NEEDS WORK - are the geography columns completed for the right levels
+
+geography_level_check <- function(data) {
+  
+  National <- filter(dataset$geographic_level =='National')
+  
+  if(any(!is.na(National$country_name))) warning('The country_name column must be completed for national level data')  
+  
+  'passed'
+}
+
+geography_level_check(dataset)
 
 # -------------------------------------
-# geo codes are relevant to year of data (optimistic?)
-
-# -------------------------------------
-# consistency in levels and ‘unique’ (geog and filter)
-
-# -------------------------------------
-# filters contain ‘total’ level
-
-# -------------------------------------
-# empty indicators - maybe output the percentage of all indicator values that are blank?
+# FUTURE - geo codes are relevant to year of data (very optimistic, leave for now)
 
 # -------------------------------------
 ### METADATA VALIDATION
 # -------------------------------------
 
 # check all columns exist
-# - may want to add additional text at some point that highlights columns might be there but might just be labelled incorrectly
+# - FUTURE - may want to add additional text at some point that highlights columns might be there but might just be labelled incorrectly
 
 meta_col_check <- function(data) {
   
@@ -142,7 +195,7 @@ meta_col_check(metadata)
 
 # -------------------------------------
 # flag for commas
-# - more complex, but can we somehow flag for an individual column?
+# - FUTURE - more complex, but can we somehow flag for an individual column?
 
 # currently commented out as the function is already defined
 #comma_check <- function(data) {
@@ -221,12 +274,12 @@ meta_label_check(metadata)
 
 # -------------------------------------
 # indicator grouping - is this blank for all filters?
-# - can we extract these and show in a list
-# -- 'here are groups for your indicators as they will appear, please check these are correct'.
+# - FUTURE - can we extract these and show in a list
+# - 'here are groups for your indicators as they will appear, please check these are correct'.
 
 meta_indicator_group_check <- function(data) {
   
-  filters <- data %>% filter(data$col_type =='Filters')
+  filters <- data %>% filter(data$col_type =='Filter')
   
   if(any(!is.na(filters$indicator_grouping))) warning('Filter variables cannot have a indicator_grouping assigned to them')  
   
@@ -268,8 +321,8 @@ meta_filter_unit_check(metadata)
 
 # -------------------------------------
 # filter_hint should be blank for indicators
-# - perhaps we can flag at row level?
-# - a furtherthing would be add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
+# - FUTURE - perhaps we can flag at row level?
+# - FUTURE - a furtherthing would be add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
 
 meta_filter_hint_check <- function(data) {
   
@@ -298,7 +351,7 @@ meta_filter_group_check <- function(data) {
 meta_filter_group_check(metadata)
 
 # -------------------------------------
-### CROSS VALIDATION OF METADATA AND DATA FILE
+### CROSS VALIDATION OF METADATA AND DATA FILE - ALL NEED WORK
 # -------------------------------------
 
 # for each col__name in the metadata check these each appear in the data file
@@ -315,4 +368,15 @@ meta_filter_group_check(metadata)
 # filter_group column has less levels than filter column in the data file
 
 # -------------------------------------
-# filters in the metadata file should have more than one value - flag when they only have one
+# filters should have more than one value - flag when they only have one
+
+# -------------------------------------
+# filters contain ‘total’ level
+
+# -------------------------------------
+# FUTURE - empty indicators - maybe output the percentage of all indicator values that are blank?
+
+# -------------------------------------
+# consistency in levels and ‘unique’ (geog and filter) 
+# Think this means that each level should have a consistent amount of filters completed, and that each row should be unique?
+# Check this somehow with an initial validation, and then count the distinct rows and see if that equals the number of rows
