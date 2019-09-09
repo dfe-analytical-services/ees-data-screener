@@ -1,3 +1,7 @@
+# -------------------------------------
+# PACKAGES
+# -------------------------------------
+
 # only need to run this line if you don't already have it installed
 # install.packages('tidyverse')
 
@@ -16,8 +20,30 @@ dataset <- read_csv("data_metadata/missing_meta_labels.csv")
 metadata <- read_csv("data_metadata/3digit_illegal.meta.csv")
 dataset <- read_csv("data_metadata/3digit_illegal.csv")
 
+
+metadata <- read_csv("data_metadata/6digit_dodgy.meta.csv")
+dataset <- read_csv("data_metadata/6digit_dodgy.csv")
+
+metadata <- read_csv("data_metadata/filter_group.meta.csv")
+dataset <- read_csv("data_metadata/filter_group.csv")
+
 # -------------------------------------
-### DATA FILE VALIDATION
+# SETTING UP
+# -------------------------------------
+
+# Metadata slices
+mfilters <- filter(metadata,col_type=="Filter")
+mindicators <- filter(metadata,col_type=="Indicator")
+
+# Datafile slices
+filternames <- c(mfilters$col_name) 
+indicatornames <- c(mindicators$col_name)
+
+dfilters <- select(dataset, filternames)
+dindicators <- select(dataset, indicatornames)
+
+# -------------------------------------
+### DATA FILE VALIDATION FUNCTIONS
 # -------------------------------------
 
 # all tests below this point will need testing with the test data to make sure they fail correctly as well as pass correctly
@@ -31,7 +57,7 @@ comp_col_check <- function(data) {
   if(!"country_name" %in% names(data)) warning("country_name is missing")
   if(!"time_period" %in% names(data)) warning("time_period is missing") 
   
-  'passed'  
+  message('passed')  
 }
 
 comp_col_check(dataset)
@@ -45,27 +71,27 @@ time_period_check <- function(data) {
   if ((!any(grepl("^[0-9]{4,4}$",dataset$time_period)))&(!any(grepl("^[0-9]{6,6}$",dataset$time_period)))) 
     stop("time_period must be a four or six digit number e.g. 2016 or 201617")
   
-  'passed'
+  message('passed')
 }
 
 time_period_check(dataset)
 
 # -------------------------------------
-# write a check for the 6 digit number only being consecutive years
-# - NEEDS WORK - could use the 101 thing to work it out
+# Checking that 6 digit numbers are for consecutive years
+# This is still a bit crude, but works for the majority of cases
 
 time_period_check_consecutive <- function(data) {
-  
-currentyear <- strtoi(substr(dataset$time_period,3,4))
 
-nextyear <- strtoi(substr(dataset$time_period,5,6))
+if ((!any(grepl("^[0-9]{6,6}$",dataset$time_period)))) warning("Ignore this test as there aren't six digit years")
+    
+currentyearend <- as.numeric(substr(dataset$time_period,3,4))
+nextyearend <- as.numeric(substr(dataset$time_period,5,6))
+
+check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
   
-  if (((currentyear+1)!=nextyear)&(!any(grepl("^[0-9]{6,6}$",dataset$time_period))))
-    
-    
-      stop("6 digit time_period values must show consecutive years, e.g. 201617")
-  #this is failing because of the issue of the condition only looking at 1 element - need to work out the alternative
-  'passed'
+if(check_yearends==TRUE) warning("when time_period is 6 digits, the years must be consecutive")
+      
+  message('passed')
 }
 
 time_period_check_consecutive(dataset)
@@ -98,7 +124,8 @@ acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring 
   
   if(FALSE == identical(identifier_test,time_identifier)) warning("There is an invalid time_identifier")
   
- 'passed'
+ message('passed')
+  
  }
 
 time_identifier_check(dataset)
@@ -111,7 +138,8 @@ comma_check <- function(data) {
 
   if(is.element(",",unlist(data))) stop("There are commas in your file")
 
-  'passed'
+  message('passed')
+  
 }
 
 comma_check(dataset)
@@ -120,12 +148,11 @@ comma_check(dataset)
 # Checking datafile for spaces in variable names
 
 data_spaces_check <- function(data) {
-  
-  names <- names(dataset)
-  
-  if (any(grepl('\\s',names))) stop("there are spaces in column names")
-  
-  'passed'
+    
+  if (any(grepl('\\s',names(dataset)))) stop("There are spaces in column names")
+
+  message('passed')
+
 }
 
 data_spaces_check(dataset)
@@ -163,7 +190,8 @@ geography_level_check <- function(data) {
   
   if(any(!is.na(National$country_name))) warning('The country_name column must be completed for national level data')  
   
-  'passed'
+  message('passed')
+  
 }
 
 geography_level_check(dataset)
@@ -172,7 +200,7 @@ geography_level_check(dataset)
 # FUTURE - geo codes are relevant to year of data (very optimistic, leave for now)
 
 # -------------------------------------
-### METADATA VALIDATION
+### METADATA VALIDATION FUNCTIONS
 # -------------------------------------
 
 # check all columns exist
@@ -188,7 +216,8 @@ meta_col_check <- function(data) {
   if(!"filter_hint" %in% names(data)) warning("filter_hint is missing")
   if(!"filter_grouping_column" %in% names(data)) warning("filter_grouping_column is missing") 
   
-  'passed'  
+  message('passed')  
+  
 }
 
 meta_col_check(metadata)
@@ -202,7 +231,7 @@ meta_col_check(metadata)
   
  # if(is.element(",",unlist(data))) stop("There are commas in your file")
   
-  #'passed'
+  #message('passed')
 #}
 
 comma_check(metadata)
@@ -215,7 +244,8 @@ meta_name_check <- function(data) {
   if(any(is.na(data$col_name))) warning(paste('There are names missing in ', sum(is.na(data$col_name)), 'rows'))
   if(any(metadata$col_name %in% metadata$col_name[duplicated(metadata$col_name)])) warning('At least one of the variable names is duplicated')
   
-  'passed'
+  message('passed')
+  
 }
 
 meta_name_check(metadata)
@@ -226,7 +256,8 @@ meta_name_spaces_check <- function(data) {
   
   if (any(grepl('\\s',metadata$col_name))) stop("there are spaces in column names")
   
-  'passed'
+  message('passed')
+  
 }
 
 meta_name_spaces_check(dataset)
@@ -241,7 +272,8 @@ comp_col_check_meta <- function(data) {
   if("country_name" %in% metadata$col_name) warning("country_name should not be in the metadata")
   if("time_period" %in% metadata$col_name) warning("time_period should not be in the metadata") 
   
-  'passed'  
+  message('passed')  
+  
 }
 
 comp_col_check_meta(metadata)
@@ -250,9 +282,12 @@ comp_col_check_meta(metadata)
 # col_type - is this one of 'Filter' or 'Indicator'
 
 col_type_check <- function(data) {
+  
   if((!"Filter" %in% metadata$col_type)&(!"Indicator" %in% metadata$col_type))
     stop("col_type must either be 'Filter' or 'Indicator'")
-  'passed'
+  
+  message('passed')
+  
 }
 
 col_type_check(metadata)
@@ -267,7 +302,8 @@ meta_label_check <- function(data) {
 if(any(is.na(data$label))) warning(paste('There are labels missing in ', sum(is.na(data$label)), 'rows'))
 if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('At least one of the labels is duplicated')
   
-  'passed'
+  message('passed')
+  
 }
 
 meta_label_check(metadata)
@@ -280,10 +316,10 @@ meta_label_check(metadata)
 meta_indicator_group_check <- function(data) {
   
   filters <- data %>% filter(data$col_type =='Filter')
-  
   if(any(!is.na(filters$indicator_grouping))) warning('Filter variables cannot have a indicator_grouping assigned to them')  
   
-  'passed'
+  message('passed')
+  
 }
 
 meta_indicator_group_check(metadata)
@@ -293,7 +329,7 @@ meta_indicator_group_check(metadata)
 
 meta_indicator_unit_check <- function(data) {
   
-  indicators <- data %>% filter(data$col_type =='Indicator')
+indicators <- data %>% filter(data$col_type =='Indicator')
   
   if((!"£" %in% indicators$indicator_unit)&
      (!"%" %in% indicators$indicator_unit)&
@@ -301,7 +337,8 @@ meta_indicator_unit_check <- function(data) {
      
   warning('There is an invalid indicator unit in the metadata')  
     
-  'passed'
+  message('passed')
+  
 }
 
 meta_indicator_unit_check(metadata)
@@ -314,7 +351,8 @@ meta_filter_unit_check <- function(data) {
   
   if(any(!is.na(filters$indicator_unit))) warning('Filter variables cannot have an indicator unit assigned to them')  
   
-  'passed'
+  message('passed')
+  
 }
 
 meta_filter_unit_check(metadata)
@@ -330,7 +368,8 @@ meta_filter_hint_check <- function(data) {
   
   if(any(!is.na(indicators$filter_hint))) warning('Indicator variables cannot have a filter hint assigned to them')  
   
-  'passed'
+  message('passed')
+  
 }
 
 meta_filter_hint_check(metadata)
@@ -345,21 +384,38 @@ meta_filter_group_check <- function(data) {
     
   if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter group assigned to them')  
   
-  'passed'
+  message('passed')
+  
 }
 
 meta_filter_group_check(metadata)
 
 # -------------------------------------
-### CROSS VALIDATION OF METADATA AND DATA FILE - ALL NEED WORK
+### CROSS VALIDATION OF METADATA AND DATA FILE FUNCTIONS
 # -------------------------------------
 
 # for each col__name in the metadata check these each appear in the data file
+
+for(i in metadata$col_type) {
+  if(!i %in% names(dataset)) warning("You have listed a variable in the metadata that is not present in the data file")
+  
+}
+
 # - flag any that aren't in the data file
 # - list those in the data file that aren't in the metadata (or observational units)
 
 # -------------------------------------
 # rows in meta < cols in data file
+
+row_check <- function(dataset,metadata) {
+
+  if(ncol(dataset)<nrow(metadata)) stop('There are too many rows in the metadata, or too few columns in the data file')
+  
+  message('passed')
+  
+}
+
+row_check(dataset,metadata)
 
 # -------------------------------------
 # filter_grouping anything in this column should be in the vector for column names for the data file
@@ -367,16 +423,37 @@ meta_filter_group_check(metadata)
 # -------------------------------------
 # filter_group column has less levels than filter column in the data file
 
-# -------------------------------------
-# filters should have more than one value - flag when they only have one
+# this would need to iterate over each possible filter column and each corresponding grouping column
+# comparing the unique levels in the datafile
+
 
 # -------------------------------------
-# filters contain ‘total’ level
+# filters in the metadata file should have more than one value - flag when they only have one
+# want to iterate over the columns of dfilters and then test if nrow(unique(x))>1
 
-# -------------------------------------
-# FUTURE - empty indicators - maybe output the percentage of all indicator values that are blank?
+for (i in names(dfilters)) {
+  ifelse((nrow(unique(dataset[[i]]))<=1),
+  message("A filter should have more than 1 level, if they only have one level then remove them from the metadata so they are not in the table tool"),
+  message("passed"))
+}
 
+for (i in names(dfilters)) {
+  if((length(unique(dataset[[i]])))<=1) warning('A filter should have more than 1 level, if they only have one level then remove them from the metadata so they are not in the table tool')
+  
+}
+
+filter_levels_check <- function(data) {
+  
+apply(dfilters,length(unique(dfilters)))
+
+  }
+
+filter_levels_check(dataset)
 # -------------------------------------
-# consistency in levels and ‘unique’ (geog and filter) 
-# Think this means that each level should have a consistent amount of filters completed, and that each row should be unique?
-# Check this somehow with an initial validation, and then count the distinct rows and see if that equals the number of rows
+### FUNCTIONS TO RUN - TO MOVE TO A DIFFERENT SCRIPT
+# -------------------------------------
+
+# in here
+# load the data files
+# chunk up for the functions
+# list of the functions
