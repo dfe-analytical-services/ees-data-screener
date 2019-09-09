@@ -23,6 +23,9 @@ dataset <- read_csv("data_metadata/3digit_illegal.csv")
 metadata <- read_csv("data_metadata/6digit_dodgy.meta.csv")
 dataset <- read_csv("data_metadata/6digit_dodgy.csv")
 
+metadata <- read_csv("data_metadata/filter_group.meta.csv")
+dataset <- read_csv("data_metadata/filter_group.csv")
+
 # -------------------------------------
 # SETTING UP
 # -------------------------------------
@@ -327,6 +330,11 @@ meta_filter_group_check(metadata)
 # -------------------------------------
 
 # for each col__name in the metadata check these each appear in the data file
+
+for(i in metadata$col_type) {
+  if(!i %in% names(dataset)) warning("You have listed a variable in the metadata that is not present in the data file")
+}
+
 # - flag any that aren't in the data file
 # - list those in the data file that aren't in the metadata (or observational units)
 
@@ -349,9 +357,31 @@ row_check(dataset,metadata)
 # -------------------------------------
 # filter_group column has less levels than filter column in the data file
 
+# this would need to iterate over each possible filter column and each corresponding grouping column
+# comparing the unique levels in the datafile
+
+
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
+# want to iterate over the columns of dfilters and then test if nrow(unique(x))>1
 
+for (i in names(dfilters)) {
+  ifelse((nrow(unique(dataset[[i]]))<=1),
+  message("A filter should have more than 1 level, if they only have one level then remove them from the metadata so they are not in the table tool"),
+  message("passed"))
+}
+
+for (i in names(dfilters)) {
+  if((length(unique(dataset[[i]])))<=1) warning('A filter should have more than 1 level, if they only have one level then remove them from the metadata so they are not in the table tool')
+  
+}
+
+filter_levels_check <- function(data) {
+  
+apply(dfilters,length(unique(dfilters)))
+
+  }
+filter_levels_check(dataset)
 # -------------------------------------
 ### FUNCTIONS TO RUN - TO MOVE TO A DIFFERENT SCRIPT
 # -------------------------------------
