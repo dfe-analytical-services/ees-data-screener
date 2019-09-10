@@ -11,8 +11,8 @@ library(tidyverse)
 # IMPORTING FILES
 # -------------------------------------
 
-metadata <- read_csv("data_metadata/output_3.meta.csv")
-dataset <- read_csv("data_metadata/output_3.csv")
+metadata <- read_csv("data_metadata/4digit_simple.meta.csv")
+dataset <- read_csv("data_metadata/4digit_simple.csv")
 
 # -------------------------------------
 # SETTING UP
