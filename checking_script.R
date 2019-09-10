@@ -11,21 +11,8 @@ library(tidyverse)
 # IMPORTING FILES
 # -------------------------------------
 
-metadata <- read_csv("data_metadata/absence_in_prus.meta.csv")
-dataset <- read_csv("data_metadata/absence_in_prus.csv")
-
-metadata <- read_csv("data_metadata/filter_group.meta.csv")
-dataset <- read_csv("data_metadata/missing_meta_labels.csv")
-
-metadata <- read_csv("data_metadata/3digit_illegal.meta.csv")
-dataset <- read_csv("data_metadata/3digit_illegal.csv")
-
-
-metadata <- read_csv("data_metadata/6digit_dodgy.meta.csv")
-dataset <- read_csv("data_metadata/6digit_dodgy.csv")
-
-metadata <- read_csv("data_metadata/filter_group.meta.csv")
-dataset <- read_csv("data_metadata/filter_group.csv")
+metadata <- read_csv("data_metadata/output_3.meta.csv")
+dataset <- read_csv("data_metadata/output_3.csv")
 
 # -------------------------------------
 # SETTING UP
@@ -33,6 +20,7 @@ dataset <- read_csv("data_metadata/filter_group.csv")
 
 # Metadata slices
 mfilters <- filter(metadata,col_type=="Filter")
+#mfilter_groups <- filter group is not blank
 mindicators <- filter(metadata,col_type=="Indicator")
 
 # Datafile slices
@@ -325,14 +313,14 @@ meta_indicator_group_check <- function(data) {
 meta_indicator_group_check(metadata)
 
 # -------------------------------------
-# Validation for the indicator units
+# Validation for the indicator units - NOT WORKING
 
 meta_indicator_unit_check <- function(data) {
   
 indicators <- data %>% filter(data$col_type =='Indicator')
   
-  if((!"£" %in% indicators$indicator_unit)&
-     (!"%" %in% indicators$indicator_unit)&
+  if((!"£" %in% indicators$indicator_unit)|
+     (!"%" %in% indicators$indicator_unit)|
      (!"" %in% indicators$indicator_unit))
      
   warning('There is an invalid indicator unit in the metadata')  
@@ -430,22 +418,15 @@ row_check(dataset,metadata)
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
 # want to iterate over the columns of dfilters and then test if nrow(unique(x))>1
-
-for (i in names(dfilters)) {
-  ifelse((nrow(unique(dataset[[i]]))<=1),
-  message("A filter should have more than 1 level, if they only have one level then remove them from the metadata so they are not in the table tool"),
-  message("passed"))
-}
-
-for (i in names(dfilters)) {
-  if((length(unique(dataset[[i]])))<=1) warning('A filter should have more than 1 level, if they only have one level then remove them from the metadata so they are not in the table tool')
-  
-}
-
 filter_levels_check <- function(data) {
   
-apply(dfilters,length(unique(dfilters)))
-
+  for (i in names(dfilters)) {
+    ifelse((length(unique(dataset[[i]])))>1,
+           message('Passed'),
+           warning('A filter should have more than 1 level, if they only have one level then remove them from the metadata so they are not in the table tool')
+    )
+  }
+  
   }
 
 filter_levels_check(dataset)
