@@ -45,7 +45,7 @@ comp_col_check <- function(data) {
   if(!"country_name" %in% names(data)) warning("country_name is missing")
   if(!"time_period" %in% names(data)) warning("time_period is missing") 
   
-  message('passed')  
+  message('PASS - If there are no warning then the five compulsory columns are all present')  
 }
 
 comp_col_check(dataset)
@@ -59,7 +59,7 @@ time_period_check <- function(data) {
   if ((!any(grepl("^[0-9]{4,4}$",dataset$time_period)))&(!any(grepl("^[0-9]{6,6}$",dataset$time_period)))) 
     stop("time_period must be a four or six digit number e.g. 2016 or 201617")
   
-  message('passed')
+  message('PASS - time_period is either 4 or 6 digits')
 }
 
 time_period_check(dataset)
@@ -79,7 +79,7 @@ check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
   
 if(check_yearends==TRUE) warning("when time_period is 6 digits, the years must be consecutive")
       
-  message('passed')
+  message('PASS - Your 6digit time_period shows consecutive years')
 }
 
 time_period_check_consecutive(dataset)
@@ -119,7 +119,7 @@ acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring 
   
   if(FALSE == identical(identifier_test,time_identifier)) warning("There is an invalid time_identifier")
   
- message('passed')
+ message('PASS - Your time idendifiers are all valid')
   
  }
 
@@ -139,7 +139,7 @@ comma_check <- function(data) {
 
   if(is.element(",",unlist(data))) stop("There are commas in your file")
 
-  message('passed')
+  message('There are no commas in your file')
   
 }
 
