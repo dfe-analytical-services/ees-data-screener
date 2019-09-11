@@ -211,16 +211,7 @@ meta_col_check <- function(data) {
 meta_col_check(metadata)
 
 # -------------------------------------
-# flag for commas
-# - FUTURE - more complex, but can we somehow flag for an individual column?
-
-# currently commented out as the function is already defined
-#comma_check <- function(data) {
-  
- # if(is.element(",",unlist(data))) stop("There are commas in your file")
-  
-  #message('passed')
-#}
+# flag for commas in the metadata
 
 comma_check(metadata)
 
@@ -229,38 +220,60 @@ comma_check(metadata)
 
 meta_name_check <- function(data) {
   
-  if(any(is.na(data$col_name))) warning(paste('There are names missing in ', sum(is.na(data$col_name)), 'rows'))
-  if(any(metadata$col_name %in% metadata$col_name[duplicated(metadata$col_name)])) warning('At least one of the variable names is duplicated')
+  if(any(is.na(data$col_name))) stop(paste('There are names missing in ', sum(is.na(data$col_name)), 'rows'))
   
-  message('passed')
+  message('PASS - col_name is completed for all rows')
   
 }
 
 meta_name_check(metadata)
 
+# -------------------------------------
+# checking for duplicates in col_name
+
+meta_duplicate_check <- function(data) {
+
+if(any(data$col_name %in% data$col_name[duplicated(data$col_name)])) stop('At least one of the variable names is duplicated')
+
+  message('PASS - All col_names are unique')
+
+  
+}
+
+meta_duplicate_check(metadata)
+
+# -------------------------------------
 # - check that no value in here has any spaces
 
 meta_name_spaces_check <- function(data) {
   
   if (any(grepl('\\s',metadata$col_name))) stop("there are spaces in column names")
   
-  message('passed')
+  message('PASS - There are no spaces in col_name')
   
 }
 
 meta_name_spaces_check(dataset)
 
+# -------------------------------------
 # - also then something to check if it's a column that shouldn't be in? Maybe from the list of possible time/geography ones
 
 comp_col_check_meta <- function(data) {
   
-  if("geographic_level" %in% metadata$col_name) warning("geographic_level should not be in the metadata")
-  if("time_identifier" %in% metadata$col_name) warning("time_identifier should not be in the metadata")
-  if("country_code" %in% metadata$col_name) warning("country_code should not be in the metadata")
-  if("country_name" %in% metadata$col_name) warning("country_name should not be in the metadata")
-  if("time_period" %in% metadata$col_name) warning("time_period should not be in the metadata") 
+  {if("geographic_level" %in% data$col_name) stop("geographic_level should not be in the metadata")
+    message('PASS - geographic_level is not present in the metadata')}
   
-  message('passed')  
+  {if("time_period" %in% data$col_name) stop("time_period should not be in the metadata") 
+    message('PASS - geographic_level is not present in the metadata')}
+  
+  {if("time_identifier" %in% data$col_name) stop("time_identifier should not be in the metadata")
+    message('PASS - time_identifier is not present in the metadata')}
+  
+  {if("country_code" %in% data$col_name) stop("country_code should not be in the metadata")
+    message('PASS - country_code is not present in the metadata')}
+  
+  {if("country_name" %in% data$col_name) stop("country_name should not be in the metadata")
+    message('PASS - country_name is not present in the metadata')}
   
 }
 
@@ -270,6 +283,8 @@ comp_col_check_meta(metadata)
 # col_type - is this one of 'Filter' or 'Indicator'
 
 col_type_check <- function(data) {
+  
+  data 
   
   if((!"Filter" %in% metadata$col_type)&(!"Indicator" %in% metadata$col_type))
     stop("col_type must either be 'Filter' or 'Indicator'")
@@ -281,20 +296,31 @@ col_type_check <- function(data) {
 col_type_check(metadata)
 
 # -------------------------------------
-# label - is this filled in for every row - can we flag the specific row there isn't a label?
-# - i.e. you need to add a label for your school_type column
-# - there shouldn't be any duplicate values in this column
+# is label completed for every row
 
-meta_label_check <- function(data) {
+meta_name_check <- function(data) {
   
-if(any(is.na(data$label))) warning(paste('There are labels missing in ', sum(is.na(data$label)), 'rows'))
-if(any(metadata$label %in% metadata$label[duplicated(metadata$label)])) warning('At least one of the labels is duplicated')
+  if(any(is.na(data$label))) stop(paste('There are names missing in ', sum(is.na(data$label)), 'rows'))
   
-  message('passed')
+  message('PASS - col_name is completed for all rows')
   
 }
 
-meta_label_check(metadata)
+meta_name_check(metadata)
+
+# -------------------------------------
+# checking for duplicates in label
+
+meta_duplicate_check <- function(data,column) {
+  
+  if(any(data[[column]] %in% data[[column]][duplicated(data$column)])) stop('At least one of the variable names is duplicated')
+  
+  message('PASS - All col_names are unique')
+  
+  
+}
+
+meta_duplicate_check(metadata,label)
 
 # -------------------------------------
 # indicator grouping - is this blank for all filters?
