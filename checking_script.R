@@ -11,8 +11,8 @@ library(tidyverse)
 # IMPORTING FILES
 # -------------------------------------
 
-metadata <- read_csv("data_metadata/school_applications_and_offers.meta.csv")
-dataset <- read_csv("data_metadata/school_applications_and_offers.csv")
+metadata <- read_csv("data_metadata/EYFSP_APS_GLD_ELG_underlying_data_2013_2018.meta.csv")
+dataset <- read_csv("data_metadata/APS_GLD_ELG_underlying_data_2013_2018.csv")
 
 # -------------------------------------
 # SETTING UP
@@ -122,6 +122,12 @@ time_identifier_check(dataset)
 # flag for commas
 # - FUTURE - use a loop across every column to flag the ones that have commas
 
+#for i in x
+
+#if(is.element(",",unlist(i))) stop("There are commas in column" i)
+
+#message('passed')
+
 comma_check <- function(data) {
 
   if(is.element(",",unlist(data))) stop("There are commas in your file")
@@ -174,11 +180,16 @@ Sponsor_required <- c("country_code","country_name","sponsor_id","sponsor_name")
 
 geography_level_check <- function(data) {
   
-  National <- filter(dataset$geographic_level =='National')
+  # once i've finished setting these up I should shift the variable creation to the top
+  National <- filter(dataset, geographic_level =='National')
   
-  if(any(!is.na(National$country_name))) warning('The country_name column must be completed for national level data')  
+  if(any(is.na(National$country_name))) warning('The country_name column must be completed for national level data')  
   
-  message('passed')
+  message('country_name is present')
+  
+  if(any(is.na(National$country_code))) warning('The country_code column must be completed for national level data')  
+  
+  message('country_code is present')
   
 }
 
