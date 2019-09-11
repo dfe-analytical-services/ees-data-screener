@@ -286,10 +286,10 @@ col_type_check <- function(data) {
   
   data 
   
-  if((!"Filter" %in% metadata$col_type)&(!"Indicator" %in% metadata$col_type))
+  if((!"Filter" %in% data$col_type)&(!"Indicator" %in% data$col_type))
     stop("col_type must either be 'Filter' or 'Indicator'")
   
-  message('passed')
+  message('PASS - col_type is always a Filter or an Indicator')
   
 }
 
@@ -298,41 +298,38 @@ col_type_check(metadata)
 # -------------------------------------
 # is label completed for every row
 
-meta_name_check <- function(data) {
+meta_label_check <- function(data) {
   
   if(any(is.na(data$label))) stop(paste('There are names missing in ', sum(is.na(data$label)), 'rows'))
   
-  message('PASS - col_name is completed for all rows')
+  message('PASS - label is completed for all rows')
   
 }
 
-meta_name_check(metadata)
+meta_label_check(metadata)
 
 # -------------------------------------
 # checking for duplicates in label
 
-meta_duplicate_check <- function(data,column) {
+meta_duplicate_label_check <- function(data) {
   
-  if(any(data[[column]] %in% data[[column]][duplicated(data$column)])) stop('At least one of the variable names is duplicated')
+  if(any(data$label %in% data$label[duplicated(data$label)])) stop('At least one of the variable names is duplicated')
   
-  message('PASS - All col_names are unique')
-  
+  message('PASS - All labels are unique')
   
 }
 
-meta_duplicate_check(metadata,label)
+meta_duplicate_label_check(metadata)
 
 # -------------------------------------
 # indicator grouping - is this blank for all filters?
-# - FUTURE - can we extract these and show in a list
-# - 'here are groups for your indicators as they will appear, please check these are correct'.
 
 meta_indicator_group_check <- function(data) {
   
   filters <- data %>% filter(data$col_type =='Filter')
-  if(any(!is.na(filters$indicator_grouping))) warning('Filter variables cannot have a indicator_grouping assigned to them')  
+  if(any(!is.na(filters$indicator_grouping))) stop('Filters cannot have an indicator grouping')  
   
-  message('passed')
+  message('PASS - No filters have an indicator grouping')
   
 }
 
@@ -363,9 +360,9 @@ meta_filter_unit_check <- function(data) {
   
   filters <- data %>% filter(data$col_type =='Filter')
   
-  if(any(!is.na(filters$indicator_unit))) warning('Filter variables cannot have an indicator unit assigned to them')  
+  if(any(!is.na(filters$indicator_unit))) stop('Filters cannot have an indicator unit assigned to them')  
   
-  message('passed')
+  message('PASS - No filters have an indicator unit')
   
 }
 
@@ -373,32 +370,30 @@ meta_filter_unit_check(metadata)
 
 # -------------------------------------
 # filter_hint should be blank for indicators
-# - FUTURE - perhaps we can flag at row level?
-# - FUTURE - a furtherthing would be add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
 
 meta_filter_hint_check <- function(data) {
   
+  #remove?
   indicators <- data %>% filter(data$col_type =='Indicator')
   
-  if(any(!is.na(indicators$filter_hint))) warning('Indicator variables cannot have a filter hint assigned to them')  
+  if(any(!is.na(indicators$filter_hint))) stop('Indicators cannot have a filter hint assigned to them')  
   
-  message('passed')
+  message('PASS - No indicators have a filter hint')
   
 }
 
 meta_filter_hint_check(metadata)
 
 # -------------------------------------
-# filter_grouping column
-# - should be blank for all indicators
+# filter_grouping column is blank for all indicators
 
 meta_filter_group_check <- function(data) {
   
   indicators <- data %>% filter(data$col_type =='Indicator')
     
-  if(any(!is.na(indicators$filter_grouping_column))) warning('Indicator variables cannot have a filter group assigned to them')  
+  if(any(!is.na(indicators$filter_grouping_column))) stop('Indicators cannot have a filter group assigned to them')  
   
-  message('passed')
+  message('PASS - No indicators have a filter group')
   
 }
 
