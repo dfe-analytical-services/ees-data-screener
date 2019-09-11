@@ -12,7 +12,7 @@ library(tidyverse)
 # -------------------------------------
 
 metadata <- read_csv("data_metadata/EYFSP_APS_GLD_ELG_underlying_data_2013_2018.meta.csv")
-dataset <- read_csv("data_metadata/APS_GLD_ELG_underlying_data_2013_2018.csv")
+dataset <- read_csv("data_metadata/commas_in_time_identifier_gender.csv")
 
 # -------------------------------------
 # SETTING UP VARIABLES FROM THE FILES
@@ -126,20 +126,15 @@ acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring 
 time_identifier_check(dataset)
 
 # -------------------------------------
-# flag for commas
-# - FUTURE - use a loop across every column to flag the ones that have commas
-
-#for i in x
-
-#if(is.element(",",unlist(i))) stop("There are commas in column" i)
-
-#message('passed')
+# flag for commas across each column
 
 comma_check <- function(data) {
 
-  if(is.element(",",unlist(data))) stop("There are commas in your file")
+  for (i in names(dataset)) {
+    if(any(grepl(",",dataset[[i]]))) warning("There are commas in ", i)
+  }
 
-  message('There are no commas in your file')
+  message('PASS - If there are no warnings stating otherwise, there are no commas in your file')
   
 }
 
