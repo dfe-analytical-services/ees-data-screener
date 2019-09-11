@@ -87,8 +87,10 @@ time_period_check_consecutive(dataset)
 # -------------------------------------
 # no crossing of time indentifiers - print the unique/distinct values from that column for now
 
-print("Check the following list for crossing of conceptually different values") 
-unique(dataset$time_identifier)
+time_identifier_list <- unique(dataset$time_identifier)
+
+cat("Check the following list for crossing of conceptually different values:
+    ", time_identifier_list) 
 
 # -------------------------------------
 # are the time identifier values valid?
