@@ -15,12 +15,12 @@ metadata <- read_csv("data_metadata/EYFSP_APS_GLD_ELG_underlying_data_2013_2018.
 dataset <- read_csv("data_metadata/APS_GLD_ELG_underlying_data_2013_2018.csv")
 
 # -------------------------------------
-# SETTING UP
+# SETTING UP VARIABLES FROM THE FILES
 # -------------------------------------
 
 # Metadata slices
 mfilters <- filter(metadata,col_type=="Filter")
-#mfilter_groups <- filter group is not blank
+# NEEDS WORK - mfilter_groups <- filter group is not blank
 mindicators <- filter(metadata,col_type=="Indicator")
 
 # Datafile slices
@@ -89,8 +89,13 @@ time_period_check_consecutive(dataset)
 
 time_identifier_list <- unique(dataset$time_identifier)
 
-cat("Check the following list for crossing of conceptually different values:
+time_identifier_mix <- function(data) {
+  
+  cat("Check the following list for crossing of conceptually different values:
     ", time_identifier_list) 
+}
+
+time_identifier_mix(dataset)
 
 # -------------------------------------
 # are the time identifier values valid?
