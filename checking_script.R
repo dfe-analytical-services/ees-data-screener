@@ -131,7 +131,7 @@ time_identifier_check(dataset)
 comma_check <- function(data) {
 
   for (i in names(dataset)) {
-    if(any(grepl(",",dataset[[i]]))) warning("There are commas in ", i)
+    if(any(grepl(",",data[[i]]))) warning("There are commas in ", i)
   }
 
   message('PASS - If there are no warnings stating otherwise, there are no commas in your file')
@@ -147,20 +147,14 @@ data_spaces_check <- function(data) {
     
   if (any(grepl('\\s',names(dataset)))) stop("There are spaces in column names")
 
-  message('passed')
+  message('PASS - There are no spaces in your variable names')
 
 }
 
 data_spaces_check(dataset)
 
 # -------------------------------------
-# FUTURE - character limits? maybe something to decide on good practice once the platform is closer to ready
-# FUTURE - for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
-
-# -------------------------------------
-# NEEDS WORK - Do we have the right levels for the amount of data
-# - Setting up the levels and required columns
-
+# NEEDS WORK - Do we have the right columns for the geographic level
 National_required <- c("country_code","country_name")
 Regional_required <- c("country_code","country_name","region_code","region_name")
 LA_required <- c("country_code","country_name","region_code","region_name","old_la_code","new_la_code","la_name")
@@ -174,11 +168,8 @@ Ward_required <- c("country_code","country_name","ward_code","ward_name")
 MAT_required <- c("country_code","country_name","trust_id","trust_name")
 Sponsor_required <- c("country_code","country_name","sponsor_id","sponsor_name")
 
-# SCHOOL LEVEL DATA IS NOT YET SUPPORTED
 
-# - NEEDS WORK - actually testing this, are the above present?
-
-# - NEEDS WORK - are the geography columns completed for the right levels
+# NEEDS WORK - are the geography columns completed for the right levels
 
 geography_level_check <- function(data) {
   
@@ -198,14 +189,10 @@ geography_level_check <- function(data) {
 geography_level_check(dataset)
 
 # -------------------------------------
-# FUTURE - geo codes are relevant to year of data (very optimistic, leave for now)
-
-# -------------------------------------
 ### METADATA VALIDATION FUNCTIONS
 # -------------------------------------
 
-# check all columns exist
-# - FUTURE - may want to add additional text at some point that highlights columns might be there but might just be labelled incorrectly
+# Check all compulsory columns exist
 
 meta_col_check <- function(data) {
   
@@ -217,7 +204,7 @@ meta_col_check <- function(data) {
   if(!"filter_hint" %in% names(data)) warning("filter_hint is missing")
   if(!"filter_grouping_column" %in% names(data)) warning("filter_grouping_column is missing") 
   
-  message('passed')  
+  message('PASS - Unless there are warnings stating otherwise, you have all of the compulsory columns in your metadata')  
   
 }
 
