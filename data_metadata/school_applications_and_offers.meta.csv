@@ -1,0 +1,17 @@
+col_name,col_type,label,indicator_grouping,indicator_unit,filter_hint,filter_grouping_column
+nc_year_admission,Filter,Year of admission,,,Filter by the year of admission,school_phase
+admission_numbers,Indicator,Number of admissions,Admissions,,,
+applications_received,Indicator,Number of applications received,Applications,,,
+online_applications,Indicator,Number of online applications,Applications,,,
+online_apps_percent,Indicator,Percentage of online applications,Applications,%,,
+no_of_preferences,Indicator,Number of preferences offered,Preferences breakdowns,,,
+first_preference_offers,Indicator,Number of first preferences offered,Preferences breakdowns,,,
+second_preference_offers,Indicator,Number of second preferences offered,Preferences breakdowns,,,
+third_preference_offers,Indicator,Number of third preferences offered,Preferences breakdowns,,,
+one_of_the_three_preference_offers,Indicator,Number that received one of their first three preferences,Preferences breakdowns,,,
+preferred_school_offer,Indicator,Number that received an offer for a preferred school,Preferences breakdowns,,,
+non_preferred_offer,Indicator,Number that received an offer for a non preferred school,Preferences breakdowns,,,
+no_offer,Indicator,Number that did not receive an offer,Preferences breakdowns,,,
+schools_in_la_offer,Indicator,Number that received an offer for a school within their LA,Preferences breakdowns,,,
+schools_in_another_la_offer,Indicator,Number that received an offer for a school outwith their LA,Preferences breakdowns,,,
+offers_to_nonapplicants,Indicator,Number that did not apply but received an offer,Preferences breakdowns,,,

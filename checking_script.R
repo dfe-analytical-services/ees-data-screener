@@ -11,8 +11,8 @@ library(tidyverse)
 # IMPORTING FILES
 # -------------------------------------
 
-metadata <- read_csv("data_metadata/4digit_simple.meta.csv")
-dataset <- read_csv("data_metadata/4digit_simple.csv")
+metadata <- read_csv("data_metadata/school_applications_and_offers.meta.csv")
+dataset <- read_csv("data_metadata/school_applications_and_offers.csv")
 
 # -------------------------------------
 # SETTING UP
@@ -430,11 +430,3 @@ filter_levels_check <- function(data) {
   }
 
 filter_levels_check(dataset)
-# -------------------------------------
-### FUNCTIONS TO RUN - TO MOVE TO A DIFFERENT SCRIPT
-# -------------------------------------
-
-# in here
-# load the data files
-# chunk up for the functions
-# list of the functions
