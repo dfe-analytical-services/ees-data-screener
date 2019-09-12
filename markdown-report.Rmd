@@ -1,43 +1,91 @@
 ---
 title: "EES-Data-Screener-Report"
 author: "Cam Race"
-date: "10 September 2019"
+date: "12 September 2019"
 output: html_document
 ---
+cameron.race@education.gov.uk
 
-```{r setup, include=FALSE}
+```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## START HERE
-
-Run the following to load packages, load your file, and prepare for the screening
-```{r}
-# -------------------------------------
-# IMPORTING FILES
-# -------------------------------------
-
-library(tidyverse)
-
-metadata <- read_csv("data_metadata/output_2.meta.csv")
-dataset <- read_csv("data_metadata/output_2.csv")
-
-# -------------------------------------
-# SETTING UP
-# -------------------------------------
-
-# Metadata slices
-mfilters <- filter(metadata,col_type=="Filter")
-#mfilter_groups <- filter group is not blank
-mindicators <- filter(metadata,col_type=="Indicator")
-
-# Datafile slices
-filternames <- c(mfilters$col_name) 
-indicatornames <- c(mindicators$col_name)
-
-dfilters <- select(dataset, filternames)
-dindicators <- select(dataset, indicatornames)
+```{r setup, include=FALSE}
+source("run.R")
+```
+### Files tested
+```{r files, echo=TRUE, results='hide', warning=FALSE}
+dataset <- read_csv("data_metadata/dynamic_test_data.csv")
+metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv")
 ```
 
-## Data file checks
+### Do all compulsory columns exist
+```{r data_comp_col, echo=FALSE}
+# check that the compulsory columns exist
+data_comp_col <- function(data) {
+  try(cat(if(!"geographic_level" %in% names(data)) stop("FAIL - The geographic_level variable is missing"), 
+          message('PASS - geographic_level is present in the data file')),silent = FALSE)
+  try(cat(if(!"time_period" %in% names(data)) stop("FAIL - The time_period variable is missing"), 
+          message('PASS - time_period is present in the data file')),silent = FALSE)
+  try(cat(if(!"time_identifier" %in% names(data)) stop("FAIL - The time_identifier variable is missing"), 
+          message('PASS - time_identifier is present in the data file')),silent = FALSE)
+  try(cat(if(!"country_name" %in% names(data)) stop("FAIL - The country_name variable is missing"), 
+          message('PASS - country_name is present in the data file')),silent = FALSE)
+  try(cat(if(!"country_code" %in% names(data)) stop("FAIL - The country_code variable is missing"), 
+          message('PASS - country_code is present in the data file')),silent = FALSE)
+}
+data_comp_col(dataset)
+```
 
+#time_period_check(data) #needs testing/more work
+  
+#time_period_check_consecutive(data) - needs working out to handle when the test isn't needed
+
+time_identifier_check(data)
+
+time_identifier_mix(data)
+
+comma_check(data)
+
+data_spaces_check(data)
+
+#geography_levels_present(data) - needs working on
+
+#geography_level_completed(data) - needs working on
+
+#filter_levels_check(data) - needs working on
+
+#total_check(data) - needs working on
+
+meta_comp_col(metadata)
+
+meta_comma_check(meta)
+
+col_name_completed(meta)
+
+meta_duplicate_check(meta)
+
+col_name_spaces_check(meta)
+
+comp_col_check_meta(meta)
+
+#col_type_check(meta) - needs reworking
+
+label_check(meta)
+
+duplicate_label_check(meta)
+
+indicator_group_check(meta)
+
+#indicator_unit_validation(meta) - needs reworking
+
+indicator_unit_check(meta)
+
+filter_hint_check(meta)
+
+filter_group_check(meta)
+
+#column_crosscheck(data,meta) - needs working on
+
+row_check(data,meta)
+
+#filter_group_match(data) - needs working on

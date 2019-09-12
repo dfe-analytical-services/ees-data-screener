@@ -10,5 +10,5 @@ metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv")
 # Build the screener functions
 source("setup_file.R")
 
-# Run the screener tests
-screening_tests(dataset,metadata)
+# Run the screener tests if needed for testing
+# screening_tests(dataset,metadata)
