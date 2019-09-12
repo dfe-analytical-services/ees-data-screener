@@ -2,90 +2,162 @@
 title: "EES-Data-Screener-Report"
 author: "Cam Race"
 date: "12 September 2019"
-output: html_document
+output: 
+  rmarkdown::html_document:
+    theme: darkly
 ---
 cameron.race@education.gov.uk
-
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r setup, include=FALSE}
 source("run.R")
 ```
-### Files tested
-```{r files, echo=TRUE, results='hide', warning=FALSE}
+## Files tested
+```{r files, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
 dataset <- read_csv("data_metadata/dynamic_test_data.csv")
 metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv")
 ```
 
-### Do all compulsory columns exist
+## Data file validation
+Checking that the compulsory columns are present
 ```{r data_comp_col, echo=FALSE}
 # check that the compulsory columns exist
-data_comp_col <- function(data) {
-  try(cat(if(!"geographic_level" %in% names(data)) stop("FAIL - The geographic_level variable is missing"), 
-          message('PASS - geographic_level is present in the data file')),silent = FALSE)
-  try(cat(if(!"time_period" %in% names(data)) stop("FAIL - The time_period variable is missing"), 
-          message('PASS - time_period is present in the data file')),silent = FALSE)
-  try(cat(if(!"time_identifier" %in% names(data)) stop("FAIL - The time_identifier variable is missing"), 
-          message('PASS - time_identifier is present in the data file')),silent = FALSE)
-  try(cat(if(!"country_name" %in% names(data)) stop("FAIL - The country_name variable is missing"), 
-          message('PASS - country_name is present in the data file')),silent = FALSE)
-  try(cat(if(!"country_code" %in% names(data)) stop("FAIL - The country_code variable is missing"), 
-          message('PASS - country_code is present in the data file')),silent = FALSE)
-}
 data_comp_col(dataset)
 ```
 
+Checking that the time_period is either 4 or 6 digits
+```{r include=FALSE}
 #time_period_check(data) #needs testing/more work
+```
   
+ Checking that any 6 digit time_periods refer to consecutive years
+```{r include=FALSE}
 #time_period_check_consecutive(data) - needs working out to handle when the test isn't needed
+```
 
-time_identifier_check(data)
+ Checking if the time_identifier values are valid
+```{r time_identifier_check, echo=FALSE}
+time_identifier_check(dataset)
+```
 
-time_identifier_mix(data)
+ Check this list for conceptually different time_identifiers
+```{r time_identifier_mix, echo=FALSE}
+time_identifier_mix(dataset)
+```
 
-comma_check(data)
+ Checking for commas in the data file
+```{r comma_check,echo=FALSE}
+comma_check(dataset)
+```
 
-data_spaces_check(data)
+ Checking for spaces in the data file variable names
+```{r data_spaces_check,echo=FALSE}
+data_spaces_check(dataset)
+```
 
+ Checking that the correct geography columns are present for the levels in the data file
+```{r geography_levels_present,include=FALSE}
 #geography_levels_present(data) - needs working on
+```
 
+ Checking that the correct geography columns are completed for each of the levels in the data file
+```{r geography_level_completed,include=FALSE}
 #geography_level_completed(data) - needs working on
+```
 
+ Checking something about filter levels
+```{r filter_levels_check,include=FALSE}
 #filter_levels_check(data) - needs working on
+```
 
+ Checking that each filter has a 'Total'
+```{r total_check,include=FALSE}
 #total_check(data) - needs working on
+```
 
+## Metadata validation
+
+ Checking that the compulsory columns are present
+```{r meta_comp_col,echo=FALSE}
 meta_comp_col(metadata)
+```
 
-meta_comma_check(meta)
+ Checking for commas
+```{r meta_comma_check,echo=FALSE}
+meta_comma_check(metadata)
+```
 
-col_name_completed(meta)
+ Checking if col_name is completed for every row
+```{r col_name_completed,echo=FALSE}
+col_name_completed(metadata)
+```
 
-meta_duplicate_check(meta)
+ Checking for duplicate col_names
+```{r meta_duplicate_check,echo=FALSE}
+meta_duplicate_check(metadata)
+```
 
-col_name_spaces_check(meta)
+ Checking for spaces in the values in the col_name column
+```{r col_name_spaces_check,echo=FALSE}
+col_name_spaces_check(metadata)
+```
 
-comp_col_check_meta(meta)
+ Checking if any observational units have been erroneously included in the metadata
+```{r comp_col_check_meta,echo=FALSE}
+comp_col_check_meta(metadata)
+```
 
+```{r col_type_check,include=FALSE}
 #col_type_check(meta) - needs reworking
+```
 
-label_check(meta)
+ Checking that every row has a label completed
+```{r label_check,echo=FALSE}
+label_check(metadata)
+```
+ 
+ Checking that there are no duplicate labels
+```{r duplicate_label_check,echo=FALSE}
+duplicate_label_check(metadata)
+```
 
-duplicate_label_check(meta)
+ Checking that no filters have an indicator group
+```{r indicator_group_check,echo=FALSE}
+indicator_group_check(metadata)
+```
 
-indicator_group_check(meta)
+ Checking that all indicator units are valid values
+```{r indicator_unit_validation,echo=FALSE}
+#indicator_unit_validation(metadata) - needs reworking
+```
 
-#indicator_unit_validation(meta) - needs reworking
+ Checking that no filters have an indicator unit
+```{r indicator_unit_check,echo=FALSE}
+indicator_unit_check(metadata)
+```
 
-indicator_unit_check(meta)
+ Checking that no indicators have a filter hint
+```{r filter_hint_check,echo=FALSE}
+filter_hint_check(metadata)
+```
 
-filter_hint_check(meta)
+ Checking that no indicators have a filter group
+```{r filter_group_check,echo=FALSE}
+filter_group_check(metadata)
+```
 
-filter_group_check(meta)
+ Cross checking the columns in the metadata are in the data file
+```{r column_crosscheck,echo=FALSE}
+#column_crosscheck(dataset,metadata) - needs working on
+```
 
-#column_crosscheck(data,meta) - needs working on
+ Checking that the number of rows in the metadata is less than the number of columns in the data file
+```{r row_check,echo=FALSE}
+row_check(dataset,metadata)
+```
 
-row_check(data,meta)
-
-#filter_group_match(data) - needs working on
+ Checking filter groups on something
+```{r filter_group_match,echo=FALSE}
+#filter_group_match(dataset) - needs working on
+```

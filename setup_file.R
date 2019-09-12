@@ -72,9 +72,7 @@ time_identifier_check <- function(data) {
 # print the unique time_identifiers for conceptual checking
 
 time_identifier_mix <- function(data) {
-  cat("Check the following list for crossing of conceptually different values:
-    ", unique(data$time_identifier,"
-              ")) 
+ unique(data$time_identifier) 
 }
 
 # -------------------------------------
