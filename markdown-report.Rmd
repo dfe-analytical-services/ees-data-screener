@@ -8,15 +8,15 @@ output:
 ---
 cameron.race@education.gov.uk
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 ```{r library, include=FALSE}
 library(tidyverse)
 ```
 ## Files tested
 ```{r files, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
-dataset <- read_csv("data_metadata/4and6digit_simple.csv")
-metadata <- read_csv("data_metadata/4and6digit_simple.meta.csv")
+dataset <- read_csv("data_metadata/dynamic_test_data.csv")
+metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv")
 ```
 
 ```{r setup, include=FALSE}
@@ -74,8 +74,8 @@ data_spaces_check(dataset)
 ```
 
  Checking that each filter has a 'Total'
-```{r total_check,include=FALSE,comment=NA}
-#total_check(data) - needs working on
+```{r total_check,echo=FALSE,comment=NA}
+try(cat(total_check(dataset,metadata)))
 ```
 
 ## Metadata validation
@@ -116,7 +116,7 @@ comp_col_check_meta(metadata)
 
  Checking that every row has a label completed
 ```{r label_check,echo=FALSE,comment=NA}
-label_check(metadata)
+try(cat(label_check(metadata)))
 ```
  
  Checking that there are no duplicate labels

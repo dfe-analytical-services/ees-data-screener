@@ -4,8 +4,8 @@
 library(tidyverse)
 
 # Load your files
-dataset <- read_csv("data_metadata/4and6digit_simple.csv")
-metadata <- read_csv("data_metadata/4and6digit_simple.meta.csv")
+dataset <- read_csv("data_metadata/dynamic_test_data.csv")
+metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv")
 
 # Build the screener functions
 source("setup_file.R")

@@ -31,7 +31,7 @@ time_period_check(dataset)
 # Checking that 6 digit numbers are for consecutive years
 
 time_period_check_consecutive <- function(data) {
-    six_digit_years <- filter(dataset,nchar(unique(dataset$time_period))==6)
+    six_digit_years <- filter(data,unique(nchar(data$time_period))==6)
   if(nrow(six_digit_years)==0) stop("IGNORE - This test does not apply to your data")
     currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
     nextyearend <- as.numeric(substr(six_digit_years$time_period,5,6))
@@ -74,7 +74,7 @@ comma_check <- function(data) {
   for (i in names(data)) {
     if(any(grepl(",",data[[i]]))) warning("FAIL - There are commas in ", i)
   }
-message('If there are no warnings in this box, there are no commas in your data file')
+message('If there are no warnings under this test, there are no commas in your data file')
 }
 
 # -------------------------------------
@@ -85,7 +85,7 @@ data_spaces_check <- function(data) {
   for (i in variable_names) {
     if(any(grepl('\\s',i))) warning("FAIL - There are spaces in ", i)
   }
-  message('If there are no warnings in this box, there are no spaces in your variable names')
+  message('If there are no warnings under this test, there are no spaces in your variable names')
 }
 
 # -------------------------------------
@@ -144,8 +144,17 @@ data_spaces_check <- function(data) {
 # -------------------------------------
 # Check for Total in all filters
 
-#something
-#total_check(dataset)
+total_check <- function(data,meta) {
+  if(!"Filter" %in% meta$col_type) stop("IGNORE - This test does not apply to your data")
+  mfilters <- filter(meta,col_type=="Filter")
+  filter_names <- c(mfilters$col_name)
+  dfilters <- select(data,filter_names)
+  for(i in names(dfilters)) {
+    if(!"Total" %in% dfilters[[i]]) warning("
+  WARNING - There is no Total value in: ", i)
+  } 
+  message("If there are no warnings under this test, there are Total levels in each of your filters")
+}
 
 # -------------------------------------
 # Check all compulsory columns exist
@@ -174,7 +183,7 @@ meta_comma_check <- function(data) {
   for (i in names(data)) {
     if(any(grepl(",",data[[i]]))) warning("FAIL - There are commas in ", i)
   }
-  message('If there are no warnings in this box, there are no commas in your metadata file')
+  message('If there are no warnings under this test, there are no commas in your metadata file')
 }
 
 # -------------------------------------
@@ -214,7 +223,7 @@ comp_col_check_meta <- function(data) {
   for (i in observational_units) {
     try(cat(if(i %in% data$col_name) warning("FAIL - ", i, " should not be in the metadata. ")))
   }
-  message("If there are no warnings in this box, there are no observational units in your metadata")
+  message("If there are no warnings under this test, there are no observational units in your metadata")
 }
 
 # -------------------------------------
