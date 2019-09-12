@@ -85,7 +85,7 @@ comma_check <- function(data) {
     if(any(grepl(",",data[[i]]))) warning("FAIL - There are commas in ", i)
   }
 message('
-If there are no warnings, there are no commas in your file')
+If there are no warnings, there are no commas in your data file')
 }
 
 # -------------------------------------
@@ -176,6 +176,17 @@ meta_comp_col <- function(data) {
           message('PASS - filter_hint is present in the metadata')),silent = FALSE)
   try(cat(if(!"filter_grouping_column" %in% names(data)) stop("FAIL - The filter_grouping_column variable is missing"), 
           message('PASS - filter_grouping_column is present in the metadata')),silent = FALSE)
+}
+
+# -------------------------------------
+# flag for commas across each column
+
+meta_comma_check <- function(data) {
+  for (i in names(data)) {
+    if(any(grepl(",",data[[i]]))) warning("FAIL - There are commas in ", i)
+  }
+  message('
+If there are no warnings, there are no commas in your metadata file')
 }
 
 # -------------------------------------
@@ -353,7 +364,7 @@ screening_tests <- function(data,meta) {
   #filter_levels_check(data) - needs working on
   #total_check(data) - needs working on
   meta_comp_col(metadata)
-  comma_check(meta)
+  meta_comma_check(meta)
   col_name_completed(meta)
   meta_duplicate_check(meta)
   col_name_spaces_check(meta)
