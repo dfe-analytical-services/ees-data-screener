@@ -1,20 +1,4 @@
 # -------------------------------------
-# PACKAGES
-# -------------------------------------
-
-# only need to run this line if you don't already have it installed
-# install.packages('tidyverse')
-
-# library(tidyverse)
-
-# -------------------------------------
-# IMPORTING FILES
-# -------------------------------------
-
-# metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv")
-# dataset <- read_csv("data_metadata/dynamic_test_data.csv")
-
-# -------------------------------------
 # SETTING UP THE SCREENER
 # -------------------------------------
 
@@ -22,7 +6,7 @@ preparing_variables <- function(data,meta) {
   
   # Metadata slices
   mfilters <- filter(meta,col_type=="Filter")
-  # NEEDS WORK - mfilter_groups <- filter group is not blank
+  # NEEDS WORK - mfilter_groups <- filter(metadata,filter_grouping_column) group is not blank
   mindicators <- filter(meta,col_type=="Indicator")
   
   # Datafile slices
@@ -63,17 +47,21 @@ preparing_variables(dataset,metadata)
 # check that the compulsory columns exist
 
 comp_col_check <- function(data) {
-  
-  if(!"geographic_level" %in% names(data)) warning("geographic_level is missing")
-  if(!"time_identifier" %in% names(data)) warning("time_identifier is missing")
-  if(!"country_code" %in% names(data)) warning("country_code is missing")
-  if(!"country_name" %in% names(data)) warning("country_name is missing")
-  if(!"time_period" %in% names(data)) warning("time_period is missing") 
-  
-  message('PASS - If there are no warning then the five compulsory columns are all present')  
-}
+try(cat(if(!"geographic_level" %in% names(data)) stop("FAIL - The geographic_level variable is missing"), 
+           message('PASS - geographic_level is present in the data file')),silent = FALSE)
 
-comp_col_check(dataset)
+try(cat(if(!"time_period" %in% names(data)) stop("FAIL - The time_period variable is missing"), 
+        message('PASS - time_period is present in the data file')),silent = FALSE)
+
+try(cat(if(!"time_identifier" %in% names(data)) stop("FAIL - The time_identifier variable is missing"), 
+        message('PASS - time_identifier is present in the data file')),silent = FALSE)
+
+try(cat(if(!"country_name" %in% names(data)) stop("FAIL - The country_name variable is missing"), 
+        message('PASS - country_name is present in the data file')),silent = FALSE)
+
+try(cat(if(!"country_code" %in% names(data)) stop("FAIL - The country_code variable is missing"), 
+        message('PASS - country_code is present in the data file')),silent = FALSE)
+}
 
 # -------------------------------------
 # This checks for a 4 or 6 digit number in the time_period column
@@ -274,23 +262,24 @@ col_name_spaces_check <- function(data) {
 # - also then something to check if it's a column that shouldn't be in? Maybe from the list of possible time/geography ones
 
 comp_col_check_meta <- function(data) {
+
+  try(cat(if("geographic_level" %in% data$col_name) stop("FAIL - geographic_level should not be in the metadata"), 
+       message('PASS - geographic_level is not present in the metadata')))
   
-  {if("geographic_level" %in% data$col_name) stop("geographic_level should not be in the metadata")
-    message('PASS - geographic_level is not present in the metadata')}
+  try(cat(if("time_period" %in% data$col_name) stop("FAIL - time_period should not be in the metadata"), 
+          message('PASS - time_period is not present in the metadata')))
   
-  {if("time_period" %in% data$col_name) stop("time_period should not be in the metadata") 
-    message('PASS - geographic_level is not present in the metadata')}
+  try(cat(if("time_identifier" %in% data$col_name) stop("FAIL - time_identifier should not be in the metadata"), 
+          message('PASS - time_identifier is not present in the metadata')))
   
-  {if("time_identifier" %in% data$col_name) stop("time_identifier should not be in the metadata")
-    message('PASS - time_identifier is not present in the metadata')}
+  try(cat(if("country_name" %in% data$col_name) stop("FAIL - country_name should not be in the metadata"), 
+          message('PASS - country_name is not present in the metadata')))
   
-  {if("country_code" %in% data$col_name) stop("country_code should not be in the metadata")
-    message('PASS - country_code is not present in the metadata')}
-  
-  {if("country_name" %in% data$col_name) stop("country_name should not be in the metadata")
-    message('PASS - country_name is not present in the metadata')}
-  
+  try(cat(if("country_code" %in% data$col_name) stop("FAIL - country_code should not be in the metadata"), 
+          message('PASS - country_code is not present in the metadata')))
 }
+
+comp_col_check_meta(metadata)
 
 # -------------------------------------
 # col_type - is this one of 'Filter' or 'Indicator'
@@ -451,7 +440,7 @@ filter_group_match(data)
 # -------------------------------------
 
 # screening_tests <- function(data,meta) {
-comp_col_check(data)
+comp_col_check(data) #tested and working
 time_period_check(data)
 #time_period_check_consecutive(data) - needs working out upstream to handle when the test isn't needed
 time_identifier_mix(data)
@@ -462,13 +451,12 @@ data_spaces_check(data)
 #geography_level_completed(data) - needs working on
 #filter_levels_check(data) - needs working on
 #total_check(data) - needs working on
-
 #meta_col_check(metadata) - needs testing
 #comma_check(meta) - needs testing (is the same function as above)
 #meta_name_check(meta) - needs testing and maybe renaming
 #meta_duplicate_check(meta) - needs testing
 col_name_spaces_check(meta)
-comp_col_check_meta(meta) #tested and works
+#comp_col_check_meta(meta) needs updating
 #col_type_check(meta) - needs reworking
 label_check(meta) #tested and works
 duplicate_label_check(meta) #tested and works
