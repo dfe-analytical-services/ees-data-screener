@@ -63,15 +63,9 @@ time_identifier_check <- function(data) {
                                    "Tax year","Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4",
                                    "Tax year Q1-2","Tax year Q1-3","Tax year Q1-4","Tax year Q2-3","Tax year Q2-4","Tax year Q3-4")
   time_identifiers <- unique(data$time_identifier)
-<<<<<<< HEAD
   identifier_test <- intersect(time_identifiers,acceptable_time_identifiers)
   try(cat(if(FALSE == identical(identifier_test,time_identifiers)) stop("FAIL - There is at least one invalid time_identifier present"),
   message('PASS - Your time identifier/s are valid')))
-=======
-  identifier_test <- intersect(time_identifier,acceptable_time_identifiers)
-  try(cat(if(FALSE == identical(identifier_test,time_identifiers)) stop("There is at least one invalid time_identifier present"),
- message('PASS - Your time identifier/s are valid')))
->>>>>>> 4ac7ddc4420c4064844b52bd96fe0086b82813a6
 }
 
 # -------------------------------------
@@ -167,11 +161,7 @@ data_spaces_check <- function(data) {
 # -------------------------------------
 # Check all compulsory columns exist
 
-<<<<<<< HEAD
 meta_comp_col <- function(data) {
-=======
-meta_comp_col_check <- function(data) {
->>>>>>> 4ac7ddc4420c4064844b52bd96fe0086b82813a6
   try(cat(if(!"col_name" %in% names(data)) stop("FAIL - The col_name variable is missing"), 
           message('PASS - col_name is present in the metadata')),silent = FALSE)
   try(cat(if(!"col_type" %in% names(data)) stop("FAIL - The col_type variable is missing"), 
@@ -192,11 +182,7 @@ meta_comp_col_check <- function(data) {
 # is col_name completed for every row
 
 col_name_completed <- function(data) {
-<<<<<<< HEAD
   if(any(is.na(data$col_name))) stop(cat('FAIL - There are names missing in ', sum(is.na(data$col_name)), 'rows'))
-=======
-  if(any(is.na(data$col_name))) stop(paste('FAIL - There are names missing in ', sum(is.na(data$col_name)), 'rows'))
->>>>>>> 4ac7ddc4420c4064844b52bd96fe0086b82813a6
     message('PASS - col_name is completed for all rows')
 }
 
