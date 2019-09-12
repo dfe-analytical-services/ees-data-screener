@@ -1,14 +1,14 @@
-## Running Script
+## Running Script - turn this to a markdown?
+
+# Load packages
+library(tidyverse)
 
 # Load your files
-library(tidyverse)
 dataset <- read_csv("data_metadata/dynamic_test_data.csv")
 metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv")
 
-# Run the setup script
-# something
+# Build the screener functions
+source("setup_file.R")
 
-# Seperate script for the set up of variables to be re run each time new data is loaded?
-
-# Run the screener
+# Run the screener tests
 screening_tests(dataset,metadata)
