@@ -42,7 +42,7 @@ time_identifier_check(dataset)
 ```
 
  Check this list for conceptually different time_identifiers
-```{r time_identifier_mix, echo=FALSE}
+```{r time_identifier_mix, echo=FALSE, comment="Time_identifiers: "}
 time_identifier_mix(dataset)
 ```
 

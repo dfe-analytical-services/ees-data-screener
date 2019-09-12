@@ -72,7 +72,7 @@ time_identifier_check <- function(data) {
 # print the unique time_identifiers for conceptual checking
 
 time_identifier_mix <- function(data) {
- unique(data$time_identifier) 
+ cat(unique(data$time_identifier)) 
 }
 
 # -------------------------------------
