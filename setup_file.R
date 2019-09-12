@@ -19,15 +19,13 @@ data_comp_col <- function(data) {
 # -------------------------------------
 # This checks for a 4 or 6 digit number in the time_period column
 
-#time_period_check <- function(data) {
-  
-#  try(cat(if((!any(grepl("^[0-9]{4,4}$",data$time_period)))&(!any(grepl("^[0-9]{6,6}$",data$time_period)))) 
-#    stop("time_period must be a four or six digit number e.g. 2016 or 201617"),
-#    message('PASS - time_period is either 4 or 6 digits')))
-  
-#}
+time_period_check <- function(data) {
+  try(cat(if(((any(grepl("^[0-9]{4,4}$",dataset$time_period)))==FALSE)&&((any(grepl("^[0-9]{6,6}$",dataset$time_period)))==FALSE)) 
+    stop("FAIL - time_period must be a four or six digit number e.g. 2016 or 201617"),
+    message('PASS - time_period is either 4 or 6 digits')))
+}
 
-#time_period_check(dataset)
+time_period_check(dataset)
 
 # -------------------------------------
 # Checking that 6 digit numbers are for consecutive years
@@ -82,8 +80,7 @@ comma_check <- function(data) {
   for (i in names(data)) {
     if(any(grepl(",",data[[i]]))) warning("FAIL - There are commas in ", i)
   }
-message('
-If there are no warnings, there are no commas in your data file')
+message('If there are no warnings in this box, there are no commas in your data file')
 }
 
 # -------------------------------------
@@ -94,7 +91,7 @@ data_spaces_check <- function(data) {
   for (i in variable_names) {
     if(any(grepl('\\s',i))) warning("FAIL - There are spaces in ", i)
   }
-  message('If there are no warnings, there are no spaces in your variable names')
+  message('If there are no warnings in this box, there are no spaces in your variable names')
 }
 
 # -------------------------------------
@@ -183,8 +180,7 @@ meta_comma_check <- function(data) {
   for (i in names(data)) {
     if(any(grepl(",",data[[i]]))) warning("FAIL - There are commas in ", i)
   }
-  message('
-If there are no warnings, there are no commas in your metadata file')
+  message('If there are no warnings in this box, there are no commas in your metadata file')
 }
 
 # -------------------------------------
@@ -224,7 +220,7 @@ comp_col_check_meta <- function(data) {
   for (i in observational_units) {
     try(cat(if(i %in% data$col_name) warning("FAIL - ", i, " should not be in the metadata. ")))
   }
-  message("If there are no warnings, there are no observational units in your metadata")
+  message("If there are no warnings in this box, there are no observational units in your metadata")
 }
 
 # -------------------------------------
@@ -351,7 +347,7 @@ There are either too many rows in the metadata, or too few columns in the data f
 
 screening_tests <- function(data,meta) {
   data_comp_col(data)
-  #time_period_check(data) #needs testing/more work
+  time_period_check(data)
   #time_period_check_consecutive(data) - needs working out upstream to handle when the test isn't needed
   time_identifier_check(data)
   time_identifier_mix(data)
