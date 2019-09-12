@@ -30,21 +30,15 @@ time_period_check(dataset)
 # -------------------------------------
 # Checking that 6 digit numbers are for consecutive years
 
-#time_period_check_consecutive <- function(data) {
-
-#  currentyearend <- as.numeric(substr(dataset$time_period,3,4))
-#  nextyearend <- as.numeric(substr(dataset$time_period,5,6))
-  # add something to this to give a false when it's not
-#  check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
-
-#if((!any(grepl("^[0-9]{6,6}$",data$time_period)))) warning("Ignore this test as there aren't six digit years")
-    
-#if(check_yearends==TRUE) stop("when time_period is 6 digits, the years must be consecutive")
-      
-#  message('PASS - Your 6digit time_period shows consecutive years')
-#}
-
-#time_period_check_consecutive(dataset)
+time_period_check_consecutive <- function(data) {
+    six_digit_years <- filter(dataset,nchar(unique(dataset$time_period))==6)
+  if(nrow(six_digit_years)==0) stop("IGNORE - This test does not apply to your data")
+    currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
+    nextyearend <- as.numeric(substr(six_digit_years$time_period,5,6))
+    check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
+  if(check_yearends==TRUE) stop("FAIL - when the time_period is 6 digits, the years must be consecutive")
+    message('PASS - Your 6 digit time_period shows consecutive years')
+}
 
 # -------------------------------------
 # checking the time identifier values are valid

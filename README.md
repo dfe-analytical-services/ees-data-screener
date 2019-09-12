@@ -7,10 +7,9 @@ If you have any questions please contact cameron.race@education.gov.uk.
 ###setup_file.R
 This file contains all of the functions used to screen the data.
 
-###run.R
-This is the script with the master functions which load packages, and create the validation functions.
-In here you can also load files and run the screener within the console if you need.
-
 ###screener-report.Rmd
-This file is where you input your data files and then run the other two scripts from.
-This then outputs a html report of the results of your file's screening.
+This file is where you select your data files and then run the EES Data Screener from.
+This then outputs a html report of the results of your screening.
+
+###run.R
+This is a script that can used to load packages, read in files, and run the functions in the console.

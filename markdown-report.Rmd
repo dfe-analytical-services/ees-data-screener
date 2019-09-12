@@ -10,15 +10,18 @@ cameron.race@education.gov.uk
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-```{r setup, include=FALSE}
-source("run.R")
+```{r library, include=FALSE}
+library(tidyverse)
 ```
 ## Files tested
 ```{r files, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
-dataset <- read_csv("data_metadata/7digit_iffy.csv")
-metadata <- read_csv("data_metadata/7digit_iffy.meta.csv")
+dataset <- read_csv("data_metadata/4and6digit_simple.csv")
+metadata <- read_csv("data_metadata/4and6digit_simple.meta.csv")
 ```
 
+```{r setup, include=FALSE}
+source("setup_file.R")
+```
 ## Data file validation
 Checking that the compulsory columns are present
 ```{r data_comp_col, echo=FALSE,comment=NA}
@@ -31,8 +34,8 @@ time_period_check(dataset)
 ```
   
  Checking that any 6 digit time_periods refer to consecutive years
-```{r include=FALSE,comment=NA}
-#time_period_check_consecutive(data) - needs working out to handle when the test isn't needed
+```{r echo=FALSE,comment=NA}
+try(cat(time_period_check_consecutive(dataset)))
 ```
 
  Checking if the time_identifier values are valid
