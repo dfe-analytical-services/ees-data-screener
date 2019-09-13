@@ -182,8 +182,6 @@ try(cat(filter_group_match(dataset,metadata)))
 
 :::{.details summary="Further information"}
 :::{.warning}
- This report has been developed in R, and is hosted at this repo (insert github repo here).
- 
  If you have any questions about this report contact cameron.race@education.gov.uk.
 :::
 :::
