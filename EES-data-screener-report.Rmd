@@ -1,18 +1,25 @@
 ---
-title: "EES-Data-Screener-Report"
-author: "Cam Race"
-date: "12 September 2019"
-output: 
-  rmarkdown::html_document:
-    theme: darkly
+title: "Your EES Data Screener Report"
+output:
+  govdown::govdown_document:
+    keep_md: true
+    logo_text: "DfE - Explore Education Statistics"
+    font: "sans-serif"
+    favicon: "govuk"
+    title: ""
+    phase: alpha
 ---
+
 cameron.race@education.gov.uk
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 ```{r library, include=FALSE}
 library(tidyverse)
+library(govdown)
 ```
+
+
 ## Files tested
 ```{r files, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
 dataset <- read_csv("data_metadata/dynamic_test_data.csv",trim_ws = FALSE)
