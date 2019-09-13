@@ -28,14 +28,9 @@ source("setup_file.R")
 data_comp_col(dataset)
 ```
 
- Checking that the time_period is either 4 or 6 digits
+ Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show  consecutive years
 ```{r time_period_check, echo=FALSE,comment=NA}
 time_period_check(dataset)
-```
-  
- Checking that any 6 digit time_periods refer to consecutive years
-```{r echo=FALSE,comment=NA}
-try(cat(time_period_check_consecutive(dataset)))
 ```
 
  Checking if the time_identifier values are valid

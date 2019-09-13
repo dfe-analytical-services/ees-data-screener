@@ -27,22 +27,20 @@ time_period_check <- function(data) {
   all <- nrow(time_length)
   time_periods <- unique(data$time_period)
   try(cat(if((four + six == all)==FALSE) 
-    stop(writeLines(c("FAIL - time_period must be a four or six digit number e.g. 2016 or 201617.",
-                      "Here are the time_period values in your file:","",time_periods,""))),
-    message("PASS - time_period is always a four or six digit number")))
-}
-
-# -------------------------------------
-# Checking that 6 digit numbers are for consecutive years
-
-time_period_check_consecutive <- function(data) {
-    six_digit_years <- filter(data,unique(nchar(data$time_period))==6)
-  if(nrow(six_digit_years)==0) stop("IGNORE - This test does not apply to your data")
-    currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
-    nextyearend <- as.numeric(substr(six_digit_years$time_period,5,6))
-    check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
-  if(check_yearends==TRUE) stop("FAIL - when the time_period is 6 digits, the years must be consecutive")
-    message('PASS - Your 6 digit time_period shows consecutive years')
+    stop(writeLines(c("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.",
+                      "Here are the time period values in your file:","",time_periods,""))),
+    message("PASS - time period is always a four or six digit number.
+Now testing that if 6 digit years are present they represent consecutive years.")))
+        consecutive_mini_function <- function(data) {
+          six_digit_years <- filter(time_length,digits==6)
+          currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
+          nextyearend <- as.numeric(substr(six_digit_years$time_period,5,6))
+          check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
+          try(cat(if(check_yearends==TRUE) stop("FAIL - when the time period is 6 digits, the years must be consecutive"),
+                  message('PASS - Your 6 digit time period/s show consecutive years')))
+        }
+  try(cat(if(six==0) stop("IGNORE - There are no 6 digit time periods in the data file"),
+  consecutive_mini_function(data)))
 }
 
 # -------------------------------------
@@ -404,7 +402,6 @@ There are either too many rows in the metadata, or too few columns in the data f
 screening_tests <- function(data,meta) {
   data_comp_col(data)
   time_period_check(data)
-  time_period_check_consecutive(data)
   time_identifier_check(data)
   time_identifier_mix(data)
   comma_check(data)
