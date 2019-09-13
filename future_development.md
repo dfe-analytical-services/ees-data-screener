@@ -1,9 +1,6 @@
 # Future developments to this screener
 
 ## Working task list
-+ column_crosscheck(data,meta) - needs working on
-+ filter_group_match(data) - needs working on
-
 + Test the spaces tests again
   + Test single spaces in words
   + Test multiple spaces

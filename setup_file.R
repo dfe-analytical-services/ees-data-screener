@@ -226,13 +226,33 @@ meta_comp_col <- function(data) {
 }
 # -------------------------------------
 # for each col_name in the metadata check these each appear in the data file
-# - flag any that aren't in the data file
-# - list those in the data file that aren't in the metadata (or observational units)
-#for(i in metadata$col_type) {
-#  if(!i %in% names(dataset)) warning("You have listed a variable in the metadata that is not present in the data file")
+column_crosscheck <- function(data,meta) {
+  m_variables <- c(meta$col_name)
+  for(i in m_variables){
+    if((i %in% names(data))==FALSE)
+      warning("
+              FAIL - ", i," is not a variable in the data file")
+  }
+  message("If there are no warnings under this test, all rows in the metadata are variables in the data file")
+}
 
-#}
-#column_crosscheck(data,meta)
+# -------------------------------------
+# List those in the data file that aren't in the metadata (or observational units)
+
+meta_crosscheck <- function(data,meta) {
+  observational_units <- c("geographic_level","time_period","time_identifier","country_code","country_name",
+                           "region_code","region_name","old_la_code","new_la_code","la_name","rsc_name",
+                           "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
+                           "local_enterprise_partnership_name","mayoral_combined_authority_code",
+                           "mayoral_combined_authority_name","opportunity_area_code","opportunity_area_name",
+                           "ward_code","ward_name","trust_id","trust_name","sponsor_id","sponsor_name")
+  n_ob_units <- setdiff(names(data),observational_units)
+  message("This will show if there are variables in the data file that are not present in the metadata:")
+    for (i in n_ob_units) {
+    try(cat(if((i %in% meta$col_name)==FALSE) warning(i, " is not in the metadata or a recognised observational unit.
+")))
+  }
+}
 
 # -------------------------------------
 # flag for commas across each column

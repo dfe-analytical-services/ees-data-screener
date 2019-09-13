@@ -86,8 +86,13 @@ meta_comp_col(metadata)
 ```
 
  Cross checking the columns in the metadata are in the data file
-```{r column_crosscheck,echo=FALSE,comment=NA}
-#column_crosscheck(dataset,metadata) - needs working on
+```{r column_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
+column_crosscheck(dataset,metadata)
+```
+
+ Check to catch any variables from the data file that are not in the metadata
+```{r meta_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
+meta_crosscheck(dataset,metadata)
 ```
 
  Checking for commas
@@ -127,7 +132,7 @@ try(cat(label_check(metadata)))
  
  Checking that there are no duplicate labels
 ```{r duplicate_label_check,echo=FALSE,comment=NA}
-duplicate_label_check(metadata)
+try(cat(duplicate_label_check(metadata)))
 ```
 
  Checking that no filters have an indicator group
