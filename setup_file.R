@@ -278,17 +278,16 @@ comp_col_check_meta <- function(data) {
 # -------------------------------------
 # col_type - is this one of 'Filter' or 'Indicator'
 
-# This is currently checking that they are both present, rather than the column is only one of these two...
-#col_type_check <- function(data) {
-  
-#  if((!"Filter" %in% data$col_type)&(!"Indicator" %in% data$col_type))
-#    stop("col_type must either be 'Filter' or 'Indicator'")
-  
-#  message('PASS - col_type is always a Filter or an Indicator')
-  
-#}
-
-#col_type_check(metadata)
+col_type_check <- function(data) {
+  f <- nrow(filter(data,col_type == "Filter"))
+  i <- nrow(filter(data,col_type == "Indicator"))
+  m <- nrow(data)
+  col_types <- unique(data$col_type)
+  try(cat(if((f + i == m)==FALSE)
+    stop(writeLines(c("FAIL - col_type must be either 'Filter' or 'Indicator', and cannot be blank.",
+                 "Here are the col_type values in your file:","",col_types,""))),
+    message("PASS - col_type is always 'Filter' or 'Indicator'")))
+}
 
 # -------------------------------------
 # is label completed for every row
@@ -416,7 +415,7 @@ screening_tests <- function(data,meta) {
   meta_duplicate_check(meta)
   col_name_spaces_check(meta)
   comp_col_check_meta(meta)
-  #col_type_check(meta) - needs reworking
+  col_type_check(meta)
   label_check(meta)
   duplicate_label_check(meta)
   indicator_group_check(meta)

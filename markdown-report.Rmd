@@ -115,8 +115,9 @@ try(cat(col_name_spaces_check(metadata)))
 comp_col_check_meta(metadata)
 ```
 
-```{r col_type_check,include=FALSE,comment=NA}
-#col_type_check(meta) - needs reworking
+ Checking that col_type values are valid
+```{r col_type_check,echo=FALSE,comment=NA}
+col_type_check(metadata)
 ```
 
  Checking that every row has a label completed
