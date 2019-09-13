@@ -1,8 +1,6 @@
 # Future developments to this screener
 
 ## Working task list
-+ filter_levels_check(data) - needs working on
-+ indicator_unit_validation(meta) - needs reworking
 + column_crosscheck(data,meta) - needs working on
 + filter_group_match(data) - needs working on
 
@@ -12,13 +10,18 @@
   + Test leading spaces
   + Test trailing spaces
   + Test combinations of the above
-+ Make the validity tests into loops that print out the incorrect values
-+ Expansions on the geography checks 
+  
++ Geography checks 
+  + Finish what is there
   + Could add a lookup list for countries and regions?
   + Could try to wrap it all into one, so it prints the levels you have, and then tests if the right columns are present and completed for the right levels, all in one. Basically so that it stops as soon as something isn't right (and stops without stopping the entire script).
+  
 + Add a check that the filter_group columns have less levels than the corresponding filter column in the data file (checking people have the two the right way around)
+
++ Make the validity tests into loops that print out the incorrect values
 + Count the number of spaces and commas in a file for those checks and print those
 + Expand spaces checks to identify the values with spaces in
++ Fix the issue with £ symbol
 
 ## Future ideas
 + Something that counts and outputs the maximum character lengths per column - more of a style guide to consider later

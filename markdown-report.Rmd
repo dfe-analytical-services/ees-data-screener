@@ -127,12 +127,12 @@ duplicate_label_check(metadata)
 
  Checking that no filters have an indicator group
 ```{r indicator_group_check,echo=FALSE,comment=NA}
-indicator_group_check(metadata)
+try(cat(indicator_group_check(metadata)))
 ```
 
  Checking that all indicator units are valid values
 ```{r indicator_unit_validation,echo=FALSE,comment=NA}
-#indicator_unit_validation(metadata) - needs reworking
+try(cat(indicator_unit_validation(metadata)))
 ```
 
  Checking that no filters have an indicator unit
@@ -142,12 +142,12 @@ indicator_unit_check(metadata)
 
  Checking that no indicators have a filter hint
 ```{r filter_hint_check,echo=FALSE,comment=NA}
-filter_hint_check(metadata)
+try(cat(filter_hint_check(metadata)))
 ```
 
  Checking that no indicators have a filter group
 ```{r filter_group_check,echo=FALSE,comment=NA}
-filter_group_check(metadata)
+try(cat(filter_group_check(metadata)))
 ```
 
  Cross checking the columns in the metadata are in the data file

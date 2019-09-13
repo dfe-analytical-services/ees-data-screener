@@ -174,7 +174,7 @@ geography_level_completed <- function(data) {
 
 #RSC_required <- c("country_code","country_name","rsc_name")
 #PCon_required <- c("country_code","country_name","pcon_code","pcon_name")
-geography_level_completed(dataset)
+#geography_level_completed(dataset)
 
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
@@ -194,7 +194,7 @@ filter_levels_check <- function(data,meta) {
 # Check for Total in all filters
 
 total_check <- function(data,meta) {
-  if(!"Filter" %in% meta$col_type) stop("IGNORE - This test does not apply to your data")
+  try(cat(if(!"Filter" %in% meta$col_type) stop("IGNORE - This test does not apply to your data")))
   mfilters <- filter(meta,col_type=="Filter")
   filter_names <- c(mfilters$col_name)
   dfilters <- select(data,filter_names)
@@ -316,34 +316,32 @@ indicator_group_check <- function(data) {
 }
 
 # -------------------------------------
-# Validation for the indicator units - NOT WORKING
+# Validation for the indicator units
+# Currently the £ symbol is causing problems so have shortcutted the test for the time being
 
-#indicator_unit_validation <- function(data) {
-
-  #remove after testing
-#indicators <- filter(metadata,col_type == "Indicator")
-#units_present <- unique(indicators$indicator_unit)  
-
-#logic is wrong, need  to check what is there against our list, any()?
-#  if(("£" %in% units_present)|
-#     ("%" %in% units_present)|
-#    (NA %in% units_present))
-     
-#  warning('There is at least one invalid indicator unit in the metadata')  
-    
-#  message('PASS - The indicator units are all valid')
-  
-#}
-
-#indicator_unit_validation(metadata)
+indicator_unit_validation <- function(data) {
+#  indicators <- filter(metadata,col_type == "Indicator")
+#  real_indicators <- indicators %>% drop_na(indicator_unit)
+#  percent <- nrow(filter(real_indicators,indicator_unit=="%"))
+#  pound <- nrow(filter(real_indicators,indicator_unit== "£"))
+#  all <- nrow(real_indicators)
+  indicator_units <- unique(data$indicator_unit)
+#  if((percent + pound == all)==FALSE)
+#    stop(
+  writeLines(c("MANUAL CHECK - indicator unit must be a percentage '%', a pound sign '<U+00A3>', or blank 'NA'.",
+                     "Here are the indicator units in your file:","",indicator_units,"",
+               "Make sure to manually check that the above are all valid units."))
+  #)
+#    message("PASS - The indicator units are valid")
+}
 
 # -------------------------------------
 # indicator unit should be blank for all filters
 
 indicator_unit_check <- function(data) {
   filters <- filter(data,col_type =='Filter')
-  if(any(!is.na(filters$indicator_unit))) stop('FAIL - Filters cannot have an indicator unit')  
-  message('PASS - No filters have an indicator unit')
+  try(cat(if(any(!is.na(filters$indicator_unit))) stop('FAIL - Filters cannot have an indicator unit'),  
+  message('PASS - No filters have an indicator unit')))
 }
 
 # -------------------------------------
@@ -418,7 +416,7 @@ screening_tests <- function(data,meta) {
   label_check(meta)
   duplicate_label_check(meta)
   indicator_group_check(meta)
-  #indicator_unit_validation(meta) - needs reworking
+  indicator_unit_validation(meta)
   indicator_unit_check(meta)
   filter_hint_check(meta)
   filter_group_check(meta)
