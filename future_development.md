@@ -2,7 +2,6 @@
 
 ## Working task list
 + filter_levels_check(data) - needs working on
-+ col_type_check(meta) - needs reworking
 + indicator_unit_validation(meta) - needs reworking
 + column_crosscheck(data,meta) - needs working on
 + filter_group_match(data) - needs working on

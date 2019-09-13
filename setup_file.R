@@ -20,12 +20,17 @@ data_comp_col <- function(data) {
 # This checks for a 4 or 6 digit number in the time_period column
 
 time_period_check <- function(data) {
-  try(cat(if(((any(grepl("^[0-9]{4,4}$",dataset$time_period)))==FALSE)&&((any(grepl("^[0-9]{6,6}$",dataset$time_period)))==FALSE)) 
-    stop("FAIL - time_period must be a four or six digit number e.g. 2016 or 201617"),
-    message('PASS - time_period is either 4 or 6 digits')))
+  time_length <- data
+  time_length$digits <- str_count(time_length$time_period)
+  four <- nrow(filter(time_length,digits == 4))
+  six <- nrow(filter(time_length,digits == 6))
+  all <- nrow(time_length)
+  time_periods <- unique(data$time_period)
+  try(cat(if((four + six == all)==FALSE) 
+    stop(writeLines(c("FAIL - time_period must be a four or six digit number e.g. 2016 or 201617.",
+                      "Here are the time_period values in your file:","",time_periods,""))),
+    message("PASS - time_period is always a four or six digit number")))
 }
-
-time_period_check(dataset)
 
 # -------------------------------------
 # Checking that 6 digit numbers are for consecutive years
