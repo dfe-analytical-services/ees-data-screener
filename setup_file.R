@@ -98,11 +98,17 @@ level_validity_check <- function(data) {
                          "Local authority district","Local enterprise partnerships","Mayoral combined authorities",
                          "Opportunity area","Ward","MAT","Sponsor")
   levels <- unique(data$geographic_level)
-  levels_test <- intersect(levels,acceptable_levels)
-  try(cat(if(FALSE == identical(levels_test,levels)) 
-    stop(writeLines(c("FAIL - There is at least one invalid geographic_level present.",
-                      "Here are the geographic levels in your file:","",levels,""))),
-          message('PASS - Your geographic level/s are valid')))
+  # Original function that gave a firm PASS rather than 'If there are no warnings'
+  #levels_test <- intersect(levels,acceptable_levels)
+  #try(cat(if(FALSE == identical(levels_test,levels)) 
+    #stop(writeLines(c("FAIL - There is at least one invalid geographic_level present.",
+       #"Here are the geographic levels in your file:","",levels,""))),
+    for(i in levels){
+      if((i %in% acceptable_levels)==FALSE)
+        warning("
+             FAIL - ", i, " is not a valid geographic_level")
+    }
+          message('If there are no warning messages under this test, your geographic level/s are valid')
 }
 
 # -------------------------------------
