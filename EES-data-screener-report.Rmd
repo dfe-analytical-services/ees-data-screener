@@ -19,8 +19,8 @@ library(govdown)
 
 ### **Files tested**
 ```{r files, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
-dataset <- read_csv("data_metadata/dynamic_test_data.csv",trim_ws = FALSE)
-metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv",trim_ws = FALSE)
+dataset <- read_csv("data_metadata/All_geographies_messy.csv",trim_ws = FALSE)
+metadata <- read_csv("data_metadata/all_geographies_messy.meta.csv",trim_ws = FALSE)
 ```
 
 **Date:**
@@ -68,13 +68,13 @@ level_validity_check(dataset)
 ```
 
  **Checking that the correct geography columns are present for the levels in the data file**
-```{r geography_levels_present,include=FALSE,comment=NA}
-#geography_levels_present(data) - needs working on
+```{r geography_levels_present,echo=FALSE,comment=NA}
+geography_levels_present(dataset)
 ```
 
  **Checking that the correct geography columns are completed for each of the levels in the data file**
-```{r geography_level_completed,include=FALSE,comment=NA}
-#geography_level_completed(data) - needs working on
+```{r geography_level_completed,echo=FALSE,comment=NA}
+geography_level_completed(dataset)
 ```
 
  **Checking that filters include in the metadata have at least two levels**

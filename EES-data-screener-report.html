@@ -4142,8 +4142,8 @@ color: #d14;
     <main class="govuk-main-wrapper " id="main-content" role="main">
             <h1 class="govuk-heading-xl">Your report summary</h1>
             <h3 id="files-tested" class="govuk-heading-m"><span class="govuk-!-font-weight-bold">Files tested</span></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r app-tabs__container js-tabs__container"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>dataset &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/dynamic_test_data.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>metadata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/dynamic_test_data.meta.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r app-tabs__container js-tabs__container"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>dataset &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/All_geographies_messy.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>metadata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/all_geographies_messy.meta.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Date:</span> 13th September 2019
 </p>
@@ -4163,17 +4163,13 @@ Data file validation
 <pre class="app-tabs__container js-tabs__container"><code>PASS - geographic_level is present in the data file</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>PASS - time_period is present in the data file</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>PASS - time_identifier is present in the data file</code></pre>
-<pre class="app-tabs__container js-tabs__container"><code>PASS - country_name is present in the data file</code></pre>
-<pre class="app-tabs__container js-tabs__container"><code>PASS - country_code is present in the data file</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show consecutive years</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>PASS - time period is always a four or six digit number.
 - Now testing that if 6 digit years are present they represent consecutive years:</code></pre>
-<pre class="app-tabs__container js-tabs__container"><code>Error in cat(if (check_yearends == TRUE) stop(&quot;FAIL - when the time period is 6 digits, the years must be consecutive&quot;),  : 
-  FAIL - when the time period is 6 digits, the years must be consecutive
- Error in cat(if (check_yearends == TRUE) stop(&quot;FAIL - when the time period is 6 digits, the years must be consecutive&quot;),  : 
-  FAIL - when the time period is 6 digits, the years must be consecutive</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Error in cat(if (six == 0) stop(&quot;IGNORE - There are no 6 digit time periods in the data file&quot;),  : 
+  IGNORE - There are no 6 digit time periods in the data file</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking if the time_identifier values are valid</span>
 </p>
@@ -4193,13 +4189,41 @@ Data file validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the geographic levels are valid</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>PASS - Your geographic level/s are valid</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>FAIL - There is at least one invalid geographic_level present.
+Here are the geographic levels in your file:
+
+Local authority
+Local authority district
+Local enterprise partnership
+RSC region
+Output area
+Parliamentary constituency
+Regional
+Ward
+
+Error in cat(if (FALSE == identical(levels_test, levels)) stop(writeLines(c(&quot;FAIL - There is at least one invalid geographic_level present.&quot;,  : 
+  </code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the correct geography columns are present for the levels in the data file</span>
 </p>
+<pre class="app-tabs__container js-tabs__container"><code>If there are no warnings under this test, all expected geography columns are in the data file</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the correct geography columns are completed for each of the levels in the data file</span>
 </p>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - country_name is completed for all data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - country_code is completed for all data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - region_name is completed for all regional data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - region_code is completed for all regional data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - old_la_code is completed for all local authority data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - new_la_code is completed for all local authority data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - la_name is completed for all local authority data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - rsc_region_lead_name is completed for all RSC region data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - pcon_name is completed for all parliamentary constituency data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - pcon_code is completed for all parliamentary constituency data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - lad_name is completed for all local authority district data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - lad_code is completed for all local authority district data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - ward_name is completed for all ward data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - ward_code is completed for all ward data</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that filters include in the metadata have at least two levels</span>
 </p>
@@ -4207,6 +4231,8 @@ Data file validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that each filter has a ‘Total’</span>
 </p>
+<pre class="app-tabs__container js-tabs__container"><code>Error in cat(if (!&quot;Filter&quot; %in% meta$col_type) stop(&quot;IGNORE - This test does not apply to your data&quot;)) : 
+  IGNORE - This test does not apply to your data</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>If there are no warnings under this test, there are Total levels in each of your filters</code></pre>
 </div></div>
 <div class="govuk-accordion__section">
@@ -4236,6 +4262,9 @@ Metadata validation
 <span class="govuk-!-font-weight-bold">Check to catch any variables from the data file that are not in the metadata</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>This will show if there are variables in the data file that are not present in the metadata:</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>rsc_region_lead_name is not in the metadata or a recognised observational unit.
+output_area_code is not in the metadata or a recognised observational unit.
+output_area_name is not in the metadata or a recognised observational unit.</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking for commas</span>
 </p>
@@ -4259,24 +4288,15 @@ Metadata validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that col_type values are valid</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>FAIL - col_type must be either &#39;Filter&#39; or &#39;Indicator&#39;, and cannot be blank.
-Here are the col_type values in your file:
-
-Filter
-Indicator
-NA
-
-Error in col_type_check(metadata) : </code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - col_type is always &#39;Filter&#39; or &#39;Indicator&#39;</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that every row has a label completed</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>Error in label_check(metadata) : 
-  FAIL - There is a label missing in 3 row/s</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - label is completed for all rows</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that there are no duplicate labels</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>Error in duplicate_label_check(metadata) : 
-  FAIL - At least one of the variable names is duplicated</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - All labels are unique</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that no filters have an indicator group</span>
 </p>
@@ -4288,7 +4308,6 @@ Error in col_type_check(metadata) : </code></pre>
 Here are the indicator units in your file:
 
 NA
-%
 
 Make sure to manually check that the above are all valid units.</code></pre>
 <p class="govuk-body">

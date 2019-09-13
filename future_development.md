@@ -3,14 +3,13 @@
 ## Working task list
 + Geography checks 
   + Finish what is there
-  + Could add a lookup list for countries and regions?
-  + Could try to wrap it all into one, so it prints the levels you have, and then tests if the right columns are present and completed for the right levels, all in one. Basically so that it stops as soon as something isn't right (and stops without stopping the entire script).
-  
+
 + Add a check that the filter_group columns have less levels than the corresponding filter column in the data file (checking people have the two the right way around)
 
 + Make the validity tests into loops that print out the incorrect values
 + Count the number of spaces and commas in a file for those checks and print those
 + Expand spaces checks to identify the values with spaces in
++ Neaten up the error messages by using break and next instead of stop to decide what messages are shown
 + Fix the issue with £ symbol
 
 ## Future ideas

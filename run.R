@@ -5,11 +5,11 @@ library(tidyverse)
 library(govdown)
 
 # Load your files
-dataset <- read_csv("data_metadata/dynamic_test_data.csv",trim_ws = FALSE)
-metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv",trim_ws = FALSE)
+dataset <- read_csv("data_metadata/All_geographies.csv",trim_ws = FALSE)
+metadata <- read_csv("data_metadata/all_geographies.meta.csv",trim_ws = FALSE)
 
 # Build the screener functions
 source("setup_file.R")
 
 # Run the screener tests if needed for testing
-# screening_tests(dataset,metadata)
+screening_tests(dataset,metadata)
