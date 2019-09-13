@@ -2,7 +2,9 @@
 
 ## Working task list
 + Make the validity + spaces tests into loops that print out the incorrect values
++ Test the geography completed error messages
 + Neaten up the error messages by using break and next instead of stop to decide what messages are shown
+ + Try using ifelse and break/next with the col_type check
 + Fix the issue with £ symbol
 
 ## Future ideas
