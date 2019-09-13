@@ -405,7 +405,7 @@ screening_tests <- function(data,meta) {
   time_identifier_mix(data)
   comma_check(data)
   data_spaces_check(data)
-  #level_validity_check(data) - needs working on
+  level_validity_check(data)
   #geography_levels_present(data) - needs working on
   #geography_level_completed(data) - needs working on
   #filter_levels_check(data) - needs working on

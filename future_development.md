@@ -1,5 +1,26 @@
 # Future developments to this screener
 
+## Working task list
++ filter_levels_check(data) - needs working on
++ col_type_check(meta) - needs reworking
++ indicator_unit_validation(meta) - needs reworking
++ column_crosscheck(data,meta) - needs working on
++ filter_group_match(data) - needs working on
+
++ Test the spaces tests again
+  + Test single spaces in words
+  + Test multiple spaces
+  + Test leading spaces
+  + Test trailing spaces
+  + Test combinations of the above
++ Make the validity tests into loops that print out the incorrect values
++ Expansions on the geography checks 
+  + Could add a lookup list for countries and regions?
+  + Could try to wrap it all into one, so it prints the levels you have, and then tests if the right columns are present and completed for the right levels, all in one. Basically so that it stops as soon as something isn't right (and stops without stopping the entire script).
++ Add a check that the filter_group columns have less levels than the corresponding filter column in the data file (checking people have the two the right way around)
++ Count the number of spaces and commas in a file for those checks and print those
++ Expand spaces checks to identify the values with spaces in
+
 ## Future ideas
 + Something that counts and outputs the maximum character lengths per column - more of a style guide to consider later
 + Anything on school level data that isn't already covered (thinking geographic levels etc)
@@ -9,16 +30,6 @@
 + Extract the indicator groupings and print
 + Add a message for filters where a hint isn't added so that we can say 'you don't have a hint for x, are you sure?
 + Printing out observational unit and filter levels?
-
-## Ideally needed if there is time
-+ Expand spaces checks to identify the values with spaces in
-+ Expansions on the geography checks 
-  + Could add a lookup list for countries and regions?
-  + Could try to wrap it all into one, so it prints the levels you have, and then tests if the right columns are present and completed for the right levels, all in one. Basically so that it stops as soon as something isn't right (and stops without stopping the entire script).
-+ Make the validity tests into loops that print out the incorrect values?
-+ Need some way of checking for spaces at the end of variable names, R seems to be ignoring them on import?
-+ Check that the filter_group columns have less levels than the corresponding filter column in the data file (checking people have the two the right way around)
-+ Count the number of spaces and commas in a file for those checks and print those
 
 ## Potential general code improvements
 + Soft coding the columns in the functions (not sure how to make this work), would only save a small amount of duplication so not hugely important
