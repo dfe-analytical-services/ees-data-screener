@@ -17,7 +17,7 @@ data_comp_col <- function(data) {
 }
 
 # -------------------------------------
-# This checks for a 4 or 6 digit number in the time_period column
+# This checks for a 4 or 6 digit number in the time_period column, and then if 6 digit if it shows consecutive years
 
 time_period_check <- function(data) {
   time_length <- data
@@ -179,19 +179,16 @@ geography_level_completed(dataset)
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
 
-# want to iterate over the columns of dfilters and then test if nrow(unique(x))>1
-#filter_levels_check <- function(data) {
-  
-#  for (i in names(dfilters)) {
-#    ifelse((length(unique(dataset[[i]])))>1,
-#           message('Passed'),
-#           warning('A filter should have more than 1 level, if they only have one level then remove them from the metadata so they are not in the table tool')
-#    )
-#  }
-  
-#}
-
-#filter_levels_check(dataset)
+filter_levels_check <- function(data,meta) {
+  mfilters <- filter(meta,col_type=="Filter")
+  filternames <- c(mfilters$col_name)
+  dfilters <- select(data,filternames)
+  for (i in names(dfilters)) {
+    if((length(unique(data[[i]])))<2) warning("
+  WARNING - There are fewer than two levels in: ", i)
+  }
+  message("If there are no warnings under this test then there are no filters with fewer than 2 levels")
+}
 
 # -------------------------------------
 # Check for Total in all filters
@@ -409,7 +406,7 @@ screening_tests <- function(data,meta) {
   level_validity_check(data)
   #geography_levels_present(data) - needs working on
   #geography_level_completed(data) - needs working on
-  #filter_levels_check(data) - needs working on
+  filter_levels_check(data,meta)
   total_check(data)
   meta_comp_col(metadata)
   meta_comma_check(meta)

@@ -68,9 +68,9 @@ level_validity_check(dataset)
 #geography_level_completed(data) - needs working on
 ```
 
- Checking something about filter levels
-```{r filter_levels_check,include=FALSE,comment=NA}
-#filter_levels_check(data) - needs working on
+ Checking that filters include in the metadata have at least two levels
+```{r filter_levels_check,echo=FALSE,comment=NA}
+filter_levels_check(dataset,metadata)
 ```
 
  Checking that each filter has a 'Total'
