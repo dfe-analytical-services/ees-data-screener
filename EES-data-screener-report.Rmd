@@ -3,10 +3,10 @@ title: "Your report summary"
 output:
   govdown::govdown_document:
     keep_md: false
-    logo_text: " DfE"
+    logo_text: "DfE"
     font: "sans-serif"
     favicon: "govuk"
-    title: "Statistics Underlying Data Screening           "
+    title: "Underlying data screening"
     phase: alpha
 ---
 ```{r global_options, include=FALSE}
