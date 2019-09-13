@@ -12,8 +12,3 @@ source("setup_file.R")
 
 # Run the screener tests if needed for testing
 # screening_tests(dataset,metadata)
-
-# Attempts to get the proxy to work to download govdown
-#set_config(use_proxy(url="192.168.2.40",port=8080,username="<AD\\CRACE>",password=getPass()))
-#
-#devtools::install_github("ukgovdatascience/govdown")
