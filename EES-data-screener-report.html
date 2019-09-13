@@ -4262,8 +4262,7 @@ Metadata validation
 <span class="govuk-!-font-weight-bold">Check to catch any variables from the data file that are not in the metadata</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>This will show if there are variables in the data file that are not present in the metadata:</code></pre>
-<pre class="app-tabs__container js-tabs__container"><code>rsc_region_lead_name is not in the metadata or a recognised observational unit.
-output_area_code is not in the metadata or a recognised observational unit.
+<pre class="app-tabs__container js-tabs__container"><code>output_area_code is not in the metadata or a recognised observational unit.
 output_area_name is not in the metadata or a recognised observational unit.</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking for commas</span>
@@ -4331,6 +4330,10 @@ Make sure to manually check that the above are all valid units.</code></pre>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>Error in filter_group_match(dataset, metadata) : 
   IGNORE - There are no filter groups present to test</code></pre>
+<p class="govuk-body">
+<span class="govuk-!-font-weight-bold">Checking that filter and filter group have been entered the right way around in the metadata based on the levels present in each</span>
+</p>
+<pre class="app-tabs__container js-tabs__container"><code>If any filter groups are shown to have more levels than their filters they will be flagged above.</code></pre>
 </div></div>
 </div>
 <details class="govuk-details" data-module="govuk-details"><summary class="govuk-details__summary"><span class="govuk-details__summary-text">Further information</span></summary><div class="govuk-details__text">

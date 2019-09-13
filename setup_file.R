@@ -546,6 +546,24 @@ filter_group_match <- function(data,meta) {
 }
 
 # -------------------------------------
+# Checking that filter groups have fewer levels than their filters
+
+filter_group_levels <- function(data,meta){
+  filter_groups <- drop_na(metadata,filter_grouping_column)
+  fgs_focus <- select(filter_groups,c(col_name,filter_grouping_column))
+  fgs_list <- c(unlist(fgs_focus,use.names=FALSE))
+  for(i in seq(1,by=2,len=(length(fgs_list)/2))){
+    x <- i+(length(fgs_list)/2)
+    y <- fgs_list[[i]]
+    z <- fgs_list[[x]]
+    if((length(unique(dataset[[y]])))<(length(unique(dataset[[z]]))))
+      warning("WARNING - ",fgs_list[[i]]," has less levels than its filter group (",fgs_list[[x]],")","
+You should check that you've entered them the right way around in the metadata.")
+  }
+  message("If any filter groups are shown to have more levels than their filters they will be flagged above.")
+}
+
+# -------------------------------------
 ### WRAPPING UP THE FUNCTIONS ABOVE NEATLY INTO A FUNCTION
 # -------------------------------------
 
@@ -579,4 +597,5 @@ screening_tests <- function(data,meta) {
   filter_group_check(meta)
   row_check(data,meta)
   filter_group_match(data,meta)
+  filter_group_levels(data,meta)
 }

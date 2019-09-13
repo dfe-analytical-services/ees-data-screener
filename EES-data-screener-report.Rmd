@@ -179,6 +179,11 @@ row_check(dataset,metadata)
 try(cat(filter_group_match(dataset,metadata)))
 ```
 
+ **Checking that filter and filter group have been entered the right way around in the metadata based on the levels present in each**
+```{r filter_group_levels,echo=FALSE,comment=NA}
+filter_group_levels(dataset,metadata)
+```
+
 
 :::
 

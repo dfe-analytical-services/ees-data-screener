@@ -1,19 +1,14 @@
 # Future developments to this screener
 
 ## Working task list
-+ Geography checks 
-  + Finish what is there
-
-+ Add a check that the filter_group columns have less levels than the corresponding filter column in the data file (checking people have the two the right way around)
-
-+ Make the validity tests into loops that print out the incorrect values
-+ Count the number of spaces and commas in a file for those checks and print those
-+ Expand spaces checks to identify the values with spaces in
++ Make the validity + spaces tests into loops that print out the incorrect values
 + Neaten up the error messages by using break and next instead of stop to decide what messages are shown
 + Fix the issue with £ symbol
 
 ## Future ideas
 + Something that counts and outputs the maximum character lengths per column - more of a style guide to consider later
++ Count the number of spaces and commas in a file for those checks and print those
+
 + Anything on school level data that isn't already covered (thinking geographic levels etc)
 + Something checking if the geographic codes are relevant to the year of data - a very optimistic and complex one
 + Adding something to flag if columns such as time or geography are in the metadata and give a message that they shouldn't be
