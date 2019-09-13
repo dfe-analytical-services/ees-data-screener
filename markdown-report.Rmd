@@ -15,8 +15,8 @@ library(tidyverse)
 ```
 ## Files tested
 ```{r files, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
-dataset <- read_csv("data_metadata/dynamic_test_data.csv")
-metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv")
+dataset <- read_csv("data_metadata/dynamic_test_data.csv",trim_ws = FALSE)
+metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv",trim_ws = FALSE)
 ```
 
 ```{r setup, include=FALSE}
@@ -107,7 +107,7 @@ meta_duplicate_check(metadata)
 
  Checking for spaces in the values in the col_name column
 ```{r col_name_spaces_check,echo=FALSE,comment=NA}
-col_name_spaces_check(metadata)
+try(cat(col_name_spaces_check(metadata)))
 ```
 
  Checking if any observational units have been erroneously included in the metadata
