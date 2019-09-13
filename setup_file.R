@@ -351,7 +351,7 @@ There are either too many rows in the metadata, or too few columns in the data f
 screening_tests <- function(data,meta) {
   data_comp_col(data)
   time_period_check(data)
-  #time_period_check_consecutive(data) - needs working out upstream to handle when the test isn't needed
+  time_period_check_consecutive(data)
   time_identifier_check(data)
   time_identifier_mix(data)
   comma_check(data)
@@ -359,7 +359,7 @@ screening_tests <- function(data,meta) {
   #geography_levels_present(data) - needs working on
   #geography_level_completed(data) - needs working on
   #filter_levels_check(data) - needs working on
-  #total_check(data) - needs working on
+  total_check(data)
   meta_comp_col(metadata)
   meta_comma_check(meta)
   col_name_completed(meta)
