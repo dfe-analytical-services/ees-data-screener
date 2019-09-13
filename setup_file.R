@@ -224,6 +224,15 @@ meta_comp_col <- function(data) {
   try(cat(if(!"filter_grouping_column" %in% names(data)) stop("FAIL - The filter_grouping_column variable is missing"), 
           message('PASS - filter_grouping_column is present in the metadata')),silent = FALSE)
 }
+# -------------------------------------
+# for each col_name in the metadata check these each appear in the data file
+# - flag any that aren't in the data file
+# - list those in the data file that aren't in the metadata (or observational units)
+#for(i in metadata$col_type) {
+#  if(!i %in% names(dataset)) warning("You have listed a variable in the metadata that is not present in the data file")
+
+#}
+#column_crosscheck(data,meta)
 
 # -------------------------------------
 # flag for commas across each column
@@ -363,16 +372,6 @@ filter_group_check <- function(data) {
 }
 
 # -------------------------------------
-# for each col_name in the metadata check these each appear in the data file
-# - flag any that aren't in the data file
-# - list those in the data file that aren't in the metadata (or observational units)
-#for(i in metadata$col_type) {
-#  if(!i %in% names(dataset)) warning("You have listed a variable in the metadata that is not present in the data file")
-  
-#}
-#column_crosscheck(data,meta)
-
-# -------------------------------------
 # rows in meta < cols in data file
 
 row_check <- function(data,meta) {
@@ -383,12 +382,21 @@ There are either too many rows in the metadata, or too few columns in the data f
 }
 
 # -------------------------------------
-# filter_grouping anything in this column should be in the vector for column names for the data file
+# filter groups should be in the vector for column names for the data file
 
-#something about creating a variable of the filter_groups in the metadata
-#comparing against names(data)
-
-#filter_group_match(data)
+filter_group_match <- function(data,meta) {
+  filters <- filter(meta,col_type == "Filter")
+  filtered_g <- filters %>% drop_na(filter_grouping_column)
+  filter_groups <- c(filtered_g$filter_grouping_column)
+  if(length(filter_groups)==0)
+    stop("IGNORE - There are no filter groups present to test")
+  for(i in filter_groups){
+    if((i %in% names(data))==FALSE)
+      warning("
+  FAIL - ", i," is not a variable in the data file")
+  }
+  message("If there are no warnings under this test, all of your filter groups are variables in the data file")
+}
 
 # -------------------------------------
 ### WRAPPING UP THE FUNCTIONS ABOVE NEATLY INTO A FUNCTION
@@ -407,6 +415,7 @@ screening_tests <- function(data,meta) {
   filter_levels_check(data,meta)
   total_check(data)
   meta_comp_col(metadata)
+  #column_crosscheck(data,meta) - needs working on
   meta_comma_check(meta)
   col_name_completed(meta)
   meta_duplicate_check(meta)
@@ -420,7 +429,6 @@ screening_tests <- function(data,meta) {
   indicator_unit_check(meta)
   filter_hint_check(meta)
   filter_group_check(meta)
-  #column_crosscheck(data,meta) - needs working on
   row_check(data,meta)
-  #filter_group_match(data) - needs working on
+  filter_group_match(data,meta)
 }

@@ -85,6 +85,11 @@ try(cat(total_check(dataset,metadata)))
 meta_comp_col(metadata)
 ```
 
+ Cross checking the columns in the metadata are in the data file
+```{r column_crosscheck,echo=FALSE,comment=NA}
+#column_crosscheck(dataset,metadata) - needs working on
+```
+
  Checking for commas
 ```{r meta_comma_check,echo=FALSE,comment=NA}
 meta_comma_check(metadata)
@@ -150,17 +155,12 @@ try(cat(filter_hint_check(metadata)))
 try(cat(filter_group_check(metadata)))
 ```
 
- Cross checking the columns in the metadata are in the data file
-```{r column_crosscheck,echo=FALSE,comment=NA}
-#column_crosscheck(dataset,metadata) - needs working on
-```
-
  Checking that the number of rows in the metadata is less than the number of columns in the data file
 ```{r row_check,echo=FALSE,comment=NA}
 row_check(dataset,metadata)
 ```
 
- Checking filter groups on something
+ Checking filter groups are variables in the data file
 ```{r filter_group_match,echo=FALSE,comment=NA}
-#filter_group_match(dataset) - needs working on
+try(cat(filter_group_match(dataset,metadata)))
 ```
