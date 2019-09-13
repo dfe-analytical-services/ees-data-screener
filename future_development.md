@@ -11,6 +11,11 @@
 + Printing out observational unit and filter levels?
 
 ## Ideally needed if there is time
++ Better error handling for things like the validity checks (thinking levels one in particular)
++ Expansions on the geography checks 
+  + Could add a lookup list for countries and regions?
+  + Could try to wrap it all into one, so it prints the levels you have, and then tests if the right columns are present and completed for the right levels, all in one. Basically so that it stops as soon as something isn't right (and stops without stopping the entire script).
++ Make the validity tests into loops that print out the incorrect values?
 + Need some way of checking for spaces at the end of variable names, R seems to be ignoring them on import?
 + Check that the filter_group columns have less levels than the corresponding filter column in the data file (checking people have the two the right way around)
 + Count the number of spaces and commas in a file for those checks and print those

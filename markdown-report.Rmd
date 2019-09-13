@@ -23,12 +23,12 @@ metadata <- read_csv("data_metadata/dynamic_test_data.meta.csv")
 source("setup_file.R")
 ```
 ## Data file validation
-Checking that the compulsory columns are present
+ Checking that the compulsory columns are present
 ```{r data_comp_col, echo=FALSE,comment=NA}
 data_comp_col(dataset)
 ```
 
-Checking that the time_period is either 4 or 6 digits
+ Checking that the time_period is either 4 or 6 digits
 ```{r time_period_check, echo=FALSE,comment=NA}
 time_period_check(dataset)
 ```
@@ -56,6 +56,11 @@ comma_check(dataset)
  Checking for spaces in the data file variable names
 ```{r data_spaces_check,echo=FALSE,comment=NA}
 data_spaces_check(dataset)
+```
+
+ Checking that the geographic levels are valid
+```{r level_validity_check,echo=FALSE,comment=NA}
+level_validity_check(dataset)
 ```
 
  Checking that the correct geography columns are present for the levels in the data file

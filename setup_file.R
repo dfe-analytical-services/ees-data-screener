@@ -90,6 +90,20 @@ data_spaces_check <- function(data) {
 
 # -------------------------------------
 # Do we have the right columns for the geographic level
+level_validity_check <- function(data) {
+  acceptable_levels <- c("National","Regional","Local authority","RSC region","Parliamentary constituency",
+                         "Local authority district","Local enterprise partnerships","Mayoral combined authorities",
+                         "Opportunity area","Ward","MAT","Sponsor")
+  levels <- unique(data$geographic_level)
+  levels_test <- intersect(levels,acceptable_levels)
+  try(cat(if(FALSE == identical(levels_test,levels)) 
+    stop(writeLines(c("FAIL - There is at least one invalid geographic_level present.","Here are the geographic levels in your file: ",levels,""))),
+          message('PASS - Your geographic level/s are valid')))
+}
+#level_validity_check(dataset)
+
+# -------------------------------------
+# Do we have the right columns for the geographic level
 #National_required <- c("country_code","country_name")
 #Regional_required <- c("country_code","country_name","region_code","region_name")
 #LA_required <- c("country_code","country_name","region_code","region_name","old_la_code","new_la_code","la_name")
@@ -108,21 +122,54 @@ data_spaces_check <- function(data) {
 # -------------------------------------
 # Are the geography columns completed for the right levels
 
-#geography_level_completed <- function(data) {
-  
-#  National <- filter(data, geographic_level =='National')
-  
-#  if(any(is.na(National$country_name))) warning('The country_name column must be completed for national level data')  
-  
-#  message('country_name is present')
-  
-#  if(any(is.na(National$country_code))) warning('The country_code column must be completed for national level data')  
-  
-#  message('country_code is present')
-  
-#}
+national_level_completed <- function(data) {
+  try(cat(if(any(is.na(data$country_name))) warning('FAIL - The country_name column must be completed for all data'),  
+          message('PASS - country_name is completed for all data')),silent=FALSE)
+  try(cat(if(any(is.na(data$country_code))) warning('FAIL - The country_code column must be completed for all data'),  
+          message('PASS - country_code is completed for all data')),silent=FALSE)
+}
+#national_level_completed(dataset)
 
-#geography_level_completed(dataset)
+regional_level_completed <- function(data) {
+  Regional <- filter(data, geographic_level =='Regional')
+  try(cat(if(any(is.na(Regional$region_name))) warning('FAIL - The region_name column must be completed for all regional data'),  
+          message('PASS - region_name is completed for all regional data')),silent=FALSE)
+  try(cat(if(any(is.na(Regional$region_code))) warning('FAIL - The region_code column must be completed for all regional data'),  
+          message('PASS - region_code is completed for all regional data')),silent=FALSE)
+}
+
+la_level_completed <- function(data) {
+  LA <- filter(data, geographic_level =='Local authority')
+  try(cat(if(any(is.na(LA$old_la_code))) warning('FAIL - The old_la_code column must be completed for all local authority data'),  
+          message('PASS - old_la_code is completed for all local authority data')),silent=FALSE)
+  try(cat(if(any(is.na(LA$new_la_code))) warning('FAIL - The new_la_code column must be completed for all local authority data'),  
+          message('PASS - new_la_code is completed for all local authority data')),silent=FALSE)  
+  try(cat(if(any(is.na(LA$la_name))) warning('FAIL - The la_name column must be completed for all local authority data'),  
+          message('PASS - la_name is completed for all local authority data')),silent=FALSE)
+}
+
+rSC_level_completed <- function(data) {
+  RSC <- filter(data, geographic_level =='RSC region')
+  try(cat(if(any(is.na(RSC$region_name))) warning('FAIL - The region_name column must be completed for all regional data'),  
+          message('PASS - region_name is completed for all regional data')),silent=FALSE)
+  try(cat(if(any(is.na(RSC$region_code))) warning('FAIL - The region_code column must be completed for all regional data'),  
+          message('PASS - region_code is completed for all regional data')),silent=FALSE)
+}
+
+geography_level_completed <- function(data) {
+  try(cat(national_level_completed(data)))
+  if("Regional" %in% data$geographic_level){cat(regional_level_completed(data))}
+  if("Local authority" %in% data$geographic_level){cat(la_level_completed(data))}
+  if("RSC region" %in% data$geographic_level){cat(rsc_level_completed(data))}
+  if("Local authority" %in% data$geographic_level){cat(la_level_completed(data))}
+ # if_else("Local authority" %in% data$geographic_level,cat(la_level_completed(data)),
+  #        cat("IGNORE - There is no local authority level data"))
+  
+}
+
+#RSC_required <- c("country_code","country_name","rsc_name")
+#PCon_required <- c("country_code","country_name","pcon_code","pcon_name")
+geography_level_completed(dataset)
 
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
@@ -356,6 +403,7 @@ screening_tests <- function(data,meta) {
   time_identifier_mix(data)
   comma_check(data)
   data_spaces_check(data)
+  #level_validity_check(data) - needs working on
   #geography_levels_present(data) - needs working on
   #geography_level_completed(data) - needs working on
   #filter_levels_check(data) - needs working on
