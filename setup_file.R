@@ -56,7 +56,9 @@ time_identifier_check <- function(data) {
                                    "Tax year Q1-2","Tax year Q1-3","Tax year Q1-4","Tax year Q2-3","Tax year Q2-4","Tax year Q3-4")
   time_identifiers <- unique(data$time_identifier)
   identifier_test <- intersect(time_identifiers,acceptable_time_identifiers)
-  try(cat(if(FALSE == identical(identifier_test,time_identifiers)) stop("FAIL - There is at least one invalid time_identifier present"),
+  try(cat(if(FALSE == identical(identifier_test,time_identifiers)) 
+    stop(writeLines(c("FAIL - There is at least one invalid time_identifier present.",
+                      "Here are the time_identifiers in your file:","",time_identifiers,""))),
   message('PASS - Your time identifier/s are valid')))
 }
 
@@ -64,7 +66,7 @@ time_identifier_check <- function(data) {
 # print the unique time_identifiers for conceptual checking
 
 time_identifier_mix <- function(data) {
- cat(unique(data$time_identifier)) 
+ cat(unique(dataset$time_identifier),sep = ", ") 
 }
 
 # -------------------------------------
@@ -72,7 +74,7 @@ time_identifier_mix <- function(data) {
 
 comma_check <- function(data) {
   for (i in names(data)) {
-    if(any(grepl(",",data[[i]]))) warning("FAIL - There are commas in ", i)
+    if(any(grepl(",",data[[i]]))) warning("FAIL - Comma/s present in ",i)
   }
 message('If there are no warnings under this test, there are no commas in your data file')
 }
@@ -97,10 +99,10 @@ level_validity_check <- function(data) {
   levels <- unique(data$geographic_level)
   levels_test <- intersect(levels,acceptable_levels)
   try(cat(if(FALSE == identical(levels_test,levels)) 
-    stop(writeLines(c("FAIL - There is at least one invalid geographic_level present.","Here are the geographic levels in your file: ",levels,""))),
+    stop(writeLines(c("FAIL - There is at least one invalid geographic_level present.",
+                      "Here are the geographic levels in your file:","",levels,""))),
           message('PASS - Your geographic level/s are valid')))
 }
-#level_validity_check(dataset)
 
 # -------------------------------------
 # Do we have the right columns for the geographic level
@@ -237,7 +239,7 @@ meta_comma_check <- function(data) {
 # is col_name completed for every row
 
 col_name_completed <- function(data) {
-  if(any(is.na(data$col_name))) stop(cat('FAIL - There are names missing in ', sum(is.na(data$col_name)), 'rows'))
+  if(any(is.na(data$col_name))) stop(cat('FAIL - There is a name missing in ', sum(is.na(data$col_name)), 'row/s'))
     message('PASS - col_name is completed for all rows')
 }
 
@@ -293,7 +295,7 @@ comp_col_check_meta <- function(data) {
 
 label_check <- function(data) {
   if(any(is.na(data$label))) 
-    stop(paste('FAIL - There are labels missing in', sum(is.na(data$label)), 'rows')) 
+    stop(paste('FAIL - There is a label missing in', sum(is.na(data$label)), 'row/s')) 
     message('PASS - label is completed for all rows')
 }
 

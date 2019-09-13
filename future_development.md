@@ -11,7 +11,7 @@
 + Printing out observational unit and filter levels?
 
 ## Ideally needed if there is time
-+ Better error handling for things like the validity checks (thinking levels one in particular)
++ Expand spaces checks to identify the values with spaces in
 + Expansions on the geography checks 
   + Could add a lookup list for countries and regions?
   + Could try to wrap it all into one, so it prints the levels you have, and then tests if the right columns are present and completed for the right levels, all in one. Basically so that it stops as soon as something isn't right (and stops without stopping the entire script).
