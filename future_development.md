@@ -1,13 +1,6 @@
 # Future developments to this screener
 
 ## Working task list
-+ Test the spaces tests again
-  + Test single spaces in words
-  + Test multiple spaces
-  + Test leading spaces
-  + Test trailing spaces
-  + Test combinations of the above
-  
 + Geography checks 
   + Finish what is there
   + Could add a lookup list for countries and regions?

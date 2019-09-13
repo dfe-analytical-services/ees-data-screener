@@ -30,7 +30,7 @@ time_period_check <- function(data) {
     stop(writeLines(c("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.",
                       "Here are the time period values in your file:","",time_periods,""))),
     message("PASS - time period is always a four or six digit number.
-Now testing that if 6 digit years are present they represent consecutive years.")))
+- Now testing that if 6 digit years are present they represent consecutive years:")))
         consecutive_mini_function <- function(data) {
           six_digit_years <- filter(time_length,digits==6)
           currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
@@ -39,8 +39,8 @@ Now testing that if 6 digit years are present they represent consecutive years."
           try(cat(if(check_yearends==TRUE) stop("FAIL - when the time period is 6 digits, the years must be consecutive"),
                   message('PASS - Your 6 digit time period/s show consecutive years')))
         }
-  try(cat(if(six==0) stop("IGNORE - There are no 6 digit time periods in the data file"),
-  consecutive_mini_function(data)))
+        try(cat(if(six==0) stop("IGNORE - There are no 6 digit time periods in the data file"),
+                consecutive_mini_function(data)))
 }
 
 # -------------------------------------
@@ -88,7 +88,8 @@ message('If there are no warnings under this test, there are no commas in your d
 data_spaces_check <- function(data) {
   variable_names <- names(dataset)
   for (i in variable_names) {
-    if(any(grepl('\\s',i))) warning("FAIL - There are spaces in ", i)
+    if(any(grepl('\\s',i))) warning("
+FAIL - There are spaces in ", i)
   }
   message('If there are no warnings under this test, there are no spaces in your variable names')
 }

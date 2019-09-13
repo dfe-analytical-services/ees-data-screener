@@ -38,7 +38,7 @@ data_comp_col(dataset)
 ```
 
  **Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show  consecutive years**
-```{r time_period_check, echo=FALSE,comment=NA}
+```{r time_period_check, echo=FALSE,warning=FALSE,comment=NA}
 time_period_check(dataset)
 ```
 
@@ -79,7 +79,7 @@ level_validity_check(dataset)
 
  **Checking that filters include in the metadata have at least two levels**
 ```{r filter_levels_check,echo=FALSE,comment=NA}
-filter_levels_check(dataset,metadata)
+try(filter_levels_check(dataset,metadata))
 ```
 
  **Checking that each filter has a 'Total'**
@@ -178,6 +178,8 @@ row_check(dataset,metadata)
 ```{r filter_group_match,echo=FALSE,comment=NA}
 try(cat(filter_group_match(dataset,metadata)))
 ```
+
+
 :::
 
 :::{.details summary="Further information"}

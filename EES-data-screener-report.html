@@ -4168,37 +4168,20 @@ Data file validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show consecutive years</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>FAIL - time period must be a four or six digit number e.g. 2016 or 201617.
-Here are the time period values in your file:
-
-2018
-NA
-201617
-2017
-2016
-2015
-2014
-
-Error in cat(if ((four + six == all) == FALSE) stop(writeLines(c(&quot;FAIL - time period must be a four or six digit number e.g. 2016 or 201617.&quot;,  : 
-  </code></pre>
-<pre class="app-tabs__container js-tabs__container"><code>PASS - Your 6 digit time period/s show consecutive years</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - time period is always a four or six digit number.
+- Now testing that if 6 digit years are present they represent consecutive years:</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Error in cat(if (check_yearends == TRUE) stop(&quot;FAIL - when the time period is 6 digits, the years must be consecutive&quot;),  : 
+  FAIL - when the time period is 6 digits, the years must be consecutive
+ Error in cat(if (check_yearends == TRUE) stop(&quot;FAIL - when the time period is 6 digits, the years must be consecutive&quot;),  : 
+  FAIL - when the time period is 6 digits, the years must be consecutive</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking if the time_identifier values are valid</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>FAIL - There is at least one invalid time_identifier present.
-Here are the time_identifiers in your file:
-
-Calendar year
-INVALID
-NEXT TUESDAY 
-MAYBE TONIGHT
-
-Error in cat(if (FALSE == identical(identifier_test, time_identifiers)) stop(writeLines(c(&quot;FAIL - There is at least one invalid time_identifier present.&quot;,  : 
-  </code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - Your time identifier/s are valid</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Check this list for conceptually different time_identifiers</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>Time_identifiers:  Calendar year, INVALID, NEXT TUESDAY , MAYBE TONIGHT</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Time_identifiers:  Calendar year</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking for commas in the data file</span>
 </p>
@@ -4224,8 +4207,6 @@ Error in cat(if (FALSE == identical(identifier_test, time_identifiers)) stop(wri
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that each filter has a ‘Total’</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>Warning in total_check(dataset, metadata): 
-  WARNING - There is no Total value in: nc_year_admission</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>If there are no warnings under this test, there are Total levels in each of your filters</code></pre>
 </div></div>
 <div class="govuk-accordion__section">
