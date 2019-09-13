@@ -7,7 +7,7 @@ If you have any questions please contact cameron.race@education.gov.uk.
 ### setup_file.R
 This file contains all of the functions used to screen the data.
 
-### screener-report.Rmd
+### EES-data-screener-report.Rmd
 This file is where you select your data files and then run the EES Data Screener from.
 This then outputs a html report of the results of your screening.
 

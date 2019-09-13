@@ -312,10 +312,10 @@ col_type_check <- function(data) {
   i <- nrow(filter(data,col_type == "Indicator"))
   m <- nrow(data)
   col_types <- unique(data$col_type)
-  try(cat(if((f + i == m)==FALSE)
+  if((f + i == m)==FALSE)
     stop(writeLines(c("FAIL - col_type must be either 'Filter' or 'Indicator', and cannot be blank.",
-                 "Here are the col_type values in your file:","",col_types,""))),
-    message("PASS - col_type is always 'Filter' or 'Indicator'")))
+                 "Here are the col_type values in your file:","",col_types,"")))
+    message("PASS - col_type is always 'Filter' or 'Indicator'")
 }
 
 # -------------------------------------
