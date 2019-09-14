@@ -5,6 +5,7 @@
 
 + Neaten up the error messages by using break and next instead of stop to decide what messages are shown
  + Try using ifelse and break/next with the col_type check
+ + Also see if I can remove the need for 'this will show warnings' messages and get everything to pass/fail
 + Fix the issue with £ symbol
 
 ## Future ideas

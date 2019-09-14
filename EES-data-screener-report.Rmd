@@ -4,7 +4,6 @@ output:
     keep_md: false
     logo_text: "DfE"
     font: "sans-serif"
-    favicon: "govuk"
     title: "Underlying data screening"
     phase: alpha
 ---
