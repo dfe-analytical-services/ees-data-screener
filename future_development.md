@@ -4,11 +4,7 @@
 
 #### Working task list
 + Split up the tests into more sections for the accordions
-<<<<<<< HEAD
 + One combined function for the geography tests on combining-geography-testing branch
-=======
-+ One combined function for the geography tests
->>>>>>> 0984757ab45bf01b0fef8430b5694d935b28f1de
 + Neaten up the error messages
   + Try using ifelse and break/next with the col_type check
   + Also see if I can remove the need for 'this will show warnings' messages and get everything to a simple pass/fail
