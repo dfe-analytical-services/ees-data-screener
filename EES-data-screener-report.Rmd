@@ -1,5 +1,4 @@
 ---
-title: "Your report summary"
 output:
   govdown::govdown_document:
     keep_md: false
@@ -16,11 +15,12 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(govdown)
 ```
+## Your data report{caption="Filter group test data"}
 
 ### **Files tested**
 ```{r files, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
-dataset <- read_csv("data_metadata/All_geographies_messy.csv",trim_ws = FALSE)
-metadata <- read_csv("data_metadata/all_geographies_messy.meta.csv",trim_ws = FALSE)
+dataset <- read_csv("data_metadata/filter_group.csv",trim_ws = FALSE)
+metadata <- read_csv("data_metadata/filter_group.meta.csv",trim_ws = FALSE)
 ```
 
 **Date:**
@@ -116,7 +116,7 @@ col_name_completed(metadata)
 
  **Checking for duplicate col_names**
 ```{r meta_duplicate_check,echo=FALSE,comment=NA}
-meta_duplicate_check(metadata)
+try(cat(meta_duplicate_check(metadata)))
 ```
 
  **Checking for spaces in the values in the col_name column**
@@ -171,7 +171,7 @@ try(cat(filter_group_check(metadata)))
 
  **Checking that the number of rows in the metadata is less than the number of columns in the data file**
 ```{r row_check,echo=FALSE,comment=NA}
-row_check(dataset,metadata)
+try(cat(row_check(dataset,metadata)))
 ```
 
  **Checking filter groups are variables in the data file**
@@ -179,9 +179,9 @@ row_check(dataset,metadata)
 try(cat(filter_group_match(dataset,metadata)))
 ```
 
- **Checking that filter and filter group have been entered the right way around in the metadata based on the levels present in each**
+ **Checking that filter and filter group have been entered into the correct columns**
 ```{r filter_group_levels,echo=FALSE,comment=NA}
-filter_group_levels(dataset,metadata)
+try(cat(filter_group_levels(dataset,metadata)))
 ```
 
 

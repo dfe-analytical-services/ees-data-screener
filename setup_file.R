@@ -25,8 +25,7 @@ time_period_check <- function(data) {
   try(cat(if((four + six == all)==FALSE) 
     stop(writeLines(c("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.",
                       "Here are the time period values in your file:","",time_periods,""))),
-    message("PASS - time period is always a four or six digit number.
-- Now testing that if 6 digit years are present they represent consecutive years:")))
+    message("PASS - time period is always a four or six digit number.")))
         consecutive_mini_function <- function(data) {
           six_digit_years <- filter(time_length,digits==6)
           currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
@@ -386,7 +385,7 @@ meta_crosscheck <- function(data,meta) {
                            "mayoral_combined_authority_name","opportunity_area_code","opportunity_area_name",
                            "ward_code","ward_name","trust_id","trust_name","sponsor_id","sponsor_name")
   n_ob_units <- setdiff(names(data),observational_units)
-  message("This will show if there are variables in the data file that are not present in the metadata:")
+  message("This will show if there are variables in the data file that are not present in the metadata")
     for (i in n_ob_units) {
     try(cat(if((i %in% meta$col_name)==FALSE) warning(i, " is not in the metadata or a recognised observational unit.
 ")))
@@ -498,7 +497,7 @@ indicator_unit_validation <- function(data) {
 #    stop(
   writeLines(c("MANUAL CHECK - indicator unit must be a percentage '%', a pound sign '<U+00A3>', or blank 'NA'.",
                      "Here are the indicator units in your file:","",indicator_units,"",
-               "Make sure to manually check that the above are all valid units."))
+               "Make sure to manually check that the above are all valid units!"))
   #)
 #    message("PASS - The indicator units are valid")
 }
@@ -534,9 +533,9 @@ filter_group_check <- function(data) {
 # rows in meta < cols in data file
 
 row_check <- function(data,meta) {
-  if(ncol(data)<nrow(meta)) stop('FAIL - Check your files in a text editor.
-Your metadata file has more rows than your data file has columns, this is not right.
-There are either too many rows in the metadata, or too few columns in the data file')
+  if(ncol(data)<nrow(meta)) stop('FAIL - Your metadata file has more rows than your data file has columns, this means that something is wrong.
+        There are either too many rows in the metadata, or too few columns in the data file.
+TRY - Check your csv files in a text editor as this might help you find the problem.')
   message('PASS - You have fewer rows in your metadata than you have columns in your data file')
 }
 
@@ -547,7 +546,7 @@ filter_group_match <- function(data,meta) {
   filters <- filter(meta,col_type == "Filter")
   filtered_g <- filters %>% drop_na(filter_grouping_column)
   filter_groups <- c(filtered_g$filter_grouping_column)
-  message("This will show if any of your filter groups do not have a mathcing variable in the data file")
+  message("This will show if any of your filter groups do not have a matching variable in the data file")
     if(length(filter_groups)==0)
     stop("IGNORE - There are no filter groups present to test")
   for(i in filter_groups){
@@ -564,14 +563,15 @@ filter_group_levels <- function(data,meta){
   filter_groups <- drop_na(metadata,filter_grouping_column)
   fgs_focus <- select(filter_groups,c(col_name,filter_grouping_column))
   fgs_list <- c(unlist(fgs_focus,use.names=FALSE))
-  message("If any filter groups are shown to have more levels than their filters they will be flagged here.")
-  for(i in seq(1,by=2,len=(length(fgs_list)/2))){
+  message("This will flag if any filter groups have more levels than their corresponding filters")
+  for(i in seq(1,by=1,len=(length(fgs_list)/2))){
     x <- i+(length(fgs_list)/2)
     y <- fgs_list[[i]]
     z <- fgs_list[[x]]
     if((length(unique(dataset[[y]])))<(length(unique(dataset[[z]]))))
-      warning("WARNING - ",fgs_list[[i]]," has less levels than its filter group (",fgs_list[[x]],")","
-You should check that you've entered them the right way around in the metadata.")
+      warning("
+  WARNING - ",fgs_list[[i]]," has less levels than its filter group - ",fgs_list[[x]],".","
+You should check that you've entered the filter and filter group in the right columns in the metadata.")
   }
 }
 
