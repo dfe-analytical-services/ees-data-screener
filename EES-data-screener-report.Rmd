@@ -15,12 +15,12 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(govdown)
 ```
-## Your data report{caption="Filter group test data"}
+## Your data report{caption="All geographies test data"}
 
 ### **Files tested**
 ```{r files, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
-dataset <- read_csv("data_metadata/filter_group.csv",trim_ws = FALSE)
-metadata <- read_csv("data_metadata/filter_group.meta.csv",trim_ws = FALSE)
+dataset <- read_csv("data_metadata/All_geographies.csv",trim_ws = FALSE)
+metadata <- read_csv("data_metadata/all_geographies.meta.csv",trim_ws = FALSE)
 ```
 
 **Date:**

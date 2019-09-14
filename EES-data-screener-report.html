@@ -4140,10 +4140,10 @@ color: #d14;
 
   <div class="govuk-width-container">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-            <h2 id="your-data-report" class="govuk-heading-l"><span class="govuk-caption-l">Filter group test data</span>Your data report</h2>
+            <h2 id="your-data-report" class="govuk-heading-l"><span class="govuk-caption-l">All geographies test data</span>Your data report</h2>
 <h3 id="files-tested" class="govuk-heading-m"><span class="govuk-!-font-weight-bold">Files tested</span></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r app-tabs__container js-tabs__container"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>dataset &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/filter_group.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>metadata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/filter_group.meta.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r app-tabs__container js-tabs__container"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>dataset &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/All_geographies.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>metadata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/all_geographies.meta.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Date:</span> 13th September 2019
 </p>
@@ -4167,7 +4167,8 @@ Data file validation
 <span class="govuk-!-font-weight-bold">Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show consecutive years</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>PASS - time period is always a four or six digit number.</code></pre>
-<pre class="app-tabs__container js-tabs__container"><code>PASS - Your 6 digit time period/s show consecutive years</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Error in cat(if (six == 0) stop(&quot;IGNORE - There are no 6 digit time periods in the data file&quot;),  : 
+  IGNORE - There are no 6 digit time periods in the data file</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking if the time_identifier values are valid</span>
 </p>
@@ -4175,7 +4176,7 @@ Data file validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Check this list for conceptually different time_identifiers</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>Time_identifiers:  Academic year</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Time_identifiers:  Calendar year</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking for commas in the data file</span>
 </p>
@@ -4192,11 +4193,40 @@ Data file validation
 <span class="govuk-!-font-weight-bold">Checking that the correct geography columns are present for the levels in the data file</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>This will show if there are any expected geography columns missing from the data file</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Warning in geography_levels_present(dataset): 
+             FAIL - la_name must be present for local authority level data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Warning in geography_levels_present(dataset): 
+             FAIL - pcon_code must be present for parliamentary constituency level data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Warning in geography_levels_present(dataset): 
+             FAIL - opportunity_area_code must be present for opportunity level data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Warning in geography_levels_present(dataset): 
+             FAIL - opportunity_area_name must be present for opportunity level data</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the correct geography columns are completed for each of the levels in the data file</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>PASS - country_name is completed for all data</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>PASS - country_code is completed for all data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - region_name is completed for all regional data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - region_code is completed for all regional data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - old_la_code is completed for all local authority data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - new_la_code is completed for all local authority data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Warning: Unknown or uninitialised column: &#39;la_name&#39;.</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - la_name is completed for all local authority data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - rsc_region_lead_name is completed for all RSC region data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - pcon_name is completed for all parliamentary constituency data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Warning: Unknown or uninitialised column: &#39;pcon_code&#39;.</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - pcon_code is completed for all parliamentary constituency data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - lad_name is completed for all local authority district data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Error in cat(if (any(is.na(lad$lad_code))) stop(&quot;FAIL - The lad_code column must be completed for all local authority district data&quot;),  : 
+  FAIL - The lad_code column must be completed for all local authority district data
+Error in cat(if (any(is.na(lad$lad_code))) stop(&quot;FAIL - The lad_code column must be completed for all local authority district data&quot;),  : 
+  FAIL - The lad_code column must be completed for all local authority district data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Warning: Unknown or uninitialised column: &#39;opportunity_area_name&#39;.</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - opportunity_area_name is completed for all opportunity area data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Warning: Unknown or uninitialised column: &#39;opportunity_area_code&#39;.</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - opportunity_area_code is completed for all opportunity area data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - ward_name is completed for all ward data</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - ward_code is completed for all ward data</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that filters include in the metadata have at least two levels</span>
 </p>
@@ -4204,9 +4234,9 @@ Data file validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that each filter has a ‘Total’</span>
 </p>
+<pre class="app-tabs__container js-tabs__container"><code>Error in cat(if (!&quot;Filter&quot; %in% meta$col_type) stop(&quot;IGNORE - This test does not apply to your data&quot;)) : 
+  IGNORE - This test does not apply to your data</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>This will show if there are &#39;Total&#39; levels missing from any of your filters</code></pre>
-<pre class="app-tabs__container js-tabs__container"><code>Warning in total_check(dataset, metadata): 
-  WARNING - There is no &#39;Total&#39; value in: school_type</code></pre>
 </div></div>
 <div class="govuk-accordion__section">
 <div class="govuk-accordion__section-header">
@@ -4235,6 +4265,8 @@ Metadata validation
 <span class="govuk-!-font-weight-bold">Check to catch any variables from the data file that are not in the metadata</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>This will show if there are variables in the data file that are not present in the metadata</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>output_area_code is not in the metadata or a recognised observational unit.
+output_area_name is not in the metadata or a recognised observational unit.</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking for commas</span>
 </p>
@@ -4246,8 +4278,7 @@ Metadata validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking for duplicate col_names</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>Error in meta_duplicate_check(metadata) : 
-  FAIL - At least one of the variable names is duplicated</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - All col names are unique</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking for spaces in the values in the col_name column</span>
 </p>
@@ -4259,24 +4290,15 @@ Metadata validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that col_type values are valid</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>FAIL - col_type must be either &#39;Filter&#39; or &#39;Indicator&#39;, and cannot be blank.
-Here are the col type values in your file:
-
-Indicator
-Filter
-NA
-
-Error in col_type_check(metadata) : </code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - col_type is always &#39;Filter&#39; or &#39;Indicator&#39;</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that every row has a label completed</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>Error in label_check(metadata) : 
-  FAIL - There is a label missing in 198 row/s</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - label is completed for all rows</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that there are no duplicate labels</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>Error in duplicate_label_check(metadata) : 
-  FAIL - At least one of the variable names is duplicated</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - All labels are unique</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that no filters have an indicator group</span>
 </p>
@@ -4305,21 +4327,17 @@ Make sure to manually check that the above are all valid units!</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the number of rows in the metadata is less than the number of columns in the data file</span>
 </p>
-<pre class="app-tabs__container js-tabs__container"><code>Error in row_check(dataset, metadata) : 
-  FAIL - Your metadata file has more rows than your data file has columns, this means that something is wrong.
-        There are either too many rows in the metadata, or too few columns in the data file.
-TRY - Check your csv files in a text editor as this might show you the problem.</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>PASS - You have fewer rows in your metadata than you have columns in your data file</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking filter groups are variables in the data file</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>This will show if any of your filter groups do not have a matching variable in the data file</code></pre>
+<pre class="app-tabs__container js-tabs__container"><code>Error in filter_group_match(dataset, metadata) : 
+  IGNORE - There are no filter groups present to test</code></pre>
 <p class="govuk-body">
-<span class="govuk-!-font-weight-bold">Checking that filter and filter group have been entered the right way around in the metadata based on the levels present in each</span>
+<span class="govuk-!-font-weight-bold">Checking that filter and filter group have been entered into the correct columns</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>This will flag if any filter groups have more levels than their corresponding filters</code></pre>
-<pre class="app-tabs__container js-tabs__container"><code>Warning in filter_group_levels(dataset, metadata): 
-WARNING - characteristic_group has less levels than its filter group (characteristic).
-You should check that you&#39;ve entered them the right way around in the metadata.</code></pre>
 </div></div>
 </div>
 <details class="govuk-details" data-module="govuk-details"><summary class="govuk-details__summary"><span class="govuk-details__summary-text">Further information</span></summary><div class="govuk-details__text">

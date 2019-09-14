@@ -1,13 +1,15 @@
 # Future developments to this screener
 
 ## Working task list
-+ Make the validity + spaces tests into loops that print out the incorrect values
-+ Test the geography completed error messages
++ **Fix the issue with the geography columns not present giving both pass and fail messages**
+
 + Neaten up the error messages by using break and next instead of stop to decide what messages are shown
  + Try using ifelse and break/next with the col_type check
 + Fix the issue with £ symbol
 
 ## Future ideas
++ Make the validity + spaces tests into loops that print out the incorrect values
++ Something Laura said about making sure each row was 'unique' (presumably observational unit and filter combinations?)
 + Something that counts and outputs the maximum character lengths per column - more of a style guide to consider later
 + Count the number of spaces and commas in a file for those checks and print those
 
@@ -17,9 +19,4 @@
 + Checks that check if indicators have a certain unit, they are a specific type? Might not be needed nor possible
 + Extract the indicator groupings and print
 + Add a message for filters where a hint isn't added so that we can say 'you don't have a hint for x, are you sure?
-+ Printing out observational unit and filter levels?
-
-## Potential general code improvements
-+ Soft coding the columns in the functions (not sure how to make this work), would only save a small amount of duplication so not hugely important
-+ Fixing grammar so that singular counts have a different message
-+ Make the html output prettier
++ Printing out observational unit and filter levels, so addind a 'what is in your data section'
