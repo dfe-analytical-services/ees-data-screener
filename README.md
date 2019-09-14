@@ -1,29 +1,49 @@
 # **EES-Data-Screener**
-This is an R project that you can use to test data and metadata files against the standards required for Explore Education Statistics.
+This is an R project developed that you can use to test data and metadata files against the standards required for statistical publications from the Deparment for Education, and for use on it's new dissemination platform - Explore Education Statistics. 
 
-If you have any questions please contact cameron.race@education.gov.uk.
+This will not QA the content of your data, instead it will assess the structure and formatting that is required in the [new data standards](https://teams.microsoft.com/l/channel/19%3A1bdf09280fd94df09f0d42e19cb251fb%40thread.skype/tab%3A%3A638782f8-c3cf-423f-b63c-2e5709c64b9b?groupId=679b2376-8c8c-4062-a1c9-0744ce5ac88f&tenantId=fad277c9-c60a-4da1-b5f3-b3b8b34a82f9). 
 
-## Files
-### setup_file.R
-This file contains all of the functions used to screen the data.
+If you have any questions about this project please contact cameron.race@education.gov.uk.
 
-### EES-data-screener-report.Rmd
-This file is where you select your data files and then run the EES Data Screener from.
-This then outputs a html report of the results of your screening.
+<br>
 
-### run.R
-This is a script that can used to load packages, read in files, and run the functions in the console.
+#### **Project**
+**setup_file.R** <br>
 
-## Packages
-#### Tidyverse
-The majority of the data screener is based around the tidyverse packages that are downloadable through cran.
+>This file creates all of the functions used to screen the data.
 
-#### Govdown
-If you're wanting to download the govdown package to run and edit the html output you'll need to run the following line.
+**EES-data-screener-report.Rmd** <br>
 
-    devtools::install_github("ukgovdatascience/govdown")
+>This file is where you select your data files and then run the EES Data Screener from. This then outputs a html report of the results of your screening.
+>
+>Change the name of the file you wish to screen under `# LOAD YOUR FILES HERE` on lines 22 and 23, and then knit the html output.
 
-If you are struggling with proxy settings, run the following two lines in order, and then restart RStudio and try again.
+**run.R** <br>
 
-    source("https://raw.githubusercontent.com/dfe-analytical-services/dfeR/master/R/proxy.R")
-    setup_proxy()
+>This is a script that can used to load packages, read in files, and run the functions in the console.
+
+**future_developments.md** <br>
+
+>This is a file containing notes on current work on the project, and future ideas for development.
+
+**data_metadata** <br>
+
+>This is the folder containing a variety of test data and metadata files.
+
+<br>
+
+#### **Packages**
+**Tidyverse** <br>
+
+>This data screener is based around the tidyverse packages that are accessible through cran.
+
+**Govdown** <br>
+
+>If you are wanting to download the govdown package to run and edit the html output you'll need to run the following line.
+>
+>    `devtools::install_github("ukgovdatascience/govdown")`
+>
+>If you are struggling with proxy settings, run the following two lines in order, and then >restart RStudio and try again.
+>
+>   `source("https://raw.githubusercontent.com/dfe-analytical-services/dfeR/master/R/proxy.R")`
+>   `setup_proxy()`

@@ -15,16 +15,14 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(govdown)
 ```
-## Your data report{caption="All geographies test data"}
+## Data report summary{caption="Your publication name"}
 
-### **Files tested**
+### **Files tested**{caption=`r Sys.Date()`}
 ```{r files, echo=TRUE, results='hide', warning=FALSE, message=FALSE}
+# LOAD YOUR FILES HERE
 dataset <- read_csv("data_metadata/All_geographies.csv",trim_ws = FALSE)
 metadata <- read_csv("data_metadata/all_geographies.meta.csv",trim_ws = FALSE)
 ```
-
-**Date:**
- 13th September 2019
 
 ```{r setup, include=FALSE}
 source("setup_file.R")
