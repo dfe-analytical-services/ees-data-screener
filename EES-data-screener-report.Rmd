@@ -70,7 +70,7 @@ geography_levels_present(dataset)
 ```
 
  **Checking that the correct geography columns are completed for each of the levels in the data file**
-```{r geography_level_completed,echo=FALSE,comment=NA}
+```{r geography_level_completed,echo=FALSE,warning=FALSE,comment=NA}
 geography_level_completed(dataset)
 ```
 
