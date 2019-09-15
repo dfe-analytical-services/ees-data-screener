@@ -564,7 +564,7 @@ screening_tests <- function(data,meta) {
   geography_level_completed(data)
   filter_levels_check(data,meta)
   total_check(data)
-  meta_comp_col(metadata)
+  meta_comp_col(meta)
   column_crosscheck(data,meta)
   meta_crosscheck(data,meta)
   meta_comma_check(meta)
