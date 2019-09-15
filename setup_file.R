@@ -4,7 +4,7 @@
 # check that the compulsory columns exist
 
 data_comp_col <- function(data) {
-  comp_col <- c("geographic_level","time_period","time_indentifier")
+  comp_col <- c("geographic_level","time_period","time_identifier")
   for(i in comp_col){
     if(i %in% names(data)){message("PASS - ",i," is present in the data file.")}
     else{message("FAIL - The ",i," variable is missing from the data file.")}
