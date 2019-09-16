@@ -23,6 +23,12 @@ dataset <- read_csv("data_metadata/All_geographies.csv",trim_ws = FALSE)
 metadata <- read_csv("data_metadata/all_geographies.meta.csv",trim_ws = FALSE)
 ```
 
+```{r files, include=FALSE, results='hide', warning=FALSE, message=FALSE}
+# Or use this to select your files using a GUI
+#dataset <- read_csv(file.choose(),trim_ws = FALSE)
+#metadata <- read_csv(file.choose(),trim_ws = FALSE)
+```
+
 ```{r setup, include=FALSE}
 source("setup_file.R")
 ```
