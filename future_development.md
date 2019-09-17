@@ -3,11 +3,13 @@
 <br>
 
 #### Working task list
+On reorganising branch
 + Split up the tests into more sections for the accordions
++ Neaten up the error messages, add in the images for pass/fail/ignore 
+  + Also add the count for the tests run and tests passed, and the % - these should go in a summary at the top
+
 + One combined function for the geography tests on combining-geography-testing branch
-+ Neaten up the error messages
-  + Try using ifelse and break/next with the col_type check
-  + Also see if I can remove the need for 'this will show warnings' messages and get everything to a simple pass/fail
+
 + Fix the issue with £ symbol
 + Program something that automates the check for conceptually different time_identifiers
 
