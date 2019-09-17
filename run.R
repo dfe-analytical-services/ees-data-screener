@@ -1,8 +1,12 @@
-## Running Script - turn this to a markdown?
+## Running Script
 
 # Load packages
 library(tidyverse)
 library(govdown)
+library(knitr)
+
+# Run the report
+rmarkdown::render("EES-data-screener-report.Rmd")
 
 # Load your files
 dataset <- read_csv("data_metadata/filter_group.csv",trim_ws = FALSE)
