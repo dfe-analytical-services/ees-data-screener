@@ -11,94 +11,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 
   <!--[if !IE 8]><!-->
   <style type="text/css">.govuk-link {
@@ -4106,7 +4018,7 @@ color: #d14;
           <!-- service_name service-name.html -->
                   <a href="index.html" class="govuk-header__link govuk-header__link--service-name">
             <!-- service_name -->
-            Underlying data screening
+            Explore education statistics
           </a>
   
   
@@ -4134,17 +4046,32 @@ color: #d14;
 
   <div class="govuk-width-container">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-            <h2 id="data-report-summary" class="govuk-heading-l"><span class="govuk-caption-l">Your publication name</span>Data report summary</h2>
-<h3 id="files-tested" class="govuk-heading-m"><span class="govuk-caption-m">2019-09-17</span><span class="govuk-!-font-weight-bold">Files tested</span></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r app-tabs__container js-tabs__container"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># LOAD YOUR FILES HERE</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>dataset &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/All_geographies.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>metadata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_metadata/all_geographies.meta.csv&quot;</span>,<span class="dt">trim_ws =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+            <h2 id="underlying-data-testing" class="govuk-heading-l"><span class="govuk-caption-l">2019-09-17</span>Underlying data testing</h2>
+<p class="govuk-body">
+File tested: all_geographies.csv
+</p>
+<p class="govuk-body">
+X% of standards met <br>
+</p>
+<div class="govuk-tabs" data-module="govuk-tabs">
+<ul class="govuk-tabs__list">
+<li class="govuk-tabs__list-item"><a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#data-file-validation">Data file validation</a>
+<li class="govuk-tabs__list-item"><a class="govuk-tabs__tab govuk-tabs__tab--selected" href="#metadata-validation">Metadata validation</a>
+</ul>
+<section class="govuk-tabs__panel" id="data-file-validation">
+<h2 class="govuk-heading-l">Data file validation</h2>
+<p class="govuk-body">
+all_geographies.csv
+</p>
+<p class="govuk-body">
+X% of standards met
+</p>
 <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-1">
 <div class="govuk-accordion__section">
 <div class="govuk-accordion__section-header">
 <h2 class="govuk-accordion__section-heading">
 <span class="govuk-accordion__section-button" id="accordion-1-heading-1">
-Data file validation
+General validation
 </span>
 </h2>
 </div>
@@ -4155,6 +4082,24 @@ Data file validation
 <pre class="app-tabs__container js-tabs__container"><code>PASS - geographic_level is present in the data file.</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>PASS - time_period is present in the data file.</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>PASS - time_identifier is present in the data file.</code></pre>
+<p class="govuk-body">
+<span class="govuk-!-font-weight-bold">Checking for commas in the data file</span>
+</p>
+<pre class="app-tabs__container js-tabs__container"><code>This will show if there are commas present in your data file:</code></pre>
+<p class="govuk-body">
+<span class="govuk-!-font-weight-bold">Checking for spaces in the data file variable names</span>
+</p>
+<pre class="app-tabs__container js-tabs__container"><code>This will show if there are any spaces in your variable names:</code></pre>
+</div></div>
+<div class="govuk-accordion__section">
+<div class="govuk-accordion__section-header">
+<h2 class="govuk-accordion__section-heading">
+<span class="govuk-accordion__section-button" id="accordion-1-heading-2">
+Time validation
+</span>
+</h2>
+</div>
+<div id="accordion-1-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-1-heading-2">
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show consecutive years</span>
 </p>
@@ -4168,14 +4113,16 @@ Data file validation
 <span class="govuk-!-font-weight-bold">Check this list for conceptually different time_identifiers</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>Time_identifiers:  Calendar year</code></pre>
-<p class="govuk-body">
-<span class="govuk-!-font-weight-bold">Checking for commas in the data file</span>
-</p>
-<pre class="app-tabs__container js-tabs__container"><code>This will show if there are commas present in your data file:</code></pre>
-<p class="govuk-body">
-<span class="govuk-!-font-weight-bold">Checking for spaces in the data file variable names</span>
-</p>
-<pre class="app-tabs__container js-tabs__container"><code>This will show if there are any spaces in your variable names:</code></pre>
+</div></div>
+<div class="govuk-accordion__section">
+<div class="govuk-accordion__section-header">
+<h2 class="govuk-accordion__section-heading">
+<span class="govuk-accordion__section-button" id="accordion-1-heading-3">
+Geography validation
+</span>
+</h2>
+</div>
+<div id="accordion-1-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-1-heading-3">
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the geographic levels are valid</span>
 </p>
@@ -4193,6 +4140,16 @@ Data file validation
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>This will show if any of your geography columns are not completed for the relevant rows:</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>FAIL - The lad_code column must be completed for all local authority district data.</code></pre>
+</div></div>
+<div class="govuk-accordion__section">
+<div class="govuk-accordion__section-header">
+<h2 class="govuk-accordion__section-heading">
+<span class="govuk-accordion__section-button" id="accordion-1-heading-4">
+Filter validation
+</span>
+</h2>
+</div>
+<div id="accordion-1-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-1-heading-4">
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that filters include in the metadata have at least two levels</span>
 </p>
@@ -4202,15 +4159,26 @@ Data file validation
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>IGNORE - This test does not apply to your data.</code></pre>
 </div></div>
+</div>
+</section>
+<section class="govuk-tabs__panel" id="metadata-validation">
+<h2 class="govuk-heading-l">Metadata validation</h2>
+<p class="govuk-body">
+all_geographies.meta.csv
+</p>
+<p class="govuk-body">
+X% of standards met
+</p>
+<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-1">
 <div class="govuk-accordion__section">
 <div class="govuk-accordion__section-header">
 <h2 class="govuk-accordion__section-heading">
-<span class="govuk-accordion__section-button" id="accordion-1-heading-2">
-Metadata validation
+<span class="govuk-accordion__section-button" id="accordion-2-heading-1">
+General validation
 </span>
 </h2>
 </div>
-<div id="accordion-1-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-1-heading-2">
+<div id="accordion-2-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-2-heading-1">
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the compulsory columns are present</span>
 </p>
@@ -4235,6 +4203,16 @@ output_area_name is not in the metadata or a recognised observational unit.</cod
 <span class="govuk-!-font-weight-bold">Checking for commas</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>This will show if there are commas in your metadata file:</code></pre>
+</div></div>
+<div class="govuk-accordion__section">
+<div class="govuk-accordion__section-header">
+<h2 class="govuk-accordion__section-heading">
+<span class="govuk-accordion__section-button" id="accordion-2-heading-2">
+Variable and label validation
+</span>
+</h2>
+</div>
+<div id="accordion-2-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-2-heading-2">
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking if col_name is completed for every row</span>
 </p>
@@ -4263,6 +4241,16 @@ output_area_name is not in the metadata or a recognised observational unit.</cod
 <span class="govuk-!-font-weight-bold">Checking that there are no duplicate labels</span>
 </p>
 <pre class="app-tabs__container js-tabs__container"><code>PASS - All labels are unique.</code></pre>
+</div></div>
+<div class="govuk-accordion__section">
+<div class="govuk-accordion__section-header">
+<h2 class="govuk-accordion__section-heading">
+<span class="govuk-accordion__section-button" id="accordion-2-heading-3">
+Filter and indicator validation
+</span>
+</h2>
+</div>
+<div id="accordion-2-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-2-heading-3">
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that no filters have an indicator group</span>
 </p>
@@ -4303,9 +4291,11 @@ Make sure to manually check that the above are all valid units!</code></pre>
 <pre class="app-tabs__container js-tabs__container"><code>IGNORE - There are no filter groups present to test.</code></pre>
 </div></div>
 </div>
+</section>
+</div>
 <details class="govuk-details" data-module="govuk-details"><summary class="govuk-details__summary"><span class="govuk-details__summary-text">Further information</span></summary><div class="govuk-details__text">
 <div class="govuk-warning-text"><span class="govuk-warning-text__icon" aria-hidden="true">!</span><strong class="govuk-warning-text__text"><span class="govuk-warning-text__assistive">Warning</span>
-If you have any questions about this report contact <a href="mailto:cameron.race@education.gov.uk" class="email govuk-link">cameron.race@education.gov.uk</a>.
+For further information, or if you have any questions about this report contact <a href="mailto:cameron.race@education.gov.uk" class="email govuk-link">cameron.race@education.gov.uk</a>.
 </strong>
 </div>
 </div>

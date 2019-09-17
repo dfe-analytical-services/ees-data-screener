@@ -14,13 +14,11 @@ If you have any questions about this project please contact cameron.race@educati
 
 **EES-data-screener-report.Rmd** <br>
 
->This file is where you select your data files and then run the EES Data Screener from. This then outputs a html report of the results of your screening.
->
->Change the name of the file you wish to screen under `# LOAD YOUR FILES HERE` on lines 22 and 23, and then knit the html output.
+>This file is where you select your data files and then run the EES Data Screener from. Knitting this then outputs a html report of the results of your screening.
 
 **run.R** <br>
 
->This is a script that can used to load packages, read in files, and run the functions in the console.
+>This is a script that can used to knit the report, or to seperately load packages, read in files, and run the functions in the console.
 
 **future_developments.md** <br>
 
