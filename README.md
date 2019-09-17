@@ -1,79 +1,47 @@
-# **Data-screener checks that we want**
-These are the notes I had (CR), I've also reordered the main script so it resembles this
+# **EES-Data-Screener**
+This is an R project developed that you can use to test data and metadata files against the standards required for statistical publications from the Deparment for Education, and for use on it's new dissemination platform - Explore Education Statistics. 
 
-## DATA FILE VALIDATION
-Check that the compulsory columns exist
-***
-Are the compulsory time and geography columns filled in and valid?
-***
-Time period is 4 or 6 digits
-***
-Write a check for the 6 digit number only being consecutive years
-- could use the 101 thing to work it out
-***
-No crossing of time indentifiers - print the unique/distinct values from that column for now
-***
-Flag for commas
--use a loop across every column to flag the ones that have commas
-***
-Spaces in variable names
-***
-Character limits? maybe something to decide on good practice once the platform is closer to ready
-- for now just count the characters per variable name and then the maximumn per each column (mainly for my own interest)
-***
-Do any other valid geography columns exist
-- if so, are these valid?
-- if so, are the minimum ones there that we expect based on the level column
-***
-Geo codes are relevant to year of data (optimistic?)
-***
-Consistency in levels and ‘unique’ (geog and filter)
-***
-Filters contain ‘total’ level
-***
-Empty indicators - maybe output the percentage of all indicator values that are blank?
-***
+This will not QA the content of your data, instead it will assess the structure and formatting that is required in the [new data standards](https://teams.microsoft.com/l/channel/19%3A1bdf09280fd94df09f0d42e19cb251fb%40thread.skype/tab%3A%3A638782f8-c3cf-423f-b63c-2e5709c64b9b?groupId=679b2376-8c8c-4062-a1c9-0744ce5ac88f&tenantId=fad277c9-c60a-4da1-b5f3-b3b8b34a82f9). 
 
-## METADATA VALIDATION
-Check all columns exist
-***
-Flag for commas
-- more complex, but can we somehow flag for an individual column?
-***
-Is col_name completed for every row
-- check that no value in here has any spaces
-- also then something to check if it's a column that shouldn't be in? Maybe from the list of possible time/geography ones
-***
-Col_type - is this one of 'Filter' or 'Indicator'
-***
-Label - is this filled in for every row - can we flag the specific row there isn't a label?
-- i.e. you need to add a label for your school_type column
-- there shouldn't be any duplicate values in this column
-***
-Indicator grouping - is this blank for all filters?
-- can we extract these and show in a list
-- 'here are groups for your indicators as they will appear, please check these are correct'.
-***
-Unit validation? indicator unit column
-- something about units
-- should be blank for all filters
-***
-Filter_hint should be blank for indicators, again can we flag at row level?
-- also add a message for filters where this isn't added so that we can say 'you don't have a hint for x, are you sure?
-***
-Filter_grouping column
-- should be blank for all indicators
-***
+If you have any questions about this project please contact cameron.race@education.gov.uk.
 
-## CROSS VALIDATION OF METADATA AND DATA FILE
-For each col__name in the metadata check these each appear in the data file
-- flag any that aren't in the data file
-- list those in the data file that aren't in the metadata (or observational units)
-***
-Rows in meta < cols in data file
-***
-Filter_grouping anything in this column should be in the vector for column names for the data file
-***
-Filter_group column has less levels than filter column in the data file
-***
-Filters in the metadata file should have more than one value - flag when they only have one
+<br>
+
+#### **Project**
+**setup_file.R** <br>
+
+>This file creates all of the functions used to screen the data.
+
+**EES-data-screener-report.Rmd** <br>
+
+>This file is where you select your data files and then run the EES Data Screener from. Knitting this then outputs a html report of the results of your screening.
+
+**run.R** <br>
+
+>This is a script that can used to knit the report, or to seperately load packages, read in files, and run the functions in the console.
+
+**future_developments.md** <br>
+
+>This is a file containing notes on current work on the project, and future ideas for development.
+
+**data_metadata** <br>
+
+>This is the folder containing a variety of test data and metadata files.
+
+<br>
+
+#### **Packages**
+**Tidyverse** <br>
+
+>This data screener is based around the tidyverse packages that are accessible through cran.
+
+**Govdown** <br>
+
+>If you are wanting to download the govdown package to run and edit the html output you'll need to run the following line.
+>
+>    `devtools::install_github("ukgovdatascience/govdown")`
+>
+>If you are struggling with proxy settings, run the following two lines in order, and then >restart RStudio and try again.
+>
+>   `source("https://raw.githubusercontent.com/dfe-analytical-services/dfeR/master/R/proxy.R")`
+>   `setup_proxy()`
