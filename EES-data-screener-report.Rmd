@@ -42,7 +42,7 @@ source("setup_file.R")
 
 ## Data file validation
 
-`r paste(your_data_file,".csv",sep="")`
+`r paste(your_data_file,sep="")`
 
 
 X% of standards met
@@ -113,7 +113,7 @@ try(cat(total_check(dataset,metadata)))
 
 ## Metadata validation
 
-`r paste(your_data_file,".meta.csv",sep="")`
+`r paste(your_meta_file,sep="")`
 
 
 X% of standards met
