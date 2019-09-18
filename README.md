@@ -41,7 +41,7 @@ If you have any questions about this project please contact cameron.race@educati
 >
 >    `devtools::install_github("ukgovdatascience/govdown")`
 >
->If you are struggling with proxy settings, run the following two lines in order, and then >restart RStudio and try again.
+>If you are struggling with proxy settings, run the following two lines in order, and then restart RStudio and try again.
 >
->   `source("https://raw.githubusercontent.com/dfe-analytical-services/dfeR/master/R/proxy.R")`
+>   `source("https://raw.githubusercontent.com/dfe-analytical-services/dfeR/master/R/proxy.R")` <br>
 >   `setup_proxy()`
