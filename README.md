@@ -20,7 +20,7 @@ If you have any questions about this project please contact cameron.race@educati
 
 **data_metadata** <br>
 
->This is the folder containing a variety of test data and metadata files.
+>This is the folder containing test data and metadata files.
 
 **setup_functions** <br>
 
