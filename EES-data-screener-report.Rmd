@@ -36,7 +36,7 @@ metadata <- read_csv(meta_data,trim_ws = FALSE)
 ```
 
 ```{r setup, include=FALSE}
-source("setup_file.R")
+source("setup_functions\all_setup.R")
 ```
 ::: {.tabset}
 
