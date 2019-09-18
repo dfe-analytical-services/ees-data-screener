@@ -24,7 +24,6 @@ File tested: `r your_data_file`
 X% of standards met
 <br>
 ```{r files, echo=TRUE, include=FALSE, warning=FALSE, message=FALSE}
-# LOAD YOUR FILES HERE
 dataset <- read_csv(file_data,trim_ws = FALSE)
 metadata <- read_csv(meta_data,trim_ws = FALSE)
 ```
@@ -36,7 +35,7 @@ metadata <- read_csv(meta_data,trim_ws = FALSE)
 ```
 
 ```{r setup, include=FALSE}
-source("setup_file.R")
+source("setup_functions/all_setup.R")
 ```
 ::: {.tabset}
 
