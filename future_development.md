@@ -3,15 +3,15 @@
 <br>
 
 #### Working task list
-On reorganising branch
+On reorganising-tests branch
 + Split up the tests into more sections for the accordions
 + Neaten up the error messages, add in the images for pass/fail/ignore 
   + Also add the count for the tests run and tests passed, and the % - these should go in a summary at the top
 
-+ One combined function for the geography tests on combining-geography-testing branch
-
-+ Fix the issue with £ symbol
-+ Program something that automates the check for conceptually different time_identifiers
++ One combined function for the geography tests - being worked on combining-geography-testing branch - issue #14
++ Add something to fix issue #15
++ Fix the issue with £ symbol - issue #12
++ Program something that automates the check for conceptually different time_identifiers - issue #13
 
 <br>
 
@@ -28,4 +28,4 @@ On reorganising branch
 + Add a summary of your data which prints the variables and levels that are useful
   + Extract the indicator groupings and print
   + Add a message for filters where a hint isn't added so that we can say 'you don't have a hint for x, are you sure?
-  + Printing out observational unit and filter levels, so addind a 'what is in your data section'
+  + Printing out observational unit and filter levels, so adding a 'what is in your data section'
