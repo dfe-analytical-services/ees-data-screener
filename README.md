@@ -10,10 +10,6 @@ If you have any questions about this project please contact cameron.race@educati
 <br>
 
 #### **Project**
-**setup_file.R** <br>
-
->This file creates all of the functions used to screen the data.
-
 **EES-data-screener-report.Rmd** <br>
 
 >This file is where you select your data files and then run the EES Data Screener from. Knitting this then outputs a html report of the results of your screening.
@@ -25,6 +21,10 @@ If you have any questions about this project please contact cameron.race@educati
 **data_metadata** <br>
 
 >This is the folder containing a variety of test data and metadata files.
+
+**setup_functions** <br>
+
+>This folder contains the files that create all of the functions used to screen the data.
 
 <br>
 
