@@ -35,11 +35,26 @@ If you have any questions about this project please contact cameron.race@educati
 
 **Govdown** <br>
 
->If you are wanting to download the govdown package to run and edit the html output you'll need to run the following line.
+>More information on govdown can be found [here](https://ukgovdatascience.github.io/govdown/).
 >
->    `devtools::install_github("ukgovdatascience/govdown")`
+>If you are wanting to download the govdown package to run and edit the html output you'll need to run the following line first to check your version of pandoc.
+>
+> `rmarkdown::pandoc_version()`
+>
+>If your version of pandoc is 2.x or later then you can skip to installing govdown, otherwise you need to run the following to update, and then recheck that pandoc is updated appropriately. 
+>
+>`install.packages("installr")`
+>
+>`library(installr)`
+>
+>`install.pandoc()`
+>
+>Once you are happy you have a version of pandoc that is 2.x or later then run the following line to install govdown.
+>
+>`devtools::install_github("ukgovdatascience/govdown")`
 >
 >If you are struggling with proxy settings, run the following two lines in order, and then restart RStudio and try again.
 >
->   `source("https://raw.githubusercontent.com/dfe-analytical-services/dfeR/master/R/proxy.R")` <br>
->   `setup_proxy()`
+>`source("https://raw.githubusercontent.com/dfe-analytical-services/dfeR/master/R/proxy.R")` <br>
+>
+>`setup_proxy()`
