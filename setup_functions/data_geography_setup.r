@@ -185,8 +185,8 @@ geography_level_completed <- function(data) {
   if("RSC region" %in% data$geographic_level){cat(rsc_level_completed(data))}
   if("Parliamentary constituency" %in% data$geographic_level){cat(pcon_level_completed(data))}
   if("Local authority district" %in% data$geographic_level){cat(lad_level_completed(data))}
-  if("Local enterprise partnerships" %in% data$geographic_level){cat(lep_level_completed(data))}
-  if("Mayoral combined authorities" %in% data$geographic_level){cat(mca_level_completed(data))}
+  if("Local enterprise partnership" %in% data$geographic_level){cat(lep_level_completed(data))}
+  if("Mayoral combined authority" %in% data$geographic_level){cat(mca_level_completed(data))}
   if("Opportunity area" %in% data$geographic_level){cat(oa_level_completed(data))}
   if("Ward" %in% data$geographic_level){cat(ward_level_completed(data))}
   if("MAT" %in% data$geographic_level){cat(mat_level_completed(data))}
