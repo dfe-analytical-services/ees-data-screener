@@ -53,9 +53,10 @@ meta_crosscheck <- function(data,meta) {
                            "mayoral_combined_authority_name","opportunity_area_code","opportunity_area_name",
                            "ward_code","ward_name","trust_id","trust_name","sponsor_id","sponsor_name")
   n_ob_units <- setdiff(names(data),observational_units)
+  meta_variables <- c(meta$col_name,meta$filter_grouping_column)
   message("This will show if there are variables in the data file that are not present in the metadata:")
     for (i in n_ob_units) {
-    try(cat(if((i %in% meta$col_name)==FALSE) warning(i, " is not in the metadata or a recognised observational unit.
+    try(cat(if((i %in% meta_variables)==FALSE) warning(i, " is not in the metadata or a recognised observational unit.
 ")))
   }
 }
