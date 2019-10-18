@@ -159,7 +159,7 @@ try(cat(col_name_spaces_check(metadata)))
 ```
 
  **Checking if any observational units have been erroneously included in the metadata**
-```{r comp_col_check_meta,echo=FALSE,comment=NA}
+```{r comp_col_check_meta,echo=FALSE,warning=FALSE,comment=NA}
 comp_col_check_meta(metadata)
 ```
 
