@@ -1,9 +1,7 @@
 ## Running Script
 
 # Load packages
-library(tidyverse)
-library(govdown)
-library(knitr)
+packrat::restore()
 
 # Run the report - MAKE SURE THAT THE FILE NAME IS CORRECT IN THE .Rmd FILE ITSELF
 rmarkdown::render("EES-data-screener-report.Rmd")
