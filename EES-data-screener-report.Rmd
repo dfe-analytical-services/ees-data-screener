@@ -12,10 +12,6 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(govdown)
 
-# ENTER YOUR FILES YOU WANT TO RUN THE REPORT ON HERE
-your_data_file <- "all_geographies.csv"
-your_meta_file <- "all_geographies.meta.csv"
-
 file_data <- paste("data_metadata/",your_data_file,sep = "")
 meta_data <- paste("data_metadata/",your_meta_file,sep = "")
 ```

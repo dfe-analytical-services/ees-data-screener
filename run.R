@@ -1,10 +1,16 @@
 ## Running Script
 
-# Load packages
-packrat::restore()
+# Ensure the files you want to screen are saved in the data_metadata folder.
+# Enter the names of those files below.
+your_data_file <- "all_geographies.csv"
+your_meta_file <- "all_geographies.meta.csv"
 
-# Run the report - MAKE SURE THAT THE FILE NAME IS CORRECT IN THE .Rmd FILE ITSELF
+# Enter the name you wish to save the report as and then run the report.
 rmarkdown::render("EES-data-screener-report.Rmd")
+
+
+
+# IGNORE THE BELOW unless you are running things only in the console and are not creating a report.
 
 # Load your files
 #dataset <- read_csv("data_metadata/filter_group.csv",trim_ws = FALSE)
