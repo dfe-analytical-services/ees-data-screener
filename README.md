@@ -12,7 +12,8 @@ If you have any questions about this project please contact cameron.race@educati
 ### **Project**
 **run.R** <br>
 
->This is the script that that you need to use to select the files, and run the screener.
+>This is the script that that you need to use to select the files, and run the screener.<br>
+
 >Once you have run this script, select your report in the file window within the project folder, and click to open in browser (Chrome works best and is recommended, though it still works in some other browsers).
 
 **data_metadata** <br>
