@@ -1,5 +1,5 @@
 # **EES-Data-Screener**
-This is an R project developed to test underlying data and metadata files against the standards required for statistical publications from the Deparment for Education, and for use on it's new dissemination platform - Explore Education Statistics. 
+This is an R project developed to test underlying data and metadata files against the standards required for statistical publications from the Deparment for Education, and for use on it's new dissemination platform - [Explore Education Statistics](https://gss.civilservice.gov.uk/blog/how-we-listened-to-our-users-to-improve-our-education-statistics/). 
 
 This will not QA the content of your data, instead it will assess the structure and formatting that is required in the [new data standards](https://teams.microsoft.com/l/channel/19%3A1bdf09280fd94df09f0d42e19cb251fb%40thread.skype/tab%3A%3A638782f8-c3cf-423f-b63c-2e5709c64b9b?groupId=679b2376-8c8c-4062-a1c9-0744ce5ac88f&tenantId=fad277c9-c60a-4da1-b5f3-b3b8b34a82f9). 
 
@@ -31,16 +31,16 @@ If you have any questions about this project please contact cameron.race@educati
 
 >This folder contains the versions of the packages required for the project to run.
 
-**all_geographies_2019-10-18.html**
+**all_geographies_report_2019-10-18.html**
 
->This is an example .html report on test data.
+>This is an example .html report run on test data.
 
 <br>
 
 #### **Packagesand important things to make this work**
 **Packrat** <br>
 
->The packages in this project are tracked by packrat. More information on packrat can be found [online](https://rstudio.github.io/packrat/limitations.html). This should install the packages you need for this project when you open it up in RStudio.
+>The packages in this project are tracked by packrat. More information on packrat can be found [online](https://rstudio.github.io/packrat/limitations.html). This should install the packages you need to run this project in RStudio.
 
 **Proxy settings**
 
@@ -52,8 +52,8 @@ If you have any questions about this project please contact cameron.race@educati
 
 **Tidyverse** <br>
 
->This data screener is based around the tidyverse packages that are accessible through cran.
+>The functions in this data screener are based around the [tidyverse packages](https://www.tidyverse.org/).
 
 **Govdown** <br>
 
->More information on govdown can be found [online](https://ukgovdatascience.github.io/govdown/).
+>More information on govdown, a package used to format the output report in this project, can be found [online](https://ukgovdatascience.github.io/govdown/).

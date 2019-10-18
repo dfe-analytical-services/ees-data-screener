@@ -8,7 +8,7 @@ your_data_file <- "all_geographies"
 
 # Run the report.
 rmarkdown::render("EES-data-screener-report.Rmd",
-                  output_file = paste(your_data_file,"_","screening_report_", Sys.Date(), '.html', sep = ''))
+                  output_file = paste(your_data_file,"_","report_", Sys.Date(), '.html', sep = ''))
 
 
 # IGNORE THE BELOW unless you are running things only in the console and are not creating a report.
