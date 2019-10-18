@@ -1,13 +1,14 @@
-## Running Script
+## Running the Screener
 
-# Ensure the files you want to screen are saved in the data_metadata folder.
-# Enter the names of those files below.
-your_data_file <- "all_geographies.csv"
-your_meta_file <- "all_geographies.meta.csv"
+# Ensure the data file and corresponding metadata file you want to screen are saved in the data_metadata folder.
+# Enter the name of the data file below, note that you do not need to include the extension '.csv'.
+your_data_file <- "all_geographies"
 
-# Enter the name you wish to save the report as and then run the report.
-rmarkdown::render("EES-data-screener-report.Rmd")
+# The metadata file will automatically be recognised if you have followed the naming convention - mydatafilename.meta.csv.
 
+# Run the report.
+rmarkdown::render("EES-data-screener-report.Rmd",
+                  output_file = paste(your_data_file,"_", Sys.Date(), '.html', sep = ''))
 
 
 # IGNORE THE BELOW unless you are running things only in the console and are not creating a report.

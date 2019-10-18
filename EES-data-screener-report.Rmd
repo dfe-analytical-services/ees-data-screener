@@ -12,8 +12,8 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(govdown)
 
-file_data <- paste("data_metadata/",your_data_file,sep = "")
-meta_data <- paste("data_metadata/",your_meta_file,sep = "")
+file_data <- paste("data_metadata/",your_data_file,'.csv',sep = "")
+meta_data <- paste("data_metadata/",your_data_file,'.meta.csv',sep = "")
 ```
 ## Underlying data testing{caption=`r Sys.Date()`} 
 File tested: `r your_data_file` 
@@ -38,7 +38,7 @@ source("setup_functions/all_setup.R")
 
 ## Data file validation
 
-`r paste(your_data_file,sep="")`
+`r paste(your_data_file,".csv",sep="")`
 
 
 X% of standards met
@@ -109,7 +109,7 @@ try(cat(total_check(dataset,metadata)))
 
 ## Metadata validation
 
-`r paste(your_meta_file,sep="")`
+`r paste(your_data_file,".meta.csv",sep="")`
 
 
 X% of standards met
