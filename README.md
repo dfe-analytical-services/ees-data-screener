@@ -9,10 +9,10 @@ If you have any questions about this project please contact cameron.race@educati
 
 <br>
 
-#### **Project**
+### **Project**
 **run.R** <br>
 
->This is a script that that you need to use to select the files, and run the screener.
+>This is the script that that you need to use to select the files, and run the screener.
 
 
 **data_metadata** <br>
@@ -37,7 +37,7 @@ If you have any questions about this project please contact cameron.race@educati
 
 <br>
 
-#### **Packages and proxy**
+### **Packages and proxy**
 **Packrat** <br>
 
 >The packages in this project are tracked by packrat. More information on packrat can be found [online](https://rstudio.github.io/packrat/limitations.html). This should install the packages you need to run this project in RStudio automatically, allowing you to focus on running the screener on your data.
