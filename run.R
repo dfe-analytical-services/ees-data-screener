@@ -1,12 +1,17 @@
-## Running Script
+## Running the Screener
 
-# Load packages
-library(tidyverse)
-library(govdown)
-library(knitr)
+# Ensure the data file and corresponding metadata file you want to screen are saved in the data_metadata folder.
+# Enter the name of the data file below, note that you do not need to include the extension '.csv'.
+your_data_file <- "all_geographies"
 
-# Run the report - MAKE SURE THAT THE FILE NAME IS CORRECT IN THE .Rmd FILE ITSELF
-rmarkdown::render("EES-data-screener-report.Rmd")
+# The metadata file will automatically be recognised if you have followed the naming convention - mydatafilename.meta.csv.
+
+# Run the report.
+rmarkdown::render("EES-data-screener-report.Rmd",
+                  output_file = paste(your_data_file,"_","report_", Sys.Date(), '.html', sep = ''))
+
+
+# IGNORE THE BELOW unless you are running things only in the console and are not creating a report.
 
 # Load your files
 #dataset <- read_csv("data_metadata/filter_group.csv",trim_ws = FALSE)

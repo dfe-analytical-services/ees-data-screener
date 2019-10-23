@@ -12,12 +12,8 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(govdown)
 
-# ENTER YOUR FILES YOU WANT TO RUN THE REPORT ON HERE
-your_data_file <- "all_geographies.csv"
-your_meta_file <- "all_geographies.meta.csv"
-
-file_data <- paste("data_metadata/",your_data_file,sep = "")
-meta_data <- paste("data_metadata/",your_meta_file,sep = "")
+file_data <- paste("data_metadata/",your_data_file,'.csv',sep = "")
+meta_data <- paste("data_metadata/",your_data_file,'.meta.csv',sep = "")
 ```
 ## Underlying data testing{caption=`r Sys.Date()`} 
 File tested: `r your_data_file` 
@@ -42,7 +38,7 @@ source("setup_functions/all_setup.R")
 
 ## Data file validation
 
-`r paste(your_data_file,sep="")`
+`r paste(your_data_file,".csv",sep="")`
 
 
 X% of standards met
@@ -113,7 +109,7 @@ try(cat(total_check(dataset,metadata)))
 
 ## Metadata validation
 
-`r paste(your_meta_file,sep="")`
+`r paste(your_data_file,".meta.csv",sep="")`
 
 
 X% of standards met
@@ -159,7 +155,7 @@ try(cat(col_name_spaces_check(metadata)))
 ```
 
  **Checking if any observational units have been erroneously included in the metadata**
-```{r comp_col_check_meta,echo=FALSE,comment=NA}
+```{r comp_col_check_meta,echo=FALSE,warning=FALSE,comment=NA}
 comp_col_check_meta(metadata)
 ```
 
