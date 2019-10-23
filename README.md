@@ -5,6 +5,14 @@ This will not QA the content of your data, instead it will assess the structure 
 
 The [issues log](https://github.com/lauraselby/data-screener/issues) contains the working task list, abd provides a place to raise bugs and suggest future developments to this project.
 
+Note that when you open the project you will need to wait around 20-30 seconds until the following line appears in your console:
+
+>Packrat bootstrap successfully completed. Restarting R and entering packrat mode...
+
+You can then go ahead and use the project.
+
+<br>
+
 If you have any questions about this project please contact cameron.race@education.gov.uk.
 
 <br>
