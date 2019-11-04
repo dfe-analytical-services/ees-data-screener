@@ -1,6 +1,8 @@
 # **EES-Data-Screener**
 This is an R project developed to test underlying data and metadata files against the standards required for statistical publications from the Deparment for Education, and for use on it's new dissemination platform - [Explore Education Statistics](https://gss.civilservice.gov.uk/blog/how-we-listened-to-our-users-to-improve-our-education-statistics/). 
 
+To use this project and run the data screener yourself you will need to download the zip file to your downloads folder on your computer, unzip the folder and then open the R project file with RStudio. You can then save this folder wherever is most convinient. If you've not used the screener for a while it is worth coming back to here to check for updates and download the latest version.
+
 This will not QA the content of your data, instead it will assess the structure and formatting that is required in the [new data standards](https://teams.microsoft.com/l/channel/19%3A1bdf09280fd94df09f0d42e19cb251fb%40thread.skype/tab%3A%3A638782f8-c3cf-423f-b63c-2e5709c64b9b?groupId=679b2376-8c8c-4062-a1c9-0744ce5ac88f&tenantId=fad277c9-c60a-4da1-b5f3-b3b8b34a82f9). 
 
 The [issues log](https://github.com/lauraselby/data-screener/issues) contains the working task list, abd provides a place to raise bugs and suggest future developments to this project.
