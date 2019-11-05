@@ -33,8 +33,8 @@ total_check <- function(data,meta) {
     for(i in names(dfilters)) {
       if(!"Total" %in% dfilters[[i]]){warning("
     WARNING - There is no 'Total' value in: ", i,".")
-  }}else(message("Pass - every fitler has a total level."))
-  } 
+  }else(message("Pass - every filter has a total level."))
+  }} 
 }
 
 # -------------------------------------
@@ -54,5 +54,5 @@ observational_total_check <- function(data){
   for(i in present_ob_units) {
     if("Total" %in% data[[i]] || "total" %in% data[[i]]){warning("
                                             WARNING - There is a 'Total' value in: ", i,", this should be replaced with a blank.")
-  }}else{message("PASS - there are no total values in your observational units.")}
-}
+  }else{message("PASS - there are no total values in your observational units.")}
+}}
