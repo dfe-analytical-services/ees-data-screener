@@ -5,6 +5,7 @@
 data_filters_setup <-function(data,meta){
   filter_levels_check(data,meta)
   total_check(data,meta)
+  observational_total_check(data)
 }
 
 # -------------------------------------
