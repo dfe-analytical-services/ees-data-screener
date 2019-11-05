@@ -112,6 +112,27 @@ geography_levels_present <- function(data){
      message("FAIL - ", i, " must be present for sponsor level data.")
  }
  }
+ school_required <- c("country_code","country_name","school_laestab","school_name")
+ if("School" %in% data$geographic_level)
+ {for(i in school_required){
+   if((i %in% names(data))==FALSE)
+     message("FAIL - ", i, " must be present for school level data.")
+ }
+ }
+ provider_required <- c("country_code","country_name","provider_urn","provider_name")
+ if("Provider" %in% data$geographic_level)
+ {for(i in provider_required){
+   if((i %in% names(data))==FALSE)
+     message("FAIL - ", i, " must be present for provider level data.")
+ }
+ }
+ institution_required <- c("country_code","country_name","institution_id","institution_id")
+ if("Institution" %in% data$geographic_level)
+ {for(i in institution_required){
+   if((i %in% names(data))==FALSE)
+     message("FAIL - ", i, " must be present for institution level data.")
+ }
+ }
 }
 
 # -------------------------------------
@@ -174,9 +195,25 @@ mat_level_completed <- function(data) {
 }
 sponsor_level_completed <- function(data) {
   sponsor <- filter(data, geographic_level =='Sponsor')
-  if(any(is.na(sponsor$sponsor_name))) {message('FAIL - The trust_name column must be completed for all sponsor data.')}
-  if(any(is.na(sponsor$sponsor_id))) {message('FAIL - The trust_id column must be completed for all sponsor data.')}
+  if(any(is.na(sponsor$sponsor_name))) {message('FAIL - The sponsor_name column must be completed for all sponsor data.')}
+  if(any(is.na(sponsor$sponsor_id))) {message('FAIL - The sponsor_id column must be completed for all sponsor data.')}
 }
+school_level_completed <- function(data) {
+  school <- filter(data, geographic_level =='School')
+  if(any(is.na(school$school_name))) {message('FAIL - The school_name column must be completed for all school data.')}
+  if(any(is.na(school$school_laestab))) {message('FAIL - The school_laestab column must be completed for all school data.')}
+}
+provider_level_completed <- function(data) {
+  provider <- filter(data, geographic_level =='Provider')
+  if(any(is.na(provider$provider_name))) {message('FAIL - The provider_name column must be completed for all provider data.')}
+  if(any(is.na(provider$provider_urn))) {message('FAIL - The provider_urn column must be completed for all provider data.')}
+}
+institution_level_completed <- function(data) {
+  institution <- filter(data, geographic_level =='Institution')
+  if(any(is.na(institution$institution_id))) {message('FAIL - The institution_id column must be completed for all institution data.')}
+  if(any(is.na(institution$institution_name))) {message('FAIL - The institution_name column must be completed for all institution data.')}
+}
+
 geography_level_completed <- function(data) {
   message("This will show if any of your geography columns are not completed for the relevant rows:")
   try(cat(national_level_completed(data)))
@@ -191,4 +228,7 @@ geography_level_completed <- function(data) {
   if("Ward" %in% data$geographic_level){cat(ward_level_completed(data))}
   if("MAT" %in% data$geographic_level){cat(mat_level_completed(data))}
   if("Sponsor" %in% data$geographic_level){cat(sponsor_level_completed(data))} 
+  if("School" %in% data$geographic_level){cat(school_level_completed(data))} 
+  if("Provider" %in% data$geographic_level){cat(provider_level_completed(data))} 
+  if("Institution" %in% data$geographic_level){cat(institution_level_completed(data))} 
 }
