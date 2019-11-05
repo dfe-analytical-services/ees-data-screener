@@ -28,7 +28,7 @@ Once you have run this script, select your report in the file window within the 
 
 **data_metadata** <br>
 
-This is the folder containing test data and metadata files.
+This is the folder where you need to save data files and their corresponding metadata files to be screened.
 
 **setup_functions** <br>
 
