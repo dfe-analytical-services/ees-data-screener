@@ -15,7 +15,7 @@ data_geography_setup <- function(data){
 level_validity_check <- function(data) {
   acceptable_levels <- c("National","Regional","Local authority","RSC region","Parliamentary constituency",
                          "Local authority district","Local enterprise partnerships","Mayoral combined authorities",
-                         "Opportunity area","Ward","MAT","Sponsor")
+                         "Opportunity area","Ward","MAT","Sponsor","School","Provider","Institution")
   levels <- unique(data$geographic_level)
   # Original function that gave a firm PASS rather than 'If there are no warnings'
   #levels_test <- intersect(levels,acceptable_levels)
