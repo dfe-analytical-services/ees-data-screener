@@ -69,7 +69,8 @@ The functions in this data screener are based around the [tidyverse packages](ht
 
 More information on govdown, a package used to format the output report in this project, can be found [online](https://ukgovdatascience.github.io/govdown/).
 
-If you are wanting to download the govdown package to run and edit the html output you'll need to run the following line first to check your version of pandoc>rmarkdown::pandoc_version()
+If you are wanting to download the govdown package to run and edit the html output you'll need to run the following line first to check your version of pandoc
+>`rmarkdown::pandoc_version()`
 
 If your version of pandoc is 2.x or later then you can skip to installing govdown, otherwise you need to run the following to update, and then recheck that pandoc is updated appropriately.
 
