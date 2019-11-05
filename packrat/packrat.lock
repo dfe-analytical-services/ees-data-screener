@@ -209,6 +209,12 @@ Version: 1.4.1
 Hash: cc16de93eaabd3c6d0785cb8e6d059ab
 Requires: R6, curl, jsonlite, mime, openssl
 
+Package: installr
+Source: CRAN
+Version: 0.22.0
+Hash: 39c0883a55fe41a88cd4caee33c1dac7
+Requires: stringr
+
 Package: jsonlite
 Source: CRAN
 Version: 1.6
