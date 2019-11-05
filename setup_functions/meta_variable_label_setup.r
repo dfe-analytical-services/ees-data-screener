@@ -46,7 +46,10 @@ comp_col_check_meta <- function(meta) {
                            "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
                            "local_enterprise_partnership_name","mayoral_combined_authority_code",
                            "mayoral_combined_authority_name","opportunity_area_code","opportunity_area_name",
-                           "ward_code","ward_name","trust_id","trust_name","sponsor_id","sponsor_name")
+                           "ward_code","ward_name","trust_id","trust_name","sponsor_id","sponsor_name",
+                           "school_laestab","school_name","school_urn","school_estab","school_postcode",
+                           "provider_urn","provider_name","provider_ukprn","provider_upin",
+                           "institution_id","institution_name")
   message("This will show if there are any observational units erroneously in your metadata:")
   for (i in observational_units) {
     try(cat(if(i %in% meta$col_name) warning("FAIL - ", i, " should not be in the metadata. ")))
