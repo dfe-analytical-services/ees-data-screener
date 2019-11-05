@@ -107,7 +107,7 @@ try(cat(total_check(dataset,metadata)))
 ```
  
  **Checking that no observational unit has a 'Total'**
-```{r total_check,echo=FALSE,comment=NA}
+```{r observational_total_check,echo=FALSE,comment=NA}
 try(cat(observational_total_check(dataset)))
 ```
 :::
