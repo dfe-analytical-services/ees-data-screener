@@ -46,9 +46,6 @@ column_crosscheck <- function(data,meta) {
 # List those in the data file that aren't in the metadata (or observational units, or variables with only one level)
 
 meta_crosscheck <- function(data,meta) {
-
-  data <- read_csv("data_metadata/all_geographies.csv",trim_ws = FALSE)
-  meta <- read_csv("data_metadata/all_geographies.meta.csv",trim_ws = FALSE)
   
   observational_units <- c("geographic_level","time_period","time_identifier","country_code","country_name",
                            "region_code","region_name","old_la_code","new_la_code","la_name","rsc_region_lead_name",
