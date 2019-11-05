@@ -7,7 +7,7 @@ your_data_file <- "all_geographies"
 
 # Run the report.
 rmarkdown::render("EES-data-screener-report.Rmd",
-                  output_file = paste(gsub(":","_",gsub("\\s","-",paste(your_data_file,"_","report_", Sys.time(),'.html',sep='')))))
+                  output_file = paste(gsub(":",".",gsub("\\s","_",paste(your_data_file,"_","report_", Sys.time(),'.html',sep='')))))
 
 
 # If you are having issues with pandoc, run the following two lines. These will check your version and automatically update it for you if needed.

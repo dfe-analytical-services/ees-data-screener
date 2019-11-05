@@ -4046,7 +4046,7 @@ color: #d14;
 
   <div class="govuk-width-container">
     <main class="govuk-main-wrapper " id="main-content" role="main">
-            <h2 id="underlying-data-testing" class="govuk-heading-l"><span class="govuk-caption-l">2019-11-05 18:27:58</span>Underlying data testing</h2>
+            <h2 id="underlying-data-testing" class="govuk-heading-l"><span class="govuk-caption-l">2019-11-05 19:30:25</span>Underlying data testing</h2>
 <p class="govuk-body">
 File tested: all_geographies
 </p>
@@ -4103,17 +4103,8 @@ Time validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show consecutive years</span>
 </p>
-<pre><code>Parsed with column specification:
-cols(
-  .default = col_character(),
-  time_period = col_double(),
-  old_la_code = col_double(),
-  admission_numbers = col_double()
-)</code></pre>
-<pre><code>See spec(...) for full column specifications.</code></pre>
 <pre><code>PASS - time period is always a four or six digit number.</code></pre>
-<pre><code>Error in cat(if (check_yearends == TRUE) stop(&quot;FAIL - when the time period is 6 digits, the years must be consecutive.&quot;),  : 
-  FAIL - when the time period is 6 digits, the years must be consecutive.</code></pre>
+<pre><code>IGNORE - There are no 6 digit time periods in the data file.</code></pre>
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking if the time_identifier values are valid</span>
 </p>
@@ -4170,23 +4161,20 @@ Filter validation
 <p class="govuk-body">
 <span class="govuk-!-font-weight-bold">Checking that no observational unit has a ‘Total’</span>
 </p>
-<pre><code>PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.
-PASS - there are no total values in your observational units.</code></pre>
+<pre><code>PASS - there are no total values in country_code.</code></pre>
+<pre><code>PASS - there are no total values in country_name.</code></pre>
+<pre><code>PASS - there are no total values in region_code.</code></pre>
+<pre><code>PASS - there are no total values in region_name.</code></pre>
+<pre><code>PASS - there are no total values in old_la_code.</code></pre>
+<pre><code>PASS - there are no total values in new_la_code.</code></pre>
+<pre><code>PASS - there are no total values in rsc_region_lead_name.</code></pre>
+<pre><code>PASS - there are no total values in pcon_name.</code></pre>
+<pre><code>PASS - there are no total values in lad_code.</code></pre>
+<pre><code>PASS - there are no total values in lad_name.</code></pre>
+<pre><code>PASS - there are no total values in local_enterprise_partnership_code.</code></pre>
+<pre><code>PASS - there are no total values in local_enterprise_partnership_name.</code></pre>
+<pre><code>PASS - there are no total values in ward_code.</code></pre>
+<pre><code>PASS - there are no total values in ward_name.</code></pre>
 </div></div>
 </div>
 </section>
