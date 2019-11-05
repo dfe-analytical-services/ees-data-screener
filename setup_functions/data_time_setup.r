@@ -68,6 +68,8 @@ time_identifier_check <- function(data) {
 # -------------------------------------
 # print the unique time_identifiers for conceptual checking
 
+# need to create a number of vectors for time_identifiers that can be crossed, and flag if they have time_identifiers from multiple groups
+
 time_identifier_mix <- function(data) {
  cat(unique(dataset$time_identifier),sep = ", ") 
 }

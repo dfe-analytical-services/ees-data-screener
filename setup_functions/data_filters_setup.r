@@ -26,13 +26,33 @@ filter_levels_check <- function(data,meta) {
 
 total_check <- function(data,meta) {
   if(!"Filter" %in% meta$col_type){message("IGNORE - This test does not apply to your data.")}
-  else{message("This will show if there are 'Total' levels missing from any of your filters:")
+  else{
     mfilters <- filter(meta,col_type=="Filter")
     filter_names <- c(mfilters$col_name)
     dfilters <- select(data,filter_names)
     for(i in names(dfilters)) {
-      if(!"Total" %in% dfilters[[i]]) warning("
+      if(!"Total" %in% dfilters[[i]]){warning("
     WARNING - There is no 'Total' value in: ", i,".")
-  }
+  }}else(message("Pass - every fitler has a total level."))
   } 
+}
+
+# -------------------------------------
+# Check if Total has been used errorneously in any observational units
+
+observational_total_check <- function(data){
+  observational_units <- c("geographic_level","time_period","time_identifier","country_code","country_name",
+                           "region_code","region_name","old_la_code","new_la_code","la_name","rsc_region_lead_name",
+                           "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
+                           "local_enterprise_partnership_name","mayoral_combined_authority_code",
+                           "mayoral_combined_authority_name","opportunity_area_code","opportunity_area_name",
+                           "ward_code","ward_name","trust_id","trust_name","sponsor_id","sponsor_name",
+                           "school_laestab","school_name","school_urn","school_estab","school_postcode",
+                           "provider_urn","provider_name","provider_ukprn","provider_upin",
+                           "institution_id","institution_name")
+  present_ob_units <- intersect(observational_units,names(data))
+  for(i in present_ob_units) {
+    if("Total" %in% data[[i]] || "total" %in% data[[i]]){warning("
+                                            WARNING - There is a 'Total' value in: ", i,", this should be replaced with a blank.")
+  }}else{message("PASS - there are no total values in your observational units.")}
 }
