@@ -71,6 +71,45 @@ time_identifier_check <- function(data) {
 
 # need to create a number of vectors for time_identifiers that can be crossed, and flag if they have time_identifiers from multiple groups
 
+# these two are easy
+terms <- c("Spring term","Autumn term","Autumn and spring term")
+months <- c("January","February","March","April","May","June","July","August","September","October","November","Decemeber")
+
+# not sure on these quarters, can they all be in the same file or should they be separated?
+calendar_quarters <- c("Calendar year Q1","Calendar year Q2","Calendar year Q3","Calendar year Q4",
+                       "Calendar year Q1-2","Calendar year Q1-3","Calendar year Q1-4","Calendar year Q2-3","Calendar year Q2-4","Calendar year Q3-4")
+financial_quarters <- c("Financial year Q1","Financial year Q2","Financial year Q3","Financial year Q4",
+                        "Financial year Q1-2","Financial year Q1-3","Financial year Q1-4","Financial year Q2-3","Financial year Q2-4","Financial year Q3-4")
+academic_quarters <- c("Academic year Q1","Academic year Q2","Academic year Q3","Academic year Q4",
+                       "Academic year Q1-2","Academic year Q1-3","Academic year Q1-4","Academic year Q2-3","Academic year Q2-4","Academic year Q3-4")
+tax_quarters <- c("Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4",
+                  "Tax year Q1-2","Tax year Q1-3","Tax year Q1-4","Tax year Q2-3","Tax year Q2-4","Tax year Q3-4")
+
+# what do we do with this one?
+"Up until 31st March"
+
+# what do we do with these, can these not be crossed with anything else?
+"Calendar year"
+"Academic year"
+"Tax year"
+"Financial year"
+
+# previous function to be updated
 time_identifier_mix <- function(data) {
  cat(unique(dataset$time_identifier),sep = ", ") 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
