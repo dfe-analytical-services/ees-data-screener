@@ -43,9 +43,10 @@ column_crosscheck <- function(data,meta) {
 }
 
 # -------------------------------------
-# List those in the data file that aren't in the metadata (or observational units)
+# List those in the data file that aren't in the metadata (or observational units, or variables with only one level)
 
 meta_crosscheck <- function(data,meta) {
+
   observational_units <- c("geographic_level","time_period","time_identifier","country_code","country_name",
                            "region_code","region_name","old_la_code","new_la_code","la_name","rsc_region_lead_name",
                            "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
@@ -55,13 +56,27 @@ meta_crosscheck <- function(data,meta) {
                            "school_laestab","school_name","school_urn","school_estab","school_postcode",
                            "provider_urn","provider_name","provider_ukprn","provider_upin",
                            "institution_id","institution_name")
-  n_ob_units <- setdiff(names(data),observational_units)
+  
+  metavariablenames <- c(meta$col_name,meta$filter_grouping_column)
+  possible_variables <- setdiff(metavariablenames,observational_units)
+  observational_units_plus <- observational_units
+  
+  for(i in possible_variables){
+    if((length(unique(data[[i]])) < 2)&&(i %in% names(data))){
+        observational_units_plus <- c(observational_units_plus,i)
+    }
+  }
+  
+  observational_units_plus <- observational_units_plus[!is.na(observational_units_plus)]
+  not_ob_units <- setdiff(names(data),observational_units_plus)
   meta_variables <- c(meta$col_name,meta$filter_grouping_column)
+  
   message("This will show if there are variables in the data file that are not present in the metadata:")
-    for (i in n_ob_units) {
+    for (i in not_ob_units) {
     try(cat(if((i %in% meta_variables)==FALSE) warning(i, " is not in the metadata or a recognised observational unit.
 ")))
-  }
+ 
+ }
 }
 
 # -------------------------------------

@@ -76,7 +76,7 @@ filter_group_check <- function(meta) {
 row_check <- function(data,meta) {
   if(ncol(data)<nrow(meta)) stop('FAIL - Your metadata file has more rows than your data file has columns, this means that something is wrong.
         There are either too many rows in the metadata, or too few columns in the data file.
-TRY - Check your csv files in a text editor as this might help you find the problem.')
+TRY - Check your .csv files in a text editor as this might help you find the problem.')
   message('PASS - You have fewer rows in your metadata than you have columns in your data file.')
 }
 
