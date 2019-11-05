@@ -51,7 +51,10 @@ meta_crosscheck <- function(data,meta) {
                            "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
                            "local_enterprise_partnership_name","mayoral_combined_authority_code",
                            "mayoral_combined_authority_name","opportunity_area_code","opportunity_area_name",
-                           "ward_code","ward_name","trust_id","trust_name","sponsor_id","sponsor_name")
+                           "ward_code","ward_name","trust_id","trust_name","sponsor_id","sponsor_name",
+                           "school_laestab","school_name","school_urn","school_estab","school_postcode",
+                           "provider_urn","provider_name","provider_ukprn","provider_upin",
+                           "institution_id","institution_name")
   n_ob_units <- setdiff(names(data),observational_units)
   meta_variables <- c(meta$col_name,meta$filter_grouping_column)
   message("This will show if there are variables in the data file that are not present in the metadata:")
