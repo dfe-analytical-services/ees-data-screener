@@ -65,7 +65,7 @@ If as a DfE analyst you are struggling with proxy settings on your machine, run 
 
 The functions in this data screener are based around the [tidyverse packages](https://www.tidyverse.org/).
 
-**Govdown** <br>
+**Govdown and Pandoc** <br>
 
 More information on govdown, a package used to format the output report in this project, can be found [online](https://ukgovdatascience.github.io/govdown/).
 
