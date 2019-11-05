@@ -18,7 +18,7 @@ filter_levels_check <- function(data,meta) {
   dfilters <- select(data,filternames)
   for (i in names(dfilters)) {
     if((length(unique(data[[i]])))<2) warning("
-  WARNING - There are fewer than two levels in: ", i,".")
+  WARNING - There are fewer than two levels in ", i,".")
   }
 }
 
@@ -33,7 +33,7 @@ total_check <- function(data,meta) {
     dfilters <- select(data,filter_names)
     for(i in names(dfilters)) {
       if(!"Total" %in% dfilters[[i]]){warning("
-    WARNING - There is no 'Total' value in: ", i,".")
+    WARNING - There is no total value in ", i,".")
   }else(message("Pass - every filter has a total level."))
   }} 
 }
@@ -42,7 +42,7 @@ total_check <- function(data,meta) {
 # Check if Total has been used errorneously in any observational units
 
 observational_total_check <- function(data){
-  observational_units <- c("geographic_level","time_period","time_identifier","country_code","country_name",
+  observational_units <- c("country_code","country_name",
                            "region_code","region_name","old_la_code","new_la_code","la_name","rsc_region_lead_name",
                            "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
                            "local_enterprise_partnership_name","mayoral_combined_authority_code",
@@ -53,7 +53,6 @@ observational_total_check <- function(data){
                            "institution_id","institution_name")
   present_ob_units <- intersect(observational_units,names(data))
   for(i in present_ob_units) {
-    if("Total" %in% data[[i]] || "total" %in% data[[i]]){warning("
-                                            WARNING - There is a 'Total' value in: ", i,", this should be replaced with a blank.")
-  }else{message("PASS - there are no total values in your observational units.")}
+    if("Total" %in% data[[i]] || "total" %in% data[[i]]){message("FAIL - A total value is present in ",i,", this should be replaced with a blank.")
+  }else{message("PASS - there are no total values in ",i,".")}
 }}
