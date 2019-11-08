@@ -23,15 +23,16 @@ time_period_check <- function(data) {
     stop(writeLines(c("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.",
                       "Here are the time period values in your file:","",time_periods,""))),
     message("PASS - time period is always a four or six digit number.")))
-        consecutive_mini_function <- function(data) {
+  consecutive_mini_function <- function(data) {
           six_digit_years <- filter(time_length,digits==6)
           currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
           nextyearend <- as.numeric(substr(six_digit_years$time_period,5,6))
+          if(currentyearend==99&&nextyearend==0){message('PASS - Your 6 digit time period/s show consecutive years.')}else{
           check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
           try(cat(if(check_yearends==TRUE) stop("FAIL - when the time period is 6 digits, the years must be consecutive."),
-                  message('PASS - Your 6 digit time period/s show consecutive years.')))
-        }
-        if(six==0){message("IGNORE - There are no 6 digit time periods in the data file.")
+                  message('PASS - Your 6 digit time period/s show consecutive years.')))}
+                }
+  if(six==0){message("IGNORE - There are no 6 digit time periods in the data file.")
         }else{
           consecutive_mini_function(data)
         }

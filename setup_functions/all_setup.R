@@ -22,3 +22,9 @@ screening_tests <- function(data,meta) {
   meta_general_setup(data,meta)
   meta_variable_label_setup
 }
+
+# function to check the pandoc version and install the latest if not 2.7.3 or later
+cam_pandoc_install <- function(){if(rmarkdown::pandoc_version()>='2.7.3'){print("You already have version 2.7.3 or later of Pandoc installed, you're good to use the screener.")}
+  else{if(!require(installr)){install.packages("installr");require(installr)}
+  install.pandoc()}
+}
