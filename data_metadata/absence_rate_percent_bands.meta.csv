@@ -1,9 +1,0 @@
-col_name,col_type,label,indicator_grouping,indicator_unit,filter_hint,filter_grouping_column
-enrolments_overall,Indicator,Number of all pupil enrolments that fall into that per cent band for overall absence,Enrolments by absence percentage band,,,
-enrolments_overall_percent,Indicator,Percentage of all pupil enrolments that fall into that per cent band for overall absence ,Enrolments by absence percentage band,%,,
-enrolments_authorised,Indicator,Number of all pupil enrolments that fall into that per cent band for authorised absence,Enrolments by absence percentage band,,,
-enrolments_authorised_percent,Indicator,Percentage of all pupil enrolments that fall into that per cent band for authorised absence ,Enrolments by absence percentage band,%,,
-enrolments_unauthorised,Indicator,Number of all pupil enrolments that fall into that per cent band for unauthorised absence,Enrolments by absence percentage band,,,
-enrolments_unauthorised_percent,Indicator,Percentage of all pupil enrolments that fall into that per cent band for unauthorised absence ,Enrolments by absence percentage band,%,,
-school_type,Filter,School type,,,Filter by school type,
-percentage,Filter,Absence percentage band,,,Filter by percentage of absence,percentage_band
