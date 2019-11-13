@@ -30,6 +30,7 @@ cam_pandoc_install <- function(){
   install.pandoc()}
 }
 
+# function to install/load the packages needed to run the screener
 cam_envrionment_setup <- function(){
   if(!require(govdown)){install.packages("govdown");require(govdown)}
   if(!require(tidyr)){install.packages("tidyr");require(tidyr)}
