@@ -1,5 +1,9 @@
 ## Running the Screener
 
+# Setup your environment by running the following lines
+source('setup_functions/all_setup.r')
+cam_envrionment_setup()
+
 # Ensure the data file and corresponding metadata file you want to screen are saved in the data_metadata folder.
 # Enter the name of the data file below, note that you do not need to include the extension '.csv'.
 # The metadata file will automatically be recognised if you have followed the naming convention - mydatafilename.meta.csv.
@@ -8,7 +12,6 @@ your_data_file <- "absence_rate_percent_bands"
 # Run the report.
 rmarkdown::render("EES-data-screener-report.Rmd",
                   output_file = paste(gsub(":",".",gsub("\\s","_",paste(your_data_file,"_","report_", Sys.time(),'.html',sep='')))))
-
 
 # If you are having issues with pandoc, run the following two lines. These will check your version and automatically update it for you if needed.
 # This may take a couple of minutes, and will download it for you and automatically start the install wizard.
