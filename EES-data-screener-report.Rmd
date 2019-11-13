@@ -9,8 +9,6 @@ output:
 ---
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-library(tidyverse)
-library(govdown)
 
 file_data <- paste("data_metadata/",your_data_file,'.csv',sep = "")
 meta_data <- paste("data_metadata/",your_data_file,'.meta.csv',sep = "")
