@@ -25,22 +25,19 @@ indicator_group_check <- function(meta) {
 
 # -------------------------------------
 # Validation for the indicator units
-# Currently the £ symbol is causing problems so have shortcutted the test for the time being
 
 indicator_unit_validation <- function(meta) {
-#  indicators <- filter(metadata,col_type == "Indicator")
-#  real_indicators <- indicators %>% drop_na(indicator_unit)
-#  percent <- nrow(filter(real_indicators,indicator_unit=="%"))
-#  pound <- nrow(filter(real_indicators,indicator_unit== "£"))
-#  all <- nrow(real_indicators)
-  indicator_units <- unique(meta$indicator_unit)
-#  if((percent + pound == all)==FALSE)
-#    stop(
-  writeLines(c("MANUAL CHECK - indicator unit must be either a percentage '%', a pound sign '<U+00A3>', or blank 'NA'.","",
-                     "Here is a list of the indicator units in your file:","", indicator_units,"",
-               "Make sure to manually check that the above are all valid units!"))
-  #)
-#    message("PASS - The indicator units are valid")
+  indicators <- filter(meta,col_type == "Indicator")
+  real_indicators <- indicators$indicator_unit[!indicators$indicator_unit == ""]
+  all <- length(unique(real_indicators))
+  acceptable_indicator_units <- c("£","%")
+  acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
+  invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
+  if(acceptable == all){
+    paste("PASS - The indicator units are valid.")
+  } else {
+    paste(c("FAIL - You have the following invalid i units in your metadata:",invalid_indicator_units))
+  }
 }
 
 # -------------------------------------

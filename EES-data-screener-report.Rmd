@@ -184,9 +184,9 @@ try(cat(duplicate_label_check(metadata)))
 try(cat(indicator_group_check(metadata)))
 ```
 
- **Checking that all indicator units are valid values**
-```{r indicator_unit_validation,echo=FALSE,comment=NA}
-try(cat(indicator_unit_validation(metadata)))
+ **Checking that all indicator units are valid**
+```{r indicator_unit_validation,warning=FALSE,echo=FALSE,comment=NA}
+cat(indicator_unit_validation(metadata))
 ```
 
  **Checking that no filters have an indicator unit**
