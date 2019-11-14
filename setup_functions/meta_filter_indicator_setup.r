@@ -26,13 +26,17 @@ indicator_group_check <- function(meta) {
 # -------------------------------------
 # Validation for the indicator units
 
-indicator_unit_validation <- function(meta) {
+pre_function <- function(meta){
   indicators_u <- filter(meta,col_type == "Indicator")
   real_indicators <- indicators_u$indicator_unit[!indicators_u$indicator_unit == ""]
   all <- length(unique(real_indicators))
   acceptable_indicator_units <- c('£',"%")
   acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
   invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
+  print(acceptable,all)
+}
+
+indicator_unit_validation <- function(meta) {
   if(acceptable == all){
     paste("PASS - The indicator units are valid.")
   } else {
