@@ -185,7 +185,12 @@ try(cat(indicator_group_check(metadata)))
 ```
 
 ```{r pre_function, include=FALSE}
-pre_function(metadata)
+  indicators_u <- filter(metadata,col_type == "Indicator")
+  real_indicators <- indicators_u$indicator_unit[!indicators_u$indicator_unit == ""]
+  all <- length(unique(real_indicators))
+  acceptable_indicator_units <- c('£',"%")
+  acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
+  invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
 ```
 
  **Checking that all indicator units are valid**
