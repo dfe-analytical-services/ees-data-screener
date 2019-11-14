@@ -7,7 +7,7 @@ cam_envrionment_setup()
 # Ensure the data file and corresponding metadata file you want to screen are saved in the data_metadata folder.
 # Enter the name of the data file below, note that you do not need to include the extension '.csv'.
 # The metadata file will automatically be recognised if you have followed the naming convention - mydatafilename.meta.csv.
-your_data_file <- "absence_rate_percent_bands"
+your_data_file <- "all_geographies"
 
 # Run the report.
 rmarkdown::render("EES-data-screener-report.Rmd",
