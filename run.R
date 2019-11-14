@@ -2,7 +2,6 @@
 
 # Setup your environment by running the following lines
 source('setup_functions/environment_setup.R')
-cam_envrionment_setup()
 
 # If you are having issues with pandoc, run the following two lines. These will check your version and automatically update it for you if needed.
 # This may take a couple of minutes, and will download it for you and automatically start the install wizard.

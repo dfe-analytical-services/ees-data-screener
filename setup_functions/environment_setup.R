@@ -18,3 +18,4 @@ cam_envrionment_setup <- function(){
   if(!require(dplyr)){install.packages("dplyr");require(dplyr)}
   print("Your environment has successfully been setup, you should now be able to run the screener.")
 }
+cam_envrionment_setup()
