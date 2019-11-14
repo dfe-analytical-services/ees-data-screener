@@ -37,10 +37,6 @@ This folder contains the files that create all of the functions used in this pro
 This is the file that creates the .html report that is the output of the screener.
 
 
-**all_geographies_report_2019-11-05_19.30.25.html**
-
-This is an example .html report run on test data. It was created on the 5th November 2019 at 7:30pm and 25 seconds, on the 'all_geographies' file.
-
 <br>
 
 ### **Packages and proxy**

@@ -1,2 +1,5 @@
 col_name,col_type,label,indicator_grouping,indicator_unit,filter_hint,filter_grouping_column
-admission_numbers,Indicator,Admission Numbers,,,,
+admission_numbers,Indicator,Admission Numbers,,£,,
+staff_numbers,Indicator,Staff,,%,,
+other_numbers,Indicator,Other,,NOT A UNIT,,
+extra_numbers,Indicator,Extra,,,,

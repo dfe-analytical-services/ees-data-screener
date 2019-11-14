@@ -18,19 +18,13 @@ File tested: `r your_data_file`
 
 X% of standards met
 <br>
-```{r files, echo=TRUE, include=FALSE, warning=FALSE, message=FALSE}
-dataset <- read_csv(file_data,trim_ws = FALSE)
-metadata <- read_csv(meta_data,trim_ws = FALSE)
-```
- 
-```{r files_gui, eval=FALSE}
-# Or use this to select your files using a GUI
-#dataset <- read_csv(file.choose(),trim_ws = FALSE)
-#metadata <- read_csv(file.choose(),trim_ws = FALSE)
+```{r files}
+dataset <- read.csv(file_data,stringsAsFactors = FALSE,encoding = "UTF-16")
+metadata <- read.csv(meta_data,stringsAsFactors = FALSE,encoding = "UTF-16")
 ```
 
 ```{r setup, include=FALSE}
-source("setup_functions/all_setup.R")
+source("setup_functions/function_setup.R")
 ```
 ::: {.tabset}
 
@@ -184,9 +178,18 @@ try(cat(duplicate_label_check(metadata)))
 try(cat(indicator_group_check(metadata)))
 ```
 
- **Checking that all indicator units are valid values**
-```{r indicator_unit_validation,echo=FALSE,comment=NA}
-try(cat(indicator_unit_validation(metadata)))
+```{r pre_function, include=FALSE}
+  indicators_u <- filter(metadata,col_type == "Indicator")
+  real_indicators <- indicators_u$indicator_unit[!indicators_u$indicator_unit == ""]
+  all <- length(unique(real_indicators))
+  acceptable_indicator_units <- c('£',"%")
+  acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
+  invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
+```
+
+ **Checking that all indicator units are valid**
+```{r indicator_unit_validation,warning=FALSE,echo=FALSE,comment=NA}
+cat(indicator_unit_validation(metadata))
 ```
 
  **Checking that no filters have an indicator unit**
