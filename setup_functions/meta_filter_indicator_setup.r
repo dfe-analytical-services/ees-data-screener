@@ -27,16 +27,16 @@ indicator_group_check <- function(meta) {
 # Validation for the indicator units
 
 indicator_unit_validation <- function(meta) {
-  indicators <- filter(meta,col_type == "Indicator")
-  real_indicators <- indicators$indicator_unit[!indicators$indicator_unit == ""]
+  indicators_u <- filter(meta,col_type == "Indicator")
+  real_indicators <- indicators_u$indicator_unit[!indicators_u$indicator_unit == ""]
   all <- length(unique(real_indicators))
-  acceptable_indicator_units <- c("£","%")
+  acceptable_indicator_units <- c('£',"%")
   acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
   invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
   if(acceptable == all){
     paste("PASS - The indicator units are valid.")
   } else {
-    paste(c("FAIL - You have the following invalid i units in your metadata:",invalid_indicator_units))
+    paste(c("FAIL - You have the following invalid indicator units in your metadata:",invalid_indicator_units))
   }
 }
 
