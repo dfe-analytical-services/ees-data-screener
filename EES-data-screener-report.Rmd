@@ -22,15 +22,9 @@ X% of standards met
 dataset <- read.csv(file_data,stringsAsFactors = FALSE,encoding = "UTF-16")
 metadata <- read.csv(meta_data,stringsAsFactors = FALSE,encoding = "UTF-16")
 ```
- 
-```{r files_gui, eval=FALSE}
-# Or use this to select your files using a GUI
-#dataset <- read_csv(file.choose(),trim_ws = FALSE)
-#metadata <- read_csv(file.choose(),trim_ws = FALSE)
-```
 
 ```{r setup, include=FALSE}
-source("setup_functions/all_setup.R")
+source("setup_functions/function_setup.R")
 ```
 ::: {.tabset}
 

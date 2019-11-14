@@ -1,7 +1,7 @@
 ## Running the Screener
 
 # Setup your environment by running the following lines
-source('setup_functions/all_setup.r')
+source('setup_functions/environment_setup.R')
 cam_envrionment_setup()
 
 # If you are having issues with pandoc, run the following two lines. These will check your version and automatically update it for you if needed.
