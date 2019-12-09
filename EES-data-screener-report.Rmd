@@ -18,9 +18,10 @@ File tested: `r your_data_file`
 
 X% of standards met
 <br>
-```{r files}
-dataset <- read.csv(file_data,stringsAsFactors = FALSE,encoding = "UTF-16")
-metadata <- read.csv(meta_data,stringsAsFactors = FALSE,encoding = "UTF-16")
+```{r files, include=FALSE}
+dataset <- read_csv(file_data,trim_ws = FALSE)
+metadata <- read_csv(meta_data,trim_ws = FALSE)
+metadata_utf16 <- read.csv(meta_data,stringsAsFactors = FALSE,encoding = "UTF-16")
 ```
 
 ```{r setup, include=FALSE}
@@ -179,7 +180,7 @@ try(cat(indicator_group_check(metadata)))
 ```
 
 ```{r pre_function, include=FALSE}
-  indicators_u <- filter(metadata,col_type == "Indicator")
+  indicators_u <- filter(metadata_utf16,col_type == "Indicator")
   real_indicators <- indicators_u$indicator_unit[!indicators_u$indicator_unit == ""]
   all <- length(unique(real_indicators))
   acceptable_indicator_units <- c('£',"%")
@@ -189,7 +190,7 @@ try(cat(indicator_group_check(metadata)))
 
  **Checking that all indicator units are valid**
 ```{r indicator_unit_validation,warning=FALSE,echo=FALSE,comment=NA}
-cat(indicator_unit_validation(metadata))
+cat(indicator_unit_validation(metadata_utf16))
 ```
 
  **Checking that no filters have an indicator unit**
