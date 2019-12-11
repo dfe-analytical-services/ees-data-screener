@@ -45,16 +45,29 @@ filter_levels_check <- function(data,meta) {
 # Check for Total in all filters
 
 total_check <- function(data,meta) {
-  if(!"Filter" %in% meta$col_type){message("IGNORE - This test does not apply to your data.")}
-  else{
+  if(!"Filter" %in% meta$col_type){
+    message("IGNORE - This test does not apply to your data.")
+    assign("total_check_result",NA,envir = .GlobalEnv)
+    }else{
+    total_check_preresult <- c()
     mfilters <- filter(meta,col_type=="Filter")
     filter_names <- c(mfilters$col_name)
     dfilters <- select(data,filter_names)
     for(i in names(dfilters)) {
-      if(!"Total" %in% dfilters[[i]]){warning("
-    WARNING - There is no total value in ", i,".")
-  }else(message("Pass - every filter has a total level."))
-  }} 
+      if(!"Total" %in% dfilters[[i]]){
+      message("WARNING - There is no total value in ", i,".")
+      total_check_preresult[i] <- FALSE
+  }else{
+    total_check_preresult[i] <- FALSE
+    }
+    }
+    if(FALSE %in% total_check_preresult){
+      assign("total_check_result",FALSE,envir = .GlobalEnv)
+    }else{
+      message("PASS - Every filter has a total level.")
+      assign("total_check_result",TRUE,envir = .GlobalEnv)
+    }
+  } 
 }
 
 # -------------------------------------
