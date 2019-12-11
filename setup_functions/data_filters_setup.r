@@ -15,9 +15,6 @@ data_filters_results_function <- function(){
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
 
-data <- read_csv("data_metadata/absence_rate_percent_bands.csv",trim_ws = FALSE)
-meta <- read_csv("data_metadata/absence_rate_percent_bands.meta.csv",trim_ws = FALSE)
-
 filter_levels_check <- function(data,meta) {
   mfilters <- filter(meta,col_type=="Filter")
   filternames <- c(mfilters$col_name)
@@ -43,9 +40,6 @@ filter_levels_check <- function(data,meta) {
       }
     }
 }
-
-filter_levels_check(data,meta)
-print(filter_levels_check_result)
 
 # -------------------------------------
 # Check for Total in all filters
