@@ -8,6 +8,10 @@ data_filters_setup <-function(data,meta){
   observational_total_check(data)
 }
 
+data_filters_results_function <- function(){
+  data_filters_results <- c(filter_levels_check_result, total_check_result, observational_total_check_result)
+}
+
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
 
@@ -16,9 +20,17 @@ filter_levels_check <- function(data,meta) {
   mfilters <- filter(meta,col_type=="Filter")
   filternames <- c(mfilters$col_name)
   dfilters <- select(data,filternames)
+  if(nrow(dfilters)==0){
+    filter_levels_check_result <- NA
+    }else{
   for (i in names(dfilters)) {
-    if((length(unique(data[[i]])))<2) warning("
+    if((length(unique(data[[i]])))<2){warning("
   WARNING - There are fewer than two levels in ", i,".")
+      filter_levels_check_result <- FALSE
+    }else{
+      filter_levels_check_result <- TRUE
+    }
+  }
   }
 }
 
