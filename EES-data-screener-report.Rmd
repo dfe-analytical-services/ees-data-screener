@@ -16,7 +16,10 @@ meta_data <- paste("data_metadata/",your_data_file,'.meta.csv',sep = "")
 ## Underlying data testing {caption="`r Sys.time()`"} 
 File tested: `r your_data_file` 
 
-X% of standards met
+```{r results_total, ref.label="results_calculator"}
+paste(total_percent,"% of standards met")
+```
+
 <br>
 ```{r files, include=FALSE}
 dataset <- read_csv(file_data,trim_ws = FALSE)
@@ -232,3 +235,8 @@ try(cat(filter_group_levels(dataset,metadata)))
  For further information, or if you have any questions about this report contact cameron.race@education.gov.uk.
 :::
 :::
+
+```{r result_calculator,echo=FALSE,results='hide'}
+#something in here to calculate the percentages
+
+```
