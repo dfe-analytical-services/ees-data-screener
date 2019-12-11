@@ -19,7 +19,7 @@ filter_levels_check <- function(data,meta) {
   mfilters <- filter(meta,col_type=="Filter")
   filternames <- c(mfilters$col_name)
   dfilters <- select(data,filternames)
-  if(nrow(dfilters)==0){
+  if(ncol(dfilters)==0){
     message("IGNORE - There are no filters in your data to test.")
     assign("filter_levels_check_result",c(NA),envir = .GlobalEnv)
     }else{
