@@ -15,24 +15,37 @@ data_filters_results_function <- function(){
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
 
+data <- read_csv("data_metadata/absence_rate_percent_bands.csv",trim_ws = FALSE)
+meta <- read_csv("data_metadata/absence_rate_percent_bands.meta.csv",trim_ws = FALSE)
+
 filter_levels_check <- function(data,meta) {
-  message("This will show if there are any filters with fewer than 2 levels:")
   mfilters <- filter(meta,col_type=="Filter")
   filternames <- c(mfilters$col_name)
   dfilters <- select(data,filternames)
   if(nrow(dfilters)==0){
-    filter_levels_check_result <- NA
+    message("IGNORE - There are no filters in your data to test.")
+    assign("filter_levels_check_result",c(NA),envir = .GlobalEnv)
     }else{
+    filter_levels_check_preresult <- c()
   for (i in names(dfilters)) {
-    if((length(unique(data[[i]])))<2){warning("
-  WARNING - There are fewer than two levels in ", i,".")
-      filter_levels_check_result <- FALSE
+    if((length(unique(data[[i]])))<2){
+    message("FAIL - There are fewer than two levels in ", i,".")
+    filter_levels_check_preresult[i] <- FALSE
     }else{
-      filter_levels_check_result <- TRUE
+    filter_levels_check_preresult[i] <- TRUE
     }
   }
-  }
+      if(FALSE %in% filter_levels_check_preresult){
+        assign("filter_levels_check_result",FALSE,envir = .GlobalEnv)
+      }else{
+        message("PASS - No filters have fewer than two levels.")
+        assign("filter_levels_check_result",TRUE,envir = .GlobalEnv)
+      }
+    }
 }
+
+filter_levels_check(data,meta)
+print(filter_levels_check_result)
 
 # -------------------------------------
 # Check for Total in all filters
