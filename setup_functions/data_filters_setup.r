@@ -46,7 +46,7 @@ filter_levels_check <- function(data,meta) {
 
 total_check <- function(data,meta) {
   if(!"Filter" %in% meta$col_type){
-    message("IGNORE - This test does not apply to your data.")
+    message("IGNORE - There are no filters in your data to test.")
     assign("total_check_result",NA,envir = .GlobalEnv)
     }else{
     total_check_preresult <- c()
@@ -84,7 +84,19 @@ observational_total_check <- function(data){
                            "provider_urn","provider_name","provider_ukprn","provider_upin",
                            "institution_id","institution_name")
   present_ob_units <- intersect(observational_units,names(data))
+  observational_total_check_preresult <- c()
   for(i in present_ob_units) {
-    if("Total" %in% data[[i]] || "total" %in% data[[i]]){message("FAIL - A total value is present in ",i,", this should be replaced with a blank.")
-  }else{message("PASS - there are no total values in ",i,".")}
-}}
+    if("Total" %in% data[[i]] || "total" %in% data[[i]]){
+      message("FAIL - A total value is present in ",i,", this should be replaced with a blank.")
+      observational_total_check_preresult[i] <- FALSE
+    }else{
+      observational_total_check_preresult[i] <- TRUE
+  }
+  }
+  if(FALSE %in% observational_total_check_preresult){
+    assign("observational_total_check_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - There are no 'Total' values in the observational units.")
+    assign("observational_total_check_result",TRUE,envir = .GlobalEnv)
+  }
+}
