@@ -27,10 +27,12 @@ indicator_group_check <- function(meta) {
 # Validation for the indicator units
 
 indicator_unit_validation <- function(meta) {
-  if(acceptable == all){
-    paste("PASS - The indicator units are valid.")
-  } else {
-    paste(c("FAIL - You have the following invalid indicator units in your metadata:",invalid_indicator_units))
+  if(length(invalid_indicator_units) == 0){
+    message("PASS - The indicator units are valid.")
+  }else{
+    for(unit in invalid_indicator_units){
+      message(c("FAIL - You have the following invalid indicator unit in your metadata: ",unit))
+    }
   }
 }
 

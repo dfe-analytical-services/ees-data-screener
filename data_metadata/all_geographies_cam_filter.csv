@@ -1,0 +1,514 @@
+time_period,time_identifier,geographic_level,country_code,country_name,old_la_code,new_la_code,la_name,region_code,region_name,lad_code,lad_name,local_enterprise_partnership_code,local_enterprise_partnership_name,rsc_region_lead_name,opportunity_area_code,opportunity_area_name,pcon_name,pcon_code,ward_code,ward_name,mayoral_combined_authority_code,mayoral_combined_authority_name,trust_id,trust_name,sponsor_id,sponsor_name,school_type,admission_numbers
+2018,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Big,3962
+2018,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Big,8123
+2018,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Big,5669
+2018,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Big,2399
+2017,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Big,8530
+2017,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Big,5032
+2017,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Big,6981
+2017,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Big,4180
+2016,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Big,8856
+2016,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Big,7419
+2016,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Big,8427
+2016,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Big,3548
+2015,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Big,9303
+2015,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Big,1134
+2015,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Big,6114
+2015,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Big,9790
+2014,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Big,3708
+2014,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Big,9854
+2014,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Big,8247
+2014,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Big,1054
+2008,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Big,6765
+2008,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Big,8024
+2013,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Big,5456
+2012,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Big,6480
+2014,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Big,2284
+2020,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Big,4195
+2012,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Big,6005
+2016,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Big,2014
+2007,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Big,7769
+2013,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Big,3758
+2015,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Big,2787
+2011,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Big,9043
+2017,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Big,3001
+2017,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Big,9123
+2006,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Big,8052
+2020,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Big,1506
+2012,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Big,1090
+2008,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Big,8730
+2018,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Big,7423
+2011,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Big,5876
+2017,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Big,5124
+2017,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Big,2076
+2018,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Big,6170
+2014,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Big,3085
+2020,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Big,4503
+2011,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Big,1574
+2016,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Big,3221
+2010,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Big,4368
+2006,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Big,7360
+2017,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Big,6385
+2012,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Big,9216
+2010,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Big,1816
+2020,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Big,6078
+2014,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Big,5018
+2015,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Big,6882
+2016,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Big,6493
+2011,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Big,3902
+2019,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Big,8179
+2019,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Big,2701
+2013,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Big,3908
+2007,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Big,9023
+2018,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Big,7612
+2008,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Big,7916
+2011,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Big,8639
+2016,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Big,5346
+2011,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Big,6888
+2011,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Big,6526
+2010,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Big,6781
+2013,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Big,9961
+2007,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Big,6637
+2017,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Big,4896
+2008,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Big,4890
+2017,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Big,7242
+2015,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Big,2748
+2008,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Big,1010
+2009,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Big,4900
+2006,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Big,3338
+2019,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Big,1258
+2019,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Big,1023
+2019,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000984,Bolton 001,,,,,,,,,,,Big,8533
+2008,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000985,Bolton 002,,,,,,,,,,,Big,4587
+2010,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000986,Bolton 003,,,,,,,,,,,Big,4621
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000987,Bolton 004,,,,,,,,,,,Big,6031
+2009,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Big,5815
+2016,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Big,5831
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Big,1028
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Big,3481
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Big,6373
+2006,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Big,9341
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Big,6641
+2005,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Big,8557
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Big,3837
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Big,5680
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Big,1869
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Big,8427
+2010,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Big,5595
+2019,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Big,6945
+2014,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Big,8084
+2018,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Big,8630
+2018,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Big,5549
+2020,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Big,6676
+2009,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Big,2409
+2010,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Big,2321
+2015,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Big,5653
+2016,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Big,1433
+2006,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Big,1605
+2020,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Big,7569
+2016,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Big,1617
+2019,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Big,9468
+2015,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Big,8650
+2009,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Big,3004
+2011,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Big,5099
+2005,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Big,2179
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Big,4066
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Big,2003
+2017,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Big,4465
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Big,9208
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Big,8322
+2019,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Big,3927
+2009,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Big,2287
+2016,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Big,7357
+2006,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Big,7066
+2007,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Big,7004
+2015,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Big,6850
+2005,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Big,7988
+2019,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Big,1695
+2015,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Big,5872
+2018,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Big,4496
+2010,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Big,2266
+2019,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Big,6296
+2008,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Big,5901
+2009,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Big,4157
+2015,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Big,7731
+2012,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Big,6383
+2011,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Big,7904
+2017,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Big,1615
+2016,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Big,9207
+2009,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Big,2848
+2009,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Big,2192
+2017,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Big,1959
+2017,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Big,9857
+2005,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Big,3612
+2011,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Big,4415
+2007,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Big,9914
+2016,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Big,6772
+2016,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Big,4198
+2015,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Big,4613
+2010,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Big,6060
+2014,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Big,3646
+2010,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Big,9304
+2020,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Big,6650
+2012,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Big,1109
+2018,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Big,1926
+2012,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Big,8150
+2016,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Big,4035
+2008,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Big,5505
+2007,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Big,7499
+2011,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Big,9603
+2007,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Big,9884
+2008,Calendar year,Mayoral combined authority,E92000001,England,,,,,,,,,,,,,,,,,E47000002,Sheffield City Region,,,,,Big,11933
+2007,Calendar year,Mayoral combined authority,E92000001,England,,,,,,,,,,,,,,,,,E47000004,Liverpool City Region,,,,,Big,13457
+2011,Calendar year,Mayoral combined authority,E92000001,England,,,,,,,,,,,,,,,,,E47000002,Sheffield City Region,,,,,Big,14981
+2007,Calendar year,MAT,E92000001,England,,,,,,,,,,,,,,,,,,,TR03728,Pennine Academies Yorkshire,,,Big,16505
+2008,Calendar year,MAT,E92000001,England,,,,,,,,,,,,,,,,,,,TR03728,Pennine Academies Yorkshire,,,Big,18029
+2007,Calendar year,MAT,E92000001,England,,,,,,,,,,,,,,,,,,,TR00002,Abbey Multi-Academy Trust,,,Big,19554
+2011,Calendar year,Sponsor,E92000001,England,,,,,,,,,,,,,,,,,,,,,SP00664,Diocese of Lancaster,Big,21078
+2007,Calendar year,Sponsor,E92000001,England,,,,,,,,,,,,,,,,,,,,,SP00194,Diocese of York Educational Trust,Big,22602
+2008,Calendar year,Sponsor,E92000001,England,,,,,,,,,,,,,,,,,,,,,SP00664,Diocese of Lancaster,Big,24126
+2007,Calendar year,National,E92000001,England,,,,,,,,,,,,,,,,,,,,,,,Big,150332
+2008,Calendar year,National,E92000001,England,,,,,,,,,,,,,,,,,,,,,,,Big,287206
+2009,Calendar year,National,E92000001,England,,,,,,,,,,,,,,,,,,,,,,,Big,559431
+2018,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Small,3962
+2018,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Small,8123
+2018,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Small,5669
+2018,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Small,2399
+2017,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Small,8530
+2017,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Small,5032
+2017,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Small,6981
+2017,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Small,4180
+2016,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Small,8856
+2016,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Small,7419
+2016,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Small,8427
+2016,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Small,3548
+2015,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Small,9303
+2015,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Small,1134
+2015,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Small,6114
+2015,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Small,9790
+2014,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Small,3708
+2014,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Small,9854
+2014,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Small,8247
+2014,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Small,1054
+2008,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Small,6765
+2008,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Small,8024
+2013,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Small,5456
+2012,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Small,6480
+2014,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Small,2284
+2020,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Small,4195
+2012,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Small,6005
+2016,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Small,2014
+2007,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Small,7769
+2013,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Small,3758
+2015,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Small,2787
+2011,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Small,9043
+2017,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Small,3001
+2017,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Small,9123
+2006,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Small,8052
+2020,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Small,1506
+2012,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Small,1090
+2008,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Small,8730
+2018,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Small,7423
+2011,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Small,5876
+2017,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Small,5124
+2017,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Small,2076
+2018,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Small,6170
+2014,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Small,3085
+2020,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Small,4503
+2011,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Small,1574
+2016,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Small,3221
+2010,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Small,4368
+2006,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Small,7360
+2017,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Small,6385
+2012,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Small,9216
+2010,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Small,1816
+2020,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Small,6078
+2014,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Small,5018
+2015,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Small,6882
+2016,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Small,6493
+2011,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Small,3902
+2019,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Small,8179
+2019,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Small,2701
+2013,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Small,3908
+2007,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Small,9023
+2018,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Small,7612
+2008,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Small,7916
+2011,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Small,8639
+2016,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Small,5346
+2011,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Small,6888
+2011,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Small,6526
+2010,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Small,6781
+2013,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Small,9961
+2007,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Small,6637
+2017,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Small,4896
+2008,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Small,4890
+2017,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Small,7242
+2015,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Small,2748
+2008,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Small,1010
+2009,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Small,4900
+2006,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Small,3338
+2019,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Small,1258
+2019,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Small,1023
+2019,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000984,Bolton 001,,,,,,,,,,,Small,8533
+2008,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000985,Bolton 002,,,,,,,,,,,Small,4587
+2010,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000986,Bolton 003,,,,,,,,,,,Small,4621
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000987,Bolton 004,,,,,,,,,,,Small,6031
+2009,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Small,5815
+2016,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Small,5831
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Small,1028
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Small,3481
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Small,6373
+2006,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Small,9341
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Small,6641
+2005,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Small,8557
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Small,3837
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Small,5680
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Small,1869
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Small,8427
+2010,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Small,5595
+2019,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Small,6945
+2014,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Small,8084
+2018,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Small,8630
+2018,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Small,5549
+2020,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Small,6676
+2009,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Small,2409
+2010,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Small,2321
+2015,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Small,5653
+2016,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Small,1433
+2006,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Small,1605
+2020,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Small,7569
+2016,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Small,1617
+2019,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Small,9468
+2015,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Small,8650
+2009,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Small,3004
+2011,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Small,5099
+2005,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Small,2179
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Small,4066
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Small,2003
+2017,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Small,4465
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Small,9208
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Small,8322
+2019,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Small,3927
+2009,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Small,2287
+2016,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Small,7357
+2006,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Small,7066
+2007,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Small,7004
+2015,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Small,6850
+2005,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Small,7988
+2019,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Small,1695
+2015,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Small,5872
+2018,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Small,4496
+2010,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Small,2266
+2019,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Small,6296
+2008,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Small,5901
+2009,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Small,4157
+2015,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Small,7731
+2012,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Small,6383
+2011,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Small,7904
+2017,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Small,1615
+2016,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Small,9207
+2009,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Small,2848
+2009,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Small,2192
+2017,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Small,1959
+2017,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Small,9857
+2005,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Small,3612
+2011,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Small,4415
+2007,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Small,9914
+2016,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Small,6772
+2016,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Small,4198
+2015,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Small,4613
+2010,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Small,6060
+2014,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Small,3646
+2010,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Small,9304
+2020,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Small,6650
+2012,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Small,1109
+2018,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Small,1926
+2012,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Small,8150
+2016,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Small,4035
+2008,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Small,5505
+2007,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Small,7499
+2011,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Small,9603
+2007,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Small,9884
+2008,Calendar year,Mayoral combined authority,E92000001,England,,,,,,,,,,,,,,,,,E47000002,Sheffield City Region,,,,,Small,11933
+2007,Calendar year,Mayoral combined authority,E92000001,England,,,,,,,,,,,,,,,,,E47000004,Liverpool City Region,,,,,Small,13457
+2011,Calendar year,Mayoral combined authority,E92000001,England,,,,,,,,,,,,,,,,,E47000002,Sheffield City Region,,,,,Small,14981
+2007,Calendar year,MAT,E92000001,England,,,,,,,,,,,,,,,,,,,TR03728,Pennine Academies Yorkshire,,,Small,16505
+2008,Calendar year,MAT,E92000001,England,,,,,,,,,,,,,,,,,,,TR03728,Pennine Academies Yorkshire,,,Small,18029
+2007,Calendar year,MAT,E92000001,England,,,,,,,,,,,,,,,,,,,TR00002,Abbey Multi-Academy Trust,,,Small,19554
+2011,Calendar year,Sponsor,E92000001,England,,,,,,,,,,,,,,,,,,,,,SP00664,Diocese of Lancaster,Small,21078
+2007,Calendar year,Sponsor,E92000001,England,,,,,,,,,,,,,,,,,,,,,SP00194,Diocese of York Educational Trust,Small,22602
+2008,Calendar year,Sponsor,E92000001,England,,,,,,,,,,,,,,,,,,,,,SP00664,Diocese of Lancaster,Small,24126
+2007,Calendar year,National,E92000001,England,,,,,,,,,,,,,,,,,,,,,,,Small,150332
+2008,Calendar year,National,E92000001,England,,,,,,,,,,,,,,,,,,,,,,,Small,287206
+2009,Calendar year,National,E92000001,England,,,,,,,,,,,,,,,,,,,,,,,Small,559431
+2018,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Total,3962
+2018,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Total,8123
+2018,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Total,5669
+2018,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Total,2399
+2017,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Total,8530
+2017,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Total,5032
+2017,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Total,6981
+2017,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Total,4180
+2016,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Total,8856
+2016,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Total,7419
+2016,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Total,8427
+2016,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Total,3548
+2015,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Total,9303
+2015,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Total,1134
+2015,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Total,6114
+2015,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Total,9790
+2014,Calendar year,Local authority,E92000001,England,330,E08000025,Birmingham,,,,,,,,,,,,,,,,,,,,Total,3708
+2014,Calendar year,Local authority,E92000001,England,370,E08000016,Barnsley,,,,,,,,,,,,,,,,,,,,Total,9854
+2014,Calendar year,Local authority,E92000001,England,203,E09000011,Greenwich,,,,,,,,,,,,,,,,,,,,Total,8247
+2014,Calendar year,Local authority,E92000001,England,202,E09000007,Camden,,,,,,,,,,,,,,,,,,,,Total,1054
+2008,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Total,6765
+2008,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Total,8024
+2013,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Total,5456
+2012,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Total,6480
+2014,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Total,2284
+2020,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Total,4195
+2012,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Total,6005
+2016,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Total,2014
+2007,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Total,7769
+2013,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Total,3758
+2015,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Total,2787
+2011,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Total,9043
+2017,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Total,3001
+2017,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Total,9123
+2006,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Total,8052
+2020,Calendar year,Local authority district,E92000001,England,,,,,,E06000001,Hartlepool,,,,,,,,,,,,,,,,Total,1506
+2012,Calendar year,Local authority district,E92000001,England,,,,,,E06000002,Middlesbrough,,,,,,,,,,,,,,,,Total,1090
+2008,Calendar year,Local authority district,E92000001,England,,,,,,E06000003,Redcar and Cleveland,,,,,,,,,,,,,,,,Total,8730
+2018,Calendar year,Local authority district,E92000001,England,,,,,,E06000004,Stockton-on-Tees,,,,,,,,,,,,,,,,Total,7423
+2011,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Total,5876
+2017,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Total,5124
+2017,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Total,2076
+2018,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Total,6170
+2014,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Total,3085
+2020,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Total,4503
+2011,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Total,1574
+2016,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Total,3221
+2010,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Total,4368
+2006,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Total,7360
+2017,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Total,6385
+2012,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Total,9216
+2010,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Total,1816
+2020,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Total,6078
+2014,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Total,5018
+2015,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Total,6882
+2016,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000001,Black Country,,,,,,,,,,,,,,Total,6493
+2011,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000003,Chesire and Warrington,,,,,,,,,,,,,,Total,3902
+2019,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000005,Cornwall and Isles of Scilly,,,,,,,,,,,,,,Total,8179
+2019,Calendar year,Local enterprise partnership,E92000001,England,,,,,,,,E37000006,Coventry and Warwickshire,,,,,,,,,,,,,,Total,2701
+2013,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Total,3908
+2007,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Total,9023
+2018,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Total,7612
+2008,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Total,7916
+2011,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Total,8639
+2016,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Total,5346
+2011,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Total,6888
+2011,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Total,6526
+2010,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Total,6781
+2013,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Total,9961
+2007,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Total,6637
+2017,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Total,4896
+2008,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Total,4890
+2017,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Total,7242
+2015,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Total,2748
+2008,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Total,1010
+2009,Calendar year,RSC region,E92000001,England,,,,,,,,,,East of England and North-East London,,,,,,,,,,,,,Total,4900
+2006,Calendar year,RSC region,E92000001,England,,,,,,,,,,East Midlands and the Humber,,,,,,,,,,,,,Total,3338
+2019,Calendar year,RSC region,E92000001,England,,,,,,,,,,Lancashire and West Yorkshire,,,,,,,,,,,,,Total,1258
+2019,Calendar year,RSC region,E92000001,England,,,,,,,,,,North of England,,,,,,,,,,,,,Total,1023
+2019,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000984,Bolton 001,,,,,,,,,,,Total,8533
+2008,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000985,Bolton 002,,,,,,,,,,,Total,4587
+2010,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000986,Bolton 003,,,,,,,,,,,Total,4621
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E02000987,Bolton 004,,,,,,,,,,,Total,6031
+2009,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Total,5815
+2016,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Total,5831
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Total,1028
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Total,3481
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Total,6373
+2006,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Total,9341
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Total,6641
+2005,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Total,8557
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Total,3837
+2020,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Total,5680
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Total,1869
+2017,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Total,8427
+2010,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05000364,Bolton 001,,,,,,,,,,,Total,5595
+2019,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05006937,Bolton 002,,,,,,,,,,,Total,6945
+2014,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010291,Bolton 003,,,,,,,,,,,Total,8084
+2018,Calendar year,Opportunity area,E92000001,England,,,,,,,,,,,E05010450,Bolton 004,,,,,,,,,,,Total,8630
+2018,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Total,5549
+2020,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Total,6676
+2009,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Total,2409
+2010,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Total,2321
+2015,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Total,5653
+2016,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Total,1433
+2006,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Total,1605
+2020,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Total,7569
+2016,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Total,1617
+2019,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Total,9468
+2015,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Total,8650
+2009,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Total,3004
+2011,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Total,5099
+2005,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Total,2179
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Total,4066
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Total,2003
+2017,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,East Yorkshire,E14000683,,,,,,,,,Total,4465
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,Richmond (Yorks),E14000895,,,,,,,,,Total,9208
+2014,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Central,E14001061,,,,,,,,,Total,8322
+2019,Calendar year,Parliamentary constituency,E92000001,England,,,,,,,,,,,,,York Outer,E14001062,,,,,,,,,Total,3927
+2009,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Total,2287
+2016,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Total,7357
+2006,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Total,7066
+2007,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Total,7004
+2015,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Total,6850
+2005,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Total,7988
+2019,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Total,1695
+2015,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Total,5872
+2018,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Total,4496
+2010,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Total,2266
+2019,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Total,6296
+2008,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Total,5901
+2009,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Total,4157
+2015,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Total,7731
+2012,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Total,6383
+2011,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Total,7904
+2017,Calendar year,Regional,E92000001,England,,,,E12000003,Yorkshire and the Humber,,,,,,,,,,,,,,,,,,Total,1615
+2016,Calendar year,Regional,E92000001,England,,,,E12000001,North East,,,,,,,,,,,,,,,,,,Total,9207
+2009,Calendar year,Regional,E92000001,England,,,,E12000002,North West,,,,,,,,,,,,,,,,,,Total,2848
+2009,Calendar year,Regional,E92000001,England,,,,E12000005,West Midlands,,,,,,,,,,,,,,,,,,Total,2192
+2017,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Total,1959
+2017,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Total,9857
+2005,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Total,3612
+2011,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Total,4415
+2007,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Total,9914
+2016,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Total,6772
+2016,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Total,4198
+2015,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Total,4613
+2010,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Total,6060
+2014,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Total,3646
+2010,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Total,9304
+2020,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Total,6650
+2012,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Total,1109
+2018,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Total,1926
+2012,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Total,8150
+2016,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Total,4035
+2008,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05000364,Syon,,,,,,,Total,5505
+2007,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05006937,Yoxall,,,,,,,Total,7499
+2011,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010291,Nailsea Youngwood,,,,,,,Total,9603
+2007,Calendar year,Ward,E92000001,England,,,,,,,,,,,,,,,E05010450,Rural West York,,,,,,,Total,9884
+2008,Calendar year,Mayoral combined authority,E92000001,England,,,,,,,,,,,,,,,,,E47000002,Sheffield City Region,,,,,Total,11933
+2007,Calendar year,Mayoral combined authority,E92000001,England,,,,,,,,,,,,,,,,,E47000004,Liverpool City Region,,,,,Total,13457
+2011,Calendar year,Mayoral combined authority,E92000001,England,,,,,,,,,,,,,,,,,E47000002,Sheffield City Region,,,,,Total,14981
+2007,Calendar year,MAT,E92000001,England,,,,,,,,,,,,,,,,,,,TR03728,Pennine Academies Yorkshire,,,Total,16505
+2008,Calendar year,MAT,E92000001,England,,,,,,,,,,,,,,,,,,,TR03728,Pennine Academies Yorkshire,,,Total,18029
+2007,Calendar year,MAT,E92000001,England,,,,,,,,,,,,,,,,,,,TR00002,Abbey Multi-Academy Trust,,,Total,19554
+2011,Calendar year,Sponsor,E92000001,England,,,,,,,,,,,,,,,,,,,,,SP00664,Diocese of Lancaster,Total,21078
+2007,Calendar year,Sponsor,E92000001,England,,,,,,,,,,,,,,,,,,,,,SP00194,Diocese of York Educational Trust,Total,22602
+2008,Calendar year,Sponsor,E92000001,England,,,,,,,,,,,,,,,,,,,,,SP00664,Diocese of Lancaster,Total,24126
+2007,Calendar year,National,E92000001,England,,,,,,,,,,,,,,,,,,,,,,,Total,150332
+2008,Calendar year,National,E92000001,England,,,,,,,,,,,,,,,,,,,,,,,Total,287206
+2009,Calendar year,National,E92000001,England,,,,,,,,,,,,,,,,,,,,,,,Total,559431
