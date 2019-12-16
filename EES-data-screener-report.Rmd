@@ -54,7 +54,7 @@ comma_check(dataset)
 
  **Checking for spaces in the data file variable names**
 ```{r data_spaces_check,echo=FALSE,comment=NA}
-data_spaces_check(dataset)
+data_spaces(dataset)
 ```
 
 ## Time validation
