@@ -34,7 +34,7 @@ meta_comp_col <- function(meta) {
 # For each col_name in the metadata check these each appear in the data file
 column_crosscheck <- function(data,meta) {
   m_variables <- c(meta$col_name)
-  message("This will show if any rows in the metadata do not have a matching variable in the data file:")
+  message("This will show rows in the metadata that do not have a matching variable in the data file:")
   for(i in m_variables){
     if((i %in% names(data))==FALSE)
       warning("
@@ -68,7 +68,7 @@ meta_crosscheck <- function(data,meta) {
     }
   }
   
-  message("This will show if there are variables in the data file that are not present in the metadata:")
+  message("This will show variables in the data file that are not present in the metadata:")
     for (i in unique(missing_and_meta_variables)) {
     try(cat(if((i %in% meta_variables)==FALSE) warning(i, " is not in the metadata or a recognised observational unit.
 ")))
