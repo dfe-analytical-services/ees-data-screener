@@ -1,4 +1,3 @@
 col_name,col_type,label,indicator_grouping,indicator_unit,filter_hint,filter_grouping_column
-admission_numbers,Indicator,Admission Numbers,,£,,
+admission_numbers,Indicator,Admission Numbers,,,,
 school_type,Filter,School Type,,,Filter by School Type,
-dummy_filter,Indicator,Dummy,,,,
