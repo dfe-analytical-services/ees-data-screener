@@ -9,6 +9,10 @@ data_geography_setup <- function(data){
   geography_level_completed(data)
 }
 
+data_geography_setup_results_function <- function(){
+  assign("data_geography_setup",c(level_validity_check_result,geography_levels_present_result,geography_level_completed_result),envir = .GlobalEnv)
+}
+
 # -------------------------------------
 # Do we have acceptable values for the geographic level
 
@@ -17,17 +21,20 @@ level_validity_check <- function(data) {
                          "Local authority district","Local enterprise partnership","Mayoral combined authority",
                          "Opportunity area","Ward","MAT","Sponsor","School","Provider","Institution")
   levels <- unique(data$geographic_level)
-  # Original function that gave a firm PASS rather than 'If there are no warnings'
-  #levels_test <- intersect(levels,acceptable_levels)
-  #try(cat(if(FALSE == identical(levels_test,levels)) 
-    #stop(writeLines(c("FAIL - There is at least one invalid geographic_level present.",
-       #"Here are the geographic levels in your file:","",levels,""))),
-  message("This will show if any of your geographic levels are invalid:")
     for(i in levels){
-      if((i %in% acceptable_levels)==FALSE)
-        warning("
-             FAIL - ", i, " is not a valid geographic level.")
+      if((i %in% acceptable_levels)==FALSE){
+        message("FAIL - ", i, " is not a valid geographic level.")
+        level_validity_check_preresult[i] <- FALSE
+      }else{
+        level_validity_check_preresult[i] <- TRUE
+      }
     }
+  if(FALSE %in% level_validity_check_preresult){
+    assign("level_validity_check_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - Your geographic_level values are valid.")
+    assign("level_validity_check_result",TRUE,envir = .GlobalEnv)
+  }
 }
 
 # -------------------------------------
@@ -205,8 +212,8 @@ school_level_completed <- function(data) {
 }
 provider_level_completed <- function(data) {
   provider <- filter(data, geographic_level =='Provider')
-  if(any(is.na(provider$provider_name))) {message('FAIL - The provider_name column must be completed for all provider data.')}
-  if(any(is.na(provider$provider_urn))) {message('FAIL - The provider_urn column must be completed for all provider data.')}
+  if(any(is.na(provider$provider_name))){message('FAIL - The provider_name column must be completed for all provider data.')}
+  if(any(is.na(provider$provider_urn))){message('FAIL - The provider_urn column must be completed for all provider data.')}
 }
 institution_level_completed <- function(data) {
   institution <- filter(data, geographic_level =='Institution')
