@@ -10,7 +10,7 @@ data_general_setup <- function(data){
 }
 
 data_general_results_function <- function(){
-  assign("data_general_results",c(data_comp_col_result,comma_check_result),envir = .GlobalEnv)
+  assign("data_general_results",c(data_comp_col_result,comma_check_result,data_spaces_result),envir = .GlobalEnv)
 }
 
 # -------------------------------------
