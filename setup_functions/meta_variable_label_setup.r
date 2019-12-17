@@ -90,28 +90,43 @@ comp_col_meta <- function(meta) {
 # -------------------------------------
 # col_type - is this one of 'Filter' or 'Indicator'
 
-col_type_check <- function(meta) {
+col_type <- function(meta) {
   f <- nrow(filter(meta,col_type == "Filter"))
   i <- nrow(filter(meta,col_type == "Indicator"))
   m <- nrow(meta)
   col_types <- unique(meta$col_type)
-  if((f + i == m)==FALSE){writeLines(c("FAIL - col_type must be either 'Filter' or 'Indicator', and cannot be blank.",
-                 "Here are the col type values in your file:","",col_types,""))}
-    else{message("PASS - col_type is always 'Filter' or 'Indicator'.")}
+  if((f + i == m)==FALSE){
+    assign("col_type_result",FALSE,envir = .GlobalEnv)
+    writeLines(c("FAIL - col_type must be either 'Filter' or 'Indicator', and cannot be blank.",
+                 "Here are the col type values in your file:","",col_types,""))
+    }else{
+    message("PASS - col_type is always 'Filter' or 'Indicator'.")
+    assign("col_type_result",TRUE,envir = .GlobalEnv)
+  }
 }
 
 # -------------------------------------
 # is label completed for every row
 
-label_check <- function(meta) {
-  if(any(is.na(meta$label))){message('FAIL - There is a label missing in', sum(is.na(meta$label)), 'row/s.')}
-    else{message('PASS - label is completed for all rows.')}
+label <- function(meta) {
+  if(any(is.na(meta$label))){
+    message('FAIL - There is a label missing in', sum(is.na(meta$label)), 'row/s.')
+    assign("label_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message('PASS - label is completed for all rows.')
+    assign("label_result",TRUE,envir = .GlobalEnv)
+    }
 }
 
 # -------------------------------------
 # checking for duplicate labels
 
-duplicate_label_check <- function(meta) {
-  if(any(meta$label %in% meta$label[duplicated(meta$label)])){message('FAIL - At least one of the variable names is duplicated.')}
-    else{message('PASS - All labels are unique.')}
+duplicate_label <- function(meta) {
+  if(any(meta$label %in% meta$label[duplicated(meta$label)])){
+    message('FAIL - At least one of the variable names is duplicated.')
+    assign("duplicate_label_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message('PASS - All labels are unique.')
+    assign("duplicate_label_result",TRUE,envir = .GlobalEnv)
+  }
 }
