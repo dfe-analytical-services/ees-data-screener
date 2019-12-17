@@ -11,7 +11,7 @@ cam_pandoc_install()
 # Ensure the data file and corresponding metadata file you want to screen are saved in the data_metadata folder.
 # Enter the name of the data file below, note that you do not need to include the extension '.csv'.
 # The metadata file will automatically be recognised if you have followed the naming convention - mydatafilename.meta.csv.
-your_data_file <- "all_geographies_cam_filter"
+your_data_file <- "all_geographies_cam_EES-770"
 
 # Run the report.
 rmarkdown::render("EES-data-screener-report.Rmd",
