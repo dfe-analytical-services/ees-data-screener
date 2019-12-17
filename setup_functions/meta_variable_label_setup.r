@@ -33,17 +33,28 @@ col_name_completed <- function(meta) {
 # -------------------------------------
 # checking for duplicates in col_name
 
-meta_duplicate_check <- function(meta) {
-  if(any(meta$col_name %in% meta$col_name[duplicated(meta$col_name)])){message('FAIL - At least one of the variable names is duplicated.')}
-    else{message('PASS - All col names are unique.')}
+meta_duplicate <- function(meta) {
+  if(any(meta$col_name %in% meta$col_name[duplicated(meta$col_name)])){
+    message('FAIL - At least one of the variable names is duplicated.')
+    assign("meta_duplicate_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message('PASS - All col names are unique.')
+    assign("meta_duplicate_result",TRUE,envir = .GlobalEnv)
+  }
 }
 
 # -------------------------------------
 # check that no value in col_name has any spaces
 
-col_name_spaces_check <- function(meta) {
-  if(any(grepl('\\s',meta$col_name))){message("FAIL - There are spaces in the col name values.")}
-    else{message('PASS - There are no spaces in the col name values.')}
+col_name_spaces <- function(meta) {
+  if(any(grepl('\\s',meta$col_name))){
+    message("FAIL - There are spaces in the col name values.")
+    assign("col_name_spaces_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message('PASS - There are no spaces in the col name values.')
+    assign("col_name_spaces_result",TRUE,envir = .GlobalEnv)
+  
+  }
 }
 
 # -------------------------------------
