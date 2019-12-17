@@ -5,20 +5,29 @@
 
 meta_variable_label_setup <- function(meta){
   col_name_completed(meta)
-  meta_duplicate_check(meta)
-  col_name_spaces_check(meta)
-  comp_col_check_meta(meta)
-  col_type_check(meta)
-  label_check(meta)
-  duplicate_label_check(meta)
+  meta_duplicate(meta)
+  col_name_spaces(meta)
+  comp_col_meta(meta)
+  col_type(meta)
+  label(meta)
+  duplicate_label(meta)
+}
+
+meta_variable_label_results_function <- function(){
+  assign("meta_variable_label_results",c(col_name_completed_result,meta_duplicate_result,col_name_spaces_result,comp_col_meta_result,col_type_result,label_result,duplicate_label_result),envir = .GlobalEnv)
 }
 
 # -------------------------------------
 # is col_name completed for every row
 
 col_name_completed <- function(meta) {
-  if(any(is.na(meta$col_name))){cat('FAIL - There is a col name missing in ', sum(is.na(meta$col_name)), 'row/s.')}
-    else{message('PASS - col_name is completed for all rows.')}
+  if(any(is.na(meta$col_name))){
+    cat('FAIL - There is a col name missing in ', sum(is.na(meta$col_name)), 'row/s.')
+    assign("col_name_completed_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message('PASS - col_name is completed for all rows.')
+    assign("col_name_completed_result",TRUE,envir = .GlobalEnv)
+    }
 }
 
 # -------------------------------------
