@@ -21,6 +21,7 @@ level_validity_check <- function(data) {
                          "Local authority district","Local enterprise partnership","Mayoral combined authority",
                          "Opportunity area","Ward","MAT","Sponsor","School","Provider","Institution")
   levels <- unique(data$geographic_level)
+  level_validity_check_preresult <- c()
     for(i in levels){
       if((i %in% acceptable_levels)==FALSE){
         message("FAIL - ", i, " is not a valid geographic level.")
