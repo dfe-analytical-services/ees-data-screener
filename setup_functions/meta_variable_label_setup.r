@@ -38,7 +38,7 @@ meta_duplicate <- function(meta) {
     message('FAIL - At least one of the variable names is duplicated.')
     assign("meta_duplicate_result",FALSE,envir = .GlobalEnv)
   }else{
-    message('PASS - All col names are unique.')
+    message('PASS - All col_name values are unique.')
     assign("meta_duplicate_result",TRUE,envir = .GlobalEnv)
   }
 }
