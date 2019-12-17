@@ -60,7 +60,7 @@ col_name_spaces <- function(meta) {
 # -------------------------------------
 # check if any observational units are in the metadata
 
-comp_col_check_meta <- function(meta) {
+comp_col_meta <- function(meta) {
   observational_units <- c("geographic_level","time_period","time_identifier","country_code","country_name",
                            "region_code","region_name","old_la_code","new_la_code","la_name","rsc_name",
                            "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
@@ -70,9 +70,20 @@ comp_col_check_meta <- function(meta) {
                            "school_laestab","school_name","school_urn","school_estab","school_postcode",
                            "provider_urn","provider_name","provider_ukprn","provider_upin",
                            "institution_id","institution_name")
-  message("This will show if there are any observational units erroneously in your metadata:")
-  for (i in observational_units) {
-    try(cat(if(i %in% meta$col_name) warning("FAIL - ", i, " should not be in the metadata. ")))
+  comp_col_meta_preresult <- c()
+  for (i in observational_units){
+    if(i %in% meta$col_name){
+      message("FAIL - ", i, " should not be in the metadata. ")
+      comp_col_meta_preresult[i] <- FALSE
+    }else{
+      comp_col_meta_preresult[i] <- TRUE
+    }
+  }
+  if(FALSE %in% comp_col_meta_preresult){
+    assign("comp_col_meta_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - All of the metadata columns are present.")
+    assign("comp_col_meta_result",TRUE,envir = .GlobalEnv)
   }
 }
 
