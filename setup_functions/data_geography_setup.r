@@ -43,105 +43,222 @@ level_validity_check <- function(data) {
 
 geography_levels_present <- function(data){
   message("This will show if there are any expected geography columns missing from the data file:")
- regional_required <- c("country_code","country_name","region_code","region_name")
- if("Regional" %in% data$geographic_level)
- {for(i in regional_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for regional level data.")
- }
- }
- la_required <- c("country_code","country_name","region_code","region_name","old_la_code","new_la_code","la_name")
- if("Local authority" %in% data$geographic_level)
- {for(i in la_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for local authority level data.")
- }
- }
- rsc_required <- c("country_code","country_name","rsc_region_lead_name")
- if("RSC region" %in% data$geographic_level)
- {for(i in rsc_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for RSC region level data.")
- }
- }
- pcon_required <- c("country_code","country_name","pcon_code","pcon_name")
- if("Parliamentary constituency" %in% data$geographic_level)
- {for(i in pcon_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for parliamentary constituency level data.")
- }
- }
- lad_required <- c("country_code","country_name","lad_code","lad_name")
- if("Local authority district" %in% data$geographic_level)
- {for(i in lad_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for local authority district level data.")
- }
- }
- lep_required <- c("country_code","country_name","local_enterprise_partnership_code","local_enterprise_partnership_name")
- if("Local enterprise partnership" %in% data$geographic_level)
- {for(i in lep_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for local enterprise partnership level data.")
- }
- }
- mca_required <- c("country_code","country_name","mayoral_combined_authority_code","mayoral_combined_authority_name")
- if("Mayoral combined authority" %in% data$geographic_level)
- {for(i in mca_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for mayoral combined authority level data.")
- }
- }
- oa_required <- c("country_code","country_name","opportunity_area_code","opportunity_area_name")
- if("Opportunity area" %in% data$geographic_level)
- {for(i in oa_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for opportunity level data.")
- }
- }
- ward_required <- c("country_code","country_name","ward_code","ward_name")
- if("Ward" %in% data$geographic_level)
- {for(i in ward_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for ward level data.")
- }
- }
- MAT_required <- c("country_code","country_name","trust_id","trust_name")
- if("MAT" %in% data$geographic_level)
- {for(i in MAT_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for MAT level data.")
- }
- }
- sponsor_required <- c("country_code","country_name","sponsor_id","sponsor_name")
- if("Sponsor" %in% data$geographic_level)
- {for(i in sponsor_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for sponsor level data.")
- }
- }
- school_required <- c("country_code","country_name","school_laestab","school_name")
- if("School" %in% data$geographic_level)
- {for(i in school_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for school level data.")
- }
- }
- provider_required <- c("country_code","country_name","provider_urn","provider_name")
- if("Provider" %in% data$geographic_level)
- {for(i in provider_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for provider level data.")
- }
- }
- institution_required <- c("country_code","country_name","institution_id","institution_id")
- if("Institution" %in% data$geographic_level)
- {for(i in institution_required){
-   if((i %in% names(data))==FALSE)
-     message("FAIL - ", i, " must be present for institution level data.")
- }
- }
+  
+  ## required levels
+  all_required <- c("country_code","country_name")
+  regional_required <- c("region_code","region_name")
+  la_required <- c("region_code","region_name","old_la_code","new_la_code","la_name")
+  rsc_required <- c("rsc_region_lead_name")
+  pcon_required <- c("pcon_code","pcon_name")
+  lad_required <- c("lad_code","lad_name")
+  lep_required <- c("local_enterprise_partnership_code","local_enterprise_partnership_name")
+  mca_required <- c("mayoral_combined_authority_code","mayoral_combined_authority_name")
+  oa_required <- c("opportunity_area_code","opportunity_area_name")
+  ward_required <- c("ward_code","ward_name")
+  MAT_required <- c("trust_id","trust_name")
+  sponsor_required <- c("sponsor_id","sponsor_name")
+  school_required <- c("school_laestab","school_name")
+  provider_required <- c("provider_urn","provider_name")
+  institution_required <- c("institution_id","institution_id")
+  
+  geography_levels_check_preresult <- c()
+
+  for (i in all_required) {
+    if ((i %in% names(data)) == FALSE) {
+      message("FAIL - ", i, " must be present for all levels of data.")
+      geography_levels_check_preresult[i] <- FALSE
+    } else{
+      geography_levels_check_preresult[i] <- TRUE
+    }
+  }
+  
+  if ("Regional" %in% data$geographic_level)
+  {
+    for (i in regional_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for regional level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Local authority" %in% data$geographic_level)
+  {
+    for (i in la_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for local authority level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("RSC region" %in% data$geographic_level)
+  {
+    for (i in rsc_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for RSC region level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Parliamentary constituency" %in% data$geographic_level)
+  {
+    for (i in pcon_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ",
+                i,
+                " must be present for parliamentary constituency level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Local authority district" %in% data$geographic_level)
+  {
+    for (i in lad_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ",
+                i,
+                " must be present for local authority district level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Local enterprise partnership" %in% data$geographic_level)
+  {
+    for (i in lep_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ",
+                i,
+                " must be present for local enterprise partnership level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Mayoral combined authority" %in% data$geographic_level)
+  {
+    for (i in mca_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ",
+                i,
+                " must be present for mayoral combined authority level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Opportunity area" %in% data$geographic_level)
+  {
+    for (i in oa_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for opportunity level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Ward" %in% data$geographic_level)
+  {
+    for (i in ward_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for ward level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("MAT" %in% data$geographic_level)
+  {
+    for (i in MAT_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for MAT level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Sponsor" %in% data$geographic_level)
+  {
+    for (i in sponsor_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for sponsor level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("School" %in% data$geographic_level)
+  {
+    for (i in school_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for school level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Provider" %in% data$geographic_level)
+  {
+    for (i in provider_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for provider level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if ("Institution" %in% data$geographic_level)
+  {
+    for (i in institution_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for institution level data.")
+        geography_levels_check_preresult[i] <- FALSE
+      } else{
+        geography_levels_check_preresult[i] <- TRUE
+      }
+    }
+  }
+  
+  if (FALSE %in% geography_levels_check_preresult) {
+    assign("geography_levels_check_preresult", FALSE, envir = .GlobalEnv)
+  } else{
+    message("PASS - Your geographic columns are as expected")
+    assign("geography_levels_check_preresult", TRUE, envir = .GlobalEnv)
+  }
+  
+  
 }
+
+
 
 # -------------------------------------
 # Are the geography columns completed for the right levels
