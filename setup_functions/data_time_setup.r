@@ -75,5 +75,35 @@ time_identifier <- function(data) {
 
 #MAKE THIS AN ACTUAL TEST!!!!!
 time_identifier_mix <- function(data) {
- cat(unique(dataset$time_identifier),sep = ", ") 
+  
+  base_identifier <- data$time_identifier[1]
+  
+  if((base_identifier %in% c("Spring term","Autumn term","Autumn and spring term"))==TRUE){
+    lev = c("Spring term","Autumn term","Autumn and spring term")}
+  if((base_identifier %in% c("January","February","March","April","May","June","July","August","September","October","November","Decemeber"))==TRUE){
+    lev =c("January","February","March","April","May","June","July","August","September","October","November","Decemeber")}
+  if((base_identifier %in% c("Calendar year"))==TRUE){
+    lev = c("Calendar year")}
+  if((base_identifier %in% c("Calendar year Q1","Calendar year Q2","Calendar year Q3","Calendar year Q4"))==TRUE){
+    lev = c("Calendar year Q1","Calendar year Q2","Calendar year Q3","Calendar year Q4")}
+  if((base_identifier %in% c("Financial year"))==TRUE){
+    lev = c("Financial year")}
+  if((base_identifier %in% c("Financial year Q1","Financial year Q2","Financial year Q3","Financial year Q4"))==TRUE){
+    lev = c("Financial year Q1","Financial year Q2","Financial year Q3","Financial year Q4")}
+  if((base_identifier %in% c("Academic year"))==TRUE){
+    lev = c("Academic year")}
+  if((base_identifier %in% c("Academic year Q1","Academic year Q2","Academic year Q3","Academic year Q4"))==TRUE){
+    lev = c("Academic year Q1","Academic year Q2","Academic year Q3","Academic year Q4")}
+  if((base_identifier %in% c("Tax year"))==TRUE){
+    lev = c("Tax year")}
+  if((base_identifier %in% c("Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4"))==TRUE){
+    lev = c("Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4")}
+  
+  if(any(is.na(factor(unique(data$time_identifier), lev)))==TRUE){
+    message("FAIL - data is mixing time identifiers. Allowable values given you've included ", base_identifier, " are: ", lev)
+    assign("time_identifier_mix_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - Your time_identifier values are valid.")
+    assign("time_identifier_mix_result",TRUE,envir = .GlobalEnv)}
+  
 }
