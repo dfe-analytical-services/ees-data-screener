@@ -46,16 +46,12 @@ time_period <- function(data) {
 # checking the time identifier values are valid
 
 time_identifier <- function(data) {
-  acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring term","Up until 31st March",
+  acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring term",
                                    "January","February","March","April","May","June","July","August","September","October","November","Decemeber",
                                    "Calendar year","Calendar year Q1","Calendar year Q2","Calendar year Q3","Calendar year Q4",
-                                   "Calendar year Q1-2","Calendar year Q1-3","Calendar year Q1-4","Calendar year Q2-3","Calendar year Q2-4","Calendar year Q3-4",
                                    "Financial year","Financial year Q1","Financial year Q2","Financial year Q3","Financial year Q4",
-                                   "Financial year Q1-2","Financial year Q1-3","Financial year Q1-4","Financial year Q2-3","Financial year Q2-4","Financial year Q3-4",
                                    "Academic year","Academic year Q1","Academic year Q2","Academic year Q3","Academic year Q4",
-                                   "Academic year Q1-2","Academic year Q1-3","Academic year Q1-4","Academic year Q2-3","Academic year Q2-4","Academic year Q3-4",
-                                   "Tax year","Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4",
-                                   "Tax year Q1-2","Tax year Q1-3","Tax year Q1-4","Tax year Q2-3","Tax year Q2-4","Tax year Q3-4")
+                                   "Tax year","Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4")
   time_identifiers <- unique(data$time_identifier)
   time_identifier_preresult <- c()
   for(i in time_identifiers){
