@@ -45,9 +45,11 @@ indicator_group <- function(meta) {
 
 indicator_unit_validation <- function(meta) {
   if(acceptable == all){
-    paste("PASS - The indicator units are valid.")
+    message("PASS - The indicator units are valid.")
+    assign("indicator_unit_validation",TRUE,envir = .GlobalEnv)
   } else {
-    paste(c("FAIL - You have the following invalid indicator units in your metadata:",invalid_indicator_units))
+    message("FAIL - You have the following invalid indicator units in your metadata:",invalid_indicator_units)
+    assign("indicator_unit_validation",FALSE,envir = .GlobalEnv)
   }
 }
 
