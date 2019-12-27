@@ -20,29 +20,43 @@ data_time_results_function <- function(){
 # This checks for a 4 or 6 digit number in the time_period column, and then if 6 digit if it shows consecutive years
 
 time_period <- function(data) {
+  
   time_length <- data
   time_length$digits <- str_count(time_length$time_period)
   four <- nrow(filter(time_length,digits == 4))
   six <- nrow(filter(time_length,digits == 6))
   all <- nrow(time_length)
   time_periods <- unique(data$time_period)
-  try(cat(if((four + six == all)==FALSE) 
-    stop(writeLines(c("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.",
-                      "Here are the time period values in your file:","",time_periods,""))),
-    message("PASS - time period is always a four or six digit number.")))
-  consecutive_mini_function <- function(data) {
-          six_digit_years <- filter(time_length,digits==6)
-          currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
-          nextyearend <- as.numeric(substr(six_digit_years$time_period,5,6))
-          if(currentyearend==99&&nextyearend==0){message('PASS - Your 6 digit time period/s show consecutive years.')}else{
-          check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
-          try(cat(if(check_yearends==TRUE) stop("FAIL - when the time period is 6 digits, the years must be consecutive."),
-                  message('PASS - Your 6 digit time period/s show consecutive years.')))}
-                }
-  if(six==0){message("IGNORE - There are no 6 digit time periods in the data file.")
+  six_digit_years <- filter(time_length,digits==6)
+  currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
+  nextyearend <- as.numeric(substr(six_digit_years$time_period,5,6))
+  check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
+  
+  time_period_preresult <- c()
+  
+  if((four + six == all)==FALSE){
+    message("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.")
+    message("Here are the time period values in your file: ",time_periods)
+    assign("time_period_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - time period is always a four or six digit number.")
+    if(six==0){
+      assign("time_period_result",NA,envir = .GlobalEnv)
         }else{
-          consecutive_mini_function(data)
+          if(currentyearend==99&&nextyearend==0){
+            message('PASS - Your 6 digit time period/s show consecutive years.')
+            assign("time_period_result",TRUE,envir = .GlobalEnv)
+          }else{
+            if(check_yearends==TRUE){
+              message("FAIL - When the time period is 6 digits, the years must be consecutive such as 201920.")
+              assign("time_period_result",FALSE,envir = .GlobalEnv)
+            }else{
+              message('PASS - Your 6 digit time period/s show consecutive years.')
+              assign("time_period_result",TRUE,envir = .GlobalEnv)
+            }
+          }
         }
+  }
 }
 
 # -------------------------------------
