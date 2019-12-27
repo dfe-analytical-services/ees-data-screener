@@ -20,8 +20,8 @@ meta_variable_label_results_function <- function(){
                                          comp_col_meta_result,
                                          col_type_result,
                                          label_result,
-                                         duplicate_label_result),
-         envir = .GlobalEnv)
+                                         duplicate_label_result)
+         ,envir = .GlobalEnv)
 }
 
 # -------------------------------------
