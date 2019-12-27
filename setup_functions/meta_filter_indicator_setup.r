@@ -14,6 +14,18 @@ meta_filter_indicator_setup <- function(data,meta){
   filter_group_levels(data,meta)
 }
 
+meta_filter_indicator_results_function <- function(){
+  assign("meta_filter_indicator_results",c(indicator_group_result,
+                                           indicator_unit_validation_result,
+                                           indicator_unit_result,
+                                           filter_hint_result,
+                                           filter_group_result,
+                                           row_result,
+                                           filter_group_match_result,
+                                           filter_group_levels_result),
+         envir = .GlobalEnv)
+}
+
 # -------------------------------------
 # indicator grouping - should be blank for all filters
 

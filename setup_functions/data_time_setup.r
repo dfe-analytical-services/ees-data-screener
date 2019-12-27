@@ -10,7 +10,10 @@ data_time_setup <- function(data){
 }
 
 data_time_results_function <- function(){
-  assign("data_time_results",c(time_period_result,time_identifier_result,time_identifier_mix_result),envir = .GlobalEnv)
+  assign("data_time_results",c(time_period_result,
+                               time_identifier_result,
+                               time_identifier_mix_result)
+         ,envir = .GlobalEnv)
 }
 
 # -------------------------------------

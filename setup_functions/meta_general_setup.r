@@ -7,7 +7,15 @@ meta_general_setup <- function(data,meta){
         meta_comp_col(meta)
         column_crosscheck(data,meta)
         meta_crosscheck(data,meta)
-        meta_comma_check(meta)
+        meta_comma(meta)
+}
+
+meta_general_results_function <- function(){
+  assign("meta_general_results",c(meta_comp_col_result,
+                                  column_crosscheck_result,
+                                  meta_crosscheck_result,
+                                  meta_comma_result)
+         ,envir = .GlobalEnv)
 }
 
 # -------------------------------------

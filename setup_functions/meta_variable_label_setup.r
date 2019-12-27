@@ -14,7 +14,14 @@ meta_variable_label_setup <- function(meta){
 }
 
 meta_variable_label_results_function <- function(){
-  assign("meta_variable_label_results",c(col_name_completed_result,meta_duplicate_result,col_name_spaces_result,comp_col_meta_result,col_type_result,label_result,duplicate_label_result),envir = .GlobalEnv)
+  assign("meta_variable_label_results",c(col_name_completed_result,
+                                         meta_duplicate_result,
+                                         col_name_spaces_result,
+                                         comp_col_meta_result,
+                                         col_type_result,
+                                         label_result,
+                                         duplicate_label_result),
+         envir = .GlobalEnv)
 }
 
 # -------------------------------------

@@ -10,7 +10,10 @@ data_general_setup <- function(data){
 }
 
 data_general_results_function <- function(){
-  assign("data_general_results",c(data_comp_col_result,comma_check_result,data_spaces_result),envir = .GlobalEnv)
+  assign("data_general_results",c(data_comp_col_result,
+                                  comma_check_result,
+                                  data_spaces_result)
+         ,envir = .GlobalEnv)
 }
 
 # -------------------------------------
@@ -65,7 +68,7 @@ data_spaces <- function(data) {
   message("This will show if there are any spaces in your variable names:")
   for (i in variable_names) {
     if(any(grepl('\\s',i))){
-      message("FAIL - There are spaces in ", i,".")
+      message("FAIL - There are spaces in ",i,".")
       data_spaces_preresult[i] <- FALSE
     }else{
       data_spaces_preresult[i] <- TRUE

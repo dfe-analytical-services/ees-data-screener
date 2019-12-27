@@ -9,7 +9,10 @@ data_filters_setup <-function(data,meta){
 }
 
 data_filters_results_function <- function(){
-  assign("data_filters_results",c(filter_levels_check_result, total_check_result, observational_total_check_result),envir = .GlobalEnv)
+  assign("data_filters_results",c(filter_levels_check_result,
+                                  total_check_result,
+                                  observational_total_check_result)
+         ,envir = .GlobalEnv)
 }
 
 # -------------------------------------

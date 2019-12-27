@@ -9,8 +9,11 @@ data_geography_setup <- function(data){
   geography_level_completed(data)
 }
 
-data_geography_setup_results_function <- function(){
-  assign("data_geography_setup",c(level_validity_check_result,geography_levels_present_result,geography_level_completed_result),envir = .GlobalEnv)
+data_geography_results_function <- function(){
+  assign("data_geography_setup",c(level_validity_check_result,
+                                  geography_levels_present_result,
+                                  geography_level_completed_result)
+         ,envir = .GlobalEnv)
 }
 
 # -------------------------------------
