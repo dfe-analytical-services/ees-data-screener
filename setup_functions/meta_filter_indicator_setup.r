@@ -117,13 +117,24 @@ filter_group_match <- function(data,meta) {
   filters <- filter(meta,col_type == "Filter")
   filtered_g <- filters %>% drop_na(filter_grouping_column)
   filter_groups <- c(filtered_g$filter_grouping_column)
-    if(length(filter_groups)==0){message("IGNORE - There are no filter groups present to test.")}
-  else{
-    message("This will show if any of your filter groups do not have a matching variable in the data file:")
+  filter_group_match_preresult <- c()
+    if(length(filter_groups)==0){
+      message("IGNORE - There are no filter groups present to test.")
+      assign("filter_group_match_result",NA,envir = .GlobalEnv)
+    }else{
     for(i in filter_groups){
-      if((i %in% names(data))==FALSE)
-        warning("
-    FAIL - ", i," is not a variable in the data file.")
+      if((i %in% names(data))==FALSE){
+        message("FAIL - ",i," is not a variable in the data file.")
+        filter_group_match_preresult[i] <- FALSE
+      }else{
+        filter_group_match_preresult[i] <- TRUE
+      }
+    }
+    if(FALSE %in% filter_group_match_preresult){
+      assign("filter_group_match_result",FALSE,envir = .GlobalEnv)
+    }else{
+      message("PASS - All specified filter_group values are present in the data file.")
+      assign("filter_group_match_result",TRUE,envir = .GlobalEnv)
     }
   }
 }
