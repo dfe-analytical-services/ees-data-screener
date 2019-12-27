@@ -65,6 +65,7 @@ column_crosscheck <- function(data,meta) {
   }else{
     message("PASS - All col_name values appear in the data file.")
     assign("column_crosscheck_result",TRUE,envir = .GlobalEnv)
+  }
 }
 
 # -------------------------------------
@@ -93,12 +94,21 @@ meta_crosscheck <- function(data,meta) {
     }
   }
   
-  message("This will show variables in the data file that are not present in the metadata:")
-    for (i in unique(missing_and_meta_variables)) {
-    try(cat(if((i %in% meta_variables)==FALSE) warning(i, " is not in the metadata or a recognised observational unit.
-")))
- 
- }
+  meta_crosscheck_preresult <- c()
+    for(i in unique(missing_and_meta_variables)){
+      if((i %in% meta_variables)==FALSE){
+        message(i, " is not in the metadata or a recognised observational unit.")
+        meta_crosscheck_preresult[i] <- FALSE
+      }else{
+        meta_crosscheck_preresult[i] <- TRUE
+      }
+    }
+  if(FALSE %in% meta_crosscheck_preresult){
+    assign("meta_crosscheck_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - All variables in the data file are recognised observational units or present in the metadata.")
+    assign("meta_crosscheck_result",TRUE,envir = .GlobalEnv)
+  }
 }
 
 # -------------------------------------
