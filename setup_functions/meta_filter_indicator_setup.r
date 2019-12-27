@@ -56,10 +56,15 @@ indicator_unit_validation <- function(meta) {
 # -------------------------------------
 # indicator unit should be blank for all filters
 
-indicator_unit_check <- function(meta) {
+indicator_unit <- function(meta) {
   filters <- filter(meta,col_type =='Filter')
-  if(any(!is.na(filters$indicator_unit))){message('FAIL - Filters cannot have an indicator unit.')}  
-    else{message('PASS - No filters have an indicator unit.')}
+  if(any(!is.na(filters$indicator_unit))){
+    message('FAIL - Filters cannot have an indicator unit.')
+    assign("indicator_unit_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message('PASS - No filters have an indicator unit.')
+    assign("indicator_unit_result",TRUE,envir = .GlobalEnv)
+    }
 }
 
 # -------------------------------------
