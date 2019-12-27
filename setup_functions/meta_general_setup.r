@@ -114,9 +114,20 @@ meta_crosscheck <- function(data,meta) {
 # -------------------------------------
 # flag for commas across each column
 
-meta_comma_check <- function(meta) {
-  message('This will show if there are commas in your metadata file:')
+meta_comma <- function(meta) {
+  meta_comma_preresult <- c()
   for (i in names(meta)) {
-    if(any(grepl(",",meta[[i]]))) warning("FAIL - There are commas in ", i)
+    if(any(grepl(",",meta[[i]]))){
+      message("FAIL - There are commas in ", i)
+      meta_comma_preresult[i] <- FALSE
+    }else{
+      meta_comma_preresult[i] <- TRUE
+    }
+  }
+  if(FALSE %in% meta_comma_preresult){
+    assign("meta_comma_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - There are no commas in the metadata file.")
+    assign("meta_comma_result",TRUE,envir = .GlobalEnv)
   }
 }
