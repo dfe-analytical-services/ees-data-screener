@@ -4,12 +4,12 @@
 # Checks in this file
 
 meta_filter_indicator_setup <- function(data,meta){
-  indicator_group_check(meta)
+  indicator_group(meta)
   indicator_unit_validation(meta)
-  indicator_unit_check(meta)
-  filter_hint_check(meta)
-  filter_group_check(meta)
-  row_check(data,meta)
+  indicator_unit(meta)
+  filter_hint(meta)
+  filter_group(meta)
+  row(data,meta)
   filter_group_match(data,meta)
   filter_group_levels(data,meta)
 }
@@ -29,10 +29,15 @@ meta_filter_indicator_results_function <- function(){
 # -------------------------------------
 # indicator grouping - should be blank for all filters
 
-indicator_group_check <- function(meta) {
+indicator_group <- function(meta) {
   filters <- filter(meta,col_type == "Filter")
-  if(any(!is.na(filters$indicator_grouping))){message('FAIL - Filters cannot have an indicator grouping.')}
-    else{message('PASS - No filters have an indicator grouping.')}
+  if(any(!is.na(filters$indicator_grouping))){
+    message('FAIL - Filters cannot have an indicator grouping.')
+    assign("indicator_group_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message('PASS - No filters have an indicator grouping.')
+    assign("indicator_group_result",TRUE,envir = .GlobalEnv)
+  }
 }
 
 # -------------------------------------
