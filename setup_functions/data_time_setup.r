@@ -76,7 +76,6 @@ time_identifier <- function(data) {
 # -------------------------------------
 # print the unique time_identifiers for conceptual checking
 
-#MAKE THIS AN ACTUAL TEST!!!!!
 time_identifier_mix <- function(data) {
   
   base_identifier <- data$time_identifier[1]

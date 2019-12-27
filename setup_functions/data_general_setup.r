@@ -5,13 +5,13 @@
 
 data_general_setup <- function(data){
   data_comp_col(data)
-  comma_check(data)
-  data_spaces_check(data)
+  comma(data)
+  data_spaces(data)
 }
 
 data_general_results_function <- function(){
   assign("data_general_results",c(data_comp_col_result,
-                                  comma_check_result,
+                                  comma_result,
                                   data_spaces_result)
          ,envir = .GlobalEnv)
 }
@@ -41,21 +41,21 @@ data_comp_col <- function(data) {
 # -------------------------------------
 # flag for commas across each column
 
-comma_check <- function(data) {
-  comma_check_preresult <- c()
+comma <- function(data) {
+  comma_preresult <- c()
   for (i in names(data)) {
     if(any(grepl(",",data[[i]]))){
       message("FAIL - Comma/s present in ",i,".")
-      comma_check_preresult[i] <- FALSE
+      comma_preresult[i] <- FALSE
     }else{
-      comma_check_preresult[i] <- TRUE
+      comma_preresult[i] <- TRUE
     }
   }
-  if(FALSE %in% comma_check_preresult){
-    assign("comma_check_result",FALSE,envir = .GlobalEnv)
+  if(FALSE %in% comma_preresult){
+    assign("comma_result",FALSE,envir = .GlobalEnv)
   }else{
     message("PASS - There are no 'Total' values in the observational units.")
-    assign("comma_check_result",TRUE,envir = .GlobalEnv)
+    assign("comma_result",TRUE,envir = .GlobalEnv)
   }
 }
 
@@ -65,7 +65,6 @@ comma_check <- function(data) {
 data_spaces <- function(data) {
   variable_names <- names(dataset)
   data_spaces_preresult <- c()
-  message("This will show if there are any spaces in your variable names:")
   for (i in variable_names) {
     if(any(grepl('\\s',i))){
       message("FAIL - There are spaces in ",i,".")
