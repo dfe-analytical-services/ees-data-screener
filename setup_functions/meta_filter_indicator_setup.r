@@ -84,10 +84,15 @@ filter_hint <- function(meta) {
 # -------------------------------------
 # filter_grouping column is blank for all indicators
 
-filter_group_check <- function(meta) {
+filter_group <- function(meta) {
   indicators <- filter(meta,col_type =='Indicator')
-  if(any(!is.na(indicators$filter_grouping_column))){message('FAIL - Indicators cannot have a filter group assigned to them.')} 
-    else{message('PASS - No indicators have a filter group.')}
+  if(any(!is.na(indicators$filter_grouping_column))){
+    message('FAIL - Indicators cannot have a filter group assigned to them.')
+    assign("filter_group_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message('PASS - No indicators have a filter group.')
+    assign("filter_group_result",FALSE,envir = .GlobalEnv)
+  }
 }
 
 # -------------------------------------
