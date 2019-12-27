@@ -20,5 +20,5 @@ screening_tests <- function(data,meta) {
   data_time_setup(data)
   meta_filter_indicator_setup(data,meta)
   meta_general_setup(data,meta)
-  meta_variable_label_setup
+  meta_variable_label_setup(meta)
 }

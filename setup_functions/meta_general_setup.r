@@ -14,21 +14,28 @@ meta_general_setup <- function(data,meta){
 # Check all compulsory columns exist
 
 meta_comp_col <- function(meta) {
-  try(cat(if(!"col_name" %in% names(meta)) stop("FAIL - The col_name variable is missing."), 
-          message('PASS - col_name is present in the metadata.')),silent = FALSE)
-  try(cat(if(!"col_type" %in% names(meta)) stop("FAIL - The col_type variable is missing."), 
-          message('PASS - col_type is present in the metadata.')),silent = FALSE)
-  try(cat(if(!"label" %in% names(meta)) stop("FAIL - The label variable is missing."), 
-          message('PASS - label is present in the metadata.')),silent = FALSE)
-  try(cat(if(!"indicator_grouping" %in% names(meta)) stop("FAIL - The indicator_grouping variable is missing."), 
-          message('PASS - indicator_grouping is present in the metadata.')),silent = FALSE)
-  try(cat(if(!"indicator_unit" %in% names(meta)) stop("FAIL - The indicator_unit variable is missing."), 
-          message('PASS - indicator_unit is present in the metadata.')),silent = FALSE)
-  try(cat(if(!"filter_hint" %in% names(meta)) stop("FAIL - The filter_hint variable is missing."), 
-          message('PASS - filter_hint is present in the metadata')),silent = FALSE)
-  try(cat(if(!"filter_grouping_column" %in% names(meta)) stop("FAIL - The filter_grouping_column variable is missing."), 
-          message('PASS - filter_grouping_column is present in the metadata.')),silent = FALSE)
+  
+  meta_cols <- c("col_name","col_type","label","indicator_grouping","indicator_unit","filter_hint","filter_grouping_column")
+  meta_comp_col_preresult
+  
+  for(i in meta_cols){
+    if(!i %in% names(meta)){
+      message("FAIL - The ",i," variable is missing.")
+      meta_comp_col_preresult[i] <- FALSE
+    }else{
+      meta_comp_col_preresult[i] <- TRUE
+    }
+  }
+  if(any(in))
+  if(FALSE %in% meta_comp_col_preresult){
+    assign("meta_comp_col_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - The metadata columns are present.")
+    assign("meta_comp_col_result",TRUE,envir = .GlobalEnv)
+  }
 }
+  
+  
 
 # -------------------------------------
 # For each col_name in the metadata check these each appear in the data file
