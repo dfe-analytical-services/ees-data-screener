@@ -146,20 +146,32 @@ filter_group_levels <- function(data,meta){
   filters <- filter(meta,col_type == "Filter")
   filtered_g <- filters %>% drop_na(filter_grouping_column)
   filter_groups <- c(filtered_g$filter_grouping_column)
-  if(length(filter_groups)==0){message("IGNORE - There are no filter groups present to test.")}
-  else{
+  filter_group_levels_preresult <- c()
+  if(length(filter_groups)==0){
+    message("IGNORE - There are no filter groups present to test.")
+    assign("filter_group_levels_result",NA,envir = .GlobalEnv)
+    }else{
     filter_groups <- drop_na(metadata,filter_grouping_column)
     fgs_focus <- select(filter_groups,c(col_name,filter_grouping_column))
     fgs_list <- c(unlist(fgs_focus,use.names=FALSE))
-    message("This will flag if any filter groups have more levels than their corresponding filters:")
+    
     for(i in seq(1,by=1,len=(length(fgs_list)/2))){
       x <- i+(length(fgs_list)/2)
       y <- fgs_list[[i]]
       z <- fgs_list[[x]]
-      if((length(unique(dataset[[y]])))<(length(unique(dataset[[z]]))))
-        warning("
-    WARNING - ",fgs_list[[i]]," has less levels than its filter group - ",fgs_list[[x]],".","
-  You should check that you've entered the filter and filter group in the right columns in the metadata.")
+      if((length(unique(dataset[[y]])))<(length(unique(dataset[[z]])))){
+        message("FAIL - ",fgs_list[[i]]," has less levels than its filter group - ",fgs_list[[x]],".")
+        message("You should check that you've entered the filter and filter group in the right columns in the metadata.")
+        filter_group_levels_preresult[i] <- FALSE
+      }else{
+        filter_group_levels_preresult[i] <- TRUE
+      }
+    }
+    if(FALSE %in% filter_group_levels_preresult){
+      assign("filter_group_levels_result",FALSE,envir = .GlobalEnv)
+    }else{
+      message("PASS - All filter groups have fewer levels than their corresponding filter.")
+      assign("filter_group_levels_result",TRUE,envir = .GlobalEnv)
     }
   }
 }
