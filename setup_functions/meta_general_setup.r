@@ -34,7 +34,9 @@ meta_comp_col <- function(meta) {
       meta_comp_col_preresult[i] <- TRUE
     }
   }
+  #STILL NEEDS WORK
   if(any(in))
+    #THE LINE ABOVE THIS ONE!
   if(FALSE %in% meta_comp_col_preresult){
     assign("meta_comp_col_result",FALSE,envir = .GlobalEnv)
   }else{
@@ -49,12 +51,20 @@ meta_comp_col <- function(meta) {
 # For each col_name in the metadata check these each appear in the data file
 column_crosscheck <- function(data,meta) {
   m_variables <- c(meta$col_name)
-  message("This will show rows in the metadata that do not have a matching variable in the data file:")
+  column_crosscheck_preresult <- c()
   for(i in m_variables){
-    if((i %in% names(data))==FALSE)
-      warning("
-              FAIL - ", i," is not a variable in the data file.")
+    if((i %in% names(data))==FALSE){
+      message("FAIL - ", i," is not a variable in the data file.")
+      column_crosscheck_preresult[i] <- FALSE
+    }else{
+      column_crosscheck_preresult[i] <- TRUE
+    }
   }
+  if(FALSE %in% column_crosscheck_preresult){
+    assign("column_crosscheck_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - All col_name values appear in the data file.")
+    assign("column_crosscheck_result",TRUE,envir = .GlobalEnv)
 }
 
 # -------------------------------------
