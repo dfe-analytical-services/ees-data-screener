@@ -70,10 +70,15 @@ indicator_unit <- function(meta) {
 # -------------------------------------
 # filter_hint should be blank for indicators
 
-filter_hint_check <- function(meta) {
+filter_hint <- function(meta) {
   indicators <- filter(meta,col_type =='Indicator')
-  if(any(!is.na(indicators$filter_hint))){message('FAIL - Indicators cannot have an filter hint.')}
-    else{message('PASS - No indicators have a filter hint.')}
+  if(any(!is.na(indicators$filter_hint))){
+    message('FAIL - Indicators cannot have an filter hint.')
+    assign("filter_hint_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message('PASS - No indicators have a filter hint.')
+    assign("filter_hint_result",TRUE,envir = .GlobalEnv)
+  }
 }
 
 # -------------------------------------
