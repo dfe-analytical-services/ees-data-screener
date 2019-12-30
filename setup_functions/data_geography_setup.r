@@ -10,7 +10,7 @@ data_geography_setup <- function(data){
 }
 
 data_geography_results_function <- function(){
-  assign("data_geography_setup",c(level_validity_check_result,
+  assign("data_geography_results",c(level_validity_result,
                                   geography_level_present_result,
                                   geography_level_completed_result)
          ,envir = .GlobalEnv)
@@ -24,20 +24,20 @@ level_validity <- function(data) {
                          "Local authority district","Local enterprise partnership","Mayoral combined authority",
                          "Opportunity area","Ward","MAT","Sponsor","School","Provider","Institution")
   levels <- unique(data$geographic_level)
-  level_validity_check_preresult <- c()
+  level_validity_preresult <- c()
     for(i in levels){
       if((i %in% acceptable_levels)==FALSE){
         message("FAIL - ", i, " is not a valid geographic level.")
-        level_validity_check_preresult[i] <- FALSE
+        level_validity_preresult[i] <- FALSE
       }else{
-        level_validity_check_preresult[i] <- TRUE
+        level_validity_preresult[i] <- TRUE
       }
     }
-  if(FALSE %in% level_validity_check_preresult){
-    assign("level_validity_check_result",FALSE,envir = .GlobalEnv)
+  if(FALSE %in% level_validity_preresult){
+    assign("level_validity_result",FALSE,envir = .GlobalEnv)
   }else{
     message("PASS - Your geographic_level values are valid.")
-    assign("level_validity_check_result",TRUE,envir = .GlobalEnv)
+    assign("level_validity_result",TRUE,envir = .GlobalEnv)
   }
 }
 
@@ -62,14 +62,14 @@ geography_level_present <- function(data){
   provider_required <- c("provider_urn","provider_name")
   institution_required <- c("institution_id","institution_id")
   
-  geography_level_check_preresult <- c()
+  geography_level_present_preresult <- c()
 
   for (i in all_required) {
     if ((i %in% names(data)) == FALSE) {
       message("FAIL - ", i, " must be present for all levels of data.")
-      geography_level_check_preresult[i] <- FALSE
+      geography_level_present_preresult[i] <- FALSE
     } else{
-      geography_level_check_preresult[i] <- TRUE
+      geography_level_present_preresult[i] <- TRUE
     }
   }
   
@@ -78,9 +78,9 @@ geography_level_present <- function(data){
     for (i in regional_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for regional level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -90,9 +90,9 @@ geography_level_present <- function(data){
     for (i in la_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for local authority level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -102,9 +102,9 @@ geography_level_present <- function(data){
     for (i in rsc_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for RSC region level data.")
-        geography_levels_check_preresult[i] <- FALSE
+        geography_levels_preresult[i] <- FALSE
       } else{
-        geography_levels_check_preresult[i] <- TRUE
+        geography_levels_preresult[i] <- TRUE
       }
     }
   }
@@ -114,9 +114,9 @@ geography_level_present <- function(data){
     for (i in pcon_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ",i," must be present for parliamentary constituency level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -126,9 +126,9 @@ geography_level_present <- function(data){
     for (i in lad_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ",i," must be present for local authority district level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -138,9 +138,9 @@ geography_level_present <- function(data){
     for (i in lep_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ",i," must be present for local enterprise partnership level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -150,9 +150,9 @@ geography_level_present <- function(data){
     for (i in mca_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ",i," must be present for mayoral combined authority level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -162,9 +162,9 @@ geography_level_present <- function(data){
     for (i in oa_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for opportunity level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -174,9 +174,9 @@ geography_level_present <- function(data){
     for (i in ward_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for ward level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -186,9 +186,9 @@ geography_level_present <- function(data){
     for (i in MAT_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for MAT level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -198,9 +198,9 @@ geography_level_present <- function(data){
     for (i in sponsor_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for sponsor level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -210,9 +210,9 @@ geography_level_present <- function(data){
     for (i in school_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for school level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -222,9 +222,9 @@ geography_level_present <- function(data){
     for (i in provider_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for provider level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -234,18 +234,18 @@ geography_level_present <- function(data){
     for (i in institution_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for institution level data.")
-        geography_level_check_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else{
-        geography_level_check_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
   
-  if (FALSE %in% geography_level_check_preresult) {
-    assign("geography_level_check_result", FALSE, envir = .GlobalEnv)
+  if (FALSE %in% geography_level_present_preresult) {
+    assign("geography_level_present_result", FALSE, envir = .GlobalEnv)
   } else{
     message("PASS - Your geographic columns are valid.")
-    assign("geography_level_check_result", TRUE, envir = .GlobalEnv)
+    assign("geography_level_present_result", TRUE, envir = .GlobalEnv)
   }
   
   

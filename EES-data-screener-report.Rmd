@@ -16,8 +16,8 @@ meta_data <- paste("data_metadata/",your_data_file,'.meta.csv',sep = "")
 ## Underlying data testing {caption="`r Sys.time()`"} 
 File tested: `r your_data_file` 
 
-```{r results_total, ref.label="results_calculator"}
-paste(total_percent,"% of standards met")
+```{r results_total, echo=FALSE, comment=NA, ref.label="results_calculator"}
+message(paste(total_percent," of standards met"), "the thing should be in here")
 ```
 
 <br>
@@ -237,6 +237,22 @@ filter_group_levels(dataset,metadata)
 :::
 
 ```{r result_calculator,echo=FALSE,results='hide'}
-#something in here to calculate the percentages
+data_filter_results_function()
+data_general_results_function()
+data_geography_results_function()
+data_time_results_function()
+meta_filter_indicator_results_function()
+meta_general_results_function()
+meta_variable_label_results_function()
+
+data_results <- c(data_filter_results,data_general_results,data_geography_results,data_time_results)
+meta_results <- c(meta_filter_indicator_results,meta_general_results,meta_variable_label_results)
+all_results <- c(data_results,meta_results)
+
+ignore <- sum(is.na(all_results))
+pass <- sum(all_results == TRUE)
+fail <- sum(all_results ==FALSE)
+  
+total_percent <- paste((pass/pass+fail)*100,"%")
 
 ```

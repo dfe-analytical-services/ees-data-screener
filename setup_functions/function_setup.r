@@ -22,8 +22,3 @@ screening_tests <- function(data,meta) {
   meta_general_setup(data,meta)
   meta_variable_label_setup(meta)
 }
-
-# combining the outcomes of the checks
-# data_results <- c(data_filters_results,data_general_results,data_geography_results,data_time_results)
-# meta_results <- c(meta_filter_indicator_results,meta_general_results,meta_variable_label_results)
-# all_results <- c(data_results,meta_results)
