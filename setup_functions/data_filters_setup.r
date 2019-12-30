@@ -9,16 +9,16 @@ data_filters_setup <-function(data,meta){
 }
 
 data_filters_results_function <- function(){
-  assign("data_filters_results",c(filter_levels_check_result,
+  assign("data_filters_results",c(filter_levels_result,
                                   total_check_result,
-                                  observational_total_check_result)
+                                  observational_total_result)
          ,envir = .GlobalEnv)
 }
 
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
 
-filter_levels_check <- function(data,meta) {
+filter_levels <- function(data,meta) {
   mfilters <- filter(meta,col_type=="Filter")
   filternames <- c(mfilters$col_name)
   dfilters <- select(data,filternames)
@@ -47,28 +47,28 @@ filter_levels_check <- function(data,meta) {
 # -------------------------------------
 # Check for Total in all filters
 
-total_check <- function(data,meta) {
+total <- function(data,meta) {
   if(!"Filter" %in% meta$col_type){
     message("IGNORE - There are no filters in your data to test.")
-    assign("total_check_result",NA,envir = .GlobalEnv)
+    assign("total_result",NA,envir = .GlobalEnv)
     }else{
-    total_check_preresult <- c()
+    total_preresult <- c()
     mfilters <- filter(meta,col_type=="Filter")
     filter_names <- c(mfilters$col_name)
     dfilters <- select(data,filter_names)
     for(i in names(dfilters)) {
       if(!"Total" %in% dfilters[[i]]){
-      message("WARNING - There is no total value in ", i,".")
-      total_check_preresult[i] <- FALSE
+      message("FAIL - There is no total value in ", i,".")
+      total_preresult[i] <- FALSE
   }else{
-    total_check_preresult[i] <- FALSE
+    total_preresult[i] <- TRUE
     }
     }
-    if(FALSE %in% total_check_preresult){
-      assign("total_check_result",FALSE,envir = .GlobalEnv)
+    if(FALSE %in% total_preresult){
+      assign("total_result",FALSE,envir = .GlobalEnv)
     }else{
       message("PASS - Every filter has a total level.")
-      assign("total_check_result",TRUE,envir = .GlobalEnv)
+      assign("total_result",TRUE,envir = .GlobalEnv)
     }
   } 
 }
@@ -76,7 +76,7 @@ total_check <- function(data,meta) {
 # -------------------------------------
 # Check if Total has been used errorneously in any observational units
 
-observational_total_check <- function(data){
+observational_total <- function(data){
   observational_units <- c("country_code","country_name",
                            "region_code","region_name","old_la_code","new_la_code","la_name","rsc_region_lead_name",
                            "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
@@ -87,19 +87,19 @@ observational_total_check <- function(data){
                            "provider_urn","provider_name","provider_ukprn","provider_upin",
                            "institution_id","institution_name")
   present_ob_units <- intersect(observational_units,names(data))
-  observational_total_check_preresult <- c()
+  observational_total_preresult <- c()
   for(i in present_ob_units) {
     if("Total" %in% data[[i]] || "total" %in% data[[i]]){
       message("FAIL - A total value is present in ",i,", this should be replaced with a blank.")
-      observational_total_check_preresult[i] <- FALSE
+      observational_total_preresult[i] <- FALSE
     }else{
-      observational_total_check_preresult[i] <- TRUE
+      observational_total_preresult[i] <- TRUE
   }
   }
-  if(FALSE %in% observational_total_check_preresult){
-    assign("observational_total_check_result",FALSE,envir = .GlobalEnv)
+  if(FALSE %in% observational_total_preresult){
+    assign("observational_total_result",FALSE,envir = .GlobalEnv)
   }else{
     message("PASS - There are no 'Total' values in the observational units.")
-    assign("observational_total_check_result",TRUE,envir = .GlobalEnv)
+    assign("observational_total_result",TRUE,envir = .GlobalEnv)
   }
 }

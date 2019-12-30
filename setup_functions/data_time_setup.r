@@ -116,10 +116,10 @@ time_identifier_mix <- function(data) {
     lev = c("Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4")}
   
   if(any(is.na(factor(unique(data$time_identifier), lev)))==TRUE){
-    message("FAIL - data is mixing time identifiers. Allowable values given you've included ", base_identifier, " are: ", paste(lev, sep = ", "))
+    message("FAIL - data is mixing time identifiers. Allowable values given you've included ", base_identifier, " are: ", paste(lev, sep = " "),".")
     assign("time_identifier_mix_result",FALSE,envir = .GlobalEnv)
   }else{
-    message("PASS - Your time_identifier values are valid.")
+    message("PASS - Your time_identifier values are compatible.")
     assign("time_identifier_mix_result",TRUE,envir = .GlobalEnv)}
   
 }

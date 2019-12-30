@@ -48,41 +48,41 @@ data_comp_col(dataset)
 ```
 
  **Checking for commas in the data file**
-```{r comma_check,echo=FALSE,comment=NA}
-comma_check(dataset)
+```{r comma,echo=FALSE,comment=NA}
+comma(dataset)
 ```
 
  **Checking for spaces in the data file variable names**
-```{r data_spaces_check,echo=FALSE,comment=NA}
+```{r data_spaces,echo=FALSE,comment=NA}
 data_spaces(dataset)
 ```
 
 ## Time validation
  **Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show  consecutive years**
-```{r time_period_check, echo=FALSE,warning=FALSE,comment=NA}
-time_period_check(dataset)
+```{r time_period, echo=FALSE,warning=FALSE,comment=NA}
+time_period(dataset)
 ```
 
  **Checking if the time_identifier values are valid**
-```{r time_identifier_check,comment=NA,echo=FALSE}
-time_identifier_check(dataset)
+```{r time_identifier,comment=NA,echo=FALSE}
+time_identifier(dataset)
 ```
 
- **Check this list for conceptually different time_identifiers**
-```{r time_identifier_mix, echo=FALSE, comment="Time_identifiers: "}
+ **Checking that all identifiers are compatible**
+```{r time_identifier_mix, echo=FALSE}
 time_identifier_mix(dataset)
 ```
 
 
 ## Geography validation
  **Checking that the geographic levels are valid**
-```{r level_validity_check,echo=FALSE,comment=NA}
-level_validity_check(dataset)
+```{r level_validity,echo=FALSE,comment=NA}
+level_validity(dataset)
 ```
 
  **Checking that the correct geography columns are present for the levels in the data file**
 ```{r geography_levels_present,echo=FALSE,comment=NA}
-geography_levels_present(dataset)
+geography_level_present(dataset)
 ```
 
  **Checking that the correct geography columns are completed for each of the levels in the data file**
@@ -93,18 +93,18 @@ geography_level_completed(dataset)
 ## Filter validation
 
  **Checking that filters include in the metadata have at least two levels**
-```{r filter_levels_check,echo=FALSE,comment=NA}
-try(filter_levels_check(dataset,metadata))
+```{r filter_levels,echo=FALSE,comment=NA}
+filter_levels(dataset,metadata)
 ```
 
  **Checking that each filter has a 'Total'**
-```{r total_check,echo=FALSE,comment=NA}
-try(cat(total_check(dataset,metadata)))
+```{r total,echo=FALSE,comment=NA}
+total(dataset,metadata)
 ```
  
  **Checking that no observational unit has a 'Total'**
-```{r observational_total_check,echo=FALSE,comment=NA}
-try(cat(observational_total_check(dataset)))
+```{r observational_total,echo=FALSE,comment=NA}
+observational_total(dataset)
 ```
 :::
 
@@ -134,8 +134,8 @@ meta_crosscheck(dataset,metadata)
 ```
 
  **Checking for commas**
-```{r meta_comma_check,echo=FALSE,comment=NA}
-meta_comma_check(metadata)
+```{r meta_comma,echo=FALSE,comment=NA}
+meta_comma(metadata)
 ```
 
 ## Variable and label validation
@@ -146,40 +146,40 @@ col_name_completed(metadata)
 ```
 
  **Checking for duplicate col_names**
-```{r meta_duplicate_check,echo=FALSE,comment=NA}
-try(cat(meta_duplicate_check(metadata)))
+```{r meta_duplicate,echo=FALSE,comment=NA}
+meta_duplicate(metadata)
 ```
 
  **Checking for spaces in the values in the col_name column**
-```{r col_name_spaces_check,echo=FALSE,comment=NA}
-try(cat(col_name_spaces_check(metadata)))
+```{r col_name_spaces,echo=FALSE,comment=NA}
+col_name_spaces(metadata)
 ```
 
  **Checking if any observational units have been erroneously included in the metadata**
-```{r comp_col_check_meta,echo=FALSE,warning=FALSE,comment=NA}
-comp_col_check_meta(metadata)
+```{r comp_col_meta,echo=FALSE,warning=FALSE,comment=NA}
+comp_col_meta(metadata)
 ```
 
  **Checking that col_type values are valid**
-```{r col_type_check,echo=FALSE,warning=FALSE,comment=NA}
-try(cat(col_type_check(metadata)))
+```{r col_type,echo=FALSE,warning=FALSE,comment=NA}
+col_type(metadata)
 ```
 
  **Checking that every row has a label completed**
-```{r label_check,echo=FALSE,comment=NA}
-try(cat(label_check(metadata)))
+```{r label,echo=FALSE,comment=NA}
+label(metadata)
 ```
  
  **Checking that there are no duplicate labels**
-```{r duplicate_label_check,echo=FALSE,comment=NA}
-try(cat(duplicate_label_check(metadata)))
+```{r duplicate_label,echo=FALSE,comment=NA}
+duplicate_label(metadata)
 ```
 
 ## Filter and indicator validation
 
  **Checking that no filters have an indicator group**
-```{r indicator_group_check,echo=FALSE,comment=NA}
-try(cat(indicator_group_check(metadata)))
+```{r indicator_group,echo=FALSE,comment=NA}
+indicator_group(metadata)
 ```
 
 ```{r pre_function, include=FALSE}
@@ -193,37 +193,37 @@ try(cat(indicator_group_check(metadata)))
 
  **Checking that all indicator units are valid**
 ```{r indicator_unit_validation,warning=FALSE,echo=FALSE,comment=NA}
-cat(indicator_unit_validation(metadata_utf16))
+indicator_unit_validation(metadata_utf16)
 ```
 
  **Checking that no filters have an indicator unit**
-```{r indicator_unit_check,echo=FALSE,comment=NA}
-indicator_unit_check(metadata)
+```{r indicator_unit,echo=FALSE,comment=NA}
+indicator_unit(metadata)
 ```
 
  **Checking that no indicators have a filter hint**
-```{r filter_hint_check,echo=FALSE,comment=NA}
-try(cat(filter_hint_check(metadata)))
+```{r filter_hint,echo=FALSE,comment=NA}
+filter_hint(metadata)
 ```
 
  **Checking that no indicators have a filter group**
-```{r filter_group_check,echo=FALSE,comment=NA}
-try(cat(filter_group_check(metadata)))
+```{r filter_group,echo=FALSE,comment=NA}
+filter_group(metadata)
 ```
 
  **Checking that the number of rows in the metadata is less than the number of columns in the data file**
-```{r row_check,echo=FALSE,comment=NA}
-try(cat(row_check(dataset,metadata)))
+```{r row,echo=FALSE,comment=NA}
+row(dataset,metadata)
 ```
 
  **Checking filter groups are variables in the data file**
 ```{r filter_group_match,echo=FALSE,comment=NA}
-try(cat(filter_group_match(dataset,metadata)))
+filter_group_match(dataset,metadata)
 ```
 
  **Checking that filter and filter group have been entered into the correct columns**
 ```{r filter_group_levels,echo=FALSE,comment=NA}
-try(cat(filter_group_levels(dataset,metadata)))
+filter_group_levels(dataset,metadata)
 ```
 
 

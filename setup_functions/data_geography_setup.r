@@ -4,8 +4,8 @@
 # Checks in this file
 
 data_geography_setup <- function(data){
-  level_validity_check(data)
-  geography_levels_present(data)
+  level_validity(data)
+  geography_level_present(data)
   geography_level_completed(data)
 }
 
@@ -19,7 +19,7 @@ data_geography_results_function <- function(){
 # -------------------------------------
 # Do we have acceptable values for the geographic level
 
-level_validity_check <- function(data) {
+level_validity <- function(data) {
   acceptable_levels <- c("National","Regional","Local authority","RSC region","Parliamentary constituency",
                          "Local authority district","Local enterprise partnership","Mayoral combined authority",
                          "Opportunity area","Ward","MAT","Sponsor","School","Provider","Institution")
@@ -244,7 +244,7 @@ geography_level_present <- function(data){
   if (FALSE %in% geography_level_check_preresult) {
     assign("geography_level_check_result", FALSE, envir = .GlobalEnv)
   } else{
-    message("PASS - Your geographic columns are as expected")
+    message("PASS - Your geographic columns are valid.")
     assign("geography_level_check_result", TRUE, envir = .GlobalEnv)
   }
   
@@ -405,7 +405,7 @@ geography_level_completed <- function(data) {
   if (FALSE %in% geography_level_completed_preresult) {
     assign("geography_level_completed_result", FALSE, envir = .GlobalEnv)
   } else{
-    message("PASS - Your geographic columns are completed as expected")
+    message("PASS - Your geographic columns are completed as expected.")
     assign("geography_level_completed_result", TRUE, envir = .GlobalEnv)
   }
 }

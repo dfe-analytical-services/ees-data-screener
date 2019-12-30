@@ -35,9 +35,9 @@ meta_comp_col <- function(meta) {
     }
   }
  
-  if(length(setdiff(names(meta),meta_cols)) == 0){
-    message("FAIL - You have the following invalid columns in your metadata file: ",paste(setdiff(names(meta),meta_cols)),sep=", ")
-    meta_comp_col_preresult[other] <- FALSE
+  if(length(setdiff(names(meta),meta_cols)) != 0){
+    message("FAIL - You have the following invalid columns in your metadata file: ",paste(setdiff(names(meta),meta_cols)),sep=" ",".")
+    meta_comp_col_preresult[8] <- FALSE
   }
     
   if(FALSE %in% meta_comp_col_preresult){
@@ -109,7 +109,7 @@ meta_crosscheck <- function(data,meta) {
   if(FALSE %in% meta_crosscheck_preresult){
     assign("meta_crosscheck_result",FALSE,envir = .GlobalEnv)
   }else{
-    message("PASS - All variables in the data file are recognised observational units or present in the metadata.")
+    message("PASS - All variables in the data file are present in the metadata.")
     assign("meta_crosscheck_result",TRUE,envir = .GlobalEnv)
   }
 }

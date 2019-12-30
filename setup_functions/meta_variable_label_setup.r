@@ -117,7 +117,7 @@ col_type <- function(meta) {
 
 label <- function(meta) {
   if(any(is.na(meta$label))){
-    message('FAIL - There is a label missing in', sum(is.na(meta$label)), 'row/s.')
+    message('FAIL - There is a label missing in ', sum(is.na(meta$label)), ' row/s.')
     assign("label_result",FALSE,envir = .GlobalEnv)
   }else{
     message('PASS - label is completed for all rows.')
