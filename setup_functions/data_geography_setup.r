@@ -288,53 +288,118 @@ geography_level_completed <- function(data) {
       message('FAIL - The old_la_code column must be completed for all local authority data.')
       geography_level_completed_preresult[old_la_code] <- FALSE
       }
-    if(any(is.na(LA$new_la_code))) {message('FAIL - The new_la_code column must be completed for all local authority data.')}  
-    if(any(is.na(LA$la_name))) {message('FAIL - The la_name column must be completed for all local authority data.')}
+    if(any(is.na(LA$new_la_code))) {
+      message('FAIL - The new_la_code column must be completed for all local authority data.')
+      geography_level_completed_preresult[new_la_code] <- FALSE
+      }  
+    if(any(is.na(LA$la_name))) {
+      message('FAIL - The la_name column must be completed for all local authority data.')
+      geography_level_completed_preresult[la_name] <- FALSE
+    }
   }
   
   if("RSC region" %in% data$geographic_level){
     RSC <- filter(data, geographic_level =='RSC region')
-    if(any(is.na(RSC$rsc_region_lead_name))) {message('FAIL - The rsc_region_lead_name column must be completed for all RSC region data.')}
+    if(any(is.na(RSC$rsc_region_lead_name))) {
+      message('FAIL - The rsc_region_lead_name column must be completed for all RSC region data.')
+      geography_level_completed_preresult[rsc_region_lead_name] <- FALSE
+    }
   }
+  
   if("Parliamentary constituency" %in% data$geographic_level){
     pcon <- filter(data, geographic_level =='Parliamentary constituency')
-    if(any(is.na(pcon$pcon_name))) {message('FAIL - The pcon_name column must be completed for all parliamentary constituency data.')}
-    if(any(is.na(pcon$pcon_code))) {message('FAIL - The pcon_code column must be completed for all parliamentary constituency data.')}
+    if(any(is.na(pcon$pcon_name))) {
+      message('FAIL - The pcon_name column must be completed for all parliamentary constituency data.')
+      geography_level_completed_preresult[pcon_name] <- FALSE
+    }
+    if(any(is.na(pcon$pcon_code))) {
+      message('FAIL - The pcon_code column must be completed for all parliamentary constituency data.')
+      geography_level_completed_preresult[pcon_code] <- FALSE
+    }
   }
+  
   if("Local authority district" %in% data$geographic_level){
     lad <- filter(data, geographic_level =='Local authority district')
-    if(any(is.na(lad$lad_name))) {message('FAIL - The lad_name column must be completed for all local authority district data.')}
-    if(any(is.na(lad$lad_code))) {message('FAIL - The lad_code column must be completed for all local authority district data.')}
+    if(any(is.na(lad$lad_name))) {
+      message('FAIL - The lad_name column must be completed for all local authority district data.')
+      geography_level_completed_preresult[lad_name] <- FALSE
+      }
+    if(any(is.na(lad$lad_code))) {
+      message('FAIL - The lad_code column must be completed for all local authority district data.')
+      geography_level_completed_preresult[lad_code] <- FALSE
+      }
   }
+  
   if("Local enterprise partnership" %in% data$geographic_level){
     lep <- filter(data, geographic_level =='Local enterprise partnership')
-    if(any(is.na(lep$local_enterprise_partnership_name))) {message('FAIL - The local_enterprise_partnership_name column must be completed for all local enterprise partnership data.')}
-    if(any(is.na(lep$local_enterprise_partnership_code))) {message('FAIL - The local_enterprise_partnership_code column must be completed for all local enterprise partnership data.')}
+    if(any(is.na(lep$local_enterprise_partnership_name))) {
+      message('FAIL - The local_enterprise_partnership_name column must be completed for all local enterprise partnership data.')
+      geography_level_completed_preresult[local_enterprise_partnership_name] <- FALSE
+      }
+    if(any(is.na(lep$local_enterprise_partnership_code))) {
+      message('FAIL - The local_enterprise_partnership_code column must be completed for all local enterprise partnership data.')
+      geography_level_completed_preresult[local_enterprise_partnership_code] <- FALSE
+      }
   }
+  
   if("Mayoral combined authority" %in% data$geographic_level){
     mca <- filter(data, geographic_level =='Mayoral combined authority')
-    if(any(is.na(mca$mayoral_combined_authority_name))) {message('FAIL - The mayoral_combined_authority_name column must be completed for all mayoral combined authority data.')}
-    if(any(is.na(mca$mayoral_combined_authority_code))) {message('FAIL - The mayoral_combined_authority_code column must be completed for all mayoral combined authority data.')}
+    if(any(is.na(mca$mayoral_combined_authority_name))) {
+      message('FAIL - The mayoral_combined_authority_name column must be completed for all mayoral combined authority data.')
+      geography_level_completed_preresult[mayoral_combined_authority_name] <- FALSE
+      }
+    if(any(is.na(mca$mayoral_combined_authority_code))) {
+      message('FAIL - The mayoral_combined_authority_code column must be completed for all mayoral combined authority data.')
+      geography_level_completed_preresult[mayoral_combined_authority_code] <- FALSE
+      }
   }
+  
   if("Opportunity area" %in% data$geographic_level){
     oa <- filter(data, geographic_level =='Opportunity area')
-    if(any(is.na(oa$opportunity_area_name))) {message('FAIL - The opportunity_area_name column must be completed for all opportunity area data.')}
-    if(any(is.na(oa$opportunity_area_code))) {message('FAIL - The opportunity_area_code column must be completed for all opportunity area data.')}
+    if(any(is.na(oa$opportunity_area_name))) {
+      message('FAIL - The opportunity_area_name column must be completed for all opportunity area data.')
+      geography_level_completed_preresult[opportunity_area_name] <- FALSE
+      }
+    if(any(is.na(oa$opportunity_area_code))) {
+      message('FAIL - The opportunity_area_code column must be completed for all opportunity area data.')
+      geography_level_completed_preresult[opportunity_area_code] <- FALSE
+      }
   }
+  
   if("Ward" %in% data$geographic_level){
     ward <- filter(data, geographic_level =='Ward')
-    if(any(is.na(ward$ward_name))) {message('FAIL - The ward_name column must be completed for all ward data.')}
-    if(any(is.na(ward$ward_code))) {message('FAIL - The ward_code column must be completed for all ward data.')}
+    if(any(is.na(ward$ward_name))) {
+      message('FAIL - The ward_name column must be completed for all ward data.')
+      geography_level_completed_preresult[ward_name] <- FALSE
+      }
+    if(any(is.na(ward$ward_code))) {
+      message('FAIL - The ward_code column must be completed for all ward data.')
+      geography_level_completed_preresult[ward_code] <- FALSE
+      }
   }
+  
   if("MAT" %in% data$geographic_level){
     mat <- filter(data, geographic_level =='MAT')
-    if(any(is.na(mat$trust_name))) {message('FAIL - The trust_name column must be completed for all MAT data.')}
-    if(any(is.na(mat$trust_id))) {message('FAIL - The trust_id column must be completed for all MAT data.')}
+    if(any(is.na(mat$trust_name))) {
+      message('FAIL - The trust_name column must be completed for all MAT data.')
+      geography_level_completed_preresult[trust_name] <- FALSE
+      }
+    if(any(is.na(mat$trust_id))) {
+      message('FAIL - The trust_id column must be completed for all MAT data.')
+      geography_level_completed_preresult[trust_id] <- FALSE
+      }
   }
+  
   if("Sponsor" %in% data$geographic_level){
     sponsor <- filter(data, geographic_level =='Sponsor')
-    if(any(is.na(sponsor$sponsor_name))) {message('FAIL - The sponsor_name column must be completed for all sponsor data.')}
-    if(any(is.na(sponsor$sponsor_id))) {message('FAIL - The sponsor_id column must be completed for all sponsor data.')}
+    if(any(is.na(sponsor$sponsor_name))) {
+      message('FAIL - The sponsor_name column must be completed for all sponsor data.')
+      geography_level_completed_preresult[sponsor_name] <- FALSE
+    }
+    if(any(is.na(sponsor$sponsor_id))) {
+      message('FAIL - The sponsor_id column must be completed for all sponsor data.')
+      geography_level_completed_preresult[sponsor_id] <- FALSE
+    }
   } 
   
   if (FALSE %in% geography_level_completed_preresult) {
