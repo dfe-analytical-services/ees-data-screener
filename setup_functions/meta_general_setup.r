@@ -24,7 +24,7 @@ meta_general_results_function <- function(){
 meta_comp_col <- function(meta) {
   
   meta_cols <- c("col_name","col_type","label","indicator_grouping","indicator_unit","filter_hint","filter_grouping_column")
-  meta_comp_col_preresult
+  meta_comp_col_preresult <- c()
   
   for(i in meta_cols){
     if(!i %in% names(meta)){
@@ -34,9 +34,12 @@ meta_comp_col <- function(meta) {
       meta_comp_col_preresult[i] <- TRUE
     }
   }
-  #STILL NEEDS WORK
-  if(any(in))
-    #THE LINE ABOVE THIS ONE!
+ 
+  if(length(setdiff(names(meta),meta_cols)) == 0){
+    message("FAIL - You have the following invalid columns in your metadata file: ",paste(setdiff(names(meta),meta_cols)),sep=", ")
+    meta_comp_col_preresult[other] <- FALSE
+  }
+    
   if(FALSE %in% meta_comp_col_preresult){
     assign("meta_comp_col_result",FALSE,envir = .GlobalEnv)
   }else{
