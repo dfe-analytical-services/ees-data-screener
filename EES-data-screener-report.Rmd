@@ -5,39 +5,36 @@ output:
     logo_text: "DfE"
     font: "sans-serif"
     title: "Explore education statistics"
-    phase: alpha
+    phase: beta
 ---
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
 file_data <- paste("data_metadata/",your_data_file,'.csv',sep = "")
 meta_data <- paste("data_metadata/",your_data_file,'.meta.csv',sep = "")
-```
-## Underlying data testing {caption="`r Sys.time()`"} 
-File tested: `r your_data_file` 
-
-```{r results_total, echo=FALSE, comment=NA, ref.label="results_calculator"}
-message(paste(total_percent," of standards met"), "the thing should be in here")
-```
-
-<br>
-```{r files, include=FALSE}
 dataset <- read_csv(file_data,trim_ws = FALSE)
 metadata <- read_csv(meta_data,trim_ws = FALSE)
 metadata_utf16 <- read.csv(meta_data,stringsAsFactors = FALSE,encoding = "UTF-16")
-```
 
-```{r setup, include=FALSE}
 source("setup_functions/function_setup.R")
 ```
+## Underlying data testing {caption="`r Sys.time()`"} 
+File tested: `r your_data_file` 
+<br>
+Overall: `r total_percent` of tests passed.
+<br>
+Data file: `r data_percent` of tests passed.
+<br>
+Meta file: `r meta_percent` of tests passed.
+
 ::: {.tabset}
 
 ## Data file validation
 
 `r paste(your_data_file,".csv",sep="")`
+<br><br>
+r data_percent of tests passed.
 
-
-X% of standards met
 
 :::{.accordion}
 
@@ -69,7 +66,7 @@ time_identifier(dataset)
 ```
 
  **Checking that all identifiers are compatible**
-```{r time_identifier_mix, echo=FALSE}
+```{r time_identifier_mix, echo=FALSE,comment=NA}
 time_identifier_mix(dataset)
 ```
 
@@ -111,9 +108,9 @@ observational_total(dataset)
 ## Metadata validation
 
 `r paste(your_data_file,".meta.csv",sep="")`
+<br>
+r meta_percent of tests passed.
 
-
-X% of standards met
 
 ::: {.accordion}
 ## General validation
@@ -236,7 +233,7 @@ filter_group_levels(dataset,metadata)
 :::
 :::
 
-```{r result_calculator,echo=FALSE,results='hide'}
+```{r results_calculator,echo=FALSE,results='hide'}
 data_filter_results_function()
 data_general_results_function()
 data_geography_results_function()
@@ -250,9 +247,18 @@ meta_results <- c(meta_filter_indicator_results,meta_general_results,meta_variab
 all_results <- c(data_results,meta_results)
 
 ignore <- sum(is.na(all_results))
-pass <- sum(all_results == TRUE)
-fail <- sum(all_results ==FALSE)
-  
-total_percent <- paste((pass/pass+fail)*100,"%")
+pass <- length(which(all_results==TRUE))
+fail <- length(which(all_results==FALSE))
 
+data_ignore <- sum(is.na(data_results))
+data_pass <- length(which(data_results==TRUE))
+data_fail <- length(which(data_results==FALSE))
+  
+meta_ignore <- sum(is.na(meta_results))
+meta_pass <- length(which(meta_results==TRUE))
+meta_fail <- length(which(meta_results==FALSE))
+
+data_percent <- paste(round((data_pass/(data_pass+data_fail))*100,1),"%",sep="")
+meta_percent <- paste(round((meta_pass/(meta_pass+meta_fail))*100,1),"%",sep="")
+total_percent <- paste(round((pass/(pass+fail))*100,1),"%",sep="")
 ```
