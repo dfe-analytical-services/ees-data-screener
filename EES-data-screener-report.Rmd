@@ -262,3 +262,9 @@ data_percent <- paste(round((data_pass/(data_pass+data_fail))*100,1),"%",sep="")
 meta_percent <- paste(round((meta_pass/(meta_pass+meta_fail))*100,1),"%",sep="")
 total_percent <- paste(round((pass/(pass+fail))*100,1),"%",sep="")
 ```
+<br>
+Overall: `r total_percent` of tests passed.
+<br>
+Data file: `r data_percent` of tests passed.
+<br>
+Meta file: `r meta_percent` of tests passed.
