@@ -33,7 +33,7 @@ data_comp_col <- function(data) {
   if(FALSE %in% data_comp_col_preresult){
     assign("data_comp_col_result",FALSE,envir = .GlobalEnv)
   }else{
-    message("PASS - time_period, time_identifier, and geographic_level are present.")
+    cat("PASS - time_period, time_identifier, and geographic_level are present.")
     assign("data_comp_col_result",TRUE,envir = .GlobalEnv)
   }
 }

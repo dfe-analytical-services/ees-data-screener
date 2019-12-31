@@ -11,7 +11,7 @@ meta_filter_indicator_setup <- function(data,meta,meta_utf){
   filter_group(meta)
   row(data,meta)
   filter_group_match(data,meta)
-  filter_group_levels(data,meta)
+  filter_group_level(data,meta)
 }
 
 meta_filter_indicator_results_function <- function(){
@@ -22,7 +22,7 @@ meta_filter_indicator_results_function <- function(){
                                            filter_group_result,
                                            row_result,
                                            filter_group_match_result,
-                                           filter_group_levels_result),
+                                           filter_group_level_result),
          envir = .GlobalEnv)
 }
 
@@ -142,14 +142,14 @@ filter_group_match <- function(data,meta) {
 # -------------------------------------
 # Checking that filter groups have fewer levels than their filters
 
-filter_group_levels <- function(data,meta){
+filter_group_level <- function(data,meta){
   filters <- filter(meta,col_type == "Filter")
   filtered_g <- filters %>% drop_na(filter_grouping_column)
   filter_groups <- c(filtered_g$filter_grouping_column)
-  filter_group_levels_preresult <- c()
+  filter_group_level_preresult <- c()
   if(length(filter_groups)==0){
     message("IGNORE - There are no filter groups present to test.")
-    assign("filter_group_levels_result",NA,envir = .GlobalEnv)
+    assign("filter_group_level_result",NA,envir = .GlobalEnv)
     }else{
     filter_groups <- drop_na(metadata,filter_grouping_column)
     fgs_focus <- select(filter_groups,c(col_name,filter_grouping_column))
@@ -162,16 +162,16 @@ filter_group_levels <- function(data,meta){
       if((length(unique(dataset[[y]])))<(length(unique(dataset[[z]])))){
         message("FAIL - ",fgs_list[[i]]," has less levels than its filter group - ",fgs_list[[x]],".")
         message("You should check that you've entered the filter and filter group in the right columns in the metadata.")
-        filter_group_levels_preresult[i] <- FALSE
+        filter_group_level_preresult[i] <- FALSE
       }else{
-        filter_group_levels_preresult[i] <- TRUE
+        filter_group_level_preresult[i] <- TRUE
       }
     }
-    if(FALSE %in% filter_group_levels_preresult){
-      assign("filter_group_levels_result",FALSE,envir = .GlobalEnv)
+    if(FALSE %in% filter_group_level_preresult){
+      assign("filter_group_level_result",FALSE,envir = .GlobalEnv)
     }else{
       message("PASS - All filter groups have fewer levels than their corresponding filter.")
-      assign("filter_group_levels_result",TRUE,envir = .GlobalEnv)
+      assign("filter_group_level_result",TRUE,envir = .GlobalEnv)
     }
   }
 }

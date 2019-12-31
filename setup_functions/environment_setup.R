@@ -17,6 +17,7 @@ cam_envrionment_setup <- function(){
   if(!require(stringr)){install.packages("stringr");require(stringr)}
   if(!require(dplyr)){install.packages("dplyr");require(dplyr)}
   if(!require(rmarkdown)){install.packages("rmarkdown");require(rmarkdown)}
+  if(!require(knitr)){install.packages("knitr");require(knitr)}
   print("Your environment has successfully been setup, you should now be able to run the screener.")
 }
 cam_envrionment_setup()

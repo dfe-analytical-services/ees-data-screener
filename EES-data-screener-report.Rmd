@@ -25,6 +25,42 @@ source("setup_functions/function_setup.R")
   acceptable_indicator_units <- c('£',"%")
   acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
   invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
+  
+  pass_fail <- function(input){
+    if(is.na(input)){knitr::include_graphics("images/not-applicable.png")
+    }else{if(input=="FALSE"){knitr::include_graphics("images/cancel.png")
+      }else{knitr::include_graphics("images/checked.png")}}
+  }
+  
+  screening_tests(dataset,metadata,metadata_utf16)
+
+data_filter_results_function()
+data_general_results_function()
+data_geography_results_function()
+data_time_results_function()
+meta_filter_indicator_results_function()
+meta_general_results_function()
+meta_variable_label_results_function()
+
+data_results <- c(data_filter_results,data_general_results,data_geography_results,data_time_results)
+meta_results <- c(meta_filter_indicator_results,meta_general_results,meta_variable_label_results)
+all_results <- c(data_results,meta_results)
+
+ignore <- sum(is.na(all_results))
+pass <- length(which(all_results==TRUE))
+fail <- length(which(all_results==FALSE))
+
+data_ignore <- sum(is.na(data_results))
+data_pass <- length(which(data_results==TRUE))
+data_fail <- length(which(data_results==FALSE))
+  
+meta_ignore <- sum(is.na(meta_results))
+meta_pass <- length(which(meta_results==TRUE))
+meta_fail <- length(which(meta_results==FALSE))
+
+data_percent <- paste(round((data_pass/(data_pass+data_fail))*100,1),"%",sep="")
+meta_percent <- paste(round((meta_pass/(meta_pass+meta_fail))*100,1),"%",sep="")
+total_percent <- paste(round((pass/(pass+fail))*100,1),"%",sep="")
 ```
 
 ## Underlying data testing {caption="`r Sys.time()`"} 
@@ -60,7 +96,7 @@ data_spaces(dataset)
 ```
 
 ## Time validation
- **Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show consecutive years** `r if(time_period_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{if(time_period_result == "NA"){ knitr::include_graphics("images/not-applicable.png")}else{knitr::include_graphics("images/cancel.png")}`
+ **Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show consecutive years** `r pass_fail(time_period_result)`
 ```{r time_period, echo=FALSE,warning=FALSE,comment=NA}
 time_period(dataset)
 ```
@@ -95,8 +131,8 @@ geography_level_completed(dataset)
 ## Filter validation
 
  **Checking that filters include in the metadata have at least two levels**
-```{r filter_levels,echo=FALSE,comment=NA}
-filter_levels(dataset,metadata)
+```{r filter_level,echo=FALSE,comment=NA}
+filter_level(dataset,metadata)
 ```
 
  **Checking that each filter has a 'Total'**
@@ -215,8 +251,8 @@ filter_group_match(dataset,metadata)
 ```
 
  **Checking that filter and filter group have been entered into the correct columns**
-```{r filter_group_levels,echo=FALSE,comment=NA}
-filter_group_levels(dataset,metadata)
+```{r filter_group_level,echo=FALSE,comment=NA}
+filter_group_level(dataset,metadata)
 ```
 
 
@@ -228,35 +264,4 @@ filter_group_levels(dataset,metadata)
  For further information, or if you have any questions about this report contact cameron.race@education.gov.uk.
 :::
 :::
-
-```{r results_calculator,include=FALSE}
-screening_tests(dataset,metadata,metadata_utf16)
-
-data_filter_results_function()
-data_general_results_function()
-data_geography_results_function()
-data_time_results_function()
-meta_filter_indicator_results_function()
-meta_general_results_function()
-meta_variable_label_results_function()
-
-data_results <- c(data_filter_results,data_general_results,data_geography_results,data_time_results)
-meta_results <- c(meta_filter_indicator_results,meta_general_results,meta_variable_label_results)
-all_results <- c(data_results,meta_results)
-
-ignore <- sum(is.na(all_results))
-pass <- length(which(all_results==TRUE))
-fail <- length(which(all_results==FALSE))
-
-data_ignore <- sum(is.na(data_results))
-data_pass <- length(which(data_results==TRUE))
-data_fail <- length(which(data_results==FALSE))
-  
-meta_ignore <- sum(is.na(meta_results))
-meta_pass <- length(which(meta_results==TRUE))
-meta_fail <- length(which(meta_results==FALSE))
-
-data_percent <- paste(round((data_pass/(data_pass+data_fail))*100,1),"%",sep="")
-meta_percent <- paste(round((meta_pass/(meta_pass+meta_fail))*100,1),"%",sep="")
-total_percent <- paste(round((pass/(pass+fail))*100,1),"%",sep="")
 ```
