@@ -6,6 +6,7 @@ output:
     font: "sans-serif"
     title: "Explore education statistics"
     phase: beta
+    feedback_url: "https://github.com/lauraselby/data-screener/issues"
 ---
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -35,30 +36,30 @@ File tested: `r your_data_file` `r if(total_percent == 100){knitr::include_graph
 
 ## Data file validation
 
-`r paste(your_data_file,".csv",sep="")`
+`r paste(your_data_file,".csv",sep="")` `r if(data_percent == 100){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 <br><br>
-`r if(data_percent == 100){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r data_percent` of tests passed on the data file.
+`r data_percent` of tests passed on the data file. 
 
 
 :::{.accordion}
 
 ## General validation
- **Checking that the compulsory columns are present**
+ **Checking that the compulsory columns are present**  `r if(data_comp_col_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{if(data_comp_col_result == "NA"){knitr::include_graphics("images/not-applicable.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r data_comp_col, echo=FALSE,comment=NA}
 data_comp_col(dataset)
 ```
 
- **Checking for commas in the data file**
+ **Checking for commas in the data file** `r if(comma_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r comma,echo=FALSE,comment=NA}
 comma(dataset)
 ```
 
- **Checking for spaces in the data file variable names**
+ **Checking for spaces in the data file variable names** `r if(data_spaces_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r data_spaces,echo=FALSE,comment=NA}
 data_spaces(dataset)
 ```
 
-## Time validation
+## Time validation `r knitr::include_graphics("images/checked.png")`
  **Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show  consecutive years**
 ```{r time_period, echo=FALSE,warning=FALSE,comment=NA}
 time_period(dataset)
@@ -111,9 +112,9 @@ observational_total(dataset)
 
 ## Metadata validation
 
-`r paste(your_data_file,".meta.csv",sep="")`
+`r paste(your_data_file,".meta.csv",sep="")` `r if(meta_percent == 100){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` 
 <br><br>
-`r if(meta_percent == 100){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r meta_percent` of tests passed on the metadata file.
+`r meta_percent` of tests passed on the metadata file.
 
 
 ::: {.accordion}

@@ -90,7 +90,7 @@ observational_total <- function(data){
   observational_total_preresult <- c()
   for(i in present_ob_units) {
     if("Total" %in% data[[i]] || "total" %in% data[[i]]){
-      message("FAIL - A total value is present in ",i,", this should be replaced with a blank.")
+      message("FAIL - A 'total' value is present in ",i,", this should be replaced with a blank.")
       observational_total_preresult[i] <- FALSE
     }else{
       observational_total_preresult[i] <- TRUE
