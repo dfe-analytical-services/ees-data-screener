@@ -54,7 +54,7 @@ comma <- function(data) {
   if(FALSE %in% comma_preresult){
     assign("comma_result",FALSE,envir = .GlobalEnv)
   }else{
-    message("PASS - There are no 'Total' values in the observational units.")
+    message("PASS - There are no commas present in the data file.")
     assign("comma_result",TRUE,envir = .GlobalEnv)
   }
 }

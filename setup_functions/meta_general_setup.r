@@ -43,7 +43,7 @@ meta_comp_col <- function(meta) {
   if(FALSE %in% meta_comp_col_preresult){
     assign("meta_comp_col_result",FALSE,envir = .GlobalEnv)
   }else{
-    message("PASS - The metadata columns are present.")
+    message("PASS - The required metadata columns are present.")
     assign("meta_comp_col_result",TRUE,envir = .GlobalEnv)
   }
 }

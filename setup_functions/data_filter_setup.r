@@ -29,7 +29,7 @@ filter_level <- function(data,meta) {
     filter_level_preresult <- c()
   for (i in names(dfilters)) {
     if((length(unique(data[[i]])))<2){
-    message("FAIL - There are fewer than two levels in ", i,".")
+    message("FAIL - There are fewer than two levels in ", i,", remove this from the metadata file.")
     filter_level_preresult[i] <- FALSE
     }else{
     filter_level_preresult[i] <- TRUE
