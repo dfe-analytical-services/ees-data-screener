@@ -2,14 +2,14 @@
 ### DATA FILE FILTER VALIDATION FUNCTIONS
 # -------------------------------------
 # Checks in this file
-data_filters_setup <-function(data,meta){
-  filter_levels_check(data,meta)
-  total_check(data,meta)
-  observational_total_check(data)
+data_filter_setup <-function(data,meta){
+  filter_level(data,meta)
+  total(data,meta)
+  observational_total(data)
 }
 
 data_filter_results_function <- function(){
-  assign("data_filter_results",c(filter_levels_result,
+  assign("data_filter_results",c(filter_level_result,
                                   total_result,
                                   observational_total_result)
          ,envir = .GlobalEnv)
@@ -18,28 +18,28 @@ data_filter_results_function <- function(){
 # -------------------------------------
 # filters in the metadata file should have more than one value - flag when they only have one
 
-filter_levels <- function(data,meta) {
+filter_level <- function(data,meta) {
   mfilters <- filter(meta,col_type=="Filter")
   filternames <- c(mfilters$col_name)
   dfilters <- select(data,filternames)
   if(ncol(dfilters)==0){
     message("IGNORE - There are no filters in your data to test.")
-    assign("filter_levels_result",NA,envir = .GlobalEnv)
+    assign("filter_level_result",NA,envir = .GlobalEnv)
     }else{
-    filter_levels_preresult <- c()
+    filter_level_preresult <- c()
   for (i in names(dfilters)) {
     if((length(unique(data[[i]])))<2){
     message("FAIL - There are fewer than two levels in ", i,".")
-    filter_levels_preresult[i] <- FALSE
+    filter_level_preresult[i] <- FALSE
     }else{
-    filter_levels_preresult[i] <- TRUE
+    filter_level_preresult[i] <- TRUE
     }
   }
-      if(FALSE %in% filter_levels_preresult){
-        assign("filter_levels_result",FALSE,envir = .GlobalEnv)
+      if(FALSE %in% filter_level_preresult){
+        assign("filter_level_result",FALSE,envir = .GlobalEnv)
       }else{
         message("PASS - No filters have fewer than two levels.")
-        assign("filter_levels_result",TRUE,envir = .GlobalEnv)
+        assign("filter_level_result",TRUE,envir = .GlobalEnv)
       }
     }
 }

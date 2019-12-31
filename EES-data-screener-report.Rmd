@@ -17,15 +17,19 @@ metadata <- read_csv(meta_data,trim_ws = FALSE)
 metadata_utf16 <- read.csv(meta_data,stringsAsFactors = FALSE,encoding = "UTF-16")
 
 source("setup_functions/function_setup.R")
+
+  indicators_u <- filter(metadata_utf16,col_type == "Indicator")
+  real_indicators <- indicators_u$indicator_unit[!indicators_u$indicator_unit == ""]
+  all <- length(unique(real_indicators))
+  acceptable_indicator_units <- c('£',"%")
+  acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
+  invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
 ```
+
 ## Underlying data testing {caption="`r Sys.time()`"} 
-File tested: `r your_data_file` 
-<br>
-Overall: `r total_percent` of tests passed.
-<br>
-Data file: `r data_percent` of tests passed.
-<br>
-Meta file: `r meta_percent` of tests passed.
+File tested: `r your_data_file` `r if(total_percent == 100){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
+
+`r total_percent` of tests passed overall.
 
 ::: {.tabset}
 
@@ -33,7 +37,7 @@ Meta file: `r meta_percent` of tests passed.
 
 `r paste(your_data_file,".csv",sep="")`
 <br><br>
-r data_percent of tests passed.
+`r if(data_percent == 100){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r data_percent` of tests passed on the data file.
 
 
 :::{.accordion}
@@ -108,8 +112,8 @@ observational_total(dataset)
 ## Metadata validation
 
 `r paste(your_data_file,".meta.csv",sep="")`
-<br>
-r meta_percent of tests passed.
+<br><br>
+`r if(meta_percent == 100){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r meta_percent` of tests passed on the metadata file.
 
 
 ::: {.accordion}
@@ -179,15 +183,6 @@ duplicate_label(metadata)
 indicator_group(metadata)
 ```
 
-```{r pre_function, include=FALSE}
-  indicators_u <- filter(metadata_utf16,col_type == "Indicator")
-  real_indicators <- indicators_u$indicator_unit[!indicators_u$indicator_unit == ""]
-  all <- length(unique(real_indicators))
-  acceptable_indicator_units <- c('£',"%")
-  acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
-  invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
-```
-
  **Checking that all indicator units are valid**
 ```{r indicator_unit_validation,warning=FALSE,echo=FALSE,comment=NA}
 indicator_unit_validation(metadata_utf16)
@@ -233,7 +228,9 @@ filter_group_levels(dataset,metadata)
 :::
 :::
 
-```{r results_calculator,echo=FALSE,results='hide'}
+```{r results_calculator,include=FALSE}
+screening_tests(dataset,metadata,metadata_utf16)
+
 data_filter_results_function()
 data_general_results_function()
 data_geography_results_function()
@@ -262,9 +259,3 @@ data_percent <- paste(round((data_pass/(data_pass+data_fail))*100,1),"%",sep="")
 meta_percent <- paste(round((meta_pass/(meta_pass+meta_fail))*100,1),"%",sep="")
 total_percent <- paste(round((pass/(pass+fail))*100,1),"%",sep="")
 ```
-<br>
-Overall: `r total_percent` of tests passed.
-<br>
-Data file: `r data_percent` of tests passed.
-<br>
-Meta file: `r meta_percent` of tests passed.

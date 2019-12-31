@@ -3,9 +3,9 @@
 # -------------------------------------
 # Checks in this file
 
-meta_filter_indicator_setup <- function(data,meta){
+meta_filter_indicator_setup <- function(data,meta,meta_utf){
   indicator_group(meta)
-  indicator_unit_validation(meta)
+  indicator_unit_validation(meta_utf)
   indicator_unit(meta)
   filter_hint(meta)
   filter_group(meta)
