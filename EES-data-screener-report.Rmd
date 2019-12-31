@@ -96,9 +96,14 @@ data_spaces(dataset)
 ```
 
 ## Time validation
- **Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show consecutive years** `r pass_fail(time_period_result)`
+ **Checking that the time_period is either 4 or 6 digits** `r pass_fail(time_period_result)`
 ```{r time_period, echo=FALSE,warning=FALSE,comment=NA}
 time_period(dataset)
+```
+
+ **Checking that if the time_period is 6 digits that they show consecutive years** `r pass_fail(time_period_six_result)`
+```{r time_period_six, echo=FALSE,warning=FALSE,comment=NA}
+time_period_six(dataset)
 ```
 
  **Checking if the time_identifier values are valid** `r if(time_identifier_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
