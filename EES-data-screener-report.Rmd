@@ -44,7 +44,7 @@ File tested: `r your_data_file` `r if(total_percent == 100){knitr::include_graph
 :::{.accordion}
 
 ## General validation
- **Checking that the compulsory columns are present**  `r if(data_comp_col_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{if(data_comp_col_result == "NA"){knitr::include_graphics("images/not-applicable.png")}else{knitr::include_graphics("images/cancel.png")}`
+ **Checking that the compulsory columns are present**  `r if(data_comp_col_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r data_comp_col, echo=FALSE,comment=NA}
 data_comp_col(dataset)
 ```
@@ -59,35 +59,35 @@ comma(dataset)
 data_spaces(dataset)
 ```
 
-## Time validation `r knitr::include_graphics("images/checked.png")`
- **Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show  consecutive years**
+## Time validation
+ **Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show consecutive years** `r if(time_period_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{if(time_period_result == "NA"){ knitr::include_graphics("images/not-applicable.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r time_period, echo=FALSE,warning=FALSE,comment=NA}
 time_period(dataset)
 ```
 
- **Checking if the time_identifier values are valid**
+ **Checking if the time_identifier values are valid** `r if(time_identifier_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r time_identifier,comment=NA,echo=FALSE}
 time_identifier(dataset)
 ```
 
- **Checking that all identifiers are compatible**
+ **Checking that all identifiers are compatible** `r if(time_identifier_mix_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r time_identifier_mix, echo=FALSE,comment=NA}
 time_identifier_mix(dataset)
 ```
 
 
 ## Geography validation
- **Checking that the geographic levels are valid**
+ **Checking that the geographic levels are valid** `r if(level_validity_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r level_validity,echo=FALSE,comment=NA}
 level_validity(dataset)
 ```
 
- **Checking that the correct geography columns are present for the levels in the data file**
+ **Checking that the correct geography columns are present for the levels in the data file** `r if(geography_level_present_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r geography_levels_present,echo=FALSE,comment=NA}
 geography_level_present(dataset)
 ```
 
- **Checking that the correct geography columns are completed for each of the levels in the data file**
+ **Checking that the correct geography columns are completed for each of the levels in the data file** `r if(geography_level_completed_result == "TRUE"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 ```{r geography_level_completed,echo=FALSE,warning=FALSE,comment=NA}
 geography_level_completed(dataset)
 ```
