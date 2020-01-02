@@ -30,8 +30,8 @@ meta_filter_indicator_results_function <- function(){
 # indicator grouping - should be blank for all filters
 
 indicator_group <- function(meta) {
-  filters <- filter(meta,col_type == "Filter")
-  if(any(!is.na(filters$indicator_grouping))){
+  
+  if(any(!is.na(mfilters$indicator_grouping))){
     message('FAIL - Filters cannot have an indicator grouping.')
     assign("indicator_group_result",FALSE,envir = .GlobalEnv)
   }else{
@@ -44,7 +44,8 @@ indicator_group <- function(meta) {
 # Validation for the indicator units
 
 indicator_unit_validation <- function(meta) {
-  if(acceptable == all){
+  
+  if(valid_indicator_units == number_present_indicatorunits){
     message("PASS - The indicator units are valid.")
     assign("indicator_unit_validation_result",TRUE,envir = .GlobalEnv)
   } else {
@@ -57,8 +58,8 @@ indicator_unit_validation <- function(meta) {
 # indicator unit should be blank for all filters
 
 indicator_unit <- function(meta) {
-  filters <- filter(meta,col_type =='Filter')
-  if(any(!is.na(filters$indicator_unit))){
+  
+  if(any(!is.na(mfilters$indicator_unit))){
     message('FAIL - Filters cannot have an indicator unit.')
     assign("indicator_unit_result",FALSE,envir = .GlobalEnv)
   }else{
@@ -71,8 +72,8 @@ indicator_unit <- function(meta) {
 # filter_hint should be blank for indicators
 
 filter_hint <- function(meta) {
-  indicators <- filter(meta,col_type =='Indicator')
-  if(any(!is.na(indicators$filter_hint))){
+
+  if(any(!is.na(mindicators$filter_hint))){
     message('FAIL - Indicators cannot have an filter hint.')
     assign("filter_hint_result",FALSE,envir = .GlobalEnv)
   }else{
@@ -85,8 +86,8 @@ filter_hint <- function(meta) {
 # filter_grouping column is blank for all indicators
 
 filter_group <- function(meta) {
-  indicators <- filter(meta,col_type =='Indicator')
-  if(any(!is.na(indicators$filter_grouping_column))){
+  
+  if(any(!is.na(mindicators$filter_grouping_column))){
     message('FAIL - Indicators cannot have a filter group assigned to them.')
     assign("filter_group_result",FALSE,envir = .GlobalEnv)
   }else{
@@ -99,6 +100,7 @@ filter_group <- function(meta) {
 # rows in meta < cols in data file
 
 row <- function(data,meta) {
+  
   if(ncol(data)<nrow(meta)){
     message("FAIL - Your metadata file has more rows than your data file has columns, this means that something is wrong.")
     message("There are either too many rows in the metadata, or too few columns in the data file.")
@@ -114,15 +116,13 @@ row <- function(data,meta) {
 # filter groups should be in the vector for column names for the data file
 
 filter_group_match <- function(data,meta) {
-  filters <- filter(meta,col_type == "Filter")
-  filtered_g <- filters %>% drop_na(filter_grouping_column)
-  filter_groups <- c(filtered_g$filter_grouping_column)
+  
   filter_group_match_preresult <- c()
-    if(length(filter_groups)==0){
+    if(length(present_filtergroups)==0){
       message("IGNORE - There are no filter groups present to test.")
       assign("filter_group_match_result",NA,envir = .GlobalEnv)
     }else{
-    for(i in filter_groups){
+    for(i in present_filtergroups){
       if((i %in% names(data))==FALSE){
         message("FAIL - ",i," is not a variable in the data file.")
         filter_group_match_preresult[i] <- FALSE
@@ -143,18 +143,15 @@ filter_group_match <- function(data,meta) {
 # Checking that filter groups have fewer levels than their filters
 
 filter_group_level <- function(data,meta){
-  filters <- filter(meta,col_type == "Filter")
-  filtered_g <- filters %>% drop_na(filter_grouping_column)
-  filter_groups <- c(filtered_g$filter_grouping_column)
+
+  fgs_focus <- select(filtered_filtergroups,c(col_name,filter_grouping_column))
+  fgs_list <- c(unlist(fgs_focus,use.names=FALSE))
+  
   filter_group_level_preresult <- c()
-  if(length(filter_groups)==0){
+  if(length(present_filtergroups)==0){
     message("IGNORE - There are no filter groups present to test.")
     assign("filter_group_level_result",NA,envir = .GlobalEnv)
     }else{
-    filter_groups <- drop_na(metadata,filter_grouping_column)
-    fgs_focus <- select(filter_groups,c(col_name,filter_grouping_column))
-    fgs_list <- c(unlist(fgs_focus,use.names=FALSE))
-    
     for(i in seq(1,by=1,len=(length(fgs_list)/2))){
       x <- i+(length(fgs_list)/2)
       y <- fgs_list[[i]]

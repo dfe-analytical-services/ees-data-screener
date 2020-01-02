@@ -23,9 +23,7 @@ meta_general_results_function <- function(){
 
 meta_comp_col <- function(meta) {
   
-  meta_cols <- c("col_name","col_type","label","indicator_grouping","indicator_unit","filter_hint","filter_grouping_column")
   meta_comp_col_preresult <- c()
-  
   for(i in meta_cols){
     if(!i %in% names(meta)){
       message("FAIL - The ",i," variable is missing.")
@@ -53,9 +51,9 @@ meta_comp_col <- function(meta) {
 # -------------------------------------
 # For each col_name in the metadata check these each appear in the data file
 column_crosscheck <- function(data,meta) {
-  m_variables <- c(meta$col_name)
+ 
   column_crosscheck_preresult <- c()
-  for(i in m_variables){
+  for(i in c(meta$col_name)){
     if((i %in% names(data))==FALSE){
       message("FAIL - ", i," is not a variable in the data file.")
       column_crosscheck_preresult[i] <- FALSE
@@ -75,16 +73,6 @@ column_crosscheck <- function(data,meta) {
 # List those in the data file that aren't in the metadata (or observational units, or variables with only one level)
 
 meta_crosscheck <- function(data,meta) {
-  
-  observational_units <- c("geographic_level","time_period","time_identifier","country_code","country_name",
-                           "region_code","region_name","old_la_code","new_la_code","la_name","rsc_region_lead_name",
-                           "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
-                           "local_enterprise_partnership_name","mayoral_combined_authority_code",
-                           "mayoral_combined_authority_name","opportunity_area_code","opportunity_area_name",
-                           "ward_code","ward_name","trust_id","trust_name","sponsor_id","sponsor_name",
-                           "school_laestab","school_name","school_urn","school_estab","school_postcode",
-                           "provider_urn","provider_name","provider_ukprn","provider_upin",
-                           "institution_id","institution_name")
   
   meta_variables <- setdiff(c(meta$col_name,meta$filter_grouping_column),observational_units)
   data_variables <- setdiff(names(data),observational_units)
@@ -118,6 +106,7 @@ meta_crosscheck <- function(data,meta) {
 # flag for commas across each column
 
 meta_comma <- function(meta) {
+  
   meta_comma_preresult <- c()
   for (i in names(meta)) {
     if(any(grepl(",",meta[[i]]))){

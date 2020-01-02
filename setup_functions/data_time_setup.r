@@ -25,13 +25,10 @@ time_period <- function(data) {
   
   time_length <- data
   time_length$digits <- str_count(time_length$time_period)
-  four <- nrow(filter(time_length,digits == 4))
-  six <- nrow(filter(time_length,digits == 6))
-  all <- nrow(time_length)
   
-  if((four + six == all)==FALSE){
+  if((nrow(filter(time_length,digits == 4)) + nrow(filter(time_length,digits == 6)) == nrow(time_length))==FALSE){
     message("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.")
-    message("Here are the time period values in your file: ",time_periods)
+    message("Here are the time period values in your file: ",present_time_periods)
     assign("time_period_result",FALSE,envir = .GlobalEnv)
   }else{
     message("PASS - time period is always a four or six digit number.")
@@ -46,15 +43,13 @@ time_period_six <- function(data){
 
   time_length <- data
   time_length$digits <- str_count(time_length$time_period)
-  four <- nrow(filter(time_length,digits == 4))
-  six <- nrow(filter(time_length,digits == 6))
-  all <- nrow(time_length)
+
   six_digit_years <- filter(time_length,digits==6)
   currentyearend <- as.numeric(substr(six_digit_years$time_period,3,4))
   nextyearend <- as.numeric(substr(six_digit_years$time_period,5,6))
   check_yearends <- any(((currentyearend+1)==nextyearend)==FALSE)
 
-  if(six==0){
+  if(nrow(filter(time_length,digits == 6))==0){
     message("IGNORE - You don't have any 6 digit time_period values to test.")
     assign("time_period_six_result",NA,envir = .GlobalEnv)
   }else{
@@ -77,15 +72,10 @@ time_period_six <- function(data){
 # checking the time identifier values are valid
 
 time_identifier <- function(data) {
-  acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring term",
-                                   "January","February","March","April","May","June","July","August","September","October","November","Decemeber",
-                                   "Calendar year","Calendar year Q1","Calendar year Q2","Calendar year Q3","Calendar year Q4",
-                                   "Financial year","Financial year Q1","Financial year Q2","Financial year Q3","Financial year Q4",
-                                   "Academic year","Academic year Q1","Academic year Q2","Academic year Q3","Academic year Q4",
-                                   "Tax year","Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4")
-  time_identifiers <- unique(data$time_identifier)
+  
   time_identifier_preresult <- c()
-  for(i in time_identifiers){
+  
+  for(i in unique(data$time_identifier)){
     if((i %in% acceptable_time_identifiers)==FALSE){
       message("FAIL - ", i, " is not a valid time identifier.")
       time_identifier_preresult[i] <- FALSE

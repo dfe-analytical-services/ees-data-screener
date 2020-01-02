@@ -20,12 +20,10 @@ data_geography_results_function <- function(){
 # Do we have acceptable values for the geographic level
 
 level_validity <- function(data) {
-  acceptable_levels <- c("National","Regional","Local authority","RSC region","Parliamentary constituency",
-                         "Local authority district","Local enterprise partnership","Mayoral combined authority",
-                         "Opportunity area","Ward","MAT","Sponsor","School","Provider","Institution")
-  levels <- unique(data$geographic_level)
+
   level_validity_preresult <- c()
-    for(i in levels){
+
+      for(i in unique(data$geographic_level)){
       if((i %in% acceptable_levels)==FALSE){
         message("FAIL - ", i, " is not a valid geographic level.")
         level_validity_preresult[i] <- FALSE
@@ -45,22 +43,6 @@ level_validity <- function(data) {
 # Do we have the right columns for the geographic level
 
 geography_level_present <- function(data){
-
-  all_required <- c("country_code","country_name")
-  regional_required <- c("region_code","region_name")
-  la_required <- c("region_code","region_name","old_la_code","new_la_code","la_name")
-  rsc_required <- c("rsc_region_lead_name")
-  pcon_required <- c("pcon_code","pcon_name")
-  lad_required <- c("lad_code","lad_name")
-  lep_required <- c("local_enterprise_partnership_code","local_enterprise_partnership_name")
-  mca_required <- c("mayoral_combined_authority_code","mayoral_combined_authority_name")
-  oa_required <- c("opportunity_area_code","opportunity_area_name")
-  ward_required <- c("ward_code","ward_name")
-  MAT_required <- c("trust_id","trust_name")
-  sponsor_required <- c("sponsor_id","sponsor_name")
-  school_required <- c("school_laestab","school_name")
-  provider_required <- c("provider_urn","provider_name")
-  institution_required <- c("institution_id","institution_id")
   
   geography_level_present_preresult <- c()
 

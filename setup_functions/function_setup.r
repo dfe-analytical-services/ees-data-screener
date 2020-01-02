@@ -23,25 +23,37 @@ screening_tests <- function(data,meta,meta_utf) {
 }
 
 # -------------------------------------
-# Function-dependent variables
+# Variables based on the data being read to be used across functions
 
-# indicator unit test
-indicators_u <- filter(metadata_utf16,col_type == "Indicator")
-real_indicators <- indicators_u$indicator_unit[!indicators_u$indicator_unit == ""]
-all <- length(unique(real_indicators))
-acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
-invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
+mfilters <- filter(metadata,col_type=="Filter")
+dfilters <- select(dataset,mfilters$col_name)
+
+mindicators <- filter(metadata,col_type =='Indicator')
+mindicators_utf16 <- filter(metadata_utf16,col_type == "Indicator")
+
+present_indicatorunits <- mindicators_utf16$indicator_unit[!mindicators_utf16$indicator_unit == ""]
+number_present_indicatorunits <- length(unique(present_indicatorunits))
+
+valid_indicator_units <- length(intersect(acceptable_indicator_units,present_indicatorunits))
+invalid_indicator_units <- setdiff(unique(present_indicatorunits),acceptable_indicator_units)
+
+filtered_filtergroups <- mfilters %>% drop_na(filter_grouping_column)
+present_filtergroups <- c(filtered_filtergroups$filter_grouping_column)
 
 # -------------------------------------
 # function for the rmd file to show the right icon
+
 pass_fail_image <- function(input){
+  
   if(is.na(input)){knitr::include_graphics("images/not-applicable.png")
     }else{if(input=="FALSE"){knitr::include_graphics("images/cancel.png")
     }else{knitr::include_graphics("images/checked.png")}
   }
 }
 
+# -------------------------------------
 # running the tests and capturing the results
+
 screening_tests(dataset,metadata,metadata_utf16)
 
 data_filter_results_function()
@@ -67,4 +79,3 @@ data_percent <- paste(round((data_pass/(data_pass+data_fail))*100,1),"%",sep="")
 meta_pass <- length(which(meta_results==TRUE))
 meta_fail <- length(which(meta_results==FALSE))
 meta_percent <- paste(round((meta_pass/(meta_pass+meta_fail))*100,1),"%",sep="")
-

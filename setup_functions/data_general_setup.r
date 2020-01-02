@@ -20,9 +20,10 @@ data_general_results_function <- function(){
 # check that the compulsory columns exist
 
 data_comp_col <- function(data) {
-  comp_col <- c("geographic_level","time_period","time_identifier")
+  
   data_comp_col_preresult <- c()
-  for(i in comp_col){
+  
+  for(i in c("geographic_level","time_period","time_identifier")){
     if(i %in% names(data)){
       data_comp_col_preresult[i] <- TRUE
     }else{
@@ -42,7 +43,9 @@ data_comp_col <- function(data) {
 # flag for commas across each column
 
 comma <- function(data) {
+  
   comma_preresult <- c()
+  
   for (i in names(data)) {
     if(any(grepl(",",data[[i]]))){
       message("FAIL - Comma/s present in ",i,".")
@@ -63,9 +66,10 @@ comma <- function(data) {
 # Checking datafile for spaces in variable names
 
 data_spaces <- function(data) {
-  variable_names <- names(dataset)
+  
   data_spaces_preresult <- c()
-  for (i in variable_names) {
+  
+  for (i in names(dataset)) {
     if(any(grepl('\\s',i))){
       message("FAIL - There are spaces in ",i,".")
       data_spaces_preresult[i] <- FALSE
