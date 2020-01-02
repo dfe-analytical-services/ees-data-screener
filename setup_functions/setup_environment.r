@@ -59,7 +59,6 @@ envrionment_setup()
 # run function
 
 screening_results <- function() {
-
   user_input <- dlg_list(c(
     "My files are saved in the data_metadata folder and I want to type the name",
     "I want to select my data and meta data files separately using file explorer",
@@ -71,16 +70,15 @@ screening_results <- function() {
   )$res
 
   if (user_input == "My files are saved in the data_metadata folder and I want to type the name") {
-    
-    assign("reading_option",1,envir = .GlobalEnv)
-    assign("your_data_file",dlg_input(message = "Enter the name of your file (without .csv)")$res,envir = .GlobalEnv)
+    assign("reading_option", 1, envir = .GlobalEnv)
+    assign("your_data_file", dlg_input(message = "Enter the name of your file (without .csv)")$res, envir = .GlobalEnv)
 
     rmarkdown::render("EES-data-screener-report.Rmd",
       output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
       output_dir = "reports",
       envir = .GlobalEnv
     )
-    
+
     message("")
     message("Screening results breakdown:")
     message("")
@@ -99,15 +97,18 @@ screening_results <- function() {
   }
 
   if (user_input == "I want to select my data and meta data files separately using file explorer") {
+    assign("reading_option", 2, envir = .GlobalEnv)
 
-    assign("reading_option",2,envir = .GlobalEnv)
-    assign("dataset_path",dlg_open("/dir/","Select your data file",multiple = FALSE, gui = .GUI)$res,envir = .GlobalEnv)
-    assign("metadata_path",dlg_open("/dir/","Select your metadata file",multiple = FALSE, gui = .GUI)$res,envir = .GlobalEnv)
+    assign("dataset_path", dlg_open("/dir/", "Select your data file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
+    assign("metadata_path", dlg_open("/dir/", "Select your metadata file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
+
+    assign("your_data_file", str_remove(basename(dataset_path), ".csv"), envir = .GlobalEnv)
+    assign("your_meta_file", str_remove(basename(metadata_path), "meta.csv"), envir = .GlobalEnv)
 
     rmarkdown::render("EES-data-screener-report.Rmd",
-                      output_file = paste(gsub(":", ".", gsub("\\s", "_", paste("selected_file_report_", Sys.time(), ".html", sep = "")))),
-                      output_dir = "reports",
-                      envir = .GlobalEnv
+      output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_report_", Sys.time(), ".html", sep = "")))),
+      output_dir = "reports",
+      envir = .GlobalEnv
     )
     screening_tests(dataset, metadata, metadata_utf16)
     message("")
@@ -124,14 +125,11 @@ screening_results <- function() {
     } else {
       message("Please check the report as your files have not passed the screening")
     }
-    
-
   }
 
   if (user_input == "I want to screen all files in the data_metadata folder") {
-    
-    assign("reading_option",1,envir = .GlobalEnv)
-    
+    assign("reading_option", 1, envir = .GlobalEnv)
+
     file_list <- list.files(
       path = "./data_metadata/",
       pattern = "*.csv",

@@ -12,18 +12,18 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 
 # reading in the data
-if(reading_option == 1){
-file_data <- paste("data_metadata/", your_data_file, ".csv", sep = "")
-meta_data <- paste("data_metadata/", your_data_file, ".meta.csv", sep = "")
-dataset <- read_csv(file_data, trim_ws = FALSE)
-metadata <- read_csv(meta_data, trim_ws = FALSE)
-metadata_utf16 <- read.csv(meta_data, stringsAsFactors = FALSE, encoding = "UTF-16")
+if (reading_option == 1) {
+  file_data <- paste("data_metadata/", your_data_file, ".csv", sep = "")
+  meta_data <- paste("data_metadata/", your_data_file, ".meta.csv", sep = "")
+  dataset <- read_csv(file_data, trim_ws = FALSE)
+  metadata <- read_csv(meta_data, trim_ws = FALSE)
+  metadata_utf16 <- read.csv(meta_data, stringsAsFactors = FALSE, encoding = "UTF-16")
 }
 
-if(reading_option == 2){
+if (reading_option == 2) {
   dataset <- read_csv(dataset_path, trim_ws = FALSE)
-metadata <- read_csv(metadata_path, trim_ws = FALSE)
-metadata_utf16 <- read.csv(metadata_path, stringsAsFactors = FALSE, encoding = "UTF-16")
+  metadata <- read_csv(metadata_path, trim_ws = FALSE)
+  metadata_utf16 <- read.csv(metadata_path, stringsAsFactors = FALSE, encoding = "UTF-16")
 }
 
 # defining this here due to issues with £ encoding
@@ -123,7 +123,7 @@ observational_total(dataset)
 
 ## Metadata validation
 
-`r paste(your_data_file,".meta.csv",sep="")` `r if(meta_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` 
+`r if(reading_option==2){paste(your_meta_file)}else{paste(your_data_file,".meta.csv",sep="")}` `r if(meta_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` 
 <br><br>
 `r meta_percent` of tests passed on the metadata file.
 
