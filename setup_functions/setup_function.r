@@ -15,10 +15,10 @@ source("setup_functions/meta_filter_setup.r")
 # -------------------------------------
 # combining the functions to run against data
 screening_tests <- function(data, meta, meta_utf16) {
-  data_filter_setup(data, meta)
   data_general_setup(data)
   data_geography_setup(data)
   data_time_setup(data)
+  data_filter_setup(data, meta)
   meta_general_setup(data, meta)
   meta_label_setup(meta)
   meta_variable_setup(data, meta)

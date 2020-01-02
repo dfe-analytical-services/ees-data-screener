@@ -47,24 +47,90 @@ envrionment_setup <- function() {
     install.packages("knitr")
     require(knitr)
   }
+  if (!require(svDialogs)) {
+    install.packages("svDialogs")
+    require(svDialogs)
+  }
   print("Your environment has successfully been setup, you should now be able to run the screener.")
 }
 envrionment_setup()
 
 # -------------------------------------
 # run function
-data_screener <- function(){
-  rmarkdown::render("EES-data-screener-report.Rmd", output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))), output_dir = "reports")
-  screening_tests(dataset,metadata,metadata_utf16)
-  message("")
-  message("Screening results at a glance:")
-  message(total_percent, " of tests passed.")
-  if(total_percent == "100%"){
-    message("Your data file has passed the screening and may be uploaded.")
-  } else {
-    message("Please check the report as your files have not passed the screening")
+
+screening_results <- function() {
+  user_input <- dlg_list(c(
+    "My files are saved in the data_metadata folder and I want to type the name",
+    "I want to select my data and meta data files separately using file explorer",
+    "I want to screen all files in the data_metadata folder"
+  ),
+  preselect = NULL,
+  title = "Select how you would like to use the screener by entering the number next to your desired method below",
+  gui = .GUI
+  )$res
+
+  if (user_input == "My files are saved in the data_metadata folder and I want to type the name") {
+    your_data_file <- dlg_input(message = "Enter the name of your file (without .csv)")
+
+    rmarkdown::render("EES-data-screener-report.Rmd",
+      output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
+      output_dir = "reports",
+      envir = new.env()
+    )
+
+    screening_tests(dataset, metadata, metadata_utf16)
+    message("")
+    message("Screening results at a glance:")
+    message(Sys.time(), " screening of ", your_data_file, " files.")
+    message(total_percent, " of tests passed.")
+
+    if (total_percent == "100%") {
+      message("Your data file has passed the screening and may be uploaded.")
+    } else {
+      message("Please check the report as your files have not passed the screening")
+    }
+  }
+  
+  if (user_input == "I want to select my data and meta data files separately using file explorer") {
+    stop("This option has not yet been developed.")
+  }
+  
+  if (user_input == "I want to screen all files in the data_metadata folder") {
+    file_list <- list.files(
+      path = "./data_metadata/",
+      pattern = "*.csv",
+      full.names = T
+    )
+
+    if ((length(file_list) %% 2) == 0) {
+      stop("There is an odd number of files in the data_metadata folder, please check the contents of the folder and try again.")
+    }
+
+    file_list1 <- gsub("^.*?/", "", file_list)
+    file_list2 <- gsub("^.*?/", "", file_list1)
+    file_list3 <- gsub("^(.[^.]*).*$", "\\1", file_list2)
+    myfiles <- unique(file_list3)
+
+    for (your_data_file in myfiles) {
+      rmarkdown::render("EES-data-screener-report.Rmd",
+        output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
+        output_dir = "reports",
+        envir = new.env()
+      )
+      screening_tests(dataset, metadata, metadata_utf16)
+      message("")
+      message("Screening results at a glance:")
+      message(Sys.time(), " screening of ", your_data_file, " files.")
+      message(total_percent, " of tests passed.")
+      if (total_percent == "100%") {
+        message("Your data file has passed the screening and may be uploaded.")
+      } else {
+        message("Please check the report as your files have not passed the screening")
+      }
+    }
   }
 }
+
 
 # -------------------------------------
 # hard-coded variables

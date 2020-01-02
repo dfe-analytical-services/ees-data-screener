@@ -8,10 +8,5 @@ source("setup_functions/setup_environment.R")
 # Follow the instructions for the install, restart RStudio, and then run this again, it won't redownload pandoc if you have version 2.7.3 or later.
 pandoc_install()
 
-# Ensure the data file and corresponding metadata file you want to screen are saved in the data_metadata folder.
-# Enter the name of the data file below, note that you do not need to include the extension '.csv'.
-# The metadata file will automatically be recognised if you have followed the naming convention - 'mydatafilename.meta.csv'.
-your_data_file <- "smalldummy"
-
 # Screen your files.
-data_screener()
+screening_results()
