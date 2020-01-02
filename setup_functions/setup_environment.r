@@ -5,7 +5,8 @@
 # function to check the pandoc version and install the latest if not 2.7.3 or later
 pandoc_install <- function() {
   if (rmarkdown::pandoc_version() >= "2.7.3") {
-    print("You already have version 2.7.3 or later of Pandoc installed, you're good to use the screener.")
+    message("You already have version 2.7.3 or later of Pandoc installed, you're good to use the screener.")
+    message("")
   }
   else {
     if (!require(installr)) {
@@ -51,7 +52,8 @@ envrionment_setup <- function() {
     install.packages("svDialogs")
     require(svDialogs)
   }
-  print("Your environment has successfully been setup, you should now be able to run the screener.")
+  message("Your environment has successfully been setup, you can now run the screener.")
+  message("")
 }
 envrionment_setup()
 
@@ -137,9 +139,8 @@ screening_results <- function() {
     )
 
     if ((length(file_list) %% 2) == 1) {
-      stop("There is an odd number of files in the data_metadata folder, please check the contents of the folder and try again.")
+      stop("There is an odd number of .csv files in the data_metadata folder, please check the contents of the folder and try again.")
     } else {
-      stop("This option is still under development, please try again and select option 1.")
       file_list1 <- gsub("^.*?/", "", file_list)
       file_list2 <- gsub("^.*?/", "", file_list1)
       file_list3 <- gsub("^(.[^.]*).*$", "\\1", file_list2)
