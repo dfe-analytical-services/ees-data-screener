@@ -63,8 +63,12 @@ As a more general note, if as a DfE analyst you are struggling with proxy settin
 
 **Tidyverse** <br>
 
-The functions in this data screener are based around the [tidyverse packages](https://www.tidyverse.org/).
+The functions in this data screener are based around the [Tidyverse packages](https://www.tidyverse.org/).
 
 **Govdown** <br>
 
 More information on govdown, a package used to format the output report in this project, can be found [online](https://ukgovdatascience.github.io/govdown/).
+
+**StyleR** <br>
+
+The code in this project has been styled using the [StyleR package](https://styler.r-lib.org/).

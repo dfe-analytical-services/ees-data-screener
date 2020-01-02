@@ -12,14 +12,14 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 
 # reading in the data
-file_data <- paste("data_metadata/",your_data_file,'.csv',sep = "")
-meta_data <- paste("data_metadata/",your_data_file,'.meta.csv',sep = "")
-dataset <- read_csv(file_data,trim_ws = FALSE)
-metadata <- read_csv(meta_data,trim_ws = FALSE)
-metadata_utf16 <- read.csv(meta_data,stringsAsFactors = FALSE,encoding = "UTF-16")
+file_data <- paste("data_metadata/", your_data_file, ".csv", sep = "")
+meta_data <- paste("data_metadata/", your_data_file, ".meta.csv", sep = "")
+dataset <- read_csv(file_data, trim_ws = FALSE)
+metadata <- read_csv(meta_data, trim_ws = FALSE)
+metadata_utf16 <- read.csv(meta_data, stringsAsFactors = FALSE, encoding = "UTF-16")
 
 # defining this here due to issues with £ encoding
-acceptable_indicatorunits <- c("£","%")
+acceptable_indicatorunits <- c("£", "%")
 
 # setting up functions, and preparing results
 source("setup_functions/function_setup.R")
@@ -99,12 +99,12 @@ geography_level_completed(dataset)
 
  **Checking that filters include in the metadata have at least two levels** `r pass_fail_image(filter_level_result)`
 ```{r filter_level,echo=FALSE,comment=NA}
-filter_level(dataset,metadata)
+filter_level(dataset, metadata)
 ```
 
  **Checking that each filter has a 'Total'** `r pass_fail_image(total_result)`
 ```{r total,echo=FALSE,comment=NA}
-total(dataset,metadata)
+total(dataset, metadata)
 ```
  
  **Checking that no observational unit has a 'Total'** `r pass_fail_image(observational_total_result)`
@@ -130,7 +130,7 @@ meta_comp_col(metadata)
 
  **Check to catch any variables from the data file that are not in the metadata** `r pass_fail_image(meta_crosscheck_result)`
 ```{r meta_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
-meta_crosscheck(dataset,metadata)
+meta_crosscheck(dataset, metadata)
 ```
 
  **Checking for commas** `r pass_fail_image(meta_comma_result)`
@@ -145,7 +145,7 @@ comp_col_meta(metadata)
 
  **Checking the number of rows in the metadata is less than the number of columns in the data file** `r pass_fail_image(row_result)`
 ```{r row,echo=FALSE,comment=NA}
-row(dataset,metadata)
+row(dataset, metadata)
 ```
 
 ## Variable validation
@@ -167,7 +167,7 @@ col_name_spaces(metadata)
  
  **Cross checking the columns in the metadata are in the data file** `r pass_fail_image(column_crosscheck_result)`
 ```{r column_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
-column_crosscheck(dataset,metadata)
+column_crosscheck(dataset, metadata)
 ```
 
 ## Label validation
@@ -201,12 +201,12 @@ filter_group(metadata)
 
  **Checking filter groups are variables in the data file** `r pass_fail_image(filter_group_match_result)`
 ```{r filter_group_match,echo=FALSE,comment=NA}
-filter_group_match(dataset,metadata)
+filter_group_match(dataset, metadata)
 ```
 
  **Checking that filter and filter group have been entered into the correct columns** `r pass_fail_image(filter_group_level_result)`
 ```{r filter_group_level,echo=FALSE,comment=NA}
-filter_group_level(dataset,metadata)
+filter_group_level(dataset, metadata)
 ```
 
 ## Indicator validation

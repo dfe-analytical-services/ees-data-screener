@@ -1,7 +1,7 @@
 ## Running the Screener
 
 # Setup your environment by running the following line
-source('setup_functions/environment_setup.R')
+source("setup_functions/environment_setup.R")
 
 # The following line will check your version of Pandoc and automatically update it for you if needed.
 # If it needs updating, this may take a couple of minutes. It will download it for you and automatically start the install wizard.
@@ -14,5 +14,4 @@ pandoc_install()
 your_data_file <- "smalldummy"
 
 # Run the report.
-rmarkdown::render("EES-data-screener-report.Rmd",
-                  output_file = paste(gsub(":",".",gsub("\\s","_",paste(your_data_file,"_","report_", Sys.time(),'.html',sep='')))))
+rmarkdown::render("EES-data-screener-report.Rmd", output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))))
