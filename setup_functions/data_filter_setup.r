@@ -75,7 +75,6 @@ total <- function(data,meta) {
 observational_total <- function(data){
   
   observational_total_preresult <- c()
-  
   for(i in intersect(acceptable_observational_units,names(dataset))) {
     if("Total" %in% data[[i]] || "total" %in% data[[i]]){
       message("FAIL - A 'total' value is present in ",i,", this should be replaced with a blank.")

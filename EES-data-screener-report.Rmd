@@ -31,7 +31,7 @@ File tested: `r your_data_file` `r if(total_percent == 100){knitr::include_graph
 
 ## Data file validation
 
-`r paste(your_data_file,".csv",sep="")` `r if(data_percent == 100){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
+`r paste(your_data_file,".csv",sep="")` `r if(data_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
 <br><br>
 `r data_percent` of tests passed on the data file. 
 
@@ -112,7 +112,7 @@ observational_total(dataset)
 
 ## Metadata validation
 
-`r paste(your_data_file,".meta.csv",sep="")` `r if(meta_percent == 100){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` 
+`r paste(your_data_file,".meta.csv",sep="")` `r if(meta_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` 
 <br><br>
 `r meta_percent` of tests passed on the metadata file.
 

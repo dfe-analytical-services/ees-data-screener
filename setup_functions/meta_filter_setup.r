@@ -42,7 +42,7 @@ filter_group <- function(meta) {
     assign("filter_group_result",FALSE,envir = .GlobalEnv)
   }else{
     message('PASS - No indicators have a filter group.')
-    assign("filter_group_result",FALSE,envir = .GlobalEnv)
+    assign("filter_group_result",TRUE,envir = .GlobalEnv)
   }
 }
 

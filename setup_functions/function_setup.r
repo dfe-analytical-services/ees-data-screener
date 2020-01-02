@@ -38,8 +38,8 @@ mindicators_utf16 <- filter(metadata_utf16,col_type == "Indicator")
 present_indicatorunits <- mindicators_utf16$indicator_unit[!mindicators_utf16$indicator_unit == ""]
 number_present_indicatorunits <- length(unique(present_indicatorunits))
 
-valid_indicator_units <- length(intersect(acceptable_indicator_units,present_indicatorunits))
-invalid_indicator_units <- setdiff(unique(present_indicatorunits),acceptable_indicator_units)
+valid_indicatorunits <- length(intersect(acceptable_indicatorunits,present_indicatorunits))
+invalid_indicatorunits <- setdiff(unique(present_indicatorunits),acceptable_indicatorunits)
 
 filtered_filtergroups <- mfilters %>% drop_na(filter_grouping_column)
 present_filtergroups <- c(filtered_filtergroups$filter_grouping_column)
