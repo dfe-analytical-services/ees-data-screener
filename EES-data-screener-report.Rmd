@@ -125,11 +125,6 @@ observational_total(dataset)
 meta_comp_col(metadata)
 ```
 
- **Cross checking the columns in the metadata are in the data file** `r pass_fail_image(column_crosscheck_result)`
-```{r column_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
-column_crosscheck(dataset,metadata)
-```
-
  **Check to catch any variables from the data file that are not in the metadata** `r pass_fail_image(meta_crosscheck_result)`
 ```{r meta_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
 meta_crosscheck(dataset,metadata)
@@ -140,7 +135,17 @@ meta_crosscheck(dataset,metadata)
 meta_comma(metadata)
 ```
 
-## Variable and label validation
+ **Checking if any observational units have been erroneously included in the metadata** `r pass_fail_image(comp_col_meta_result)`
+```{r comp_col_meta,echo=FALSE,warning=FALSE,comment=NA}
+comp_col_meta(metadata)
+```
+
+ **Checking the number of rows in the metadata is less than the number of columns in the data file** `r pass_fail_image(row_result)`
+```{r row,echo=FALSE,comment=NA}
+row(dataset,metadata)
+```
+
+## Variable validation
 
  **Checking if col_name is completed for every row** `r pass_fail_image(col_name_completed_result)`
 ```{r col_name_completed,echo=FALSE,comment=NA}
@@ -156,11 +161,13 @@ meta_duplicate(metadata)
 ```{r col_name_spaces,echo=FALSE,comment=NA}
 col_name_spaces(metadata)
 ```
-
- **Checking if any observational units have been erroneously included in the metadata** `r pass_fail_image(comp_col_meta_result)`
-```{r comp_col_meta,echo=FALSE,warning=FALSE,comment=NA}
-comp_col_meta(metadata)
+ 
+ **Cross checking the columns in the metadata are in the data file** `r pass_fail_image(column_crosscheck_result)`
+```{r column_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
+column_crosscheck(dataset,metadata)
 ```
+
+## Label validation
 
  **Checking that col_type values are valid** `r pass_fail_image(col_type_result)`
 ```{r col_type,echo=FALSE,warning=FALSE,comment=NA}
@@ -177,8 +184,29 @@ label(metadata)
 duplicate_label(metadata)
 ```
 
-## Filter and indicator validation
+## Filter validation
 
+ **Checking that no indicators have a filter hint** `r pass_fail_image(filter_hint_result)`
+```{r filter_hint,echo=FALSE,comment=NA}
+filter_hint(metadata)
+```
+
+ **Checking that no indicators have a filter group** `r pass_fail_image(filter_group_result)`
+```{r filter_group,echo=FALSE,comment=NA}
+filter_group(metadata)
+```
+
+ **Checking filter groups are variables in the data file** `r pass_fail_image(filter_group_match_result)`
+```{r filter_group_match,echo=FALSE,comment=NA}
+filter_group_match(dataset,metadata)
+```
+
+ **Checking that filter and filter group have been entered into the correct columns** `r pass_fail_image(filter_group_level_result)`
+```{r filter_group_level,echo=FALSE,comment=NA}
+filter_group_level(dataset,metadata)
+```
+
+## Indicator validation
  **Checking that no filters have an indicator group** `r pass_fail_image(indicator_group_result)`
 ```{r indicator_group,echo=FALSE,comment=NA}
 indicator_group(metadata)
@@ -193,32 +221,6 @@ indicator_unit_validation(metadata_utf16)
 ```{r indicator_unit,echo=FALSE,comment=NA}
 indicator_unit(metadata)
 ```
-
- **Checking that no indicators have a filter hint** `r pass_fail_image(filter_hint_result)`
-```{r filter_hint,echo=FALSE,comment=NA}
-filter_hint(metadata)
-```
-
- **Checking that no indicators have a filter group** `r pass_fail_image(filter_group_result)`
-```{r filter_group,echo=FALSE,comment=NA}
-filter_group(metadata)
-```
-
- **Checking the number of rows in the metadata is less than the number of columns in the data file** `r pass_fail_image(row_result)`
-```{r row,echo=FALSE,comment=NA}
-row(dataset,metadata)
-```
-
- **Checking filter groups are variables in the data file** `r pass_fail_image(filter_group_match_result)`
-```{r filter_group_match,echo=FALSE,comment=NA}
-filter_group_match(dataset,metadata)
-```
-
- **Checking that filter and filter group have been entered into the correct columns** `r pass_fail_image(filter_group_level_result)`
-```{r filter_group_level,echo=FALSE,comment=NA}
-filter_group_level(dataset,metadata)
-```
-
 
 :::
 :::

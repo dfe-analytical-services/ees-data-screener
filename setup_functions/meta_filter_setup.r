@@ -1,71 +1,21 @@
 # -------------------------------------
-### META FILE FILTER AND INDICATOR VALIDATION FUNCTIONS
+### META FILE FILTER VALIDATION FUNCTIONS
 # -------------------------------------
 # Checks in this file
 
-meta_filter_indicator_setup <- function(data,meta,meta_utf){
-  indicator_group(meta)
-  indicator_unit_validation(meta_utf)
-  indicator_unit(meta)
+meta_filter_setup <- function(data,meta){
   filter_hint(meta)
   filter_group(meta)
-  row(data,meta)
   filter_group_match(data,meta)
   filter_group_level(data,meta)
 }
 
-meta_filter_indicator_results_function <- function(){
-  assign("meta_filter_indicator_results",c(indicator_group_result,
-                                           indicator_unit_validation_result,
-                                           indicator_unit_result,
-                                           filter_hint_result,
-                                           filter_group_result,
-                                           row_result,
-                                           filter_group_match_result,
-                                           filter_group_level_result),
+meta_filter_results_function <- function(){
+  assign("meta_filter_results",c(filter_hint_result,
+                                 filter_group_result,
+                                 filter_group_match_result,
+                                 filter_group_level_result),
          envir = .GlobalEnv)
-}
-
-# -------------------------------------
-# indicator grouping - should be blank for all filters
-
-indicator_group <- function(meta) {
-  
-  if(any(!is.na(mfilters$indicator_grouping))){
-    message('FAIL - Filters cannot have an indicator grouping.')
-    assign("indicator_group_result",FALSE,envir = .GlobalEnv)
-  }else{
-    message('PASS - No filters have an indicator grouping.')
-    assign("indicator_group_result",TRUE,envir = .GlobalEnv)
-  }
-}
-
-# -------------------------------------
-# Validation for the indicator units
-
-indicator_unit_validation <- function(meta) {
-  
-  if(valid_indicator_units == number_present_indicatorunits){
-    message("PASS - The indicator units are valid.")
-    assign("indicator_unit_validation_result",TRUE,envir = .GlobalEnv)
-  } else {
-    message("FAIL - You have the following invalid indicator units in your metadata:",invalid_indicator_units)
-    assign("indicator_unit_validation_result",FALSE,envir = .GlobalEnv)
-  }
-}
-
-# -------------------------------------
-# indicator unit should be blank for all filters
-
-indicator_unit <- function(meta) {
-  
-  if(any(!is.na(mfilters$indicator_unit))){
-    message('FAIL - Filters cannot have an indicator unit.')
-    assign("indicator_unit_result",FALSE,envir = .GlobalEnv)
-  }else{
-    message('PASS - No filters have an indicator unit.')
-    assign("indicator_unit_result",TRUE,envir = .GlobalEnv)
-    }
 }
 
 # -------------------------------------
@@ -93,22 +43,6 @@ filter_group <- function(meta) {
   }else{
     message('PASS - No indicators have a filter group.')
     assign("filter_group_result",FALSE,envir = .GlobalEnv)
-  }
-}
-
-# -------------------------------------
-# rows in meta < cols in data file
-
-row <- function(data,meta) {
-  
-  if(ncol(data)<nrow(meta)){
-    message("FAIL - Your metadata file has more rows than your data file has columns, this means that something is wrong.")
-    message("There are either too many rows in the metadata, or too few columns in the data file.")
-    message("TRY - Check your .csv files in a text editor as this might help you find the problem.")
-    assign("row_result",FALSE,envir = .GlobalEnv)
-  }else{
-    message("PASS - You have fewer rows in your metadata than you have columns in your data file.")
-    assign("row_result",TRUE,envir = .GlobalEnv)
   }
 }
 

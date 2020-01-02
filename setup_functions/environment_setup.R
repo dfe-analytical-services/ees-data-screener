@@ -30,7 +30,7 @@ acceptable_time_identifiers <- c("Spring term","Autumn term","Autumn and spring 
                                  "Academic year","Academic year Q1","Academic year Q2","Academic year Q3","Academic year Q4",
                                  "Tax year","Tax year Q1","Tax year Q2","Tax year Q3","Tax year Q4")
 
-acceptable_observational_units <- c("country_code","country_name",
+acceptable_observational_units <- c("country_code","country_name","time_period","time_identifier","geographic_level",
                                     "region_code","region_name","old_la_code","new_la_code","la_name","rsc_region_lead_name",
                                     "pcon_code","pcon_name","lad_code","lad_name","local_enterprise_partnership_code",
                                     "local_enterprise_partnership_name","mayoral_combined_authority_code",
@@ -62,4 +62,4 @@ institution_required <- c("institution_id","institution_id")
 
 meta_cols <- c("col_name","col_type","label","indicator_grouping","indicator_unit","filter_hint","filter_grouping_column")
 
-acceptable_indicator_units <- c('£',"%")
+acceptable_indicator_units <- c("£","%")

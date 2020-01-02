@@ -6,20 +6,24 @@ source('setup_functions/data_filter_setup.r')
 source('setup_functions/data_general_setup.r')
 source('setup_functions/data_geography_setup.r')
 source('setup_functions/data_time_setup.r')
-source('setup_functions/meta_filter_indicator_setup.r')
 source('setup_functions/meta_general_setup.r')
-source('setup_functions/meta_variable_label_setup.r')
+source('setup_functions/meta_label_setup.r')
+source('setup_functions/meta_variable_setup.r')
+source('setup_functions/meta_indicator_setup.r')
+source('setup_functions/meta_filter_setup.r')
 
 # -------------------------------------
 # combining the functions to run against data
-screening_tests <- function(data,meta,meta_utf) {
+screening_tests <- function(data,meta,meta_utf16) {
   data_filter_setup(data,meta)
   data_general_setup(data)
   data_geography_setup(data)
   data_time_setup(data)
-  meta_filter_indicator_setup(data,meta,meta_utf)
   meta_general_setup(data,meta)
-  meta_variable_label_setup(meta)
+  meta_label_setup(meta)
+  meta_variable_setup(data,meta)
+  meta_filter_setup(data,meta)
+  meta_indicator_setup(data,meta,meta_utf16)
 }
 
 # -------------------------------------
@@ -47,7 +51,7 @@ pass_fail_image <- function(input){
   
   if(is.na(input)){knitr::include_graphics("images/not-applicable.png")
     }else{if(input=="FALSE"){knitr::include_graphics("images/cancel.png")
-    }else{knitr::include_graphics("images/checked.png")}
+      }else{ knitr::include_graphics("images/checked.png")}
   }
 }
 

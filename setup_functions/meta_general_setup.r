@@ -5,16 +5,18 @@
 
 meta_general_setup <- function(data,meta){
         meta_comp_col(meta)
-        column_crosscheck(data,meta)
         meta_crosscheck(data,meta)
         meta_comma(meta)
+        comp_col_meta(meta)
+        row(data,meta)
 }
 
 meta_general_results_function <- function(){
   assign("meta_general_results",c(meta_comp_col_result,
-                                  column_crosscheck_result,
                                   meta_crosscheck_result,
-                                  meta_comma_result)
+                                  meta_comma_result,
+                                  comp_col_meta_result,
+                                  row_result)
          ,envir = .GlobalEnv)
 }
 
@@ -46,36 +48,13 @@ meta_comp_col <- function(meta) {
   }
 }
   
-  
-
-# -------------------------------------
-# For each col_name in the metadata check these each appear in the data file
-column_crosscheck <- function(data,meta) {
- 
-  column_crosscheck_preresult <- c()
-  for(i in c(meta$col_name)){
-    if((i %in% names(data))==FALSE){
-      message("FAIL - ", i," is not a variable in the data file.")
-      column_crosscheck_preresult[i] <- FALSE
-    }else{
-      column_crosscheck_preresult[i] <- TRUE
-    }
-  }
-  if(FALSE %in% column_crosscheck_preresult){
-    assign("column_crosscheck_result",FALSE,envir = .GlobalEnv)
-  }else{
-    message("PASS - All col_name values appear in the data file.")
-    assign("column_crosscheck_result",TRUE,envir = .GlobalEnv)
-  }
-}
-
 # -------------------------------------
 # List those in the data file that aren't in the metadata (or observational units, or variables with only one level)
 
 meta_crosscheck <- function(data,meta) {
   
-  meta_variables <- setdiff(c(meta$col_name,meta$filter_grouping_column),observational_units)
-  data_variables <- setdiff(names(data),observational_units)
+  meta_variables <- setdiff(c(meta$col_name,meta$filter_grouping_column),acceptable_observational_units)
+  data_variables <- setdiff(names(data),acceptable_observational_units)
   possible_variables <- setdiff(data_variables,meta_variables)
   missing_and_meta_variables <- meta_variables[!is.na(meta_variables)]
   
@@ -88,7 +67,7 @@ meta_crosscheck <- function(data,meta) {
   meta_crosscheck_preresult <- c()
     for(i in unique(missing_and_meta_variables)){
       if((i %in% meta_variables)==FALSE){
-        message(i, " is not in the metadata or a recognised observational unit.")
+        message("FAIL - ",i, " is not in the metadata or a recognised observational unit.")
         meta_crosscheck_preresult[i] <- FALSE
       }else{
         meta_crosscheck_preresult[i] <- TRUE
@@ -121,5 +100,43 @@ meta_comma <- function(meta) {
   }else{
     message("PASS - There are no commas in the metadata file.")
     assign("meta_comma_result",TRUE,envir = .GlobalEnv)
+  }
+}
+
+# -------------------------------------
+# check if any observational units are in the metadata
+
+comp_col_meta <- function(meta) {
+  
+  comp_col_meta_preresult <- c()
+  for (i in acceptable_observational_units){
+    if(i %in% meta$col_name){
+      message("FAIL - ", i, " should not be in the metadata. ")
+      comp_col_meta_preresult[i] <- FALSE
+    }else{
+      comp_col_meta_preresult[i] <- TRUE
+    }
+  }
+  if(FALSE %in% comp_col_meta_preresult){
+    assign("comp_col_meta_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - All of the metadata columns are present.")
+    assign("comp_col_meta_result",TRUE,envir = .GlobalEnv)
+  }
+}
+
+# -------------------------------------
+# rows in meta < cols in data file
+
+row <- function(data,meta) {
+  
+  if(ncol(data)<nrow(meta)){
+    message("FAIL - Your metadata file has more rows than your data file has columns, this means that something is wrong.")
+    message("There are either too many rows in the metadata, or too few columns in the data file.")
+    message("TRY - Check your .csv files in a text editor as this might help you find the problem.")
+    assign("row_result",FALSE,envir = .GlobalEnv)
+  }else{
+    message("PASS - You have fewer rows in your metadata than you have columns in your data file.")
+    assign("row_result",TRUE,envir = .GlobalEnv)
   }
 }
