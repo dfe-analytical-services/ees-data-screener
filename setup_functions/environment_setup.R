@@ -21,3 +21,6 @@ cam_envrionment_setup <- function(){
   print("Your environment has successfully been setup, you should now be able to run the screener.")
 }
 cam_envrionment_setup()
+
+# hard-coded variables
+acceptable_indicator_units <- c('£',"%")

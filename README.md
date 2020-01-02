@@ -20,9 +20,9 @@ This is the project file, and the file you should open after downloading to open
 
 **run.R** <br>
 
-This is the script that you need to use to setup your environment, select the files, and run the screener.<br>
+This is the script that you need to use to setup your environment, designate the files, and run the screener.<br>
 
-Once you have run the screener, select your report in the file window within the project folder, and click to 'Open in browser' (Chrome works best and is recommended for full functionality, though it still works in some other browsers).
+Once you have run the screener, select your report in the file window within the project folder, and click to 'Open in browser' (Chrome works best and is recommended for full functionality, though it still works in some other browsers such as Edge).
 
 **data_metadata** <br>
 
@@ -35,6 +35,11 @@ This folder contains the files that create all of the functions used in this pro
 **EES-data-screener-report.Rmd** <br>
 
 This is the file that creates the .html report that is the output of the screener.
+
+**Updating and this project** <br>
+Most of the files in this project should be self-explanatory when looking around. The setup files contain the functions used for each test referred to and called by the .rmd file. 
+<br>
+Hard-coded variables, such as acceptable time_identifiers, are defined in the environment_setup script.
 
 
 <br>

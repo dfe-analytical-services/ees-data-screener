@@ -11,56 +11,15 @@ output:
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
+# reading in the data
 file_data <- paste("data_metadata/",your_data_file,'.csv',sep = "")
 meta_data <- paste("data_metadata/",your_data_file,'.meta.csv',sep = "")
 dataset <- read_csv(file_data,trim_ws = FALSE)
 metadata <- read_csv(meta_data,trim_ws = FALSE)
 metadata_utf16 <- read.csv(meta_data,stringsAsFactors = FALSE,encoding = "UTF-16")
 
+# setting up functions, and preparing results
 source("setup_functions/function_setup.R")
-
-  indicators_u <- filter(metadata_utf16,col_type == "Indicator")
-  real_indicators <- indicators_u$indicator_unit[!indicators_u$indicator_unit == ""]
-  all <- length(unique(real_indicators))
-  acceptable_indicator_units <- c('£',"%")
-  acceptable <- length(intersect(acceptable_indicator_units,real_indicators))
-  invalid_indicator_units <- setdiff(unique(real_indicators),acceptable_indicator_units)
-  
-  pass_fail_image <- function(input){
-    if(is.na(input)){knitr::include_graphics("images/not-applicable.png")
-    }else{if(input=="FALSE"){knitr::include_graphics("images/cancel.png")
-      }else{knitr::include_graphics("images/checked.png")}}
-  }
-  
-  screening_tests(dataset,metadata,metadata_utf16)
-
-data_filter_results_function()
-data_general_results_function()
-data_geography_results_function()
-data_time_results_function()
-meta_filter_indicator_results_function()
-meta_general_results_function()
-meta_variable_label_results_function()
-
-data_results <- c(data_filter_results,data_general_results,data_geography_results,data_time_results)
-meta_results <- c(meta_filter_indicator_results,meta_general_results,meta_variable_label_results)
-all_results <- c(data_results,meta_results)
-
-ignore <- sum(is.na(all_results))
-pass <- length(which(all_results==TRUE))
-fail <- length(which(all_results==FALSE))
-
-data_ignore <- sum(is.na(data_results))
-data_pass <- length(which(data_results==TRUE))
-data_fail <- length(which(data_results==FALSE))
-  
-meta_ignore <- sum(is.na(meta_results))
-meta_pass <- length(which(meta_results==TRUE))
-meta_fail <- length(which(meta_results==FALSE))
-
-data_percent <- paste(round((data_pass/(data_pass+data_fail))*100,1),"%",sep="")
-meta_percent <- paste(round((meta_pass/(meta_pass+meta_fail))*100,1),"%",sep="")
-total_percent <- paste(round((pass/(pass+fail))*100,1),"%",sep="")
 ```
 
 ## Underlying data testing {caption="`r Sys.time()`"} 
