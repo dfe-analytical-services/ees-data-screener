@@ -28,6 +28,10 @@ Once you have run the screener, select your report in the file window within the
 
 This is the folder where you need to save data files and their corresponding metadata files to be screened.
 
+**reports** <br>
+
+This is the folder where output reports are saved.
+
 **setup_functions** <br>
 
 This folder contains the files that create all of the functions used in this project.

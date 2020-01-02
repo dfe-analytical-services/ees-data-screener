@@ -14,4 +14,4 @@ pandoc_install()
 your_data_file <- "smalldummy"
 
 # Run the report.
-rmarkdown::render("EES-data-screener-report.Rmd", output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))))
+rmarkdown::render("EES-data-screener-report.Rmd", output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))), output_dir = "reports")
