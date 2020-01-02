@@ -22,7 +22,7 @@ metadata_utf16 <- read.csv(meta_data, stringsAsFactors = FALSE, encoding = "UTF-
 acceptable_indicatorunits <- c("£", "%")
 
 # setting up functions, and preparing results
-source("setup_functions/function_setup.R")
+source("setup_functions/setup_function.R")
 ```
 
 ## Underlying data testing {caption="`r Sys.time()`"} 
