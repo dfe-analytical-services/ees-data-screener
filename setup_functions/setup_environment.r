@@ -90,11 +90,11 @@ screening_results <- function() {
       message("Please check the report as your files have not passed the screening")
     }
   }
-  
+
   if (user_input == "I want to select my data and meta data files separately using file explorer") {
     stop("This option has not yet been developed.")
   }
-  
+
   if (user_input == "I want to screen all files in the data_metadata folder") {
     file_list <- list.files(
       path = "./data_metadata/",

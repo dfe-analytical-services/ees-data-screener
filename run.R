@@ -8,5 +8,5 @@ source("setup_functions/setup_environment.R")
 # Follow the instructions for the install, restart RStudio, and then run this again, it won't redownload pandoc if you have version 2.7.3 or later.
 pandoc_install()
 
-# Screen your files.
+# Screen your files by running the following line and responding to the prompts.
 screening_results()
