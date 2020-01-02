@@ -10,7 +10,7 @@ meta_variable_setup <- function(data,meta){
   column_crosscheck(data,meta)
 }
 
-meta_col_name_results_function <- function(){
+meta_variable_results_function <- function(){
   assign("meta_variable_results",c(col_name_completed_result,
                                    meta_duplicate_result,
                                    col_name_spaces_result,
