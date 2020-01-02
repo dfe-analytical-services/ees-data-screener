@@ -16,6 +16,7 @@ pandoc_install <- function() {
   }
 }
 
+# -------------------------------------
 # function to install/load the packages needed to run the screener
 envrionment_setup <- function() {
   if (!require(govdown)) {
@@ -50,6 +51,22 @@ envrionment_setup <- function() {
 }
 envrionment_setup()
 
+# -------------------------------------
+# run function
+data_screener <- function(){
+  rmarkdown::render("EES-data-screener-report.Rmd", output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))), output_dir = "reports")
+  screening_tests(dataset,metadata,metadata_utf16)
+  message("")
+  message("Screening results at a glance:")
+  message(total_percent, " of tests passed.")
+  if(total_percent == "100%"){
+    message("Your data file has passed the screening and may be uploaded.")
+  } else {
+    message("Please check the report as your files have not passed the screening")
+  }
+}
+
+# -------------------------------------
 # hard-coded variables
 acceptable_time_identifiers <- c(
   "Spring term", "Autumn term", "Autumn and spring term",
