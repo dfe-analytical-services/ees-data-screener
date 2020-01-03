@@ -13,24 +13,41 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # reading in the data
 file_data <- paste("data_metadata/", your_data_file, ".csv", sep = "")
-meta_data <- paste("data_metadata/", your_data_file, ".meta.csv", sep = "")
+meta_data <- paste("data_metadata/", your_meta_file, ".meta.csv", sep = "")
 dataset <- read_csv(file_data, trim_ws = FALSE)
 metadata <- read_csv(meta_data, trim_ws = FALSE)
 metadata_utf16 <- read.csv(meta_data, stringsAsFactors = FALSE, encoding = "UTF-16")
+```
 
+```{r prechecks,comment=NA}
 prechecks(dataset, metadata)
 
 # defining this here due to issues with £ encoding
 acceptable_indicatorunits <- c("£", "%")
+```
 
+```{r setup,include=FALSE}
 # setting up functions, and preparing results
 source("setup_functions/setup_function.R")
 ```
 
 ## Underlying data testing {caption="`r Sys.time()`"} 
-File tested: `r your_data_file` `r if(total_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
+File tested: `r your_data_file` 
+<br>
 
+<center>
+`r if(total_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
+</center>
+
+<br><br>
 `r total_percent` of tests passed overall.
+<br><br>
+Number of applicable tests: `r sum(pass,fail)`
+<br>
+Tests passed: `r pass`
+<br>
+Tests failed: `r fail`
+<br><br>
 
 ::: {.tabset}
 
@@ -117,7 +134,7 @@ observational_total(dataset)
 
 ## Metadata validation
 
-`r if(reading_option==2){paste(your_meta_file)}else{paste(your_data_file,".meta.csv",sep="")}` `r if(meta_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` 
+`r paste(your_meta_file,".meta.csv",sep="")` `r if(meta_percent=="100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` 
 <br><br>
 `r meta_percent` of tests passed on the metadata file.
 

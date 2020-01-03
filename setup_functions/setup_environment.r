@@ -5,7 +5,7 @@
 # function to check the pandoc version and install the latest if not 2.7.3 or later
 pandoc_install <- function() {
   if (rmarkdown::pandoc_version() >= "2.7.3") {
-    message("You already have version 2.7.3 or later of Pandoc installed, you're good to use the screener.")
+    message("You already have version 2.7.3 or later of Pandoc installed, you can now run the screener.")
     message("")
   }
   else {
@@ -61,9 +61,7 @@ envrionment_setup()
 # -------------------------------------
 # quote check function
 
-quote_check <- function(your_data_file,your_meta_file){
-  data_quote_test <- read.delim(paste("data_metadata/", your_data_file, ".csv", sep = ""))
-  meta_quote_test <- read.delim(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""))
+quote_check <- function(data_quote_test,meta_quote_test){
   
   if(sum(stringi::stri_count(c(as.vector(as.matrix(data_quote_test))),fixed='"'),stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))),fixed='"'))!=0){
     stop(message("Both ",your_data_file,".csv and ",your_meta_file,".meta.csv contain quotes. Please remove these and then try again. One way to do this is to open the files using Wordpad or Notepad, and delete or find/replace the quote marks."))
@@ -82,6 +80,7 @@ quote_check <- function(your_data_file,your_meta_file){
 # run function
 
 screening_results <- function() {
+  
   user_input <- dlg_list(c(
     "My files are saved in the data_metadata folder and I want to type the name.",
     "I want to select my data and meta data files separately using file explorer.",
@@ -93,9 +92,9 @@ screening_results <- function() {
   )$res
 
   if (user_input == "My files are saved in the data_metadata folder and I want to type the name.") {
-    assign("reading_option", 1, envir = .GlobalEnv)
-    assign("your_data_file", dlg_input(message = "Enter the name of your data file (without .csv):")$res, envir = .GlobalEnv)
-    assign("your_meta_file", your_data_file, envir = .GlobalEnv)
+    
+    your_data_file <- dlg_input(message = "Enter the name of your data file:",default = NULL,gui=.GUI)$res
+    assign("your_meta_file",your_data_file,envir = .GlobalEnv)
     
     data_quote_test <- read.delim(paste("data_metadata/", your_data_file, ".csv", sep = ""))
     meta_quote_test <- read.delim(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""))
@@ -116,7 +115,13 @@ screening_results <- function() {
     message("Screening results at a glance:")
     message("")
     message(Sys.time(), " screening of ", your_data_file, " files.")
+    message("")
     message(total_percent, " of tests passed.")
+    message("Number of applicable tests: ",sum(pass,fail))
+    message("Tests passed: ", pass)
+    message("Tests failed: ", fail)
+    message("")
+    message("Your report has been saved in the /reports folder.")
 
     if (total_percent == "100%") {
       message("")
@@ -128,33 +133,43 @@ screening_results <- function() {
   }
 
   if (user_input == "I want to select my data and meta data files separately using file explorer.") {
-    assign("reading_option", 2, envir = .GlobalEnv)
 
-    assign("dataset_path", dlg_open("/dir/", "Select your data file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
-    assign("metadata_path", dlg_open("/dir/", "Select your metadata file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
+    assign("dataset_path", dlg_open("/desktop/", "Select your data file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
+    assign("metadata_path", dlg_open("/desktop/", "Select your metadata file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
 
     assign("your_data_file", str_remove(basename(dataset_path), ".csv"), envir = .GlobalEnv)
-    assign("your_meta_file", str_remove(basename(metadata_path), "meta.csv"), envir = .GlobalEnv)
+    assign("your_meta_file", str_remove(basename(metadata_path), ".meta.csv"), envir = .GlobalEnv)
 
-    quote_check(your_data_file,your_meta_file)
+    data_quote_test <- read.delim(dataset_path)
+    meta_quote_test <- read.delim(metadata_path)
+    
+    quote_check(data_quote_test,meta_quote_test)
     
     rmarkdown::render("EES-data-screener-report.Rmd",
       output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_report_", Sys.time(), ".html", sep = "")))),
       output_dir = "reports",
       envir = .GlobalEnv
     )
-
+    
+    message("")
+    message("Screening results breakdown:")
+    message("")
     screening_tests(dataset, metadata, metadata_utf16)
     message("")
     message("Screening results at a glance:")
-    message(Sys.time(), " screening of:")
+    message("")
+    message(Sys.time(), " screening of")
     message(dataset_path)
     message("and")
     message(metadata_path)
     message("")
     message(total_percent, " of tests passed.")
+    message("Number of applicable tests: ",sum(pass,fail))
+    message("Tests passed: ", pass)
+    message("Tests failed: ", fail)
     message("")
-
+    message("Your report has been saved in the /reports folder.")
+    message("")
     if (total_percent == "100%") {
       message("Your data file has passed the screening and may be uploaded.")
     } else {
@@ -164,8 +179,6 @@ screening_results <- function() {
 
   if (user_input == "I want to screen all files in the data_metadata folder.") {
     stop("This option is still under development, please try again and select either option 1 or 2.")
-
-    assign("reading_option", 1, envir = .GlobalEnv)
 
     file_list <- list.files(
       path = "./data_metadata/",
@@ -184,18 +197,33 @@ screening_results <- function() {
       for (your_data_file in myfiles) {
         your_meta_file <- your_data_file
         
-        quote_check(your_data_file,your_meta_file)
+        data_quote_test <- read.delim(paste("data_metadata/", your_data_file, ".csv", sep = ""))
+        meta_quote_test <- read.delim(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""))
+        
+        quote_check(data_quote_test,meta_quote_test)
         
         rmarkdown::render("EES-data-screener-report.Rmd",
           output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
           output_dir = "reports",
           envir = .GlobalEnv
         )
+        
+        message("")
+        message("Screening results breakdown:")
+        message("")
         screening_tests(dataset, metadata, metadata_utf16)
         message("")
         message("Screening results at a glance:")
+        message("")
         message(Sys.time(), " screening of ", your_data_file, " files.")
         message(total_percent, " of tests passed.")
+        message("Number of applicable tests: ",sum(pass,fail))
+        message("Tests passed: ", pass)
+        message("Tests failed: ", fail)
+        message("")
+        message("Your report has been saved in the /reports folder.")
+        message("")
+        
         if (total_percent == "100%") {
           message("Your data file has passed the screening and may be uploaded.")
         } else {
@@ -233,6 +261,7 @@ prechecks <- function(data, meta) {
 
 # -------------------------------------
 # hard-coded variables
+
 acceptable_time_identifiers <- c(
   "Spring term", "Autumn term", "Autumn and spring term",
   "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber",
