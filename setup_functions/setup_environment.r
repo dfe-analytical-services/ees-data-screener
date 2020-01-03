@@ -62,7 +62,7 @@ envrionment_setup()
 # quote check function
 
 quote_check <- function(data_quote_test, meta_quote_test) {
-    if (sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))), fixed = '"')) != 0) {
+    if (sum(stringi::stri_count(c(as.vector(as.matrix(data_quote_test))), fixed = '"')) != 0) {
       stop(
         message(""),
         message(your_data_file, ".csv contains quotes."),
@@ -142,14 +142,20 @@ screening_results <- function() {
   )$res
 
   if (user_input == "My files are saved in the data_metadata folder and I want to type the name.") {
-    your_data_file <- dlg_input(message = "Enter the name of your data file:", default = NULL, gui = .GUI)$res
+    assign("your_data_file",dlg_input(message = "Enter the name of your data file:", default = NULL, gui = .GUI)$res,envir = .GlobalEnv)
     assign("your_meta_file", your_data_file, envir = .GlobalEnv)
 
     data_quote_test <- read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""),fill=TRUE)
     meta_quote_test <- read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""),fill=TRUE)
 
     quote_check(your_data_file, your_meta_file)
-
+    
+    assign("dataset",read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), trim_ws = FALSE),envir = .GlobalEnv)
+    assign("metadata",read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), trim_ws = FALSE),envir = .GlobalEnv)
+    assign("metadata_utf16",read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"),envir = .GlobalEnv)
+    
+    prechecks(dataset, metadata)
+    
     rmarkdown::render("EES-data-screener-report.Rmd",
       output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
       output_dir = "reports",
@@ -193,9 +199,9 @@ screening_results <- function() {
 
     quote_check(data_quote_test, meta_quote_test)
 
-    assign("dataset",read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), trim_ws = FALSE),envir = .GlobalEnv)
-    assign("metadata",read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), trim_ws = FALSE),envir = .GlobalEnv)
-    assign("metadata_utf16",read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"),envir = .GlobalEnv)
+    assign("dataset",read_csv(dataset_path, trim_ws = FALSE),envir = .GlobalEnv)
+    assign("metadata",read_csv(metadata_path, trim_ws = FALSE),envir = .GlobalEnv)
+    assign("metadata_utf16",read.csv(metadata_path, stringsAsFactors = FALSE, encoding = "UTF-16"),envir = .GlobalEnv)
 
     prechecks(dataset, metadata)
 
@@ -233,13 +239,9 @@ screening_results <- function() {
   }
 
   if (user_input == "I want to screen all files in the data_metadata folder.") {
-    stop("This option is still under development, please try again and select either option 1 or 2.")
+    #stop("This option is still under development, please try again and select either option 1 or 2.")
 
-    file_list <- list.files(
-      path = "./data_metadata/",
-      pattern = "*.csv",
-      full.names = T
-    )
+    assign("file_list",list.files(path = "./data_metadata/",pattern = "*.csv",full.names = T),envir = .GlobalEnv)
 
     if ((length(file_list) %% 2) == 1) {
       stop("There is an odd number of .csv files in the data_metadata folder, please check the contents of the folder and try again, or choose a different option.")
@@ -249,25 +251,47 @@ screening_results <- function() {
       file_list3 <- gsub("^(.[^.]*).*$", "\\1", file_list2)
       myfiles <- unique(file_list3)
 
-      for (your_data_file in myfiles) {
-        your_meta_file <- your_data_file
+      for (i in myfiles) {
+        assign("your_data_file",i,envir = .GlobalEnv)
+        assign("your_meta_file",your_data_file,envir = .GlobalEnv)
 
-        data_quote_test <- read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""),fill=TRUE)
-        meta_quote_test <- read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""),fill=TRUE)
-
-        quote_check(data_quote_test, meta_quote_test)
-
+        assign("data_quote_test",read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""),fill=TRUE),envir = .GlobalEnv)
+        assign("meta_quote_test",read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""),fill=TRUE),envir = .GlobalEnv)
+        
+        if (sum(stringi::stri_count(c(as.vector(as.matrix(data_quote_test))), fixed = '"')) != 0) {
+          stop(
+            message(""),
+            message(your_data_file, ".csv contains quotes."),
+            message(""),
+            message("Please remove these and then try again."),
+            message("One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."),
+            message("")
+          )
+        }
+        
+        if (sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))), fixed = '"')) != 0) {
+          stop(
+            message(""),
+            message(your_meta_file, ".meta.csv contains quotes."),
+            message(""),
+            message("Please remove these and then try again."),
+            message("One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."),
+            message("")
+          )
+        }
+        
+        assign("dataset",read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), trim_ws = FALSE),envir = .GlobalEnv)
+        assign("metadata",read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), trim_ws = FALSE),envir = .GlobalEnv)
+        assign("metadata_utf16",read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"),envir = .GlobalEnv)
+        
+        prechecks(dataset, metadata)
+        
         rmarkdown::render("EES-data-screener-report.Rmd",
-          output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
-          output_dir = "reports",
-          envir = .GlobalEnv
+                          output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
+                          output_dir = "reports",
+                          envir = .GlobalEnv
         )
 
-        message("")
-        message("Screening results breakdown:")
-        message("")
-        screening_tests(dataset, metadata, metadata_utf16)
-        message("")
         message("Screening results at a glance:")
         message("")
         message(Sys.time(), " screening of ", your_data_file, " files.")
@@ -281,8 +305,10 @@ screening_results <- function() {
 
         if (total_percent == "100%") {
           message("Your data file has passed the screening and may be uploaded.")
+          message("")
         } else {
           message("Please check the report as your files have not passed the screening.")
+          message("")
         }
       }
     }
