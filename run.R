@@ -1,7 +1,7 @@
 ## Running the Screener
 
 # Setup your environment by running the following line
-source("setup_functions/setup_environment.R")
+source("setup_functions/setup_environment.R",encoding = "UTF-8")
 
 # The following line will check your version of Pandoc and either give you the go ahead to screen your files or automatically update it for you if needed.
 # If it needs updating, this may take a couple of minutes. It will download it for you and automatically start the install wizard.

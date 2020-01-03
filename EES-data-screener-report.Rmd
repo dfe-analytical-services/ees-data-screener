@@ -12,10 +12,9 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 
 # defining this here due to issues with £ encoding
-acceptable_indicatorunits <- c("£", "%")
 
 # setting up functions, and preparing results
-source("setup_functions/setup_function.R")
+source("setup_functions/setup_function.r")
 ```
 
 ## Underlying data testing {caption="`r Sys.time()`"} 

@@ -193,9 +193,9 @@ screening_results <- function() {
 
     quote_check(data_quote_test, meta_quote_test)
 
-    dataset <- read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), trim_ws = FALSE)
-    metadata <- read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), trim_ws = FALSE)
-    metadata_utf16 <- read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16")
+    assign("dataset",read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), trim_ws = FALSE),envir = .GlobalEnv)
+    assign("metadata",read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), trim_ws = FALSE),envir = .GlobalEnv)
+    assign("metadata_utf16",read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"),envir = .GlobalEnv)
 
     prechecks(dataset, metadata)
 
@@ -336,3 +336,5 @@ provider_required <- c("provider_urn", "provider_name")
 institution_required <- c("institution_id", "institution_id")
 
 meta_cols <- c("col_name", "col_type", "label", "indicator_grouping", "indicator_unit", "filter_hint", "filter_grouping_column")
+
+acceptable_indicatorunits <- c("£", "%")

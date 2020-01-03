@@ -43,7 +43,7 @@ This is the file that creates the .html report that is the output of the screene
 **Updating and this project** <br>
 Most of the files in this project should be self-explanatory when looking around. The setup files contain the functions used for each test referred to and called by the .rmd file. 
 <br>
-Hard-coded variables, such as acceptable time_identifiers, are defined in the environment_setup script. The exception to this is the indcator units, which are defined at the top of the .rmd file due to issues withe the £ symbol. If you're looking at a function and can't work out where a variable is from, also check the function_setup file as this contains a number of variables based on the data being screened that are reused across functions.
+Hard-coded variables, such as acceptable time_identifiers, are defined in the environment_setup script. If you're looking at a function and can't work out where a variable is from, also check the function_setup file as this contains a number of variables based on the data being screened that are reused across functions.
 
 
 <br>
