@@ -11,22 +11,9 @@ output:
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
-# reading in the data
-file_data <- paste("data_metadata/", your_data_file, ".csv", sep = "")
-meta_data <- paste("data_metadata/", your_meta_file, ".meta.csv", sep = "")
-dataset <- read_csv(file_data, trim_ws = FALSE)
-metadata <- read_csv(meta_data, trim_ws = FALSE)
-metadata_utf16 <- read.csv(meta_data, stringsAsFactors = FALSE, encoding = "UTF-16")
-```
-
-```{r prechecks,comment=NA}
-prechecks(dataset, metadata)
-
 # defining this here due to issues with £ encoding
 acceptable_indicatorunits <- c("£", "%")
-```
 
-```{r setup,include=FALSE}
 # setting up functions, and preparing results
 source("setup_functions/setup_function.R")
 ```

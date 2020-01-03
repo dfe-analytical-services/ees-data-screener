@@ -61,18 +61,69 @@ envrionment_setup()
 # -------------------------------------
 # quote check function
 
-quote_check <- function(data_quote_test,meta_quote_test){
-  
-  if(sum(stringi::stri_count(c(as.vector(as.matrix(data_quote_test))),fixed='"'),stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))),fixed='"'))!=0){
-    stop(message("Both ",your_data_file,".csv and ",your_meta_file,".meta.csv contain quotes. Please remove these and then try again. One way to do this is to open the files using Wordpad or Notepad, and delete or find/replace the quote marks."))
-  } else {
-    if(sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))),fixed='"'))!=0){
-      stop(message(your_data_file,".csv contains quotes. Please remove these and then try again. One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."))
+quote_check <- function(data_quote_test, meta_quote_test) {
+    if (sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))), fixed = '"')) != 0) {
+      stop(
+        message(""),
+        message(your_data_file, ".csv contains quotes."),
+        message(""),
+        message("Please remove these and then try again."),
+        message("One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."),
+        message("")
+      )
     }
-    
-    if(sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))),fixed='"'))!=0){
-      stop(message(your_meta_file,".meta.csv contains quotes. Please remove these and then try again. One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."))
+
+    if (sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))), fixed = '"')) != 0) {
+      stop(
+        message(""),
+        message(your_meta_file, ".meta.csv contains quotes."),
+        message(""),
+        message("Please remove these and then try again."),
+        message("One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."),
+        message("")
+      )
     }
+  }
+
+
+# -------------------------------------
+# pre-check function
+
+prechecks <- function(data, meta) {
+  for (i in c("geographic_level", "time_period", "time_identifier", "country_code", "country_name")) {
+    if (i %in% names(data)) {
+
+    } else {
+      stop(
+        message(""),
+        message("The ", i, " column is missing from ", paste(your_data_file, ".csv", sep = ""), "."),
+        message("Please review the data standards and amend your data before trying to screen it again."),
+        message("")
+      )
+    }
+  }
+
+  for (i in meta_cols) {
+    if (i %in% names(meta)) {
+
+    } else {
+      stop(
+        message(""),
+        message("The ", i, " column is missing from ", paste(your_meta_file, ".meta.csv", sep = ""), "."),
+        message("Please review the data standards and amend your data before trying to screen it again."),
+        message("")
+      )
+    }
+  }
+  if (length(setdiff(names(meta), meta_cols)) != 0) {
+    stop(
+      message(""),
+      message("You have the following invalid columns in ", paste(your_meta_file, ".meta.csv", sep = ""), ":"),
+      message(paste(setdiff(names(meta), meta_cols), collapse = "  ")),
+      message(""),
+      message("Please review the data standards and amend your data before trying to screen it again."),
+      message("")
+    )
   }
 }
 
@@ -80,7 +131,6 @@ quote_check <- function(data_quote_test,meta_quote_test){
 # run function
 
 screening_results <- function() {
-  
   user_input <- dlg_list(c(
     "My files are saved in the data_metadata folder and I want to type the name.",
     "I want to select my data and meta data files separately using file explorer.",
@@ -92,15 +142,14 @@ screening_results <- function() {
   )$res
 
   if (user_input == "My files are saved in the data_metadata folder and I want to type the name.") {
-    
-    your_data_file <- dlg_input(message = "Enter the name of your data file:",default = NULL,gui=.GUI)$res
-    assign("your_meta_file",your_data_file,envir = .GlobalEnv)
-    
-    data_quote_test <- read.delim(paste("data_metadata/", your_data_file, ".csv", sep = ""))
-    meta_quote_test <- read.delim(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""))
-    
-    quote_check(your_data_file,your_meta_file)
-    
+    your_data_file <- dlg_input(message = "Enter the name of your data file:", default = NULL, gui = .GUI)$res
+    assign("your_meta_file", your_data_file, envir = .GlobalEnv)
+
+    data_quote_test <- read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""),fill=TRUE)
+    meta_quote_test <- read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""),fill=TRUE)
+
+    quote_check(your_data_file, your_meta_file)
+
     rmarkdown::render("EES-data-screener-report.Rmd",
       output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
       output_dir = "reports",
@@ -117,7 +166,7 @@ screening_results <- function() {
     message(Sys.time(), " screening of ", your_data_file, " files.")
     message("")
     message(total_percent, " of tests passed.")
-    message("Number of applicable tests: ",sum(pass,fail))
+    message("Number of applicable tests: ", sum(pass, fail))
     message("Tests passed: ", pass)
     message("Tests failed: ", fail)
     message("")
@@ -133,24 +182,29 @@ screening_results <- function() {
   }
 
   if (user_input == "I want to select my data and meta data files separately using file explorer.") {
-
-    assign("dataset_path", dlg_open("/desktop/", "Select your data file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
-    assign("metadata_path", dlg_open("/desktop/", "Select your metadata file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
+    assign("dataset_path", dlg_open("default", "Select your data file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
+    assign("metadata_path", dlg_open("default", "Select your metadata file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
 
     assign("your_data_file", str_remove(basename(dataset_path), ".csv"), envir = .GlobalEnv)
     assign("your_meta_file", str_remove(basename(metadata_path), ".meta.csv"), envir = .GlobalEnv)
 
-    data_quote_test <- read.delim(dataset_path)
-    meta_quote_test <- read.delim(metadata_path)
-    
-    quote_check(data_quote_test,meta_quote_test)
-    
+    data_quote_test <- read.table(dataset_path,fill=TRUE)
+    meta_quote_test <- read.table(metadata_path,fill=TRUE)
+
+    quote_check(data_quote_test, meta_quote_test)
+
+    dataset <- read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), trim_ws = FALSE)
+    metadata <- read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), trim_ws = FALSE)
+    metadata_utf16 <- read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16")
+
+    prechecks(dataset, metadata)
+
     rmarkdown::render("EES-data-screener-report.Rmd",
       output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_report_", Sys.time(), ".html", sep = "")))),
       output_dir = "reports",
       envir = .GlobalEnv
     )
-    
+
     message("")
     message("Screening results breakdown:")
     message("")
@@ -164,12 +218,13 @@ screening_results <- function() {
     message(metadata_path)
     message("")
     message(total_percent, " of tests passed.")
-    message("Number of applicable tests: ",sum(pass,fail))
+    message("Number of applicable tests: ", sum(pass, fail))
     message("Tests passed: ", pass)
     message("Tests failed: ", fail)
     message("")
     message("Your report has been saved in the /reports folder.")
     message("")
+
     if (total_percent == "100%") {
       message("Your data file has passed the screening and may be uploaded.")
     } else {
@@ -196,18 +251,18 @@ screening_results <- function() {
 
       for (your_data_file in myfiles) {
         your_meta_file <- your_data_file
-        
-        data_quote_test <- read.delim(paste("data_metadata/", your_data_file, ".csv", sep = ""))
-        meta_quote_test <- read.delim(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""))
-        
-        quote_check(data_quote_test,meta_quote_test)
-        
+
+        data_quote_test <- read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""),fill=TRUE)
+        meta_quote_test <- read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""),fill=TRUE)
+
+        quote_check(data_quote_test, meta_quote_test)
+
         rmarkdown::render("EES-data-screener-report.Rmd",
           output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
           output_dir = "reports",
           envir = .GlobalEnv
         )
-        
+
         message("")
         message("Screening results breakdown:")
         message("")
@@ -217,43 +272,18 @@ screening_results <- function() {
         message("")
         message(Sys.time(), " screening of ", your_data_file, " files.")
         message(total_percent, " of tests passed.")
-        message("Number of applicable tests: ",sum(pass,fail))
+        message("Number of applicable tests: ", sum(pass, fail))
         message("Tests passed: ", pass)
         message("Tests failed: ", fail)
         message("")
         message("Your report has been saved in the /reports folder.")
         message("")
-        
+
         if (total_percent == "100%") {
           message("Your data file has passed the screening and may be uploaded.")
         } else {
           message("Please check the report as your files have not passed the screening.")
         }
-      }
-    }
-  }
-}
-
-# -------------------------------------
-# pre-check function
-
-prechecks <- function(data, meta) {
-  
-  for (i in c("geographic_level", "time_period", "time_identifier", "country_code", "country_name")) {
-    if (i %in% names(data)) {
-    } else {
-      stop(message("The ", i, " variable is missing from", paste(your_data_file, ".csv", sep = ""), ", please review the data standards and amend your data before trying to screen it again."))
-    }
-  }
-
-  for (i in meta_cols) {
-    if (!i %in% names(meta)) {
-      stop(message("The ", i, " variable is missing from", paste(your_meta_file, ".meta.csv", sep = ""), ", please review the data standards and amend your data before trying to screen it again."))
-      meta_comp_col_preresult[i] <- FALSE
-    } else {
-      if (length(setdiff(names(meta), meta_cols)) != 0) {
-        stop(message("You have the following invalid columns in ", paste(your_meta_file, ".meta.csv", sep = ""), ": ", paste(setdiff(names(meta), meta_cols)), "please review the data standards and amend your data before trying to screen it again."))
-        meta_comp_col_preresult[8] <- FALSE
       }
     }
   }
