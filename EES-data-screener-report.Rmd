@@ -12,19 +12,13 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 
 # reading in the data
-if (reading_option == 1) {
-  file_data <- paste("data_metadata/", your_data_file, ".csv", sep = "")
-  meta_data <- paste("data_metadata/", your_data_file, ".meta.csv", sep = "")
-  dataset <- read_csv(file_data, trim_ws = FALSE)
-  metadata <- read_csv(meta_data, trim_ws = FALSE)
-  metadata_utf16 <- read.csv(meta_data, stringsAsFactors = FALSE, encoding = "UTF-16")
-}
+file_data <- paste("data_metadata/", your_data_file, ".csv", sep = "")
+meta_data <- paste("data_metadata/", your_data_file, ".meta.csv", sep = "")
+dataset <- read_csv(file_data, trim_ws = FALSE)
+metadata <- read_csv(meta_data, trim_ws = FALSE)
+metadata_utf16 <- read.csv(meta_data, stringsAsFactors = FALSE, encoding = "UTF-16")
 
-if (reading_option == 2) {
-  dataset <- read_csv(dataset_path, trim_ws = FALSE)
-  metadata <- read_csv(metadata_path, trim_ws = FALSE)
-  metadata_utf16 <- read.csv(metadata_path, stringsAsFactors = FALSE, encoding = "UTF-16")
-}
+prechecks(dataset, metadata)
 
 # defining this here due to issues with £ encoding
 acceptable_indicatorunits <- c("£", "%")

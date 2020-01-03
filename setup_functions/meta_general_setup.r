@@ -28,6 +28,7 @@ meta_general_results_function <- function() {
 
 meta_comp_col <- function(meta) {
   meta_comp_col_preresult <- c()
+
   for (i in meta_cols) {
     if (!i %in% names(meta)) {
       message("FAIL - The ", i, " variable is missing.")

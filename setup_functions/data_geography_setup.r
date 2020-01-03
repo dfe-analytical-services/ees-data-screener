@@ -367,22 +367,22 @@ geography_level_completed <- function(data) {
       geography_level_completed_preresult[sponsor_id] <- FALSE
     }
   }
-  
-  region_both_complete_check <- function(data){
-    if(("region_code"%in%names(data))&&("region_name"%in%names(data))){
-    if (is.na(data[region_code])&&!is.na(data[region_name])) {
-      message("FAIL - You must include the region_code when there is a region_name.")
-      geography_level_completed_preresult[rcode_missing] <- FALSE
+
+  region_both_complete_check <- function(data) {
+    if (("region_code" %in% names(data)) && ("region_name" %in% names(data))) {
+      if (is.na(data[region_code]) && !is.na(data[region_name])) {
+        message("FAIL - You must include the region_code when there is a region_name.")
+        geography_level_completed_preresult[rcode_missing] <- FALSE
+      }
+      if (is.na(data[region_name]) && !is.na(data[region_code])) {
+        message("FAIL - You must include the region_code when there is a region_name.")
+        geography_level_completed_preresult[rname_missing] <- FALSE
+      }
     }
-    if (is.na(data[region_name])&&!is.na(data[region_code])) {
-      message("FAIL - You must include the region_code when there is a region_name.")
-      geography_level_completed_preresult[rname_missing] <- FALSE
-    }
-   }
   }
-  
-  apply(data,1,region_both_complete_check)
-  
+
+  apply(data, 1, region_both_complete_check)
+
   if (FALSE %in% geography_level_completed_preresult) {
     assign("geography_level_completed_result", FALSE, envir = .GlobalEnv)
   } else {

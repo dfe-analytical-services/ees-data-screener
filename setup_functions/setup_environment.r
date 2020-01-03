@@ -74,7 +74,8 @@ screening_results <- function() {
 
   if (user_input == "My files are saved in the data_metadata folder and I want to type the name.") {
     assign("reading_option", 1, envir = .GlobalEnv)
-    assign("your_data_file", dlg_input(message = "Enter the name of your file (without .csv):")$res, envir = .GlobalEnv)
+    assign("your_data_file", dlg_input(message = "Enter the name of your data file (without .csv):")$res, envir = .GlobalEnv)
+    assign("your_meta_file", your_data_file, envir = .GlobalEnv)
 
     rmarkdown::render("EES-data-screener-report.Rmd",
       output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
@@ -93,8 +94,10 @@ screening_results <- function() {
     message(total_percent, " of tests passed.")
 
     if (total_percent == "100%") {
+      message("")
       message("Your data file has passed the screening and may be uploaded.")
     } else {
+      message("")
       message("Please check the report as your files have not passed the screening.")
     }
   }
@@ -113,6 +116,7 @@ screening_results <- function() {
       output_dir = "reports",
       envir = .GlobalEnv
     )
+
     screening_tests(dataset, metadata, metadata_utf16)
     message("")
     message("Screening results at a glance:")
@@ -123,6 +127,7 @@ screening_results <- function() {
     message("")
     message(total_percent, " of tests passed.")
     message("")
+
     if (total_percent == "100%") {
       message("Your data file has passed the screening and may be uploaded.")
     } else {
@@ -131,9 +136,8 @@ screening_results <- function() {
   }
 
   if (user_input == "I want to screen all files in the data_metadata folder.") {
-    
     stop("This option is still under development, please try again and select either option 1 or 2.")
-    
+
     assign("reading_option", 1, envir = .GlobalEnv)
 
     file_list <- list.files(
@@ -145,13 +149,14 @@ screening_results <- function() {
     if ((length(file_list) %% 2) == 1) {
       stop("There is an odd number of .csv files in the data_metadata folder, please check the contents of the folder and try again.")
     } else {
-      
       file_list1 <- gsub("^.*?/", "", file_list)
       file_list2 <- gsub("^.*?/", "", file_list1)
       file_list3 <- gsub("^(.[^.]*).*$", "\\1", file_list2)
       myfiles <- unique(file_list3)
 
       for (your_data_file in myfiles) {
+        your_meta_file <- your_data_file
+
         rmarkdown::render("EES-data-screener-report.Rmd",
           output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
           output_dir = "reports",
@@ -172,6 +177,29 @@ screening_results <- function() {
   }
 }
 
+# -------------------------------------
+# pre-check function
+
+prechecks <- function(data, meta) {
+  for (i in c("geographic_level", "time_period", "time_identifier", "country_code", "country_name")) {
+    if (i %in% names(data)) {
+    } else {
+      stop(message("The ", i, " variable is missing from", paste(your_data_file, ".csv", sep = ""), ", please review the data standards and amend your data before trying to screen it again."))
+    }
+  }
+
+  for (i in meta_cols) {
+    if (!i %in% names(meta)) {
+      stop(message("The ", i, " variable is missing from", paste(your_meta_file, ".meta.csv", sep = ""), ", please review the data standards and amend your data before trying to screen it again."))
+      meta_comp_col_preresult[i] <- FALSE
+    } else {
+      if (length(setdiff(names(meta), meta_cols)) != 0) {
+        stop(message("You have the following invalid columns in ", paste(your_meta_file, ".meta.csv", sep = ""), ": ", paste(setdiff(names(meta), meta_cols)), "please review the data standards and amend your data before trying to screen it again."))
+        meta_comp_col_preresult[8] <- FALSE
+      }
+    }
+  }
+}
 
 # -------------------------------------
 # hard-coded variables
