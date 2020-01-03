@@ -62,18 +62,18 @@ envrionment_setup()
 
 screening_results <- function() {
   user_input <- dlg_list(c(
-    "My files are saved in the data_metadata folder and I want to type the name",
-    "I want to select my data and meta data files separately using file explorer",
-    "I want to screen all files in the data_metadata folder"
+    "My files are saved in the data_metadata folder and I want to type the name.",
+    "I want to select my data and meta data files separately using file explorer.",
+    "I want to screen all files in the data_metadata folder."
   ),
   preselect = NULL,
-  title = "Select how you would like to use the screener by entering the number next to your desired method below",
+  title = "Select how you would like to use the screener by entering the number next to your desired method below.",
   gui = .GUI
   )$res
 
-  if (user_input == "My files are saved in the data_metadata folder and I want to type the name") {
+  if (user_input == "My files are saved in the data_metadata folder and I want to type the name.") {
     assign("reading_option", 1, envir = .GlobalEnv)
-    assign("your_data_file", dlg_input(message = "Enter the name of your file (without .csv)")$res, envir = .GlobalEnv)
+    assign("your_data_file", dlg_input(message = "Enter the name of your file (without .csv):")$res, envir = .GlobalEnv)
 
     rmarkdown::render("EES-data-screener-report.Rmd",
       output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
@@ -94,11 +94,11 @@ screening_results <- function() {
     if (total_percent == "100%") {
       message("Your data file has passed the screening and may be uploaded.")
     } else {
-      message("Please check the report as your files have not passed the screening")
+      message("Please check the report as your files have not passed the screening.")
     }
   }
 
-  if (user_input == "I want to select my data and meta data files separately using file explorer") {
+  if (user_input == "I want to select my data and meta data files separately using file explorer.") {
     assign("reading_option", 2, envir = .GlobalEnv)
 
     assign("dataset_path", dlg_open("/dir/", "Select your data file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
@@ -125,11 +125,14 @@ screening_results <- function() {
     if (total_percent == "100%") {
       message("Your data file has passed the screening and may be uploaded.")
     } else {
-      message("Please check the report as your files have not passed the screening")
+      message("Please check the report as your files have not passed the screening.")
     }
   }
 
-  if (user_input == "I want to screen all files in the data_metadata folder") {
+  if (user_input == "I want to screen all files in the data_metadata folder.") {
+    
+    stop("This option is still under development, please try again and select either option 1 or 2.")
+    
     assign("reading_option", 1, envir = .GlobalEnv)
 
     file_list <- list.files(
@@ -141,6 +144,7 @@ screening_results <- function() {
     if ((length(file_list) %% 2) == 1) {
       stop("There is an odd number of .csv files in the data_metadata folder, please check the contents of the folder and try again.")
     } else {
+      
       file_list1 <- gsub("^.*?/", "", file_list)
       file_list2 <- gsub("^.*?/", "", file_list1)
       file_list3 <- gsub("^(.[^.]*).*$", "\\1", file_list2)
@@ -160,7 +164,7 @@ screening_results <- function() {
         if (total_percent == "100%") {
           message("Your data file has passed the screening and may be uploaded.")
         } else {
-          message("Please check the report as your files have not passed the screening")
+          message("Please check the report as your files have not passed the screening.")
         }
       }
     }
