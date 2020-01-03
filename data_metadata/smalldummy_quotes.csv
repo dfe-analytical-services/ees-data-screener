@@ -1,0 +1,3 @@
+time_period,time_identifier,geographic_level,country_code,country_name,school_type,school_phase,number_of_teachers,number_of_assistants,cost_of_books,admission_numbers
+2018,January,National,E92000001,England,Total,Total,712196,48009,60520,77833
+2018,February,National,E92000001,"England,",Total,Total,"768,763",98486,74194,50310

@@ -59,6 +59,26 @@ envrionment_setup <- function() {
 envrionment_setup()
 
 # -------------------------------------
+# quote check function
+
+quote_check <- function(your_data_file,your_meta_file){
+  data_quote_test <- read.delim(paste("data_metadata/", your_data_file, ".csv", sep = ""))
+  meta_quote_test <- read.delim(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""))
+  
+  if(sum(stringi::stri_count(c(as.vector(as.matrix(data_quote_test))),fixed='"'),stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))),fixed='"'))!=0){
+    stop(message("Both ",your_data_file,".csv and ",your_meta_file,".meta.csv contain quotes. Please remove these and then try again. One way to do this is to open the files using Wordpad or Notepad, and delete or find/replace the quote marks."))
+  } else {
+    if(sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))),fixed='"'))!=0){
+      stop(message(your_data_file,".csv contains quotes. Please remove these and then try again. One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."))
+    }
+    
+    if(sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))),fixed='"'))!=0){
+      stop(message(your_meta_file,".meta.csv contains quotes. Please remove these and then try again. One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."))
+    }
+  }
+}
+
+# -------------------------------------
 # run function
 
 screening_results <- function() {
@@ -76,7 +96,12 @@ screening_results <- function() {
     assign("reading_option", 1, envir = .GlobalEnv)
     assign("your_data_file", dlg_input(message = "Enter the name of your data file (without .csv):")$res, envir = .GlobalEnv)
     assign("your_meta_file", your_data_file, envir = .GlobalEnv)
-
+    
+    data_quote_test <- read.delim(paste("data_metadata/", your_data_file, ".csv", sep = ""))
+    meta_quote_test <- read.delim(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""))
+    
+    quote_check(your_data_file,your_meta_file)
+    
     rmarkdown::render("EES-data-screener-report.Rmd",
       output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
       output_dir = "reports",
@@ -111,6 +136,8 @@ screening_results <- function() {
     assign("your_data_file", str_remove(basename(dataset_path), ".csv"), envir = .GlobalEnv)
     assign("your_meta_file", str_remove(basename(metadata_path), "meta.csv"), envir = .GlobalEnv)
 
+    quote_check(your_data_file,your_meta_file)
+    
     rmarkdown::render("EES-data-screener-report.Rmd",
       output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_report_", Sys.time(), ".html", sep = "")))),
       output_dir = "reports",
@@ -147,7 +174,7 @@ screening_results <- function() {
     )
 
     if ((length(file_list) %% 2) == 1) {
-      stop("There is an odd number of .csv files in the data_metadata folder, please check the contents of the folder and try again.")
+      stop("There is an odd number of .csv files in the data_metadata folder, please check the contents of the folder and try again, or choose a different option.")
     } else {
       file_list1 <- gsub("^.*?/", "", file_list)
       file_list2 <- gsub("^.*?/", "", file_list1)
@@ -156,7 +183,9 @@ screening_results <- function() {
 
       for (your_data_file in myfiles) {
         your_meta_file <- your_data_file
-
+        
+        quote_check(your_data_file,your_meta_file)
+        
         rmarkdown::render("EES-data-screener-report.Rmd",
           output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
           output_dir = "reports",
@@ -181,6 +210,7 @@ screening_results <- function() {
 # pre-check function
 
 prechecks <- function(data, meta) {
+  
   for (i in c("geographic_level", "time_period", "time_identifier", "country_code", "country_name")) {
     if (i %in% names(data)) {
     } else {
