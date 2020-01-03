@@ -52,6 +52,7 @@ envrionment_setup <- function() {
     install.packages("svDialogs")
     require(svDialogs)
   }
+  message("")
   message("Your environment has successfully been setup, you can now run the screener.")
   message("")
 }
