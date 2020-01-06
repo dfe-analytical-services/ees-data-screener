@@ -20,13 +20,19 @@ This is the project file, and the file you should open after downloading to open
 
 **run.R** <br>
 
-This is the script that you need to use to setup your environment, select the files, and run the screener.<br>
+This is the script that you need to use to setup your environment, designate the files, and run the screener.<br>
 
-Once you have run the screener, select your report in the file window within the project folder, and click to 'Open in browser' (Chrome works best and is recommended for full functionality, though it still works in some other browsers).
+You will be presented with three options, type the number of the option you want to choose in the console to start the screener.<br>
+
+Once you have run the screener, select your report in the file window within the project folder, and click to 'Open in browser' (Chrome works best and is recommended for full functionality, though it still works in some other browsers such as Edge).
 
 **data_metadata** <br>
 
 This is the folder where you need to save data files and their corresponding metadata files to be screened.
+
+**reports** <br>
+
+This is the folder where output reports are saved.
 
 **setup_functions** <br>
 
@@ -35,6 +41,11 @@ This folder contains the files that create all of the functions used in this pro
 **EES-data-screener-report.Rmd** <br>
 
 This is the file that creates the .html report that is the output of the screener.
+
+**Updating and this project** <br>
+Most of the files in this project should be self-explanatory when looking around. The setup files contain the functions used for each test referred to and called by the .rmd file. 
+<br>
+Hard-coded variables, such as acceptable time_identifiers, are defined in the environment_setup script. If you're looking at a function and can't work out where a variable is from, also check the function_setup file as this contains a number of variables based on the data being screened that are reused across functions.
 
 
 <br>
@@ -58,8 +69,15 @@ As a more general note, if as a DfE analyst you are struggling with proxy settin
 
 **Tidyverse** <br>
 
-The functions in this data screener are based around the [tidyverse packages](https://www.tidyverse.org/).
+The functions in this data screener are based around the [Tidyverse packages](https://www.tidyverse.org/).
 
 **Govdown** <br>
 
 More information on govdown, a package used to format the output report in this project, can be found [online](https://ukgovdatascience.github.io/govdown/).
+
+**StyleR** <br>
+
+The code in this project has been styled using the [StyleR package](https://styler.r-lib.org/).
+The following will run through and check all files in the project.
+
+>`styler::style_dir(filetype = c("r","rmd"))`

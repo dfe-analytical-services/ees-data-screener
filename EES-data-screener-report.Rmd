@@ -5,221 +5,230 @@ output:
     logo_text: "DfE"
     font: "sans-serif"
     title: "Explore education statistics"
-    phase: alpha
+    phase: beta
+    feedback_url: "https://github.com/lauraselby/data-screener/issues"
 ---
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
-file_data <- paste("data_metadata/",your_data_file,'.csv',sep = "")
-meta_data <- paste("data_metadata/",your_data_file,'.meta.csv',sep = "")
+# setting up functions, and preparing results
+source("setup_functions/setup_function.r")
 ```
+
 ## Underlying data testing {caption="`r Sys.time()`"} 
 File tested: `r your_data_file` 
-
-X% of standards met
 <br>
-```{r files, include=FALSE}
-dataset <- read_csv(file_data,trim_ws = FALSE)
-metadata <- read_csv(meta_data,trim_ws = FALSE)
-metadata_utf16 <- read.csv(meta_data,stringsAsFactors = FALSE,encoding = "UTF-16")
-```
 
-```{r setup, include=FALSE}
-source("setup_functions/function_setup.R")
-```
+`r total_percent` of tests passed overall.
+<br><br>
+Number of applicable tests: `r sum(pass,fail)`
+<br>
+Tests passed: `r pass`
+<br>
+Tests failed: `r fail`
+<br><br>
+
 ::: {.tabset}
 
 ## Data file validation
 
 `r paste(your_data_file,".csv",sep="")`
+<br><br>
+`r if(data_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r data_percent` of tests passed on the data file. 
 
-
-X% of standards met
 
 :::{.accordion}
 
 ## General validation
- **Checking that the compulsory columns are present**
+ **Checking that the compulsory columns are present**  `r pass_fail_image(data_comp_col_result)`
 ```{r data_comp_col, echo=FALSE,comment=NA}
 data_comp_col(dataset)
 ```
 
- **Checking for commas in the data file**
-```{r comma_check,echo=FALSE,comment=NA}
-comma_check(dataset)
+ **Checking for commas in the data file** `r pass_fail_image(comma_result)`
+```{r comma,echo=FALSE,comment=NA}
+comma(dataset)
 ```
 
- **Checking for spaces in the data file variable names**
-```{r data_spaces_check,echo=FALSE,comment=NA}
-data_spaces_check(dataset)
+ **Checking for spaces in the data file variable names** `r pass_fail_image(data_spaces_result)`
+```{r data_spaces,echo=FALSE,comment=NA}
+data_spaces(dataset)
 ```
 
 ## Time validation
- **Checking that the time_period is either 4 or 6 digits, and if 6 digits that they show  consecutive years**
-```{r time_period_check, echo=FALSE,warning=FALSE,comment=NA}
-time_period_check(dataset)
+ **Checking that the time_period is either 4 or 6 digits** `r pass_fail_image(time_period_result)`
+```{r time_period, echo=FALSE,warning=FALSE,comment=NA}
+time_period(dataset)
 ```
 
- **Checking if the time_identifier values are valid**
-```{r time_identifier_check,comment=NA,echo=FALSE}
-time_identifier_check(dataset)
+ **Checking that if the time_period is 6 digits that they show consecutive years** `r pass_fail_image(time_period_six_result)`
+```{r time_period_six, echo=FALSE,warning=FALSE,comment=NA}
+time_period_six(dataset)
 ```
 
- **Check this list for conceptually different time_identifiers**
-```{r time_identifier_mix, echo=FALSE, comment="Time_identifiers: "}
+ **Checking if the time_identifier values are valid** `r pass_fail_image(time_identifier_result)`
+```{r time_identifier,comment=NA,echo=FALSE}
+time_identifier(dataset)
+```
+
+ **Checking that all identifiers are compatible** `r pass_fail_image(time_identifier_mix_result)`
+```{r time_identifier_mix, echo=FALSE,comment=NA}
 time_identifier_mix(dataset)
 ```
 
 
 ## Geography validation
- **Checking that the geographic levels are valid**
-```{r level_validity_check,echo=FALSE,comment=NA}
-level_validity_check(dataset)
+ **Checking that the geographic levels are valid** `r pass_fail_image(level_validity_result)`
+```{r level_validity,echo=FALSE,comment=NA}
+level_validity(dataset)
 ```
 
- **Checking that the correct geography columns are present for the levels in the data file**
-```{r geography_levels_present,echo=FALSE,comment=NA}
-geography_levels_present(dataset)
+ **Checking that the correct geography columns are present for the levels in the data file** `r pass_fail_image(geography_level_present_result)`
+```{r geography_level_present,echo=FALSE,comment=NA}
+geography_level_present(dataset)
 ```
 
- **Checking that the correct geography columns are completed for each of the levels in the data file**
+ **Checking that the correct geography columns are completed for each of the levels in the data file** `r pass_fail_image(geography_level_completed_result)`
 ```{r geography_level_completed,echo=FALSE,warning=FALSE,comment=NA}
 geography_level_completed(dataset)
 ```
 
 ## Filter validation
 
- **Checking that filters include in the metadata have at least two levels**
-```{r filter_levels_check,echo=FALSE,comment=NA}
-try(filter_levels_check(dataset,metadata))
+ **Checking that filters include in the metadata have at least two levels** `r pass_fail_image(filter_level_result)`
+```{r filter_level,echo=FALSE,comment=NA}
+filter_level(dataset, metadata)
 ```
 
- **Checking that each filter has a 'Total'**
-```{r total_check,echo=FALSE,comment=NA}
-try(cat(total_check(dataset,metadata)))
+ **Checking that each filter has a 'Total'** `r pass_fail_image(total_result)`
+```{r total,echo=FALSE,comment=NA}
+total(dataset, metadata)
 ```
  
- **Checking that no observational unit has a 'Total'**
-```{r observational_total_check,echo=FALSE,comment=NA}
-try(cat(observational_total_check(dataset)))
+ **Checking that no observational unit has a 'Total'** `r pass_fail_image(observational_total_result)`
+```{r observational_total,echo=FALSE,comment=NA}
+observational_total(dataset)
 ```
 :::
 
 ## Metadata validation
 
-`r paste(your_data_file,".meta.csv",sep="")`
+`r paste(your_meta_file,".meta.csv",sep="")`
+<br><br>
+`r if(meta_percent=="100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r meta_percent` of tests passed on the metadata file.
 
-
-X% of standards met
 
 ::: {.accordion}
 ## General validation
 
- **Checking that the compulsory columns are present**
+ **Checking that the compulsory columns are present** `r pass_fail_image(meta_comp_col_result)`
 ```{r meta_comp_col,echo=FALSE,comment=NA}
 meta_comp_col(metadata)
 ```
 
- **Cross checking the columns in the metadata are in the data file**
-```{r column_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
-column_crosscheck(dataset,metadata)
-```
-
- **Check to catch any variables from the data file that are not in the metadata**
+ **Check to catch any variables from the data file that are not in the metadata** `r pass_fail_image(meta_crosscheck_result)`
 ```{r meta_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
-meta_crosscheck(dataset,metadata)
+meta_crosscheck(dataset, metadata)
 ```
 
- **Checking for commas**
-```{r meta_comma_check,echo=FALSE,comment=NA}
-meta_comma_check(metadata)
+ **Checking for commas** `r pass_fail_image(meta_comma_result)`
+```{r meta_comma,echo=FALSE,comment=NA}
+meta_comma(metadata)
 ```
 
-## Variable and label validation
+ **Checking if any observational units have been erroneously included in the metadata** `r pass_fail_image(comp_col_meta_result)`
+```{r comp_col_meta,echo=FALSE,warning=FALSE,comment=NA}
+comp_col_meta(metadata)
+```
 
- **Checking if col_name is completed for every row**
+ **Checking the number of rows in the metadata is less than the number of columns in the data file** `r pass_fail_image(row_result)`
+```{r row,echo=FALSE,comment=NA}
+row(dataset, metadata)
+```
+
+## Variable validation
+
+ **Checking if col_name is completed for every row** `r pass_fail_image(col_name_completed_result)`
 ```{r col_name_completed,echo=FALSE,comment=NA}
 col_name_completed(metadata)
 ```
 
- **Checking for duplicate col_names**
-```{r meta_duplicate_check,echo=FALSE,comment=NA}
-try(cat(meta_duplicate_check(metadata)))
+ **Checking for duplicate col_names** `r pass_fail_image(meta_duplicate_result)`
+```{r meta_duplicate,echo=FALSE,comment=NA}
+meta_duplicate(metadata)
 ```
 
- **Checking for spaces in the values in the col_name column**
-```{r col_name_spaces_check,echo=FALSE,comment=NA}
-try(cat(col_name_spaces_check(metadata)))
-```
-
- **Checking if any observational units have been erroneously included in the metadata**
-```{r comp_col_check_meta,echo=FALSE,warning=FALSE,comment=NA}
-comp_col_check_meta(metadata)
-```
-
- **Checking that col_type values are valid**
-```{r col_type_check,echo=FALSE,warning=FALSE,comment=NA}
-try(cat(col_type_check(metadata)))
-```
-
- **Checking that every row has a label completed**
-```{r label_check,echo=FALSE,comment=NA}
-try(cat(label_check(metadata)))
+ **Checking for spaces in the values in the col_name column** `r pass_fail_image(col_name_spaces_result)`
+```{r col_name_spaces,echo=FALSE,comment=NA}
+col_name_spaces(metadata)
 ```
  
- **Checking that there are no duplicate labels**
-```{r duplicate_label_check,echo=FALSE,comment=NA}
-try(cat(duplicate_label_check(metadata)))
+ **Cross checking the columns in the metadata are in the data file** `r pass_fail_image(column_crosscheck_result)`
+```{r column_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
+column_crosscheck(dataset, metadata)
 ```
 
-## Filter and indicator validation
+## Label validation
 
- **Checking that no filters have an indicator group**
-```{r indicator_group_check,echo=FALSE,comment=NA}
-try(cat(indicator_group_check(metadata)))
+ **Checking that col_type values are valid** `r pass_fail_image(col_type_result)`
+```{r col_type,echo=FALSE,warning=FALSE,comment=NA}
+col_type(metadata)
 ```
 
+<<<<<<< HEAD
+ **Checking that every row has a label completed** `r pass_fail_image(label_result)`
+```{r label,echo=FALSE,comment=NA}
+label(metadata)
+=======
 ```{r pre_function, include=FALSE}
   indicators_u <- filter(metadata_utf16,col_type == "Indicator")
   acceptable_indicator_units <- c('£',"%",NA,"")
   invalid_indicator_units <- setdiff(unique(indicators_u$indicator_unit),acceptable_indicator_units)
+>>>>>>> master
+```
+ 
+ **Checking that there are no duplicate labels** `r pass_fail_image(duplicate_label_result)`
+```{r duplicate_label,echo=FALSE,comment=NA}
+duplicate_label(metadata)
 ```
 
- **Checking that all indicator units are valid**
-```{r indicator_unit_validation,warning=FALSE,echo=FALSE,comment=NA}
-cat(indicator_unit_validation(metadata_utf16))
+## Filter validation
+
+ **Checking that no indicators have a filter hint** `r pass_fail_image(filter_hint_result)`
+```{r filter_hint,echo=FALSE,comment=NA}
+filter_hint(metadata)
 ```
 
- **Checking that no filters have an indicator unit**
-```{r indicator_unit_check,echo=FALSE,comment=NA}
-indicator_unit_check(metadata)
+ **Checking that no indicators have a filter group** `r pass_fail_image(filter_group_result)`
+```{r filter_group,echo=FALSE,comment=NA}
+filter_group(metadata)
 ```
 
- **Checking that no indicators have a filter hint**
-```{r filter_hint_check,echo=FALSE,comment=NA}
-try(cat(filter_hint_check(metadata)))
-```
-
- **Checking that no indicators have a filter group**
-```{r filter_group_check,echo=FALSE,comment=NA}
-try(cat(filter_group_check(metadata)))
-```
-
- **Checking that the number of rows in the metadata is less than the number of columns in the data file**
-```{r row_check,echo=FALSE,comment=NA}
-try(cat(row_check(dataset,metadata)))
-```
-
- **Checking filter groups are variables in the data file**
+ **Checking filter groups are variables in the data file** `r pass_fail_image(filter_group_match_result)`
 ```{r filter_group_match,echo=FALSE,comment=NA}
-try(cat(filter_group_match(dataset,metadata)))
+filter_group_match(dataset, metadata)
 ```
 
- **Checking that filter and filter group have been entered into the correct columns**
-```{r filter_group_levels,echo=FALSE,comment=NA}
-try(cat(filter_group_levels(dataset,metadata)))
+ **Checking that filter and filter group have been entered into the correct columns** `r pass_fail_image(filter_group_level_result)`
+```{r filter_group_level,echo=FALSE,comment=NA}
+filter_group_level(dataset, metadata)
 ```
 
+## Indicator validation
+ **Checking that no filters have an indicator group** `r pass_fail_image(indicator_group_result)`
+```{r indicator_group,echo=FALSE,comment=NA}
+indicator_group(metadata)
+```
+
+ **Checking that all indicator units are valid** `r pass_fail_image(indicator_unit_validation_result)`
+```{r indicator_unit_validation,warning=FALSE,echo=FALSE,comment=NA}
+indicator_unit_validation(metadata_utf16)
+```
+
+ **Checking that no filters have an indicator unit** `r pass_fail_image(indicator_unit_result)`
+```{r indicator_unit,echo=FALSE,comment=NA}
+indicator_unit(metadata)
+```
 
 :::
 :::
