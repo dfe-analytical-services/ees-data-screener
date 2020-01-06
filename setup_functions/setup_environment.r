@@ -18,39 +18,19 @@ pandoc_install <- function() {
 
 # -------------------------------------
 # function to install/load the packages needed to run the screener
-envrionment_setup <- function() {
-  if (!require(govdown)) {
-    install.packages("govdown")
-    require(govdown)
-  }
-  if (!require(tidyr)) {
-    install.packages("tidyr")
-    require(tidyr)
-  }
-  if (!require(readr)) {
-    install.packages("readr")
-    require(readr)
-  }
-  if (!require(stringr)) {
-    install.packages("stringr")
-    require(stringr)
-  }
-  if (!require(dplyr)) {
-    install.packages("dplyr")
-    require(dplyr)
-  }
-  if (!require(rmarkdown)) {
-    install.packages("rmarkdown")
-    require(rmarkdown)
-  }
-  if (!require(knitr)) {
-    install.packages("knitr")
-    require(knitr)
-  }
-  if (!require(svDialogs)) {
-    install.packages("svDialogs")
-    require(svDialogs)
-  }
+environment_setup <- function() {
+  
+  renv::restore()
+  
+  suppressWarnings(suppressMessages(library(rmarkdown)))
+  suppressWarnings(suppressMessages(library(govdown)))
+  suppressWarnings(suppressMessages(library(knitr)))
+  suppressWarnings(suppressMessages(library(tidyr)))
+  suppressWarnings(suppressMessages(library(readr)))
+  suppressWarnings(suppressMessages(library(stringr)))
+  suppressWarnings(suppressMessages(library(dplyr)))
+  suppressWarnings(suppressMessages(library(svDialogs)))
+  
   message("")
   message("Your environment has successfully been setup, you can now run the screener.")
   message("")
@@ -129,7 +109,7 @@ prechecks <- function(data, meta) {
 # run function
 
 screening_results <- function() {
-  user_input <- dlg_list(c(
+  user_input <- svDialogs::dlg_list(c(
     "My files are saved in the data_metadata folder and I want to type the name.",
     "I want to select my data and meta data files separately using file explorer.",
     "I want to screen all files in the data_metadata folder."
