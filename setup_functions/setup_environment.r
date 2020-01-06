@@ -55,7 +55,6 @@ envrionment_setup <- function() {
   message("Your environment has successfully been setup, you can now run the screener.")
   message("")
 }
-envrionment_setup()
 
 # -------------------------------------
 # quote check function
