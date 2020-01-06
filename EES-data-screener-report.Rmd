@@ -11,8 +11,6 @@ output:
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
-# defining this here due to issues with £ encoding
-
 # setting up functions, and preparing results
 source("setup_functions/setup_function.r")
 ```
@@ -21,11 +19,6 @@ source("setup_functions/setup_function.r")
 File tested: `r your_data_file` 
 <br>
 
-<center>
-`r if(total_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
-</center>
-
-<br><br>
 `r total_percent` of tests passed overall.
 <br><br>
 Number of applicable tests: `r sum(pass,fail)`
@@ -39,9 +32,9 @@ Tests failed: `r fail`
 
 ## Data file validation
 
-`r paste(your_data_file,".csv",sep="")` `r if(data_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}`
+`r paste(your_data_file,".csv",sep="")`
 <br><br>
-`r data_percent` of tests passed on the data file. 
+`r if(data_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r data_percent` of tests passed on the data file. 
 
 
 :::{.accordion}
@@ -120,9 +113,9 @@ observational_total(dataset)
 
 ## Metadata validation
 
-`r paste(your_meta_file,".meta.csv",sep="")` `r if(meta_percent=="100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` 
+`r paste(your_meta_file,".meta.csv",sep="")`
 <br><br>
-`r meta_percent` of tests passed on the metadata file.
+`r if(meta_percent=="100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r meta_percent` of tests passed on the metadata file.
 
 
 ::: {.accordion}

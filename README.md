@@ -22,6 +22,8 @@ This is the project file, and the file you should open after downloading to open
 
 This is the script that you need to use to setup your environment, designate the files, and run the screener.<br>
 
+You will be presented with three options, type the number of the option you want to choose in the console to start the screener.<br>
+
 Once you have run the screener, select your report in the file window within the project folder, and click to 'Open in browser' (Chrome works best and is recommended for full functionality, though it still works in some other browsers such as Edge).
 
 **data_metadata** <br>
@@ -76,3 +78,6 @@ More information on govdown, a package used to format the output report in this 
 **StyleR** <br>
 
 The code in this project has been styled using the [StyleR package](https://styler.r-lib.org/).
+The following will run through and check all files in the project.
+
+>`styler::style_dir(filetype = c("r","rmd"))`
