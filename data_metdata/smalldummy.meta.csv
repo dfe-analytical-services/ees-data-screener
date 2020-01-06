@@ -1,0 +1,5 @@
+col_name,col_type,label,indicator_grouping,indicator_unit,filter_hint,filter_grouping_column,
+admission_numbers,Indicator,Admission Numbers,,,,,
+number_of_teachers,Indicator,Number of Teachers,Workforce,,,,
+number_of_assistants,Indicator,Number of Assistants,Workforce,,,,
+cost_of_books,Indicator,Cost of Books,,£,,,

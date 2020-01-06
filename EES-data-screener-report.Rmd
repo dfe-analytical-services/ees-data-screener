@@ -175,16 +175,9 @@ column_crosscheck(dataset, metadata)
 col_type(metadata)
 ```
 
-<<<<<<< HEAD
  **Checking that every row has a label completed** `r pass_fail_image(label_result)`
 ```{r label,echo=FALSE,comment=NA}
 label(metadata)
-=======
-```{r pre_function, include=FALSE}
-  indicators_u <- filter(metadata_utf16,col_type == "Indicator")
-  acceptable_indicator_units <- c('£',"%",NA,"")
-  invalid_indicator_units <- setdiff(unique(indicators_u$indicator_unit),acceptable_indicator_units)
->>>>>>> master
 ```
  
  **Checking that there are no duplicate labels** `r pass_fail_image(duplicate_label_result)`
