@@ -1,7 +1,6 @@
 # -------------------------------------
 ### SETTING UP THE ENVIRONMENT
 # -------------------------------------
-
 # function to check the pandoc version and install the latest if not 2.7.3 or later
 pandoc_install <- function() {
   if (rmarkdown::pandoc_version() >= "2.7.3") {
@@ -72,7 +71,7 @@ quote_check <- function(data_quote_test, meta_quote_test) {
       message("")
     )
   }
-
+  
   if (sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))), fixed = '"')) != 0) {
     stop(
       message(""),
@@ -92,7 +91,7 @@ quote_check <- function(data_quote_test, meta_quote_test) {
 prechecks <- function(data, meta) {
   for (i in c("geographic_level", "time_period", "time_identifier", "country_code", "country_name")) {
     if (i %in% names(data)) {
-
+      
     } else {
       stop(
         message(""),
@@ -102,10 +101,10 @@ prechecks <- function(data, meta) {
       )
     }
   }
-
+  
   for (i in meta_cols) {
     if (i %in% names(meta)) {
-
+      
     } else {
       stop(
         message(""),
@@ -140,28 +139,28 @@ screening_results <- function() {
   title = "Select how you would like to use the screener by entering the number next to your desired method below.",
   gui = .GUI
   )$res
-
+  
   if (user_input == "My files are saved in the data_metadata folder and I want to type the name.") {
     assign("your_data_file", dlg_input(message = "Enter the name of your data file:", default = NULL, gui = .GUI)$res, envir = .GlobalEnv)
     assign("your_meta_file", your_data_file, envir = .GlobalEnv)
-
+    
     data_quote_test <- read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""), fill = TRUE)
     meta_quote_test <- read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), fill = TRUE)
-
+    
     quote_check(your_data_file, your_meta_file)
-
+    
     assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata_utf16", read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
-
+    
     prechecks(dataset, metadata)
-
+    
     rmarkdown::render("EES-data-screener-report.Rmd",
-      output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
-      output_dir = "reports",
-      envir = .GlobalEnv
+                      output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
+                      output_dir = "reports",
+                      envir = .GlobalEnv
     )
-
+    
     message("")
     message("Screening results breakdown:")
     message("")
@@ -177,7 +176,7 @@ screening_results <- function() {
     message("Tests failed: ", fail)
     message("")
     message("Your report has been saved in the /reports folder.")
-
+    
     if (total_percent == "100%") {
       message("")
       message("Your data file has passed the screening and may be uploaded.")
@@ -186,31 +185,31 @@ screening_results <- function() {
       message("Please check the report as your files have not passed the screening.")
     }
   }
-
+  
   if (user_input == "I want to select my data and meta data files separately using file explorer.") {
     assign("dataset_path", dlg_open("default", "Select your data file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
     assign("metadata_path", dlg_open("default", "Select your metadata file", multiple = FALSE, gui = .GUI)$res, envir = .GlobalEnv)
-
+    
     assign("your_data_file", str_remove(basename(dataset_path), ".csv"), envir = .GlobalEnv)
     assign("your_meta_file", str_remove(basename(metadata_path), ".meta.csv"), envir = .GlobalEnv)
-
+    
     data_quote_test <- read.table(dataset_path, fill = TRUE)
     meta_quote_test <- read.table(metadata_path, fill = TRUE)
-
+    
     quote_check(data_quote_test, meta_quote_test)
-
+    
     assign("dataset", read_csv(dataset_path, trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata", read_csv(metadata_path, trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata_utf16", read.csv(metadata_path, stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
-
+    
     prechecks(dataset, metadata)
-
+    
     rmarkdown::render("EES-data-screener-report.Rmd",
-      output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_report_", Sys.time(), ".html", sep = "")))),
-      output_dir = "reports",
-      envir = .GlobalEnv
+                      output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_report_", Sys.time(), ".html", sep = "")))),
+                      output_dir = "reports",
+                      envir = .GlobalEnv
     )
-
+    
     message("")
     message("Screening results breakdown:")
     message("")
@@ -230,19 +229,18 @@ screening_results <- function() {
     message("")
     message("Your report has been saved in the /reports folder.")
     message("")
-
+    
     if (total_percent == "100%") {
       message("Your data file has passed the screening and may be uploaded.")
     } else {
       message("Please check the report as your files have not passed the screening.")
     }
   }
-
+  
   if (user_input == "I want to screen all files in the data_metadata folder.") {
-    # stop("This option is still under development, please try again and select either option 1 or 2.")
 
     assign("file_list", list.files(path = "./data_metadata/", pattern = "*.csv", full.names = T), envir = .GlobalEnv)
-
+    
     if ((length(file_list) %% 2) == 1) {
       stop("There is an odd number of .csv files in the data_metadata folder, please check the contents of the folder and try again, or choose a different option.")
     } else {
@@ -250,14 +248,14 @@ screening_results <- function() {
       file_list2 <- gsub("^.*?/", "", file_list1)
       file_list3 <- gsub("^(.[^.]*).*$", "\\1", file_list2)
       myfiles <- unique(file_list3)
-
+      
       for (i in myfiles) {
         assign("your_data_file", i, envir = .GlobalEnv)
         assign("your_meta_file", your_data_file, envir = .GlobalEnv)
-
+        
         assign("data_quote_test", read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""), fill = TRUE), envir = .GlobalEnv)
         assign("meta_quote_test", read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), fill = TRUE), envir = .GlobalEnv)
-
+        
         if (sum(stringi::stri_count(c(as.vector(as.matrix(data_quote_test))), fixed = '"')) != 0) {
           stop(
             message(""),
@@ -268,7 +266,7 @@ screening_results <- function() {
             message("")
           )
         }
-
+        
         if (sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))), fixed = '"')) != 0) {
           stop(
             message(""),
@@ -279,19 +277,19 @@ screening_results <- function() {
             message("")
           )
         }
-
+        
         assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), trim_ws = FALSE), envir = .GlobalEnv)
         assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), trim_ws = FALSE), envir = .GlobalEnv)
         assign("metadata_utf16", read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
-
+        
         prechecks(dataset, metadata)
-
+        
         rmarkdown::render("EES-data-screener-report.Rmd",
-          output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
-          output_dir = "reports",
-          envir = .GlobalEnv
+                          output_file = paste(gsub(":", ".", gsub("\\s", "_", paste(your_data_file, "_", "report_", Sys.time(), ".html", sep = "")))),
+                          output_dir = "reports",
+                          envir = .GlobalEnv
         )
-
+        
         message("Screening results at a glance:")
         message("")
         message(Sys.time(), " screening of ", your_data_file, " files.")
@@ -302,7 +300,7 @@ screening_results <- function() {
         message("")
         message("Your report has been saved in the /reports folder.")
         message("")
-
+        
         if (total_percent == "100%") {
           message("Your data file has passed the screening and may be uploaded.")
           message("")
