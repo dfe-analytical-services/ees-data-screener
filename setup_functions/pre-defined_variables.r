@@ -8,7 +8,8 @@ acceptable_time_identifiers <- c(
   "Calendar year", "Calendar year Q1", "Calendar year Q2", "Calendar year Q3", "Calendar year Q4",
   "Financial year", "Financial year Q1", "Financial year Q2", "Financial year Q3", "Financial year Q4",
   "Academic year", "Academic year Q1", "Academic year Q2", "Academic year Q3", "Academic year Q4",
-  "Tax year", "Tax year Q1", "Tax year Q2", "Tax year Q3", "Tax year Q4"
+  "Tax year", "Tax year Q1", "Tax year Q2", "Tax year Q3", "Tax year Q4",
+  "Reporting year"
 )
 
 acceptable_observational_units <- c(
