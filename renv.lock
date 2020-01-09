@@ -9,13 +9,6 @@
     ]
   },
   "Packages": {
-    "BH": {
-      "Package": "BH",
-      "Version": "1.72.0-2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "00d67366d2b1bbd0a4dd0279817a66d4"
-    },
     "R6": {
       "Package": "R6",
       "Version": "2.4.1",

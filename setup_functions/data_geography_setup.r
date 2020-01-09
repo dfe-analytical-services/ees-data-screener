@@ -25,7 +25,7 @@ data_geography_results_function <- function() {
 level_validity <- function(data) {
   level_validity_preresult <- c()
 
-  for (i in unique(data$geographic_level)) {
+  for (i in unique(data[["geographic_level"]])) {
     if ((i %in% acceptable_levels) == FALSE) {
       message("FAIL - ", i, " is not a valid geographic level.")
       level_validity_preresult[i] <- FALSE
@@ -56,7 +56,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Regional" %in% data$geographic_level) {
+  if ("Regional" %in% data[["geographic_level"]]) {
     for (i in regional_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for regional level data.")
@@ -67,7 +67,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Local authority" %in% data$geographic_level) {
+  if ("Local authority" %in% data[["geographic_level"]]) {
     for (i in la_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for local authority level data.")
@@ -78,7 +78,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("RSC region" %in% data$geographic_level) {
+  if ("RSC region" %in% data[["geographic_level"]]) {
     for (i in rsc_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for RSC region level data.")
@@ -89,7 +89,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Parliamentary constituency" %in% data$geographic_level) {
+  if ("Parliamentary constituency" %in% data[["geographic_level"]]) {
     for (i in pcon_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for parliamentary constituency level data.")
@@ -100,7 +100,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Local authority district" %in% data$geographic_level) {
+  if ("Local authority district" %in% data[["geographic_level"]]) {
     for (i in lad_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for local authority district level data.")
@@ -111,7 +111,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Local enterprise partnership" %in% data$geographic_level) {
+  if ("Local enterprise partnership" %in% data[["geographic_level"]]) {
     for (i in lep_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for local enterprise partnership level data.")
@@ -122,7 +122,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Mayoral combined authority" %in% data$geographic_level) {
+  if ("Mayoral combined authority" %in% data[["geographic_level"]]) {
     for (i in mca_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for mayoral combined authority level data.")
@@ -133,7 +133,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Opportunity area" %in% data$geographic_level) {
+  if ("Opportunity area" %in% data[["geographic_level"]]) {
     for (i in oa_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for opportunity level data.")
@@ -144,7 +144,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Ward" %in% data$geographic_level) {
+  if ("Ward" %in% data[["geographic_level"]]) {
     for (i in ward_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for ward level data.")
@@ -155,7 +155,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("MAT" %in% data$geographic_level) {
+  if ("MAT" %in% data[["geographic_level"]]) {
     for (i in MAT_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for MAT level data.")
@@ -166,7 +166,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Sponsor" %in% data$geographic_level) {
+  if ("Sponsor" %in% data[["geographic_level"]]) {
     for (i in sponsor_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for sponsor level data.")
@@ -177,7 +177,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("School" %in% data$geographic_level) {
+  if ("School" %in% data[["geographic_level"]]) {
     for (i in school_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for school level data.")
@@ -188,7 +188,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Provider" %in% data$geographic_level) {
+  if ("Provider" %in% data[["geographic_level"]]) {
     for (i in provider_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for provider level data.")
@@ -199,7 +199,7 @@ geography_level_present <- function(data) {
     }
   }
 
-  if ("Institution" %in% data$geographic_level) {
+  if ("Institution" %in% data[["geographic_level"]]) {
     for (i in institution_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for institution level data.")
@@ -228,15 +228,15 @@ geography_level_completed <- function(data) {
 
   if (any(is.na(data$country_name))) {
     message("FAIL - The country_name column must be completed for all data.")
-    geography_level_completed_preresult[country_name] <- FALSE
+    geography_level_completed_preresult[["country_name"]] <- FALSE
   }
 
   if (any(is.na(data$country_code))) {
     message("FAIL - The country_code column must be completed for all data.")
-    geography_level_completed_preresult[country_code] <- FALSE
+    geography_level_completed_preresult[["country_code"]] <- FALSE
   }
 
-  if ("Regional" %in% data$geographic_level) {
+  if ("Regional" %in% data[["geographic_level"]]) {
     Regional <- filter(data, geographic_level == "Regional")
     if (any(is.na(Regional$region_name))) {
       message("FAIL - The region_name column must be completed for all regional data.")
@@ -248,7 +248,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("Local authority" %in% data$geographic_level) {
+  if ("Local authority" %in% data[["geographic_level"]]) {
     LA <- filter(data, geographic_level == "Local authority")
     if (any(is.na(LA$old_la_code))) {
       message("FAIL - The old_la_code column must be completed for all local authority data.")
@@ -264,7 +264,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("RSC region" %in% data$geographic_level) {
+  if ("RSC region" %in% data[["geographic_level"]]) {
     RSC <- filter(data, geographic_level == "RSC region")
     if (any(is.na(RSC$rsc_region_lead_name))) {
       message("FAIL - The rsc_region_lead_name column must be completed for all RSC region data.")
@@ -272,7 +272,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("Parliamentary constituency" %in% data$geographic_level) {
+  if ("Parliamentary constituency" %in% data[["geographic_level"]]) {
     pcon <- filter(data, geographic_level == "Parliamentary constituency")
     if (any(is.na(pcon$pcon_name))) {
       message("FAIL - The pcon_name column must be completed for all parliamentary constituency data.")
@@ -284,7 +284,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("Local authority district" %in% data$geographic_level) {
+  if ("Local authority district" %in% data[["geographic_level"]]) {
     lad <- filter(data, geographic_level == "Local authority district")
     if (any(is.na(lad$lad_name))) {
       message("FAIL - The lad_name column must be completed for all local authority district data.")
@@ -296,7 +296,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("Local enterprise partnership" %in% data$geographic_level) {
+  if ("Local enterprise partnership" %in% data[["geographic_level"]]) {
     lep <- filter(data, geographic_level == "Local enterprise partnership")
     if (any(is.na(lep$local_enterprise_partnership_name))) {
       message("FAIL - The local_enterprise_partnership_name column must be completed for all local enterprise partnership data.")
@@ -308,7 +308,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("Mayoral combined authority" %in% data$geographic_level) {
+  if ("Mayoral combined authority" %in% data[["geographic_level"]]) {
     mca <- filter(data, geographic_level == "Mayoral combined authority")
     if (any(is.na(mca$mayoral_combined_authority_name))) {
       message("FAIL - The mayoral_combined_authority_name column must be completed for all mayoral combined authority data.")
@@ -320,7 +320,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("Opportunity area" %in% data$geographic_level) {
+  if ("Opportunity area" %in% data[["geographic_level"]]) {
     oa <- filter(data, geographic_level == "Opportunity area")
     if (any(is.na(oa$opportunity_area_name))) {
       message("FAIL - The opportunity_area_name column must be completed for all opportunity area data.")
@@ -332,7 +332,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("Ward" %in% data$geographic_level) {
+  if ("Ward" %in% data[["geographic_level"]]) {
     ward <- filter(data, geographic_level == "Ward")
     if (any(is.na(ward$ward_name))) {
       message("FAIL - The ward_name column must be completed for all ward data.")
@@ -344,7 +344,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("MAT" %in% data$geographic_level) {
+  if ("MAT" %in% data[["geographic_level"]]) {
     mat <- filter(data, geographic_level == "MAT")
     if (any(is.na(mat$trust_name))) {
       message("FAIL - The trust_name column must be completed for all MAT data.")
@@ -356,7 +356,7 @@ geography_level_completed <- function(data) {
     }
   }
 
-  if ("Sponsor" %in% data$geographic_level) {
+  if ("Sponsor" %in% data[["geographic_level"]]) {
     sponsor <- filter(data, geographic_level == "Sponsor")
     if (any(is.na(sponsor$sponsor_name))) {
       message("FAIL - The sponsor_name column must be completed for all sponsor data.")
@@ -370,11 +370,11 @@ geography_level_completed <- function(data) {
 
   region_both_complete_check <- function(data) {
     if (("region_code" %in% names(data)) && ("region_name" %in% names(data))) {
-      if (is.na(data[region_code]) && !is.na(data[region_name])) {
+      if (is.na(data[["region_code"]]) && !is.na(data[["region_name"]])) {
         message("FAIL - You must include the region_code when there is a region_name.")
         geography_level_completed_preresult[rcode_missing] <- FALSE
       }
-      if (is.na(data[region_name]) && !is.na(data[region_code])) {
+      if (is.na(data[["region_name"]]) && !is.na(data[["region_code"]])) {
         message("FAIL - You must include the region_code when there is a region_name.")
         geography_level_completed_preresult[rname_missing] <- FALSE
       }

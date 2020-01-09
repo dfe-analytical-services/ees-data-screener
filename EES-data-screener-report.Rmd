@@ -41,7 +41,7 @@ Tests failed: `r fail`
 
 ## General validation
  **Checking that the compulsory columns are present**  `r pass_fail_image(data_comp_col_result)`
-```txt {r data_comp_col, echo=FALSE,comment=NA}
+```{r data_comp_col, echo=FALSE,comment=NA}
 data_comp_col(dataset)
 ```
 

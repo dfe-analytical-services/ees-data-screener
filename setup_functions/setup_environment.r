@@ -1,36 +1,34 @@
 # -------------------------------------
 ### SETTING UP THE ENVIRONMENT
 # -------------------------------------
-# function to check the pandoc version and install the latest if not 2.7.3 or later
-pandoc_install <- function() {
+# function to install/load the packages needed to run the screener
+environment_setup <- function() {
+  message("")
+  renv::restore()
+  message("")
+  
+  suppressWarnings(suppressMessages(library(gitignore)))
+  suppressWarnings(suppressMessages(library(rmarkdown)))
+  suppressWarnings(suppressMessages(library(installr)))
+  suppressWarnings(suppressMessages(library(readr)))
+  
   if (rmarkdown::pandoc_version() >= "2.7.3") {
-    message("You already have version 2.7.3 or later of Pandoc installed, you can now run the screener.")
+    message("You already have version 2.7.3 or later of Pandoc installed.")
     message("")
   }
   else {
-    if (!require(installr)) {
-      install.packages("installr")
-      require(installr)
-    }
+    message("Your version of Pandoc is out of date, the latest version will now download, please follow the instructions on the install wizard to continue.")
+    message("")
     install.pandoc()
   }
-}
-
-# -------------------------------------
-# function to install/load the packages needed to run the screener
-environment_setup <- function() {
-  renv::restore()
-
-  suppressWarnings(suppressMessages(library(rmarkdown)))
+  
   suppressWarnings(suppressMessages(library(govdown)))
   suppressWarnings(suppressMessages(library(knitr)))
   suppressWarnings(suppressMessages(library(tidyr)))
-  suppressWarnings(suppressMessages(library(readr)))
   suppressWarnings(suppressMessages(library(stringr)))
   suppressWarnings(suppressMessages(library(dplyr)))
   suppressWarnings(suppressMessages(library(svDialogs)))
-
-  message("")
+  
   message("Your environment has successfully been setup, you can now run the screener.")
   message("")
 }
