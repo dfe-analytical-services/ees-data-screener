@@ -5,9 +5,8 @@ local({
   version <- "0.9.2"
 
   # avoid recursion
-  if (!is.na(Sys.getenv("RENV_R_INITIALIZING", unset = NA))) {
+  if (!is.na(Sys.getenv("RENV_R_INITIALIZING", unset = NA)))
     return(invisible(TRUE))
-  }
 
   # signal that we're loading renv during R startup
   Sys.setenv("RENV_R_INITIALIZING" = "true")
@@ -26,30 +25,31 @@ local({
     # if renv has already been loaded, and it's the requested version of renv,
     # nothing to do
     spec <- .getNamespaceInfo(.getNamespace("renv"), "spec")
-    if (identical(spec[["version"]], version)) {
+    if (identical(spec[["version"]], version))
       return(invisible(TRUE))
-    }
 
     # otherwise, unload and attempt to load the correct version of renv
     unloadNamespace("renv")
+
   }
 
   # construct path to renv in library
   libpath <- local({
+
     root <- Sys.getenv("RENV_PATHS_LIBRARY", unset = "renv/library")
     prefix <- paste("R", getRversion()[1, 1:2], sep = "-")
 
     # include SVN revision for development versions of R
     # (to avoid sharing platform-specific artefacts with released versions of R)
     devel <-
-      identical(R.version[["status"]], "Under development (unstable)") ||
-        identical(R.version[["nickname"]], "Unsuffered Consequences")
+      identical(R.version[["status"]],   "Under development (unstable)") ||
+      identical(R.version[["nickname"]], "Unsuffered Consequences")
 
-    if (devel) {
+    if (devel)
       prefix <- paste(prefix, R.version[["svn rev"]], sep = "-r")
-    }
 
     file.path(root, prefix, R.version$platform)
+
   })
 
   # try to load renv from the project library
@@ -62,11 +62,10 @@ local({
       # assume four-component versions are from GitHub; three-component
       # versions are from CRAN
       components <- strsplit(loadedversion, "[.-]")[[1]]
-      remote <- if (length(components) == 4L) {
+      remote <- if (length(components) == 4L)
         paste("rstudio/renv", loadedversion, sep = "@")
-      } else {
+      else
         paste("renv", loadedversion, sep = "@")
-      }
 
       fmt <- paste(
         "renv %1$s was loaded from project library, but renv %2$s is recorded in lockfile.",
@@ -77,30 +76,29 @@ local({
 
       msg <- sprintf(fmt, loadedversion, version, remote)
       warning(msg, call. = FALSE)
+
     }
 
     # load the project
     return(renv::load())
+
   }
 
   # failed to find renv locally; we'll try to install from GitHub.
   # first, set up download options as appropriate (try to use GITHUB_PAT)
   install_renv <- function() {
+
     message("Failed to find installation of renv -- attempting to bootstrap...")
 
     # ensure .Rprofile doesn't get executed
     rpu <- Sys.getenv("R_PROFILE_USER", unset = NA)
     Sys.setenv(R_PROFILE_USER = "<NA>")
-    on.exit(
-      {
-        if (is.na(rpu)) {
-          Sys.unsetenv("R_PROFILE_USER")
-        } else {
-          Sys.setenv(R_PROFILE_USER = rpu)
-        }
-      },
-      add = TRUE
-    )
+    on.exit({
+      if (is.na(rpu))
+        Sys.unsetenv("R_PROFILE_USER")
+      else
+        Sys.setenv(R_PROFILE_USER = rpu)
+    }, add = TRUE)
 
     # prepare download options
     pat <- Sys.getenv("GITHUB_PAT")
@@ -164,6 +162,8 @@ local({
       text <- c("Error installing renv", "=====================", output)
       writeLines(text, con = stderr())
     }
+
+
   }
 
   try(install_renv())
@@ -181,4 +181,5 @@ local({
   )
 
   warning(paste(msg, collapse = "\n"), call. = FALSE)
+
 })
