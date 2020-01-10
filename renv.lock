@@ -137,7 +137,7 @@
     },
     "govdown": {
       "Package": "govdown",
-      "Version": "0.7.0",
+      "Version": "0.8.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "a8b8e9e3542cb73f96f7b4f46d1e44a7"
