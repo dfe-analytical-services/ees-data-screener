@@ -51,25 +51,32 @@ Hard-coded variables, such as acceptable time_identifiers, are defined in the en
 <br>
 
 ### **Packages and proxy**
+**R** <br>
+
+This project assumes a few prerequisites for those on DfE machines:
+- You have installed the latest version of R (3.5.3) and RStudio (1.1.463) from the software centre.
+- You have installed the latest version of RTools (34) from the software centre (note that this is a separate installation to the above one).
+
+Once these are installed you should be good to go. It is possible that this will run on older versions of R/RStudio/RTools if you have them already, but this has not been tested.
+
 **Pandoc** <br>
 
-You will need a version of pandoc that is 2.x.x or greater to run this project and create the .html report. RStudio comes with an older version as standard. As such, there is a function in the run.r file that you can run to check if your version is up to date, and if it is not it will automatically download this for you and start up the install wizard.
+You will need a version of pandoc that is 2.x.x or greater to run this project and create the .html report. RStudio comes with an older version as standard. As such, the screener will automatically check if your version is up to date, and if it is not it will download this for you and start up the install wizard. If this happens, follow the instructions to complete the installation, restart as required and then try again.
 
-**Packages** <br>
+**renv - Package Management** <br>
 
-This project requires additional R packages. There is a function you can run in the run.R file that allows you to install (if needed) and load the packages to set up your environment so that you can run the screener.
+This project requires additional R packages. These are managed by [renv](https://rstudio.github.io/renv/articles/renv.html), and should automatically install within the project folder for you to use. If you have issues with the connection to CRAN when first running the screener, please see the proxy section for reseting your proxy settings and try again.
 
-**Proxy settings**
+**Proxy settings** <br>
 
-As a more general note, if as a DfE analyst you are struggling with proxy settings on your machine, run the following two lines in order, follow any instructions that appear, and then restart RStudio and try again.
+If as a DfE analyst you are struggling with proxy settings on your machine, run the following two lines in order, follow any instructions that appear, and then restart RStudio and try again. This will also help if you are having other issues with proxy settings and R generally.
 
 >`source("https://raw.githubusercontent.com/dfe-analytical-services/dfeR/master/R/proxy.R")` <br>
->
 >`setup_proxy()`
 
 **Tidyverse** <br>
 
-The functions in this data screener are based around the [Tidyverse packages](https://www.tidyverse.org/).
+Many of functions in this data screener are based around the [Tidyverse packages](https://www.tidyverse.org/).
 
 **Govdown** <br>
 
@@ -78,6 +85,9 @@ More information on govdown, a package used to format the output report in this 
 **StyleR** <br>
 
 The code in this project has been styled using the [StyleR package](https://styler.r-lib.org/).
-The following will run through and check all files in the project.
+The following will install the package, and then run through and check all relevant code files in the project.
 
->`styler::style_dir(filetype = c("r","rmd"))`
+>`install.packages("styler")` <br>
+>`library(styler)` <br>
+>`styler::style_dir(filetype = c("r","rmd"),recursive = FALSE)` <br>
+>`styler::style_dir(path = "setup_functions",filetype = "r",recursive = FALSE)`
