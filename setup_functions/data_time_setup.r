@@ -26,11 +26,11 @@ data_time_results_function <- function() {
 
 time_period <- function(data) {
   time_length <- data
-  time_length$digits <- str_count(time_length$time_period)
+  time_length[["digits"]] <- length(time_length[["time_period"]])
 
   if ((nrow(filter(time_length, digits == 4)) + nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
     message("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.")
-    message("Here are the time period values in your file: ", present_time_periods)
+    message("Here are the time period values in your file: ", unique(data[["time_period"]]))
     assign("time_period_result", FALSE, envir = .GlobalEnv)
   } else {
     message("PASS - time period is always a four or six digit number.")

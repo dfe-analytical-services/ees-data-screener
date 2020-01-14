@@ -48,4 +48,4 @@ institution_required <- c("institution_id", "institution_id")
 
 meta_cols <- c("col_name", "col_type", "label", "indicator_grouping", "indicator_unit", "filter_hint", "filter_grouping_column")
 
-acceptable_indicatorunits <- c("£", "%")
+acceptable_indicatorunits <- c("£", "%", NA)

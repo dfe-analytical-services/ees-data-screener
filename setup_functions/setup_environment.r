@@ -120,8 +120,8 @@ screening_results <- function() {
     assign("your_data_file", dlg_input(message = "Enter the name of your data file:", default = NULL, gui = .GUI)$res, envir = .GlobalEnv)
     assign("your_meta_file", your_data_file, envir = .GlobalEnv)
 
-    data_quote_test <- read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""), fill = TRUE)
-    meta_quote_test <- read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), fill = TRUE)
+    data_quote_test <- read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""), row.names = NULL, fill = TRUE)
+    meta_quote_test <- read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), row.names = NULL, fill = TRUE)
 
     quote_check(your_data_file, your_meta_file)
 
@@ -169,8 +169,8 @@ screening_results <- function() {
     assign("your_data_file", str_remove(basename(dataset_path), ".csv"), envir = .GlobalEnv)
     assign("your_meta_file", str_remove(basename(metadata_path), ".meta.csv"), envir = .GlobalEnv)
 
-    data_quote_test <- read.table(dataset_path, fill = TRUE)
-    meta_quote_test <- read.table(metadata_path, fill = TRUE)
+    data_quote_test <- read.table(dataset_path, row.names = NULL, fill = TRUE)
+    meta_quote_test <- read.table(metadata_path, row.names = NULL, fill = TRUE)
 
     quote_check(data_quote_test, meta_quote_test)
 
@@ -228,8 +228,8 @@ screening_results <- function() {
         assign("your_data_file", i, envir = .GlobalEnv)
         assign("your_meta_file", your_data_file, envir = .GlobalEnv)
 
-        assign("data_quote_test", read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""), fill = TRUE), envir = .GlobalEnv)
-        assign("meta_quote_test", read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), fill = TRUE), envir = .GlobalEnv)
+        assign("data_quote_test", read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""), row.names = NULL, fill = TRUE), envir = .GlobalEnv)
+        assign("meta_quote_test", read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), row.names = NULL, fill = TRUE), envir = .GlobalEnv)
 
         if (sum(stringi::stri_count(c(as.vector(as.matrix(data_quote_test))), fixed = '"')) != 0) {
           stop(
