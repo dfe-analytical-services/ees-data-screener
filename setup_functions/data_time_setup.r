@@ -25,12 +25,12 @@ data_time_results_function <- function() {
 # This checks for a 4 or 6 digit number in the time_period column
 
 time_period <- function(data) {
-  time_length <- data
-  time_length[["digits"]] <- length(time_length[["time_period"]])
+  time_length <- dataset
+  time_length[["digits"]] <- str_count(time_length[["time_period"]])
 
   if ((nrow(filter(time_length, digits == 4)) + nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
     message("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.")
-    message("Here are the time period values in your file: ", unique(data[["time_period"]]))
+    message("Here are the time period values in your file: ", paste0(unique(data[["time_period"]]), sep = " "))
     assign("time_period_result", FALSE, envir = .GlobalEnv)
   } else {
     message("PASS - time period is always a four or six digit number.")
@@ -97,6 +97,9 @@ time_identifier <- function(data) {
 time_identifier_mix <- function(data) {
   base_identifier <- data$time_identifier[1]
 
+  if ((base_identifier %in% c("Reporting year")) == TRUE) {
+    lev <- c("Reporting year")
+  }
   if ((base_identifier %in% c("Spring term", "Autumn term", "Autumn and spring term")) == TRUE) {
     lev <- c("Spring term", "Autumn term", "Autumn and spring term")
   }
@@ -128,11 +131,16 @@ time_identifier_mix <- function(data) {
     lev <- c("Tax year Q1", "Tax year Q2", "Tax year Q3", "Tax year Q4")
   }
 
-  if (any(is.na(factor(unique(data$time_identifier), lev))) == TRUE) {
-    message("FAIL - data is mixing time identifiers. Allowable values given you've included ", base_identifier, " are: ", paste(lev, sep = " "), ".")
-    assign("time_identifier_mix_result", FALSE, envir = .GlobalEnv)
+  if (time_identifier_result == FALSE) {
+    message("IGNORE - You have invalid time_identifiers so this test cannot run.")
+    assign("time_identifier_mix_result", NA, envir = .GlobalEnv)
   } else {
-    message("PASS - Your time_identifier values are compatible.")
-    assign("time_identifier_mix_result", TRUE, envir = .GlobalEnv)
+    if (any(is.na(factor(unique(data$time_identifier), lev))) == TRUE) {
+      message("FAIL - data is mixing time identifiers. Allowable values given you've included ", base_identifier, " are: ", paste(lev, sep = " "), ".")
+      assign("time_identifier_mix_result", FALSE, envir = .GlobalEnv)
+    } else {
+      message("PASS - Your time_identifier values are compatible.")
+      assign("time_identifier_mix_result", TRUE, envir = .GlobalEnv)
+    }
   }
 }
