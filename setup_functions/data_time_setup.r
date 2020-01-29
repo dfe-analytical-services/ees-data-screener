@@ -52,7 +52,7 @@ time_period_six <- function(data) {
   for (period in unique(six_digit_years$time_period)) {
     currentyearend <- as.numeric(substr(period, 3, 4))
     nextyearend <- as.numeric(substr(period, 5, 6))
-    if (currentyearend == 99 && nextyearend == 20) {
+    if (currentyearend == 99 && nextyearend == 0) {
       yearends_preresult[paste(period, "check", sep = "_")] <- TRUE
     } else {
       yearends_preresult[paste(period, "check", sep = "_")] <- ((currentyearend + 1) == nextyearend)
