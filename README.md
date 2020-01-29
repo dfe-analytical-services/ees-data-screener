@@ -13,7 +13,7 @@ The [issues log](https://github.com/lauraselby/data-screener/issues) contains th
 
 <br>
 
-If you have any questions about this project please contact cameron.race@education.gov.uk.
+If you have any questions about this project, or would like your files to be screened for you, please contact cameron.race@education.gov.uk.
 
 <br>
 
