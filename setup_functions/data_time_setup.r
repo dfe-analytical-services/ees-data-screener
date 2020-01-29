@@ -46,28 +46,33 @@ time_period_six <- function(data) {
   time_length$digits <- str_count(time_length$time_period)
 
   six_digit_years <- filter(time_length, digits == 6)
-  currentyearend <- as.numeric(substr(six_digit_years$time_period, 3, 4))
-  nextyearend <- as.numeric(substr(six_digit_years$time_period, 5, 6))
-  check_yearends <- any(((currentyearend + 1) == nextyearend) == FALSE)
+
+  yearends_preresult <- c()
+
+  for (period in unique(six_digit_years$time_period)) {
+    currentyearend <- as.numeric(substr(period, 3, 4))
+    nextyearend <- as.numeric(substr(period, 5, 6))
+    if (currentyearend == 99 && nextyearend == 20) {
+      yearends_preresult[paste(period, "check", sep = "_")] <- TRUE
+    } else {
+      yearends_preresult[paste(period, "check", sep = "_")] <- ((currentyearend + 1) == nextyearend)
+    }
+  }
 
   if (nrow(filter(time_length, digits == 6)) == 0) {
     message("IGNORE - You don't have any 6 digit time_period values to test.")
     assign("time_period_six_result", NA, envir = .GlobalEnv)
   } else {
-    if (currentyearend == 99 && nextyearend == 0) {
+    if (FALSE %in% yearends_preresult) {
+      message("FAIL - When the time period is 6 digits, the years must be consecutive such as 201920.")
+      assign("time_period_six_result", FALSE, envir = .GlobalEnv)
+    } else {
       message("PASS - Your 6 digit time period/s show consecutive years.")
       assign("time_period_six_result", TRUE, envir = .GlobalEnv)
-    } else {
-      if (check_yearends == TRUE) {
-        message("FAIL - When the time period is 6 digits, the years must be consecutive such as 201920.")
-        assign("time_period_six_result", FALSE, envir = .GlobalEnv)
-      } else {
-        message("PASS - Your 6 digit time period/s show consecutive years.")
-        assign("time_period_six_result", TRUE, envir = .GlobalEnv)
-      }
     }
   }
 }
+
 
 # -------------------------------------
 # checking the time identifier values are valid

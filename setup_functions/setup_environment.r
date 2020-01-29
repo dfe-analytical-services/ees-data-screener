@@ -6,12 +6,12 @@ environment_setup <- function() {
   message("")
   renv::restore()
   message("")
-  
+
   suppressWarnings(suppressMessages(library(gitignore)))
   suppressWarnings(suppressMessages(library(rmarkdown)))
   suppressWarnings(suppressMessages(library(installr)))
   suppressWarnings(suppressMessages(library(readr)))
-  
+
   if (rmarkdown::pandoc_version() >= "2.7.3") {
     message("You already have version 2.7.3 or later of Pandoc installed.")
     message("")
@@ -21,14 +21,14 @@ environment_setup <- function() {
     message("")
     install.pandoc()
   }
-  
+
   suppressWarnings(suppressMessages(library(govdown)))
   suppressWarnings(suppressMessages(library(knitr)))
   suppressWarnings(suppressMessages(library(tidyr)))
   suppressWarnings(suppressMessages(library(stringr)))
   suppressWarnings(suppressMessages(library(dplyr)))
   suppressWarnings(suppressMessages(library(svDialogs)))
-  
+
   message("Your environment has successfully been setup, you can now run the screener.")
   message("")
 }
