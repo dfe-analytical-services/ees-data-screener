@@ -5,7 +5,7 @@ This is an R project developed to test underlying data and metadata files agains
 
 [How to: Run the Data-screener on your machine](https://www.youtube.com/watch?v=D60UU5r_TrM&feature=youtu.be) is a walkthrough video that takes you through how to use this project on your own machine, starting from the pre-requisites referred to below, right through to the final output report.
 
-To use this project and run the data screener yourself you will need to download the zip file to your downloads folder on your computer, unzip the folder and then open the R project file with RStudio. You can then save this folder wherever is most convenient. If you've not used the screener for a while it is worth going back to the github repo to check for updates and download the latest version.
+To use this project and run the data screener yourself you will need to download the zip file to your downloads folder on your computer, unzip the folder and then open the R project file with RStudio. You can then save this folder wherever is most convenient across your machine, ideally on your c: drive. Do not save this in a shared drive or area, or you may run into difficulties during setup. If you've not used the screener for a while it is worth going back to the github repo to check for updates and download the latest version.
 
 This will not QA the content of your data, instead it will assess the structure and formatting that is required in the [new data standards](https://teams.microsoft.com/l/channel/19%3A1bdf09280fd94df09f0d42e19cb251fb%40thread.skype/tab%3A%3A638782f8-c3cf-423f-b63c-2e5709c64b9b?groupId=679b2376-8c8c-4062-a1c9-0744ce5ac88f&tenantId=fad277c9-c60a-4da1-b5f3-b3b8b34a82f9). 
 
@@ -65,7 +65,7 @@ Once these are installed you should be good to go. It is possible that this will
 
 **Pandoc** <br>
 
-You will need a version of pandoc that is 2.x.x or greater to run this project and create the .html report. RStudio comes with an older version as standard. As such, the screener will automatically check if your version is up to date, and if it is not it will download this for you and start up the install wizard. If this happens, follow the instructions to complete the installation, restart as required and then try again.
+You will need a version of pandoc that is 2.x.x or greater to run this project and create the .html report. RStudio comes with an older version as standard. As such, the screener will automatically check if your version is up to date, and if it is not it will download this for you and start up the install wizard. If this happens, follow the instructions to complete the installation, restart as required and then try again. Whilst you do this, make sure to uncheck the ‘install for all users’ option during the install wizard, this will allow you to install it without the need for an admin password.
 
 **renv - Package Management** <br>
 
