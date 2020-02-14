@@ -209,6 +209,17 @@ geography_level_present <- function(data) {
       }
     }
   }
+  
+  if ("Planning area" %in% data[["geographic_level"]]) {
+    for (i in planning_area_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("FAIL - ", i, " must be present for planning area level data.")
+        geography_level_present_preresult[i] <- FALSE
+      } else {
+        geography_level_present_preresult[i] <- TRUE
+      }
+    }
+  }
 
   if (FALSE %in% geography_level_present_preresult) {
     assign("geography_level_present_result", FALSE, envir = .GlobalEnv)

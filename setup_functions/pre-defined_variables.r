@@ -21,13 +21,13 @@ acceptable_observational_units <- c(
   "ward_code", "ward_name", "trust_id", "trust_name", "sponsor_id", "sponsor_name",
   "school_laestab", "school_name", "school_urn", "school_estab", "school_postcode",
   "provider_urn", "provider_name", "provider_ukprn", "provider_upin",
-  "institution_id", "institution_name"
+  "institution_id", "institution_name", "planning_area_name", "planning_area_code"
 )
 
 acceptable_levels <- c(
   "National", "Regional", "Local authority", "RSC region", "Parliamentary constituency",
   "Local authority district", "Local enterprise partnership", "Mayoral combined authority",
-  "Opportunity area", "Ward", "MAT", "Sponsor", "School", "Provider", "Institution"
+  "Opportunity area", "Ward", "MAT", "Sponsor", "School", "Provider", "Institution", "Planning area"
 )
 
 all_required <- c("country_code", "country_name")
@@ -45,6 +45,7 @@ sponsor_required <- c("sponsor_id", "sponsor_name")
 school_required <- c("school_laestab", "school_name")
 provider_required <- c("provider_urn", "provider_name")
 institution_required <- c("institution_id", "institution_id")
+planning_area_required <- c("planning_area_name", "planning_area_code")
 
 meta_cols <- c("col_name", "col_type", "label", "indicator_grouping", "indicator_unit", "filter_hint", "filter_grouping_column")
 
