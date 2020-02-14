@@ -176,7 +176,7 @@ screening_results <- function() {
 
     assign("dataset", read_csv(dataset_path, trim_ws = FALSE, guess_max = 999999), envir = .GlobalEnv)
     assign("metadata", read_csv(metadata_path, trim_ws = FALSE, guess_max = 999999), envir = .GlobalEnv)
-    assign("metadata_utf16", read.csv(metadata_path, stringsAsFactors = FALSE, encoding = "UTF-16", guess_max = 999999), envir = .GlobalEnv)
+    assign("metadata_utf16", read.csv(metadata_path, stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
 
     prechecks(dataset, metadata)
 
