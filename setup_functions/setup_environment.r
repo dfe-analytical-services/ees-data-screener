@@ -125,8 +125,8 @@ screening_results <- function() {
 
     quote_check(your_data_file, your_meta_file)
 
-    assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = "", guess_max = 999999), trim_ws = FALSE), envir = .GlobalEnv)
-    assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = "", guess_max = 999999), trim_ws = FALSE), envir = .GlobalEnv)
+    assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
+    assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata_utf16", read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
 
     prechecks(dataset, metadata)
