@@ -51,11 +51,16 @@ pass_fail_image <- function(input) {
   if (is.na(input)) {
     knitr::include_graphics("images/not-applicable.png")
   } else {
-    if (input == "FALSE") {
-      knitr::include_graphics("images/cancel.png")
+    if (input == "Advisory") {
+      knitr::include_graphics("images/advisory.png")
     } else {
-      knitr::include_graphics("images/checked.png")
+      if (input == "FALSE") {
+        knitr::include_graphics("images/cancel.png")
+      } else {
+        knitr::include_graphics("images/checked.png")
+      }
     }
+    
   }
 }
 
@@ -76,11 +81,12 @@ meta_indicator_results_function()
 
 data_results <- c(data_filter_results, data_general_results, data_geography_results, data_time_results)
 meta_results <- c(meta_filter_results, meta_indicator_results, meta_general_results, meta_variable_results, meta_label_results)
-all_results <- c(data_results, meta_results)
+assign("all_results",c(data_results, meta_results),envir = .GlobalEnv)
 
 pass <- length(which(all_results == TRUE))
 fail <- length(which(all_results == FALSE))
 total_percent <- paste(round((pass / (pass + fail)) * 100, 1), "%", sep = "")
+assign("advisory",length(which(all_results == "Advisory")),envir = .GlobalEnv)
 
 data_pass <- length(which(data_results == TRUE))
 data_fail <- length(which(data_results == FALSE))

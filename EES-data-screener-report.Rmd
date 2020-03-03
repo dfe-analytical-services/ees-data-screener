@@ -27,6 +27,7 @@ Tests passed: `r pass`
 <br>
 Tests failed: `r fail`
 <br><br>
+**`r if(any(all_results=="Advisory")) {paste("Recommendations: ",advisory," - please check the tests for recommended changes to your files.")}`**
 
 ::: {.tabset}
 

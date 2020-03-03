@@ -55,14 +55,14 @@ total <- function(data, meta) {
     total_preresult <- c()
     for (i in names(dfilters)) {
       if (!"Total" %in% dfilters[[i]]) {
-        message("FAIL - There is no total value in ", i, ".")
+        message("RECOMMENDATION - Add a total aggregation in ", i, ".")
         total_preresult[i] <- FALSE
       } else {
         total_preresult[i] <- TRUE
       }
     }
     if (FALSE %in% total_preresult) {
-      assign("total_result", FALSE, envir = .GlobalEnv)
+      assign("total_result", "Advisory", envir = .GlobalEnv)
     } else {
       message("PASS - Every filter has a total level.")
       assign("total_result", TRUE, envir = .GlobalEnv)
