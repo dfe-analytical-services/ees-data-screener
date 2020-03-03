@@ -86,12 +86,15 @@ assign("all_results",c(data_results, meta_results),envir = .GlobalEnv)
 pass <- length(which(all_results == TRUE))
 fail <- length(which(all_results == FALSE))
 total_percent <- paste(round((pass / (pass + fail)) * 100, 1), "%", sep = "")
+
 assign("advisory",length(which(all_results == "Advisory")),envir = .GlobalEnv)
 
 data_pass <- length(which(data_results == TRUE))
 data_fail <- length(which(data_results == FALSE))
 data_percent <- paste(round((data_pass / (data_pass + data_fail)) * 100, 1), "%", sep = "")
+assign("data_advisory",length(which(data_results == "Advisory")),envir = .GlobalEnv)
 
 meta_pass <- length(which(meta_results == TRUE))
 meta_fail <- length(which(meta_results == FALSE))
 meta_percent <- paste(round((meta_pass / (meta_pass + meta_fail)) * 100, 1), "%", sep = "")
+assign("meta_advisory",length(which(meta_results == "Advisory")),envir = .GlobalEnv)
