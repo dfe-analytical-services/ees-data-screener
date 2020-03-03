@@ -151,7 +151,7 @@ screening_results <- function() {
     message("Tests passed: ", pass)
     message("Tests failed: ", fail)
     message("")
-    if(any(all_results=="Advisory")) 
+    if(advisory>0) 
     {message("Number of recommendations: ",advisory," - please check the tests for recommended changes.")
       message("")}
     message("Your report has been saved in the /reports folder.")
@@ -206,7 +206,7 @@ screening_results <- function() {
     message("Tests passed: ", pass)
     message("Tests failed: ", fail)
     message("")
-    if(any(all_results=="Advisory")) 
+    if(advisory>0) 
     {message("Number of recommendations: ",advisory," - please check the tests for recommended changes.")
       message("")}
     
@@ -279,7 +279,7 @@ screening_results <- function() {
         message("Tests passed: ", pass)
         message("Tests failed: ", fail)
         message("")
-        if(any(all_results=="Advisory")) 
+        if(advisory>0) 
         {message("Number of recommendations: ",advisory," - please check the tests for recommended changes.")
           message("")}
         message("Your report has been saved in the /reports folder.")
