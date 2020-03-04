@@ -4,9 +4,9 @@
 # Checks in this file
 
 data_indicator_setup <- function(data) {
- suppression_symbols(data)
- no_data_symbols(data)
- null(data)
+  suppression_symbols(data)
+  no_data_symbols(data)
+  null(data)
 }
 
 data_indicator_results_function <- function() {
@@ -24,7 +24,7 @@ data_indicator_results_function <- function() {
 
 suppression_symbols <- function(data) {
   suppression_symbols_preresult <- c()
-  
+
   for (i in present_indicators) {
     if (any(grepl("x", data[[i]]))) {
       message("ADVISORY - You have 'x' values in your indicators, please update these to the GSS recommended 'c' for suppressed data.")
@@ -46,8 +46,8 @@ suppression_symbols <- function(data) {
 
 no_data_symbols <- function(data) {
   old_no_data_symbols <- c("N/A", "NA", "n/a", ".", "..")
-  suppressWarnings(if(all(old_no_data_symbols[!old_no_data_symbols %in% unlist(data)]==old_no_data_symbols)){
-    message("PASS - You have not used any legacy symbols for no data in your file.")
+  suppressWarnings(if (all(old_no_data_symbols[!old_no_data_symbols %in% unlist(data)] == old_no_data_symbols)) {
+    message("PASS - You have not used any legacy symbols for missing data in your file.")
     assign("no_data_symbols_result", TRUE, envir = .GlobalEnv)
   } else {
     message("ADVISORY - Please check the GSS guidance document for advice on the symbols to use for no data.")
@@ -59,31 +59,30 @@ no_data_symbols <- function(data) {
 # check for any NULL/Null/null values
 
 null <- function(data) {
-
-  if(NA %in% unlist(data)) {
+  if (NA %in% unlist(data)) {
     message("FAIL - There should be no NA or null values in your file.")
     assign("null_result", FALSE, envir = .GlobalEnv)
   }
-      if("NULL" %in% unlist(data)) {
+  if ("NULL" %in% unlist(data)) {
+    message("FAIL - There should be no null values in your file.")
+    assign("null_result", FALSE, envir = .GlobalEnv)
+  } else {
+    if ("Null" %in% unlist(data)) {
       message("FAIL - There should be no null values in your file.")
       assign("null_result", FALSE, envir = .GlobalEnv)
     } else {
-      if("Null" %in% unlist(data)) {
+      if ("null" %in% unlist(data)) {
         message("FAIL - There should be no null values in your file.")
         assign("null_result", FALSE, envir = .GlobalEnv)
       } else {
-        if("null" %in% unlist(data)) {
+        if (any(is.null(unlist(data)))) {
           message("FAIL - There should be no null values in your file.")
           assign("null_result", FALSE, envir = .GlobalEnv)
         } else {
-          if(any(is.null(unlist(data)))) {
-            message("FAIL - There should be no null values in your file.")
-            assign("null_result", FALSE, envir = .GlobalEnv)
-          } else {
-      message("PASS - There are no null values in your file.")
-      assign("null_result", TRUE, envir = .GlobalEnv)
+          message("PASS - There are no null values in your file.")
+          assign("null_result", TRUE, envir = .GlobalEnv)
         }
       }
-      }
     }
+  }
 }

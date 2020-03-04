@@ -177,49 +177,49 @@ geography_level_present <- function(data) {
     }
   }
 
-#  if ("School" %in% data[["geographic_level"]]) {
-#    for (i in school_required) {
-#      if ((i %in% names(data)) == FALSE) {
-#        message("FAIL - ", i, " must be present for school level data.")
-#        geography_level_present_preresult[i] <- FALSE
-#      } else {
-#        geography_level_present_preresult[i] <- TRUE
-#      }
-#    }
-#  }
+  #  if ("School" %in% data[["geographic_level"]]) {
+  #    for (i in school_required) {
+  #      if ((i %in% names(data)) == FALSE) {
+  #        message("FAIL - ", i, " must be present for school level data.")
+  #        geography_level_present_preresult[i] <- FALSE
+  #      } else {
+  #        geography_level_present_preresult[i] <- TRUE
+  #      }
+  #    }
+  #  }
 
-#  if ("Provider" %in% data[["geographic_level"]]) {
-#    for (i in provider_required) {
-#      if ((i %in% names(data)) == FALSE) {
-#        message("FAIL - ", i, " must be present for provider level data.")
-#        geography_level_present_preresult[i] <- FALSE
-#      } else {
-#        geography_level_present_preresult[i] <- TRUE
-#      }
-#    }
-#  }
+  #  if ("Provider" %in% data[["geographic_level"]]) {
+  #    for (i in provider_required) {
+  #      if ((i %in% names(data)) == FALSE) {
+  #        message("FAIL - ", i, " must be present for provider level data.")
+  #        geography_level_present_preresult[i] <- FALSE
+  #      } else {
+  #        geography_level_present_preresult[i] <- TRUE
+  #      }
+  #    }
+  #  }
 
-#  if ("Institution" %in% data[["geographic_level"]]) {
-#    for (i in institution_required) {
-#      if ((i %in% names(data)) == FALSE) {
-#        message("FAIL - ", i, " must be present for institution level data.")
-#        geography_level_present_preresult[i] <- FALSE
-#      } else {
-#        geography_level_present_preresult[i] <- TRUE
-#      }
-#    }
-#  }
-  
-#  if ("Planning area" %in% data[["geographic_level"]]) {
-#    for (i in planning_area_required) {
-#      if ((i %in% names(data)) == FALSE) {
-#        message("FAIL - ", i, " must be present for planning area level data.")
-#        geography_level_present_preresult[i] <- FALSE
-#      } else {
-#        geography_level_present_preresult[i] <- TRUE
-#      }
-#    }
-#  }
+  #  if ("Institution" %in% data[["geographic_level"]]) {
+  #    for (i in institution_required) {
+  #      if ((i %in% names(data)) == FALSE) {
+  #        message("FAIL - ", i, " must be present for institution level data.")
+  #        geography_level_present_preresult[i] <- FALSE
+  #      } else {
+  #        geography_level_present_preresult[i] <- TRUE
+  #      }
+  #    }
+  #  }
+
+  #  if ("Planning area" %in% data[["geographic_level"]]) {
+  #    for (i in planning_area_required) {
+  #      if ((i %in% names(data)) == FALSE) {
+  #        message("FAIL - ", i, " must be present for planning area level data.")
+  #        geography_level_present_preresult[i] <- FALSE
+  #      } else {
+  #        geography_level_present_preresult[i] <- TRUE
+  #      }
+  #    }
+  #  }
 
   if (FALSE %in% geography_level_present_preresult) {
     assign("geography_level_present_result", FALSE, envir = .GlobalEnv)
