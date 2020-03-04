@@ -151,9 +151,12 @@ screening_results <- function() {
     message("Tests passed: ", pass)
     message("Tests failed: ", fail)
     message("")
+    if(advisory>0) 
+    {message("Number of recommendations: ",advisory," - please check the tests for recommended changes.")
+      message("")}
     message("Your report has been saved in the /reports folder.")
 
-    if (total_percent == "100%") {
+        if (total_percent == "100%") {
       message("")
       message("Your data file has passed the screening and may be uploaded.")
     } else {
@@ -203,9 +206,12 @@ screening_results <- function() {
     message("Tests passed: ", pass)
     message("Tests failed: ", fail)
     message("")
+    if(advisory>0) 
+    {message("Number of recommendations: ",advisory," - please check the tests for recommended changes.")
+      message("")}
+    
     message("Your report has been saved in the /reports folder.")
     message("")
-
     if (total_percent == "100%") {
       message("Your data file has passed the screening and may be uploaded.")
     } else {
@@ -273,9 +279,11 @@ screening_results <- function() {
         message("Tests passed: ", pass)
         message("Tests failed: ", fail)
         message("")
+        if(advisory>0) 
+        {message("Number of recommendations: ",advisory," - please check the tests for recommended changes.")
+          message("")}
         message("Your report has been saved in the /reports folder.")
         message("")
-
         if (total_percent == "100%") {
           message("Your data file has passed the screening and may be uploaded.")
           message("")
@@ -286,6 +294,7 @@ screening_results <- function() {
       }
     }
   }
+  # not currently working, but should add at some point - rm(list = ls())
 }
 
 # -------------------------------------

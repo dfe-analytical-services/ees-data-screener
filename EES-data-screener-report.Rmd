@@ -26,7 +26,8 @@ Number of applicable tests: `r sum(pass,fail)`
 Tests passed: `r pass`
 <br>
 Tests failed: `r fail`
-<br><br>
+<br>
+`r if(advisory>0) {paste("Recommendations: ",advisory," - please check the tests for recommended changes to your files.")}`
 
 ::: {.tabset}
 
@@ -34,8 +35,9 @@ Tests failed: `r fail`
 
 `r paste(your_data_file,".csv",sep="")`
 <br><br>
-`r if(data_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r data_percent` of tests passed on the data file. 
-
+`r if(data_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r data_percent` of tests passed on the data file.<br>
+`r if(data_advisory>0) {include_graphics("images/advisory.png")}`
+**`r if(data_advisory>0) {paste("Please check the recommended changes to your data file.")}`**
 
 :::{.accordion}
 
@@ -109,14 +111,33 @@ total(dataset, metadata)
 ```{r observational_total,echo=FALSE,comment=NA}
 observational_total(dataset)
 ```
+
+## Indicator validation
+
+ **Checking that the latest suppression symbols have been used** `r pass_fail_image(suppression_symbols_result)`
+```{r suppression_symbols,echo=FALSE,comment=NA}
+suppression_symbols(dataset)
+```
+
+ **Checking for legacy symbols for no data** `r pass_fail_image(no_data_symbols_result)`
+```{r no_data_symbols,echo=FALSE,comment=NA}
+no_data_symbols(dataset)
+```
+ 
+ **Checking that there are no null values** `r pass_fail_image(null_result)`
+```{r null,echo=FALSE,comment=NA}
+null(dataset)
+```
+
 :::
 
 ## Metadata validation
 
 `r paste(your_meta_file,".meta.csv",sep="")`
 <br><br>
-`r if(meta_percent=="100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r meta_percent` of tests passed on the metadata file.
-
+`r if(meta_percent=="100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r meta_percent` of tests passed on the metadata file.<br>
+`r if(meta_advisory>0) {include_graphics("images/advisory.png")}` 
+**`r if(meta_advisory>0) {paste("Please check the recommended changes to your metadata file.")}`**
 
 ::: {.accordion}
 ## General validation
