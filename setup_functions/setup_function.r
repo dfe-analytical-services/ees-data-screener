@@ -84,7 +84,7 @@ meta_label_results_function()
 meta_filter_results_function()
 meta_indicator_results_function()
 
-data_results <- c(data_filter_results, data_general_results, data_geography_results, data_time_results)
+data_results <- c(data_filter_results, data_general_results, data_geography_results, data_time_results, data_indicator_results)
 meta_results <- c(meta_filter_results, meta_indicator_results, meta_general_results, meta_variable_results, meta_label_results)
 assign("all_results",c(data_results, meta_results),envir = .GlobalEnv)
 
