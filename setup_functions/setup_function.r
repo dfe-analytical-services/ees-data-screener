@@ -6,6 +6,7 @@ source("setup_functions/data_filter_setup.r")
 source("setup_functions/data_general_setup.r")
 source("setup_functions/data_geography_setup.r")
 source("setup_functions/data_time_setup.r")
+source("setup_functions/data_indicator_setup.r")
 source("setup_functions/meta_general_setup.r")
 source("setup_functions/meta_label_setup.r")
 source("setup_functions/meta_variable_setup.r")
@@ -19,6 +20,7 @@ screening_tests <- function(data, meta, meta_utf16) {
   data_geography_setup(data)
   data_time_setup(data)
   data_filter_setup(data, meta)
+  data_indicator_setup(data)
   meta_general_setup(data, meta)
   meta_label_setup(meta)
   meta_variable_setup(data, meta)
@@ -34,6 +36,8 @@ dfilters <- select(dataset, mfilters$col_name)
 
 mindicators <- filter(metadata, col_type == "Indicator")
 mindicators_utf16 <- filter(metadata_utf16, col_type == "Indicator")
+
+present_indicators <- mindicators$col_name
 
 present_indicatorunits <- mindicators_utf16$indicator_unit[!mindicators_utf16$indicator_unit == ""]
 number_present_indicatorunits <- length(unique(present_indicatorunits))
@@ -73,6 +77,7 @@ data_filter_results_function()
 data_general_results_function()
 data_geography_results_function()
 data_time_results_function()
+data_indicator_results_function()
 meta_general_results_function()
 meta_variable_results_function()
 meta_label_results_function()

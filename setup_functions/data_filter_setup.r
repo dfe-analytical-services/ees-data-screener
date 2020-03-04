@@ -55,7 +55,7 @@ total <- function(data, meta) {
     total_preresult <- c()
     for (i in names(dfilters)) {
       if (!"Total" %in% dfilters[[i]]) {
-        message("RECOMMENDATION - Add a total aggregation in ", i, ".")
+        message("ADVISORY - Add a total aggregation in ", i, ".")
         total_preresult[i] <- FALSE
       } else {
         total_preresult[i] <- TRUE

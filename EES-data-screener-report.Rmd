@@ -111,6 +111,24 @@ total(dataset, metadata)
 ```{r observational_total,echo=FALSE,comment=NA}
 observational_total(dataset)
 ```
+
+## Indicator validation
+
+ **Checking that the latest suppression symbols have been used** `r pass_fail_image(suppression_symbols_result)`
+```{r suppression_symbols,echo=FALSE,comment=NA}
+suppression_symbols(dataset)
+```
+
+ **Checking for legacy symbols for no data** `r pass_fail_image(no_data_symbols_result)`
+```{r no_data_symbols,echo=FALSE,comment=NA}
+no_data_symbols(dataset)
+```
+ 
+ **Checking that there are no null values** `r pass_fail_image(null_result)`
+```{r null,echo=FALSE,comment=NA}
+null(dataset)
+```
+
 :::
 
 ## Metadata validation

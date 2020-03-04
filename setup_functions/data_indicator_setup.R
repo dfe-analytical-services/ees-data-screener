@@ -27,14 +27,14 @@ suppression_symbols <- function(data) {
   
   for (i in present_indicators) {
     if (any(grepl("x", data[[i]]))) {
+      message("ADVISORY - You have 'x' values in your indicators, please update these to the GSS recommended 'c' for suppressed data.")
       suppression_symbols_preresult[i] <- TRUE
     } else {
-      message("FAIL - You have 'x' values in your indicators, please update these to the GSS recommended 'c' for suppressed data.")
       suppression_symbols_preresult[i] <- FALSE
     }
   }
-  if (FALSE %in% suppression_symbols_preresult) {
-    assign("suppression_symbols_result", FALSE, envir = .GlobalEnv)
+  if (TRUE %in% suppression_symbols_preresult) {
+    assign("suppression_symbols_result", "Advisory", envir = .GlobalEnv)
   } else {
     message("PASS - You have used the GSS recommended symbol for suppressed figures.")
     assign("suppression_symbols_result", TRUE, envir = .GlobalEnv)
@@ -45,7 +45,14 @@ suppression_symbols <- function(data) {
 # check that the compulsory columns exist
 
 no_data_symbols <- function(data) {
-  # if any of the .. . NA "N/A" "NA" "n/a" are in the file flag an advisory to check the gss symbols
+  old_no_data_symbols <- c("N/A", "NA", "n/a", ".", "..")
+  suppressWarnings(if(all(old_no_data_symbols[!old_no_data_symbols %in% unlist(data)]==old_no_data_symbols)){
+    message("PASS - You have not used any legacy symbols for no data in your file.")
+    assign("no_data_symbols_result", TRUE, envir = .GlobalEnv)
+  } else {
+    message("ADVISORY - Please check the GSS guidance document for advice on the symbols to use for no data.")
+    assign("no_data_symbols_result", "Advisory", envir = .GlobalEnv)
+  })
 }
 
 # -------------------------------------
@@ -53,8 +60,11 @@ no_data_symbols <- function(data) {
 
 null <- function(data) {
 
-  # need to check if this file is being tracked by git or not
-    if("NULL" %in% unlist(data)) {
+  if(NA %in% unlist(data)) {
+    message("FAIL - There should be no NA or null values in your file.")
+    assign("null_result", FALSE, envir = .GlobalEnv)
+  }
+      if("NULL" %in% unlist(data)) {
       message("FAIL - There should be no null values in your file.")
       assign("null_result", FALSE, envir = .GlobalEnv)
     } else {
