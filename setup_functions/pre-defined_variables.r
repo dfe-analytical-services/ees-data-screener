@@ -3,7 +3,7 @@
 # -------------------------------------
 
 acceptable_time_identifiers <- c(
-  "Spring term", "Autumn term", "Autumn and spring term",
+  "Spring term", "Autumn term", "Autumn and spring term", "Summer term",
   "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber",
   "Calendar year", "Calendar year Q1", "Calendar year Q2", "Calendar year Q3", "Calendar year Q4",
   "Financial year", "Financial year Q1", "Financial year Q2", "Financial year Q3", "Financial year Q4",
