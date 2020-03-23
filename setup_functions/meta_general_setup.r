@@ -6,7 +6,6 @@
 meta_general_setup <- function(data, meta) {
   meta_comp_col(meta)
   meta_crosscheck(data, meta)
-  meta_comma(meta)
   comp_col_meta(meta)
   row(data, meta)
 }
@@ -15,7 +14,6 @@ meta_general_results_function <- function() {
   assign("meta_general_results", c(
     meta_comp_col_result,
     meta_crosscheck_result,
-    meta_comma_result,
     comp_col_meta_result,
     row_result
   ),
@@ -80,27 +78,6 @@ meta_crosscheck <- function(data, meta) {
   } else {
     message("PASS - All variables in the data file are present in the metadata.")
     assign("meta_crosscheck_result", TRUE, envir = .GlobalEnv)
-  }
-}
-
-# -------------------------------------
-# flag for commas across each column
-
-meta_comma <- function(meta) {
-  meta_comma_preresult <- c()
-  for (i in names(meta)) {
-    if (any(grepl(",", meta[[i]]))) {
-      message("FAIL - There are commas in ", i)
-      meta_comma_preresult[i] <- FALSE
-    } else {
-      meta_comma_preresult[i] <- TRUE
-    }
-  }
-  if (FALSE %in% meta_comma_preresult) {
-    assign("meta_comma_result", FALSE, envir = .GlobalEnv)
-  } else {
-    message("PASS - There are no commas in the metadata file.")
-    assign("meta_comma_result", TRUE, envir = .GlobalEnv)
   }
 }
 

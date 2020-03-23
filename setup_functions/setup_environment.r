@@ -34,34 +34,6 @@ environment_setup <- function() {
 }
 
 # -------------------------------------
-# quote check function
-
-quote_check <- function(data_quote_test, meta_quote_test) {
-  if (sum(stringi::stri_count(c(as.vector(as.matrix(data_quote_test))), fixed = '"')) != 0) {
-    stop(
-      message(""),
-      message(your_data_file, ".csv contains quotes."),
-      message(""),
-      message("Please remove these and then try again."),
-      message("One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."),
-      message("")
-    )
-  }
-
-  if (sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))), fixed = '"')) != 0) {
-    stop(
-      message(""),
-      message(your_meta_file, ".meta.csv contains quotes."),
-      message(""),
-      message("Please remove these and then try again."),
-      message("One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."),
-      message("")
-    )
-  }
-}
-
-
-# -------------------------------------
 # pre-check function
 
 prechecks <- function(data, meta) {
@@ -120,11 +92,6 @@ screening_results <- function() {
     assign("your_data_file", dlg_input(message = "Enter the name of your data file:", default = NULL, gui = .GUI)$res, envir = .GlobalEnv)
     assign("your_meta_file", your_data_file, envir = .GlobalEnv)
 
-    data_quote_test <- read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""), row.names = NULL, fill = TRUE)
-    meta_quote_test <- read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), row.names = NULL, fill = TRUE)
-
-    quote_check(your_data_file, your_meta_file)
-
     assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata_utf16", read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
@@ -172,11 +139,6 @@ screening_results <- function() {
 
     assign("your_data_file", str_remove(basename(dataset_path), ".csv"), envir = .GlobalEnv)
     assign("your_meta_file", str_remove(basename(metadata_path), ".meta.csv"), envir = .GlobalEnv)
-
-    data_quote_test <- read.table(dataset_path, row.names = NULL, fill = TRUE)
-    meta_quote_test <- read.table(metadata_path, row.names = NULL, fill = TRUE)
-
-    quote_check(data_quote_test, meta_quote_test)
 
     assign("dataset", read_csv(dataset_path, trim_ws = FALSE, guess_max = 999999), envir = .GlobalEnv)
     assign("metadata", read_csv(metadata_path, trim_ws = FALSE, guess_max = 999999), envir = .GlobalEnv)
@@ -235,31 +197,6 @@ screening_results <- function() {
       for (i in myfiles) {
         assign("your_data_file", i, envir = .GlobalEnv)
         assign("your_meta_file", your_data_file, envir = .GlobalEnv)
-
-        assign("data_quote_test", read.table(paste("data_metadata/", your_data_file, ".csv", sep = ""), row.names = NULL, fill = TRUE), envir = .GlobalEnv)
-        assign("meta_quote_test", read.table(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), row.names = NULL, fill = TRUE), envir = .GlobalEnv)
-
-        if (sum(stringi::stri_count(c(as.vector(as.matrix(data_quote_test))), fixed = '"')) != 0) {
-          stop(
-            message(""),
-            message(your_data_file, ".csv contains quotes."),
-            message(""),
-            message("Please remove these and then try again."),
-            message("One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."),
-            message("")
-          )
-        }
-
-        if (sum(stringi::stri_count(c(as.vector(as.matrix(meta_quote_test))), fixed = '"')) != 0) {
-          stop(
-            message(""),
-            message(your_meta_file, ".meta.csv contains quotes."),
-            message(""),
-            message("Please remove these and then try again."),
-            message("One way to do this is to open the file using Wordpad or Notepad, and delete or find/replace the quote marks."),
-            message("")
-          )
-        }
 
         assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
         assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)

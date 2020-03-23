@@ -47,11 +47,6 @@ Tests failed: `r fail`
 data_comp_col(dataset)
 ```
 
- **Checking for commas in the data file** `r pass_fail_image(comma_result)`
-```{r comma,echo=FALSE,comment=NA}
-comma(dataset)
-```
-
  **Checking for spaces in the data file variable names** `r pass_fail_image(data_spaces_result)`
 ```{r data_spaces,echo=FALSE,comment=NA}
 data_spaces(dataset)
@@ -150,11 +145,6 @@ meta_comp_col(metadata)
  **Check to catch any variables from the data file that are not in the metadata** `r pass_fail_image(meta_crosscheck_result)`
 ```{r meta_crosscheck,echo=FALSE,warning=FALSE,comment=NA}
 meta_crosscheck(dataset, metadata)
-```
-
- **Checking for commas** `r pass_fail_image(meta_comma_result)`
-```{r meta_comma,echo=FALSE,comment=NA}
-meta_comma(metadata)
 ```
 
  **Checking if any observational units have been erroneously included in the metadata** `r pass_fail_image(comp_col_meta_result)`

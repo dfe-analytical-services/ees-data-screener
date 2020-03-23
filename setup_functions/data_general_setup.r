@@ -5,14 +5,12 @@
 
 data_general_setup <- function(data) {
   data_comp_col(data)
-  comma(data)
   data_spaces(data)
 }
 
 data_general_results_function <- function() {
   assign("data_general_results", c(
     data_comp_col_result,
-    comma_result,
     data_spaces_result
   ),
   envir = .GlobalEnv
@@ -38,28 +36,6 @@ data_comp_col <- function(data) {
   } else {
     message("PASS - time_period, time_identifier, and geographic_level are present.")
     assign("data_comp_col_result", TRUE, envir = .GlobalEnv)
-  }
-}
-
-# -------------------------------------
-# flag for commas across each column
-
-comma <- function(data) {
-  comma_preresult <- c()
-
-  for (i in names(data)) {
-    if (any(grepl(",", data[[i]]))) {
-      message("FAIL - Comma/s present in ", i, ".")
-      comma_preresult[i] <- FALSE
-    } else {
-      comma_preresult[i] <- TRUE
-    }
-  }
-  if (FALSE %in% comma_preresult) {
-    assign("comma_result", FALSE, envir = .GlobalEnv)
-  } else {
-    message("PASS - There are no commas present in the data file.")
-    assign("comma_result", TRUE, envir = .GlobalEnv)
   }
 }
 
