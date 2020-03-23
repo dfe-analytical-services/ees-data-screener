@@ -62,25 +62,26 @@ null <- function(data) {
   if (NA %in% unlist(data)) {
     message("FAIL - There should be no NA or null values in your file.")
     assign("null_result", FALSE, envir = .GlobalEnv)
-  }
-  if ("NULL" %in% unlist(data)) {
-    message("FAIL - There should be no null values in your file.")
-    assign("null_result", FALSE, envir = .GlobalEnv)
   } else {
-    if ("Null" %in% unlist(data)) {
+    if ("NULL" %in% unlist(data)) {
       message("FAIL - There should be no null values in your file.")
       assign("null_result", FALSE, envir = .GlobalEnv)
     } else {
-      if ("null" %in% unlist(data)) {
+      if ("Null" %in% unlist(data)) {
         message("FAIL - There should be no null values in your file.")
         assign("null_result", FALSE, envir = .GlobalEnv)
       } else {
-        if (any(is.null(unlist(data)))) {
+        if ("null" %in% unlist(data)) {
           message("FAIL - There should be no null values in your file.")
           assign("null_result", FALSE, envir = .GlobalEnv)
         } else {
-          message("PASS - There are no null values in your file.")
-          assign("null_result", TRUE, envir = .GlobalEnv)
+          if (any(is.null(unlist(data)))) {
+            message("FAIL - There should be no null values in your file.")
+            assign("null_result", FALSE, envir = .GlobalEnv)
+          } else {
+            message("PASS - There are no null values in your file.")
+            assign("null_result", TRUE, envir = .GlobalEnv)
+          }
         }
       }
     }
