@@ -38,6 +38,7 @@ mindicators <- filter(metadata, col_type == "Indicator")
 mindicators_utf16 <- filter(metadata_utf16, col_type == "Indicator")
 
 present_indicators <- mindicators$col_name
+present_filters_indicators <- c(present_indicators,mfilters$col_name)
 
 present_indicatorunits <- mindicators_utf16$indicator_unit[!mindicators_utf16$indicator_unit == ""]
 number_present_indicatorunits <- length(unique(present_indicatorunits))

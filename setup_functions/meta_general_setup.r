@@ -67,14 +67,14 @@ meta_crosscheck <- function(data, meta) {
   meta_crosscheck_preresult <- c()
   for (i in unique(missing_and_meta_variables)) {
     if ((i %in% meta_variables) == FALSE) {
-      message("FAIL - ", i, " is not in the metadata or a recognised observational unit.")
+      message("ADVISORY - ", i, " is not in the metadata or a recognised observational unit.")
       meta_crosscheck_preresult[i] <- FALSE
     } else {
       meta_crosscheck_preresult[i] <- TRUE
     }
   }
   if (FALSE %in% meta_crosscheck_preresult) {
-    assign("meta_crosscheck_result", FALSE, envir = .GlobalEnv)
+    assign("meta_crosscheck_result", "Advisory", envir = .GlobalEnv)
   } else {
     message("PASS - All variables in the data file are present in the metadata.")
     assign("meta_crosscheck_result", TRUE, envir = .GlobalEnv)

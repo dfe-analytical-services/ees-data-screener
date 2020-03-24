@@ -51,7 +51,7 @@ label <- function(meta) {
 
 duplicate_label <- function(meta) {
   if (any(meta$label %in% meta$label[duplicated(meta$label)])) {
-    message("FAIL - At least one of the variable names is duplicated.")
+    message("FAIL - At least one of the variable labels is duplicated.")
     assign("duplicate_label_result", FALSE, envir = .GlobalEnv)
   } else {
     message("PASS - All labels are unique.")
