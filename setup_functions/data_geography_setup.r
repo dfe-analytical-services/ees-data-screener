@@ -7,13 +7,15 @@ data_geography_setup <- function(data) {
   level_validity(data)
   geography_level_present(data)
   geography_level_completed(data)
+  new_la_code(data)
 }
 
 data_geography_results_function <- function() {
   assign("data_geography_results", c(
     level_validity_result,
     geography_level_present_result,
-    geography_level_completed_result
+    geography_level_completed_result,
+    new_la_code_result
   ),
   envir = .GlobalEnv
   )
@@ -265,10 +267,11 @@ geography_level_completed <- function(data) {
       message("FAIL - The old_la_code column must be completed for all local authority data.")
       geography_level_completed_preresult[old_la_code] <- FALSE
     }
-    if (any(is.na(LA$new_la_code))) {
-      message("FAIL - The new_la_code column must be completed for all local authority data.")
-      geography_level_completed_preresult[new_la_code] <- FALSE
-    }
+# removing these lines as they are now covered by the new_la_code test
+#    if (any(is.na(LA$new_la_code))) {
+#      message("FAIL - The new_la_code column must be completed for all local authority data.")
+#      geography_level_completed_preresult[new_la_code] <- FALSE
+#    }
     if (any(is.na(LA$la_name))) {
       message("FAIL - The la_name column must be completed for all local authority data.")
       geography_level_completed_preresult[la_name] <- FALSE
@@ -399,5 +402,21 @@ geography_level_completed <- function(data) {
   } else {
     message("PASS - Your geographic columns are completed as expected.")
     assign("geography_level_completed_result", TRUE, envir = .GlobalEnv)
+  }
+}
+
+# -------------------------------------
+# Is the new LA code always either 9 digits or blank?
+
+new_la_code <- function(data){
+  
+  
+  # add an ignore option if it isn't present.
+  
+  if (FALSE %in% new_la_code_preresult) {
+    assign("new_la_code_result", FALSE, envir = .GlobalEnv)
+  } else {
+    message("PASS - Your new_la_code column is .")
+    assign("new_la_code_result", TRUE, envir = .GlobalEnv)
   }
 }
