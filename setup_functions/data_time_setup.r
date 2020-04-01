@@ -8,6 +8,7 @@ data_time_setup <- function(data) {
   time_period_six(data)
   time_identifier(data)
   time_identifier_mix(data)
+  three_years(data)
 }
 
 data_time_results_function <- function() {
@@ -15,7 +16,8 @@ data_time_results_function <- function() {
     time_period_result,
     time_period_six_result,
     time_identifier_result,
-    time_identifier_mix_result
+    time_identifier_mix_result,
+    three_years_result
   ),
   envir = .GlobalEnv
   )
@@ -148,4 +150,19 @@ time_identifier_mix <- function(data) {
       assign("time_identifier_mix_result", TRUE, envir = .GlobalEnv)
     }
   }
+}
+
+# -------------------------------------
+# produce a warning if there are fewer than 3 years of data in the file
+
+three_years <- function(data){
+
+  if(length(unique(data$time_period))>=3){
+      message("ADVISORY - Your file contains fewer than 3 years - where it exists, you should include at least 3 years of data in your file to meet the upcoming change in accessibility legislation.")
+      assign("three_years_result", "Advisory", envir = .GlobalEnv)
+    } else {
+      message("PASS - Your file contains at 3 years or more years of data.")
+      assign("three_years_result", TRUE, envir = .GlobalEnv)
+  }
+
 }

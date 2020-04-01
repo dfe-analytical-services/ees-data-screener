@@ -52,6 +52,12 @@ data_comp_col(dataset)
 data_spaces(dataset)
 ```
 
+**Checking if there are at least 3 years of data in your file** `r pass_fail_image(three_years_result)`
+```{r three_years,echo=FALSE,comment=NA}
+three_years(dataset)
+```
+
+
 ## Time validation
  **Checking that the time_period is either 4 or 6 digits** `r pass_fail_image(time_period_result)`
 ```{r time_period, echo=FALSE,warning=FALSE,comment=NA}
