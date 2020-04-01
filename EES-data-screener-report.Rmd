@@ -90,6 +90,11 @@ geography_level_present(dataset)
 geography_level_completed(dataset)
 ```
 
+ **Checking that if present, the new_la_column is always a 9 digit code or a blank** `r pass_fail_image(new_la_code_result)`
+```{r new_la_code,echo=FALSE,warning=FALSE,comment=NA}
+new_la_code(dataset)
+```
+
 ## Filter validation
 
  **Checking that filters include in the metadata have at least two levels** `r pass_fail_image(filter_level_result)`
