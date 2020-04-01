@@ -179,50 +179,6 @@ geography_level_present <- function(data) {
     }
   }
 
-  #  if ("School" %in% data[["geographic_level"]]) {
-  #    for (i in school_required) {
-  #      if ((i %in% names(data)) == FALSE) {
-  #        message("FAIL - ", i, " must be present for school level data.")
-  #        geography_level_present_preresult[i] <- FALSE
-  #      } else {
-  #        geography_level_present_preresult[i] <- TRUE
-  #      }
-  #    }
-  #  }
-
-  #  if ("Provider" %in% data[["geographic_level"]]) {
-  #    for (i in provider_required) {
-  #      if ((i %in% names(data)) == FALSE) {
-  #        message("FAIL - ", i, " must be present for provider level data.")
-  #        geography_level_present_preresult[i] <- FALSE
-  #      } else {
-  #        geography_level_present_preresult[i] <- TRUE
-  #      }
-  #    }
-  #  }
-
-  #  if ("Institution" %in% data[["geographic_level"]]) {
-  #    for (i in institution_required) {
-  #      if ((i %in% names(data)) == FALSE) {
-  #        message("FAIL - ", i, " must be present for institution level data.")
-  #        geography_level_present_preresult[i] <- FALSE
-  #      } else {
-  #        geography_level_present_preresult[i] <- TRUE
-  #      }
-  #    }
-  #  }
-
-  #  if ("Planning area" %in% data[["geographic_level"]]) {
-  #    for (i in planning_area_required) {
-  #      if ((i %in% names(data)) == FALSE) {
-  #        message("FAIL - ", i, " must be present for planning area level data.")
-  #        geography_level_present_preresult[i] <- FALSE
-  #      } else {
-  #        geography_level_present_preresult[i] <- TRUE
-  #      }
-  #    }
-  #  }
-
   if (FALSE %in% geography_level_present_preresult) {
     assign("geography_level_present_result", FALSE, envir = .GlobalEnv)
   } else {
@@ -230,8 +186,6 @@ geography_level_present <- function(data) {
     assign("geography_level_present_result", TRUE, envir = .GlobalEnv)
   }
 }
-
-
 
 # -------------------------------------
 # Are the geography levels completed as expected
@@ -267,11 +221,7 @@ geography_level_completed <- function(data) {
       message("FAIL - The old_la_code column must be completed for all local authority data.")
       geography_level_completed_preresult[old_la_code] <- FALSE
     }
-# removing these lines as they are now covered by the new_la_code test
-#    if (any(is.na(LA$new_la_code))) {
-#      message("FAIL - The new_la_code column must be completed for all local authority data.")
-#      geography_level_completed_preresult[new_la_code] <- FALSE
-#    }
+
     if (any(is.na(LA$la_name))) {
       message("FAIL - The la_name column must be completed for all local authority data.")
       geography_level_completed_preresult[la_name] <- FALSE
@@ -410,13 +360,22 @@ geography_level_completed <- function(data) {
 
 new_la_code <- function(data){
   
-  
-  # add an ignore option if it isn't present.
-  
-  if (FALSE %in% new_la_code_preresult) {
-    assign("new_la_code_result", FALSE, envir = .GlobalEnv)
+  if("new_la_code" %in% names(data)){
+    
+    new_la_length <- data
+    new_la_length$code_length <- str_count(new_la_length$new_la_code)
+    
+    if((nrow(filter(new_la_length, code_length == 9)) + nrow(is.na(new_la_length$code_length)) == nrow(new_la_length)) == FALSE)
+        message("FAIL - new_la_code must be either a 9 digit code or blank.")
+        assign("new_la_code_result", FALSE, envir = .GlobalEnv)
+      } else {
+        message("PASS - new_la_code is always a 9 digit code or blank.")
+        assign("new_la_code_result", TRUE, envir = .GlobalEnv)
+    }
+    
   } else {
-    message("PASS - Your new_la_code column is .")
-    assign("new_la_code_result", TRUE, envir = .GlobalEnv)
+    message("IGNORE - You don't have a new_la_code column to validate.")
+    assign("new_la_code_result", NA, envir = .GlobalEnv)
   }
+
 }
