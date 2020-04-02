@@ -365,7 +365,7 @@ new_la_code <- function(data){
     new_la_length <- data
     new_la_length$code_length <- str_count(new_la_length$new_la_code)
     
-    if((nrow(filter(new_la_length, code_length == 9)) + nrow(is.na(new_la_length$code_length)) == nrow(new_la_length)) == FALSE)
+    if((nrow(filter(new_la_length, code_length == 9)) + nrow(is.na(new_la_length$code_length)) == nrow(new_la_length)) == FALSE){
         message("FAIL - new_la_code must be either a 9 digit code or blank.")
         assign("new_la_code_result", FALSE, envir = .GlobalEnv)
       } else {
