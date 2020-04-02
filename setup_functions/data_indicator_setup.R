@@ -59,10 +59,10 @@ no_data_symbols <- function(data) {
 # check for any NULL/Null/null values
 
 null <- function(data) {
-  if (NA %in% unlist(data)) {
-    message("FAIL - There should be no NA or null values in your file.")
-    assign("null_result", FALSE, envir = .GlobalEnv)
-  } else {
+  #if (NA %in% unlist(data)) {
+  #  message("FAIL - There should be no NA or null values in your file.")
+  #  assign("null_result", FALSE, envir = .GlobalEnv)
+  #} else {
     if ("NULL" %in% unlist(data)) {
       message("FAIL - There should be no null values in your file.")
       assign("null_result", FALSE, envir = .GlobalEnv)
@@ -86,4 +86,4 @@ null <- function(data) {
       }
     }
   }
-}
+#}
