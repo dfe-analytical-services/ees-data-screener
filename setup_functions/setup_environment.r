@@ -92,7 +92,7 @@ screening_results <- function() {
     assign("your_data_file", dlg_input(message = "Enter the name of your data file:", default = NULL, gui = .GUI)$res, envir = .GlobalEnv)
     assign("your_meta_file", your_data_file, envir = .GlobalEnv)
 
-    assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
+    assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, na = c("NA"), trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata_utf16", read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
 
@@ -140,7 +140,7 @@ screening_results <- function() {
     assign("your_data_file", str_remove(basename(dataset_path), ".csv"), envir = .GlobalEnv)
     assign("your_meta_file", str_remove(basename(metadata_path), ".meta.csv"), envir = .GlobalEnv)
 
-    assign("dataset", read_csv(dataset_path, trim_ws = FALSE, guess_max = 999999), envir = .GlobalEnv)
+    assign("dataset", read_csv(dataset_path, trim_ws = FALSE, guess_max = 999999, na = c("NA")), envir = .GlobalEnv)
     assign("metadata", read_csv(metadata_path, trim_ws = FALSE, guess_max = 999999), envir = .GlobalEnv)
     assign("metadata_utf16", read.csv(metadata_path, stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
 
@@ -198,7 +198,7 @@ screening_results <- function() {
         assign("your_data_file", i, envir = .GlobalEnv)
         assign("your_meta_file", your_data_file, envir = .GlobalEnv)
 
-        assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
+        assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, na = c("NA"), trim_ws = FALSE), envir = .GlobalEnv)
         assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
         assign("metadata_utf16", read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
 
