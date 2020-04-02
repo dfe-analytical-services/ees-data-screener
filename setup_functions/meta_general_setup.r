@@ -67,7 +67,7 @@ meta_crosscheck <- function(data, meta) {
   meta_crosscheck_preresult <- c()
   for (i in unique(missing_and_meta_variables)) {
     if ((i %in% meta_variables) == FALSE) {
-      message("ADVISORY - ", i, " is not in the metadata or a recognised observational unit.")
+      message("ADVISORY - ", i, " was found in the data, and is not in the metadata or an observational unit.")
       meta_crosscheck_preresult[i] <- FALSE
     } else {
       meta_crosscheck_preresult[i] <- TRUE
@@ -75,6 +75,9 @@ meta_crosscheck <- function(data, meta) {
   }
   if (FALSE %in% meta_crosscheck_preresult) {
     assign("meta_crosscheck_result", "Advisory", envir = .GlobalEnv)
+    message("Columns relating to School, Provider, or Planning area data may be flagged above.")
+    message("It is correct to not include these in the metadata file if they are blank for all other levels.")
+    message("Contact explore.statistics@education.gov.uk if you are unsure.")
   } else {
     message("PASS - All variables in the data file are present in the metadata.")
     assign("meta_crosscheck_result", TRUE, envir = .GlobalEnv)
