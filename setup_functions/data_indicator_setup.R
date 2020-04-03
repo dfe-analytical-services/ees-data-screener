@@ -59,10 +59,10 @@ no_data_symbols <- function(data) {
 # check for any NULL/Null/null values
 
 null <- function(data) {
-  if ("NA" %in% unlist(data)) {
-    message("FAIL - There should be no NA or NULL values in your file.")
-    assign("null_result", FALSE, envir = .GlobalEnv)
-  } else {
+  #if ("NA" %in% unlist(data)) {
+  #  message("FAIL - There should be no NA or NULL values in your file.")
+  #  assign("null_result", FALSE, envir = .GlobalEnv)
+  #} else {
     if ("NULL" %in% unlist(data)) {
       message("FAIL - There should be no NULL values in your file.")
       assign("null_result", FALSE, envir = .GlobalEnv)
@@ -79,12 +79,11 @@ null <- function(data) {
             message("FAIL - There should be no null values in your filters or indicators.")
             assign("null_result", FALSE, envir = .GlobalEnv)
           } else {
-            message("PASS - There are no null or NA values in your file.")
+            message("PASS - There are no null values in your file.")
             assign("null_result", TRUE, envir = .GlobalEnv)
           }
         }
       }
     }
-}
-}
-
+  }
+#}

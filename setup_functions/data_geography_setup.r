@@ -358,24 +358,20 @@ geography_level_completed <- function(data) {
 # -------------------------------------
 # Is the new LA code always either 9 digits or blank?
 
-new_la_code <- function(data){
-  
-  if("new_la_code" %in% names(data)){
-    
+new_la_code <- function(data) {
+  if ("new_la_code" %in% names(data)) {
     new_la_length <- data
     new_la_length$code_length <- str_count(new_la_length$new_la_code)
-    
-    if((nrow(filter(new_la_length, code_length == 9)) + nrow(is.na(new_la_length$code_length)) == nrow(new_la_length)) == FALSE){
-        message("FAIL - new_la_code must be either a 9 digit code or blank.")
-        assign("new_la_code_result", FALSE, envir = .GlobalEnv)
-      } else {
-        message("PASS - new_la_code is always a 9 digit code or blank.")
-        assign("new_la_code_result", TRUE, envir = .GlobalEnv)
+
+    if ((nrow(filter(new_la_length, code_length == 9)) + nrow(is.na(new_la_length$code_length)) == nrow(new_la_length)) == FALSE) {
+      message("FAIL - new_la_code must be either a 9 digit code or blank.")
+      assign("new_la_code_result", FALSE, envir = .GlobalEnv)
+    } else {
+      message("PASS - new_la_code is always a 9 digit code or blank.")
+      assign("new_la_code_result", TRUE, envir = .GlobalEnv)
     }
-    
   } else {
     message("IGNORE - You don't have a new_la_code column to validate.")
     assign("new_la_code_result", NA, envir = .GlobalEnv)
   }
-
 }
