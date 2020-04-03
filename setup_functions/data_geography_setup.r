@@ -383,11 +383,11 @@ geography_level_completed <- function(data) {
     if (("region_code" %in% names(data)) && ("region_name" %in% names(data))) {
       if (is.na(data[["region_code"]]) && !is.na(data[["region_name"]])) {
         message("FAIL - You must include the region_code when there is a region_name.")
-        geography_level_completed_preresult[["rcode_missing"]] <- FALSE
+        geography_level_completed_preresult[["region_code_missing"]] <- FALSE
       }
       if (is.na(data[["region_name"]]) && !is.na(data[["region_code"]])) {
         message("FAIL - You must include the region_code when there is a region_name.")
-        geography_level_completed_preresult[["rname_missing"]] <- FALSE
+        geography_level_completed_preresult[["region_name_missing"]] <- FALSE
       }
     }
   }
