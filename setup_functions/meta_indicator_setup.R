@@ -3,10 +3,10 @@
 # -------------------------------------
 # Checks in this file
 
-meta_indicator_setup <- function(data, meta, meta_utf) {
+meta_indicator_setup <- function(data, meta) {
   indicator_group(meta)
-  indicator_unit_validation(meta_utf)
   indicator_unit(meta)
+  indicator_unit_validation(meta)
 }
 
 meta_indicator_results_function <- function() {
@@ -41,6 +41,7 @@ indicator_unit_validation <- function(meta) {
     assign("indicator_unit_validation_result", TRUE, envir = .GlobalEnv)
   } else {
     message("FAIL - You have the following invalid indicator units in your metadata: ", paste(invalid_indicatorunits, sep = " "))
+    message("If '<U+00A3>' is showing above, then you need to specify UTF-8 encoding when saving your file.")
     assign("indicator_unit_validation_result", FALSE, envir = .GlobalEnv)
   }
 }
