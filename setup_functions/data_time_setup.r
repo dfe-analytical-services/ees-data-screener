@@ -108,8 +108,8 @@ time_identifier_mix <- function(data) {
   if ((base_identifier %in% c("Spring term", "Autumn term", "Autumn and spring term")) == TRUE) {
     lev <- c("Spring term", "Autumn term", "Autumn and spring term")
   }
-  if ((base_identifier %in% c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber")) == TRUE) {
-    lev <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber")
+  if ((base_identifier %in% c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")) == TRUE) {
+    lev <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
   }
   if ((base_identifier %in% c("Calendar year")) == TRUE) {
     lev <- c("Calendar year")
