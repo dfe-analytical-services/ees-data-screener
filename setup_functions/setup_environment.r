@@ -28,6 +28,8 @@ environment_setup <- function() {
   suppressWarnings(suppressMessages(library(stringr)))
   suppressWarnings(suppressMessages(library(dplyr)))
   suppressWarnings(suppressMessages(library(svDialogs)))
+  suppressWarnings(suppressMessages(library(janitor)))
+  
 
   message("Your environment has successfully been setup, you can now run the screener.")
   message("")

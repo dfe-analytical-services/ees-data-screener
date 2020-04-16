@@ -52,11 +52,10 @@ data_comp_col(dataset)
 data_spaces(dataset)
 ```
 
-**Checking if there are at least 3 years of data in your file** `r pass_fail_image(three_years_result)`
-```{r three_years,echo=FALSE,comment=NA}
-three_years(dataset)
+**Checking there are no duplicate rows in your file** `r pass_fail_image(duplicate_rows_result)`
+```{r duplicate_rows,echo=FALSE,comment=NA}
+duplicate_rows(dataset)
 ```
-
 
 ## Time validation
  **Checking that the time_period is either 4 or 6 digits** `r pass_fail_image(time_period_result)`
@@ -79,6 +78,10 @@ time_identifier(dataset)
 time_identifier_mix(dataset)
 ```
 
+**Checking if there are at least 3 years of data in your file** `r pass_fail_image(three_years_result)`
+```{r three_years,echo=FALSE,comment=NA}
+three_years(dataset)
+```
 
 ## Geography validation
  **Checking that the geographic levels are valid** `r pass_fail_image(level_validity_result)`
