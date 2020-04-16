@@ -99,16 +99,25 @@ geography_level_present(dataset)
 geography_level_completed(dataset)
 ```
 
+ **Checking that where one of region code or name are completed, the other also is** `r pass_fail_image(region_col_completed_result)`
+```{r region_col_completed,echo=FALSE,warning=FALSE,comment=NA}
+region_col_completed(dataset)
+```
+
  **Checking that if present, the new_la_column is always a 9 digit code or a blank** `r pass_fail_image(new_la_code_result)`
 ```{r new_la_code,echo=FALSE,warning=FALSE,comment=NA}
 new_la_code(dataset)
 ```
 
- **Checking that LA or Regional data are not mislabelled** `r pass_fail_image(incorrect_level_result)`
-```{r incorrect_level,echo=FALSE,warning=FALSE,comment=NA}
-incorrect_level(dataset)
+ **Checking that LA or Regional data are not mislabelled as National** `r pass_fail_image(incorrect_level_national_result)`
+```{r incorrect_level_national,echo=FALSE,warning=FALSE,comment=NA}
+incorrect_level_national(dataset)
 ```
 
+ **Checking that LA data are not mislabelled as Regional** `r pass_fail_image(incorrect_level_regional_result)`
+```{r incorrect_level_regional,echo=FALSE,warning=FALSE,comment=NA}
+incorrect_level_regional(dataset)
+```
 
 ## Filter validation
 
