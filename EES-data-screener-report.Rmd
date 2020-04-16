@@ -101,6 +101,12 @@ geography_level_completed(dataset)
 new_la_code(dataset)
 ```
 
+ **Checking that LA or Regional data are not mislabelled** `r pass_fail_image(incorrect_level_result)`
+```{r incorrect_level,echo=FALSE,warning=FALSE,comment=NA}
+incorrect_level(dataset)
+```
+
+
 ## Filter validation
 
  **Checking that filters include in the metadata have at least two levels** `r pass_fail_image(filter_level_result)`

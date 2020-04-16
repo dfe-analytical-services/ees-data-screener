@@ -8,6 +8,7 @@ data_geography_setup <- function(data) {
   geography_level_present(data)
   geography_level_completed(data)
   new_la_code(data)
+  incorrect_level(data)
 }
 
 data_geography_results_function <- function() {
@@ -15,7 +16,8 @@ data_geography_results_function <- function() {
     level_validity_result,
     geography_level_present_result,
     geography_level_completed_result,
-    new_la_code_result
+    new_la_code_result,
+    incorrect_level_result
   ),
   envir = .GlobalEnv
   )
@@ -375,3 +377,103 @@ new_la_code <- function(data) {
     assign("new_la_code_result", NA, envir = .GlobalEnv)
   }
 }
+
+# -------------------------------------
+# Are any la rows completed for regional or national columns, or regional for national?
+
+incorrect_level <- function(data) {
+    national_rows <- filter(data, geographic_level == "National") 
+    regional_rows <- filter(data, geographic_level == "Regional") 
+    national_incorrect_level_preresult <- c()
+    regional_incorrect_level_preresult <- c()
+    
+    if(nrow(national_rows) == 0){
+      national_incorrect_level_preresult <- NA
+    } else {
+      for(i in c(regional_required,la_required)) {
+        if (!is.na(national_rows[i])) {
+          national_incorrect_level_preresult[i] <- FALSE
+        } else {
+          national_incorrect_level_preresult[i] <- TRUE
+        }
+      }
+    }
+   
+    if(nrow(regional_rows) == 0) {
+      regional_incorrect_level_preresult <- NA
+    } else {
+      for(i in la_required) {
+        if(!is.na(regional_rows[i])) {
+          regional_incorrect_level_preresult[i] <- FALSE
+        } else {
+          regional_incorrect_level_preresult[i] <- TRUE
+        }
+      }
+    }
+ 
+   
+    if (nrow(national_incorrect_level_preresult) + nrow(regional_incorrect_level_preresult) == 0) {
+      message("IGNORE - There are no national or regional level rows to test.")
+      assign("incorrect_level_result", NA, envir = .GlobalEnv)
+    } else {
+      
+      if (nrow(national_incorrect_level_preresult) == 0) {
+        if (FALSE %in% regional_incorrect_level_preresult) {
+          message("FAIL - You have LA data in your regional rows, please double check your file.")
+          assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
+        } else {
+          message("PASS - Your geographic columns are labelled as expected.")
+          assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
+        }
+      }
+      
+      if (nrow(regional_incorrect_level_preresult) == 0) {
+        if (FALSE %in% national_incorrect_level_preresult) {
+          message("FAIL - You have LA or regional data in your national rows, please double check your file.")
+          assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
+        } else {
+          message("PASS - Your geographic columns are labelled as expected.")
+          assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
+        }
+      }
+      
+      if ((nrow(regional_incorrect_level_preresult) > 0) && (nrow(national_incorrect_level_preresult) > 0)) {
+        if (FALSE %in% national_incorrect_level_preresult) {
+          message("FAIL - You have regional or la data in your national rows, please double check your file.")
+          assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
+        } else {
+          if (FALSE %in% regional_incorrect_level_preresult) {
+            message("FAIL - You have LA data in your regional rows, please double check your file.")
+            assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
+          } else {
+            message("PASS - Your geographic columns are labelled as expected.")
+            assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
+          }
+        }
+      }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
