@@ -338,21 +338,6 @@ geography_level_completed <- function(data) {
     }
   }
 
-  region_both_complete_check <- function(data) {
-    if (("region_code" %in% names(data)) && ("region_name" %in% names(data))) {
-      if (is.na(data[["region_code"]]) && !is.na(data[["region_name"]])) {
-        message("FAIL - You must include the region_code when there is a region_name.")
-        geography_level_completed_preresult[["rcode_missing"]] <<- FALSE
-      }
-      if (is.na(data[["region_name"]]) && !is.na(data[["region_code"]])) {
-        message("FAIL - You must include the region_code when there is a region_name.")
-        geography_level_completed_preresult[["rname_missing"]] <<- FALSE
-      }
-    }
-  }
-
-  apply(data, 1, region_both_complete_check)
-
   if (FALSE %in% geography_level_completed_preresult) {
     assign("geography_level_completed_result", FALSE, envir = .GlobalEnv)
   } else {
@@ -366,7 +351,34 @@ geography_level_completed <- function(data) {
 
 region_col_completed <- function(data) {
   
-  # TAKE THE REGION_BOTH_COMPLETED_CHECK FROM THE ABOVE FUNCTION
+  # THIS ISN'T APPLYING WHAT I INTENDED CORRECTLY
+  
+  # NA in the character columns are now "". Need to handle them
+  
+  
+  region_col_completed_preresult <- c()
+  
+  region_both_complete_check <- function(data) {
+    if (("region_code" %in% names(data)) && ("region_name" %in% names(data))) {
+      if (is.na(data[["region_code"]]) && !is.na(data[["region_name"]])) {
+        message("FAIL - You must include the region_code when there is a region_name.")
+        region_col_completed_preresult[["rcode_missing"]] <<- FALSE
+      }
+      if (is.na(data[["region_name"]]) && !is.na(data[["region_code"]])) {
+        message("FAIL - You must include the region_name when there is a region_code.")
+        region_col_completed_preresult[["rname_missing"]] <<- FALSE
+      }
+    }
+  }
+  
+  apply(data, 1, region_both_complete_check)
+  
+  if (FALSE %in% region_col_completed_preresult) {
+    assign("region_col_completed_result", FALSE, envir = .GlobalEnv)
+  } else {
+    message("PASS - Your regional columns relate to each other as expected.")
+    assign("region_col_completed_result", TRUE, envir = .GlobalEnv)
+  }
   
 }
 
@@ -394,164 +406,75 @@ new_la_code <- function(data) {
 # -------------------------------------
 # Are any la or regional rows completed for national columns?
 
-# BELOW IS COPY AND PASTE FROM COMBINED TEST, NEEDS HALF DELETING AND REST FIXING TO MATCH FUNCTION NAME
-
 incorrect_level_national <- function(data) {
     national_rows <- filter(data, geographic_level == "National") 
-    regional_rows <- filter(data, geographic_level == "Regional") 
-    national_incorrect_level_preresult <- c()
-    regional_incorrect_level_preresult <- c()
+    incorrect_level_national_preresult <- c()
+
+    # NA in the character columns are now "". Need to handle them
     
     if(nrow(national_rows) == 0){
-      national_incorrect_level_preresult <- NA
+      incorrect_level_national_preresult <- NA
     } else {
       for(i in c(regional_required,la_required)) {
         if(i %in% names(national_rows)) {
           if (any(!is.na(national_rows[i]))) {
-            national_incorrect_level_preresult[i] <- FALSE
+            incorrect_level_national_preresult[i] <- FALSE
           } else {
-            national_incorrect_level_preresult[i] <- TRUE
+            incorrect_level_national_preresult[i] <- TRUE
           }
         }
       }
     }
-   
-    if(nrow(regional_rows) == 0) {
-      regional_incorrect_level_preresult <- NA
+    if (NA %in% incorrect_level_national_preresult) {
+      message("IGNORE - There are no national level rows to test.")
+      assign("incorrect_level_national_result", NA, envir = .GlobalEnv)
     } else {
-      for(i in la_required) {
-        if(i %in% names(regional_rows)) {
-          if(any(!is.na(regional_rows[i]))) {
-            regional_incorrect_level_preresult[i] <- FALSE
-          } else {
-            regional_incorrect_level_preresult[i] <- TRUE
-          }
+      if (FALSE %in% incorrect_level_national_preresult) {
+        message("FAIL - You have regional or LA data in your national rows, please double check your file.")
+        assign("incorrect_level_national_result", FALSE, envir = .GlobalEnv)
+      } else {
+          message("PASS - Your national rows do not have LA or regional data in them.")
+          assign("incorrect_level_national_result", TRUE, envir = .GlobalEnv)
         }
       }
-    }
- 
-   
-    if ((nrow(national_rows) == 0) && (nrow(regional_rows) == 0)) {
-      message("IGNORE - There are no national or regional level rows to test.")
-      assign("incorrect_level_result", NA, envir = .GlobalEnv)
-    } else {
-      
-      if (nrow(national_rows) == 0) {
-        if (FALSE %in% regional_incorrect_level_preresult) {
-          message("FAIL - You have LA data in your regional rows, please double check your file.")
-          assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
-        } else {
-          message("PASS - Your geographic columns are labelled as expected.")
-          assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
-        }
-      }
-      
-      if (nrow(regional_rows) == 0) {
-        if (FALSE %in% national_incorrect_level_preresult) {
-          message("FAIL - You have LA or regional data in your national rows, please double check your file.")
-          assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
-        } else {
-          message("PASS - Your geographic columns are labelled as expected.")
-          assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
-        }
-      }
-      
-      if ((nrow(national_rows) == 0) && (nrow(regional_rows) == 0)) {
-        if (FALSE %in% national_incorrect_level_preresult) {
-          message("FAIL - You have regional or la data in your national rows, please double check your file.")
-          assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
-        } else {
-          if (FALSE %in% regional_incorrect_level_preresult) {
-            message("FAIL - You have LA data in your regional rows, please double check your file.")
-            assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
-          } else {
-            message("PASS - Your geographic columns are labelled as expected.")
-            assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
-          }
-        }
-      }
-    }
 }
+
 
 # -------------------------------------
 # Are any la rows completed for regional columns?
 
-# BELOW IS COPY AND PASTE FROM COMBINED TEST, NEEDS HALF DELETING AND REST FIXING TO MATCH FUNCTION NAME
+# NA in the character columns are now "". Need to handle them
 
 incorrect_level_regional <- function(data) {
-  national_rows <- filter(data, geographic_level == "National") 
   regional_rows <- filter(data, geographic_level == "Regional") 
-  national_incorrect_level_preresult <- c()
-  regional_incorrect_level_preresult <- c()
-  
-  if(nrow(national_rows) == 0){
-    national_incorrect_level_preresult <- NA
-  } else {
-    for(i in c(regional_required,la_required)) {
-      if(i %in% names(national_rows)) {
-        if (any(!is.na(national_rows[i]))) {
-          national_incorrect_level_preresult[i] <- FALSE
-        } else {
-          national_incorrect_level_preresult[i] <- TRUE
-        }
-      }
-    }
-  }
+  incorrect_level_regional_preresult <- c()
   
   if(nrow(regional_rows) == 0) {
-    regional_incorrect_level_preresult <- NA
+    incorrect_level_regional_preresult <- NA
   } else {
     for(i in la_required) {
       if(i %in% names(regional_rows)) {
         if(any(!is.na(regional_rows[i]))) {
-          regional_incorrect_level_preresult[i] <- FALSE
+          incorrect_level_regional_preresult[i] <- FALSE
         } else {
-          regional_incorrect_level_preresult[i] <- TRUE
+          incorrect_level_regional_preresult[i] <- TRUE
         }
       }
     }
   }
   
   
-  if ((nrow(national_rows) == 0) && (nrow(regional_rows) == 0)) {
-    message("IGNORE - There are no national or regional level rows to test.")
-    assign("incorrect_level_result", NA, envir = .GlobalEnv)
+  if (NA %in% incorrect_level_regional_preresult) {
+    message("IGNORE - There are no regional level rows to test.")
+    assign("incorrect_level_regional_result", NA, envir = .GlobalEnv)
   } else {
-    
-    if (nrow(national_rows) == 0) {
-      if (FALSE %in% regional_incorrect_level_preresult) {
+      if (FALSE %in% incorrect_level_regional_preresult) {
         message("FAIL - You have LA data in your regional rows, please double check your file.")
-        assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
+        assign("incorrect_level_regional_result", FALSE, envir = .GlobalEnv)
       } else {
-        message("PASS - Your geographic columns are labelled as expected.")
-        assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
+        message("PASS - Your regional rows do not have LA data in them..")
+        assign("incorrect_level_regional_result", TRUE, envir = .GlobalEnv)
       }
-    }
-    
-    if (nrow(regional_rows) == 0) {
-      if (FALSE %in% national_incorrect_level_preresult) {
-        message("FAIL - You have LA or regional data in your national rows, please double check your file.")
-        assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
-      } else {
-        message("PASS - Your geographic columns are labelled as expected.")
-        assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
-      }
-    }
-    
-    if ((nrow(national_rows) == 0) && (nrow(regional_rows) == 0)) {
-      if (FALSE %in% national_incorrect_level_preresult) {
-        message("FAIL - You have regional or la data in your national rows, please double check your file.")
-        assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
-      } else {
-        if (FALSE %in% regional_incorrect_level_preresult) {
-          message("FAIL - You have LA data in your regional rows, please double check your file.")
-          assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
-        } else {
-          message("PASS - Your geographic columns are labelled as expected.")
-          assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
-        }
-      }
-    }
   }
 }
 
