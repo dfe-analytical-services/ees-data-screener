@@ -42,10 +42,6 @@ oa_required <- c("opportunity_area_code", "opportunity_area_name")
 ward_required <- c("ward_code", "ward_name")
 MAT_required <- c("trust_id", "trust_name")
 sponsor_required <- c("sponsor_id", "sponsor_name")
-# school_required <- c("school_laestab", "school_name")
-# provider_required <- c("provider_urn", "provider_name")
-# institution_required <- c("institution_id", "institution_id")
-# planning_area_required <- c("planning_area_name", "planning_area_code")
 
 meta_cols <- c("col_name", "col_type", "label", "indicator_grouping", "indicator_unit", "filter_hint", "filter_grouping_column")
 
