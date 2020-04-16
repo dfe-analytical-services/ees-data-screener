@@ -18,8 +18,8 @@ meta_filter_results_function <- function() {
     filter_group_result,
     filter_group_match_result,
     filter_group_level_result,
-    filter_group_not_filter,
-    filter_group_duplicate 
+    filter_group_not_filter_result,
+    filter_group_duplicate_result
   ),
   envir = .GlobalEnv
   )
