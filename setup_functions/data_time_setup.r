@@ -31,6 +31,16 @@ data_time_results_function <- function() {
 # can and should be refactored at some point
 
 time_period <- function(data) {
+  
+  if (time_identifier_result == FALSE) {
+    message("IGNORE - You have invalid time_identifiers so this test cannot run.")
+    assign("time_period_result", NA, envir = .GlobalEnv)
+  } else {
+    if (time_identifier_mix_result == FALSE) {
+      message("IGNORE - You have mixed time_identifiers so this test cannot run.")
+      assign("time_period_result", NA, envir = .GlobalEnv)
+    } else {
+  
   base_identifier <- data$time_identifier[1]
   time_length <- dataset
   time_length[["digits"]] <- str_count(time_length[["time_period"]])
@@ -157,16 +167,7 @@ time_period <- function(data) {
     }  
   }
   
-  if (time_identifier_result == FALSE) {
-    message("IGNORE - You have invalid time_identifiers so this test cannot run.")
-    assign("time_period_result", NA, envir = .GlobalEnv)
-  } else {
-    if (time_identifier_mix_result == FALSE) {
-      message("IGNORE - You have mixed time_identifiers so this test cannot run.")
-      assign("time_period_result", NA, envir = .GlobalEnv)
-    } else {
       if (time_period_preresult == FALSE) {
-      message("FAIL - data is mixing time identifiers. Allowable values given you've included ", base_identifier, " are: ", paste(lev, sep = " "), ".")
       assign("time_period_result", FALSE, envir = .GlobalEnv)
     } else {
       message("PASS - Your time_identifier values are compatible.")

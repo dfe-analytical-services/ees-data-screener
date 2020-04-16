@@ -67,9 +67,7 @@ data_spaces <- function(data) {
 # Checking datafile for duplicate rows across ob. units and filters
 
 duplicate_rows <- function(data) {
-  dupes <- data %>% 
-    select(-present_indicators) %>% 
-    get_dupes()
+  dupes <- suppressMessages(data %>% select(-present_indicators) %>% get_dupes())
   
   if(nrow(dupes) > 0) {
     message("FAIL - There are ", nrow(dupes), " duplicate rows in your data file.")

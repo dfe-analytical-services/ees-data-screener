@@ -115,14 +115,14 @@ filter_group_level <- function(data, meta) {
 
 filter_group_not_filter <- function(meta) {
   
-  if (all(is.na(meta$filter_grouping_column))) {
+  if (nrow(drop_na(meta, filter_grouping_column)) == 0) {
     message("IGNORE - There are no filter groups present to test.")
     assign("filter_group_not_filter_result", NA, envir = .GlobalEnv)
   } else {
   
   filter_group_not_filter_preresult <- c()
   
-    for (i in meta$filter_grouping_column) {
+    for (i in drop_na(meta, filter_grouping_column)$filter_grouping_column) {
       if ((i %in% meta$col_name) == FALSE) {
         message("FAIL - ", i, " should not be in the col_type column if it is a filter grouping column.")
         filter_group_not_filter_preresult[i] <- FALSE
@@ -144,11 +144,11 @@ filter_group_not_filter <- function(meta) {
 # Checking that filter groups are not duplicated
 
 filter_group_duplicate <- function(meta) {
-  if (all(is.na(meta$filter_grouping_column))) {
+  if (nrow(drop_na(meta, filter_grouping_column)) == 0) {
     message("IGNORE - There are no filter groups present to test.")
     assign("filter_group_duplicate_result", NA, envir = .GlobalEnv)
   } else {
-    if (any(meta$filter_grouping_column %in% meta$filter_grouping_column[duplicated(meta$filter_grouping_column)])) {
+    if (nrow(suppressMessages(get_dupes(drop_na(meta, filter_grouping_column)))) != 0) {
       message("FAIL - At least one of the filter groups is duplicated.")
       assign("filter_group_duplicate_result", FALSE, envir = .GlobalEnv)
     } else {

@@ -338,11 +338,11 @@ geography_level_completed <- function(data) {
     if (("region_code" %in% names(data)) && ("region_name" %in% names(data))) {
       if (is.na(data[["region_code"]]) && !is.na(data[["region_name"]])) {
         message("FAIL - You must include the region_code when there is a region_name.")
-        geography_level_completed_preresult[["rcode_missing"]] <- FALSE
+        geography_level_completed_preresult[["rcode_missing"]] <<- FALSE
       }
       if (is.na(data[["region_name"]]) && !is.na(data[["region_code"]])) {
         message("FAIL - You must include the region_code when there is a region_name.")
-        geography_level_completed_preresult[["rname_missing"]] <- FALSE
+        geography_level_completed_preresult[["rname_missing"]] <<- FALSE
       }
     }
   }
@@ -365,7 +365,7 @@ new_la_code <- function(data) {
     new_la_length <- data
     new_la_length$code_length <- str_count(new_la_length$new_la_code)
 
-    if ((nrow(filter(new_la_length, code_length == 9)) + nrow(is.na(new_la_length$code_length)) == nrow(new_la_length)) == FALSE) {
+    if (((nrow(filter(new_la_length, code_length == 9)) + nrow(filter(new_la_length, is.na(code_length) ))) == nrow(new_la_length))) {
       message("FAIL - new_la_code must be either a 9 digit code or blank.")
       assign("new_la_code_result", FALSE, envir = .GlobalEnv)
     } else {
@@ -392,7 +392,7 @@ incorrect_level <- function(data) {
     } else {
       for(i in c(regional_required,la_required)) {
         if(i %in% names(national_rows)) {
-          if (!is.na(national_rows[i])) {
+          if (any(!is.na(national_rows[i]))) {
             national_incorrect_level_preresult[i] <- FALSE
           } else {
             national_incorrect_level_preresult[i] <- TRUE
@@ -406,7 +406,7 @@ incorrect_level <- function(data) {
     } else {
       for(i in la_required) {
         if(i %in% names(regional_rows)) {
-          if(!is.na(regional_rows[i])) {
+          if(any(!is.na(regional_rows[i]))) {
             regional_incorrect_level_preresult[i] <- FALSE
           } else {
             regional_incorrect_level_preresult[i] <- TRUE
@@ -441,7 +441,7 @@ incorrect_level <- function(data) {
         }
       }
       
-      if ((!is.na(regional_incorrect_level_preresult)) && (!is.na(national_incorrect_level_preresult))) {
+      if ((nrow(national_rows) == 0) && (nrow(regional_rows) == 0)) {
         if (FALSE %in% national_incorrect_level_preresult) {
           message("FAIL - You have regional or la data in your national rows, please double check your file.")
           assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
@@ -457,27 +457,3 @@ incorrect_level <- function(data) {
       }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
