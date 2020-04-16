@@ -115,23 +115,45 @@ filter_group_level <- function(data, meta) {
 
 filter_group_not_filter <- function(meta) {
   
+  if (all(is.na(meta$filter_grouping_column))) {
+    message("IGNORE - There are no filter groups present to test.")
+    assign("filter_group_not_filter_result", NA, envir = .GlobalEnv)
+  } else {
+  
+  filter_group_not_filter_preresult <- c()
+  
+    for (i in meta$filter_grouping_column) {
+      if ((i %in% meta$col_name) == FALSE) {
+        message("FAIL - ", i, " should not be in the col_type column if it is a filter grouping column.")
+        filter_group_not_filter_preresult[i] <- FALSE
+      } else {
+        filter_group_not_filter_preresult[i] <- TRUE
+      }
+    }
+  
+  if (FALSE %in% filter_group_not_filter_preresult) {
+    assign("filter_group_not_filter_result", FALSE, envir = .GlobalEnv)
+  } else {
+    message("PASS - Your filter groups are not in the col_name column.")
+    assign("filter_group_not_filter_result", TRUE, envir = .GlobalEnv)
+  }
+  }
 }
 
 # -------------------------------------
 # Checking that filter groups are not duplicated
 
 filter_group_duplicate <- function(meta) {
-  
+  if (all(is.na(meta$filter_grouping_column))) {
+    message("IGNORE - There are no filter groups present to test.")
+    assign("filter_group_duplicate_result", NA, envir = .GlobalEnv)
+  } else {
+    if (any(meta$filter_grouping_column %in% meta$filter_grouping_column[duplicated(meta$filter_grouping_column)])) {
+      message("FAIL - At least one of the filter groups is duplicated.")
+      assign("filter_group_duplicate_result", FALSE, envir = .GlobalEnv)
+    } else {
+      message("PASS - All filter groups are unique.")
+      assign("filter_group_duplicate_result", TRUE, envir = .GlobalEnv)
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
