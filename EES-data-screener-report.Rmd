@@ -238,6 +238,16 @@ filter_group_match(dataset, metadata)
 filter_group_level(dataset, metadata)
 ```
 
+ **Checking that no filter groups are also filters** `r pass_fail_image(filter_group_not_filter_result)`
+```{r filter_group_not_filter,echo=FALSE,comment=NA}
+filter_group_not_filter(metadata)
+```
+
+ **Checking that no filter groups are duplicated** `r pass_fail_image(filter_group_duplicate_result)`
+```{r filter_group_duplicate,echo=FALSE,comment=NA}
+filter_group_duplicate(metadata)
+```
+
 ## Indicator validation
  **Checking that no filters have an indicator group** `r pass_fail_image(indicator_group_result)`
 ```{r indicator_group,echo=FALSE,comment=NA}

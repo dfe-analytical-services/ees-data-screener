@@ -8,6 +8,8 @@ meta_filter_setup <- function(data, meta) {
   filter_group(meta)
   filter_group_match(data, meta)
   filter_group_level(data, meta)
+  filter_group_not_filter(meta)
+  filter_group_duplicate(meta)
 }
 
 meta_filter_results_function <- function() {
@@ -15,7 +17,9 @@ meta_filter_results_function <- function() {
     filter_hint_result,
     filter_group_result,
     filter_group_match_result,
-    filter_group_level_result
+    filter_group_level_result,
+    filter_group_not_filter,
+    filter_group_duplicate 
   ),
   envir = .GlobalEnv
   )
@@ -105,3 +109,29 @@ filter_group_level <- function(data, meta) {
     }
   }
 }
+
+# -------------------------------------
+# Checking that filter groups are not filters
+
+filter_group_not_filter <- function(meta) {
+  
+}
+
+# -------------------------------------
+# Checking that filter groups are not duplicated
+
+filter_group_duplicate <- function(meta) {
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
