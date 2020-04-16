@@ -4,10 +4,11 @@
 # Checks in this file
 
 data_time_setup <- function(data) {
-  time_period(data)
-  time_period_six(data)
+  # note that the identifier tests come first as they are needed for the period tests
   time_identifier(data)
   time_identifier_mix(data)
+  time_period(data)
+  time_period_six(data)
   three_years(data)
 }
 
@@ -23,22 +24,158 @@ data_time_results_function <- function() {
   )
 }
 
+
 # -------------------------------------
-# This checks for a 4 or 6 digit number in the time_period column
+# IN PROGRESS
+# checking that if the time_identifer is X, then the time_period is Y
+# can and should be refactored at some point
 
 time_period <- function(data) {
+  base_identifier <- data$time_identifier[1]
   time_length <- dataset
   time_length[["digits"]] <- str_count(time_length[["time_period"]])
-
-  if ((nrow(filter(time_length, digits == 4)) + nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
-    message("FAIL - time period must be a four or six digit number e.g. 2016 or 201617.")
-    message("Here are the time period values in your file: ", paste0(unique(data[["time_period"]]), sep = " "))
-    assign("time_period_result", FALSE, envir = .GlobalEnv)
+  time_period_preresult <- c()
+  
+  if ((base_identifier %in% c("Reporting year")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 4)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for Reporting year must be a four digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }
+  }
+  
+  if ((base_identifier %in% c("Spring term", "Autumn term", "Autumn and spring term")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 4)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for terms must be a four digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }
+  }
+  
+  if ((base_identifier %in% c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 4)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for months must be a four digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }
+  }
+  
+  if ((base_identifier %in% c("Calendar year")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 4)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for Calendar year must be a four digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }
+  }
+  
+  if ((base_identifier %in% c("Calendar year Q1", "Calendar year Q2", "Calendar year Q3", "Calendar year Q4")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 4)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for Calendar year must be a four digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }
+  }
+  
+  if ((base_identifier %in% c("Financial year")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for Financial year must be a six digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }
+  }
+  
+  if ((base_identifier %in% c("Financial year Q1", "Financial year Q2", "Financial year Q3", "Financial year Q4")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for Financial year must be a six digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    } 
+  }
+  
+  if ((base_identifier %in% c("Academic year")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for Academic year must be a six digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }
+  }
+  
+  if ((base_identifier %in% c("Academic year Q1", "Academic year Q2", "Academic year Q3", "Academic year Q4")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for Academic year must be a six digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }
+  }  
+  
+  if ((base_identifier %in% c("Tax year")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for Tax year must be a six digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }  
+  }
+  
+  if ((base_identifier %in% c("Tax year Q1", "Tax year Q2", "Tax year Q3", "Tax year Q4")) == TRUE) {
+    if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
+      message("FAIL - the time period for Tax year must be a six digit number.")
+      message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+      time_period_preresult <- FALSE
+    } else {
+      message("PASS - time period is the correct number of digits for the time_identifer.")
+      time_period_preresult <- TRUE
+    }  
+  }
+  
+  if (time_identifier_result == FALSE) {
+    message("IGNORE - You have invalid time_identifiers so this test cannot run.")
+    assign("time_period_result", NA, envir = .GlobalEnv)
   } else {
-    message("PASS - time period is always a four or six digit number.")
-    assign("time_period_result", TRUE, envir = .GlobalEnv)
+    if (time_identifier_mix_result == FALSE) {
+      message("IGNORE - You have mixed time_identifiers so this test cannot run.")
+      assign("time_period_result", NA, envir = .GlobalEnv)
+    } else {
+      if (time_period_preresult == FALSE) {
+      message("FAIL - data is mixing time identifiers. Allowable values given you've included ", base_identifier, " are: ", paste(lev, sep = " "), ".")
+      assign("time_period_result", FALSE, envir = .GlobalEnv)
+    } else {
+      message("PASS - Your time_identifier values are compatible.")
+      assign("time_period_result", TRUE, envir = .GlobalEnv)
+    }
+  }
   }
 }
+
 
 # -------------------------------------
 # then if 6 digit if it shows consecutive years
