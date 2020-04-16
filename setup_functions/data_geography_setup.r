@@ -76,6 +76,14 @@ geography_level_present <- function(data) {
         geography_level_present_preresult[i] <- TRUE
       }
     }
+    for (i in regional_required) {
+      if ((i %in% names(data)) == FALSE) {
+        message("ADVISORY - ", i, " should be present and completed for local authority level data.")
+        geography_level_present_preresult[i] <- "Advisory"
+      } else {
+        geography_level_present_preresult[i] <- TRUE
+      }
+    }
   }
 
   if ("RSC region" %in% data[["geographic_level"]]) {
@@ -224,9 +232,14 @@ geography_level_present <- function(data) {
   if (FALSE %in% geography_level_present_preresult) {
     assign("geography_level_present_result", FALSE, envir = .GlobalEnv)
   } else {
-    message("PASS - Your geographic columns are valid.")
-    assign("geography_level_present_result", TRUE, envir = .GlobalEnv)
+    if ("Advisory" %in% geography_level_present_preresult) {
+      assign("geography_level_present_result", "Advisory", envir = .GlobalEnv)
+    } else {
+      message("PASS - Your geographic columns are valid.")
+      assign("geography_level_present_result", TRUE, envir = .GlobalEnv)
+    }
   }
+    
 }
 
 
@@ -266,8 +279,9 @@ geography_level_completed <- function(data) {
       geography_level_completed_preresult[["old_la_code"]] <- FALSE
     }
     if (any(is.na(LA$new_la_code))) {
-      message("FAIL - The new_la_code column must be completed for all local authority data.")
-      geography_level_completed_preresult[["new_la_code"]] <- FALSE
+      message("ADVISORY - The new_la_code column should be completed for all local authority data.")
+      message("The only exception to this is for legacy LA's that do not have a new code.")
+      geography_level_completed_preresult[["new_la_code"]] <- "Advisory"
     }
     if (any(is.na(LA$la_name))) {
       message("FAIL - The la_name column must be completed for all local authority data.")
@@ -408,7 +422,11 @@ geography_level_completed <- function(data) {
   if (FALSE %in% geography_level_completed_preresult) {
     assign("geography_level_completed_result", FALSE, envir = .GlobalEnv)
   } else {
-    message("PASS - Your geographic columns are completed as expected.")
-    assign("geography_level_completed_result", TRUE, envir = .GlobalEnv)
+    if ("Advisory" %in% geography_level_completed_preresult) {
+      assign("geography_level_completed_result", "Advisory", envir = .GlobalEnv)
+    } else {
+      message("PASS - Your geographic columns are completed as expected.")
+      assign("geography_level_completed_result", TRUE, envir = .GlobalEnv)
+    }
   }
 }
