@@ -7,8 +7,10 @@ data_geography_setup <- function(data) {
   level_validity(data)
   geography_level_present(data)
   geography_level_completed(data)
+  region_col_completed(data)
   new_la_code(data)
-  incorrect_level(data)
+  incorrect_level_national(data)
+  incorrect_level_regional(data)
 }
 
 data_geography_results_function <- function() {
@@ -16,8 +18,10 @@ data_geography_results_function <- function() {
     level_validity_result,
     geography_level_present_result,
     geography_level_completed_result,
+    region_col_completed_result,
     new_la_code_result,
-    incorrect_level_result
+    incorrect_level_national_result,
+    incorrect_level_regional_result
   ),
   envir = .GlobalEnv
   )
@@ -358,6 +362,15 @@ geography_level_completed <- function(data) {
 }
 
 # -------------------------------------
+# When one of region name and code is completed, is the other also?
+
+region_col_completed <- function(data) {
+  
+  # TAKE THE REGION_BOTH_COMPLETED_CHECK FROM THE ABOVE FUNCTION
+  
+}
+
+# -------------------------------------
 # Is the new LA code always either 9 digits or blank?
 
 new_la_code <- function(data) {
@@ -379,9 +392,11 @@ new_la_code <- function(data) {
 }
 
 # -------------------------------------
-# Are any la rows completed for regional or national columns, or regional for national?
+# Are any la or regional rows completed for national columns?
 
-incorrect_level <- function(data) {
+# BELOW IS COPY AND PASTE FROM COMBINED TEST, NEEDS HALF DELETING AND REST FIXING TO MATCH FUNCTION NAME
+
+incorrect_level_national <- function(data) {
     national_rows <- filter(data, geographic_level == "National") 
     regional_rows <- filter(data, geographic_level == "Regional") 
     national_incorrect_level_preresult <- c()
@@ -457,3 +472,86 @@ incorrect_level <- function(data) {
       }
     }
 }
+
+# -------------------------------------
+# Are any la rows completed for regional columns?
+
+# BELOW IS COPY AND PASTE FROM COMBINED TEST, NEEDS HALF DELETING AND REST FIXING TO MATCH FUNCTION NAME
+
+incorrect_level_regional <- function(data) {
+  national_rows <- filter(data, geographic_level == "National") 
+  regional_rows <- filter(data, geographic_level == "Regional") 
+  national_incorrect_level_preresult <- c()
+  regional_incorrect_level_preresult <- c()
+  
+  if(nrow(national_rows) == 0){
+    national_incorrect_level_preresult <- NA
+  } else {
+    for(i in c(regional_required,la_required)) {
+      if(i %in% names(national_rows)) {
+        if (any(!is.na(national_rows[i]))) {
+          national_incorrect_level_preresult[i] <- FALSE
+        } else {
+          national_incorrect_level_preresult[i] <- TRUE
+        }
+      }
+    }
+  }
+  
+  if(nrow(regional_rows) == 0) {
+    regional_incorrect_level_preresult <- NA
+  } else {
+    for(i in la_required) {
+      if(i %in% names(regional_rows)) {
+        if(any(!is.na(regional_rows[i]))) {
+          regional_incorrect_level_preresult[i] <- FALSE
+        } else {
+          regional_incorrect_level_preresult[i] <- TRUE
+        }
+      }
+    }
+  }
+  
+  
+  if ((nrow(national_rows) == 0) && (nrow(regional_rows) == 0)) {
+    message("IGNORE - There are no national or regional level rows to test.")
+    assign("incorrect_level_result", NA, envir = .GlobalEnv)
+  } else {
+    
+    if (nrow(national_rows) == 0) {
+      if (FALSE %in% regional_incorrect_level_preresult) {
+        message("FAIL - You have LA data in your regional rows, please double check your file.")
+        assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
+      } else {
+        message("PASS - Your geographic columns are labelled as expected.")
+        assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
+      }
+    }
+    
+    if (nrow(regional_rows) == 0) {
+      if (FALSE %in% national_incorrect_level_preresult) {
+        message("FAIL - You have LA or regional data in your national rows, please double check your file.")
+        assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
+      } else {
+        message("PASS - Your geographic columns are labelled as expected.")
+        assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
+      }
+    }
+    
+    if ((nrow(national_rows) == 0) && (nrow(regional_rows) == 0)) {
+      if (FALSE %in% national_incorrect_level_preresult) {
+        message("FAIL - You have regional or la data in your national rows, please double check your file.")
+        assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
+      } else {
+        if (FALSE %in% regional_incorrect_level_preresult) {
+          message("FAIL - You have LA data in your regional rows, please double check your file.")
+          assign("incorrect_level_result", FALSE, envir = .GlobalEnv)
+        } else {
+          message("PASS - Your geographic columns are labelled as expected.")
+          assign("incorrect_level_result", TRUE, envir = .GlobalEnv)
+        }
+      }
+    }
+  }
+}
+
