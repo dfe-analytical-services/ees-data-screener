@@ -8,6 +8,8 @@ meta_filter_setup <- function(data, meta) {
   filter_group(meta)
   filter_group_match(data, meta)
   filter_group_level(data, meta)
+  filter_group_not_filter(meta)
+  filter_group_duplicate(meta)
 }
 
 meta_filter_results_function <- function() {
@@ -15,7 +17,9 @@ meta_filter_results_function <- function() {
     filter_hint_result,
     filter_group_result,
     filter_group_match_result,
-    filter_group_level_result
+    filter_group_level_result,
+    filter_group_not_filter_result,
+    filter_group_duplicate_result
   ),
   envir = .GlobalEnv
   )
@@ -102,6 +106,52 @@ filter_group_level <- function(data, meta) {
     } else {
       message("PASS - All filter groups have fewer levels than their corresponding filter.")
       assign("filter_group_level_result", TRUE, envir = .GlobalEnv)
+    }
+  }
+}
+
+# -------------------------------------
+# Checking that filter groups are not filters
+
+filter_group_not_filter <- function(meta) {
+  if (nrow(drop_na(meta, filter_grouping_column)) == 0) {
+    message("IGNORE - There are no filter groups present to test.")
+    assign("filter_group_not_filter_result", NA, envir = .GlobalEnv)
+  } else {
+    filter_group_not_filter_preresult <- c()
+
+    for (i in drop_na(meta, filter_grouping_column)$filter_grouping_column) {
+      if (i %in% meta$col_name) {
+        message("FAIL - ", i, " should not be in the col_name column if it is a filter grouping column.")
+        filter_group_not_filter_preresult[i] <- FALSE
+      } else {
+        filter_group_not_filter_preresult[i] <- TRUE
+      }
+    }
+
+    if (FALSE %in% filter_group_not_filter_preresult) {
+      assign("filter_group_not_filter_result", FALSE, envir = .GlobalEnv)
+    } else {
+      message("PASS - Your filter groups are not in the col_name column.")
+      assign("filter_group_not_filter_result", TRUE, envir = .GlobalEnv)
+    }
+  }
+}
+
+# -------------------------------------
+# Checking that filter groups are not duplicated
+
+filter_group_duplicate <- function(meta) {
+  if (nrow(drop_na(meta, filter_grouping_column)) == 0) {
+    message("IGNORE - There are no filter groups present to test.")
+    assign("filter_group_duplicate_result", NA, envir = .GlobalEnv)
+  } else {
+    if (nrow(suppressMessages(get_dupes(drop_na(meta, filter_grouping_column)))) != 0) {
+      message("FAIL - At least one of the filter groups is duplicated.")
+      assign("filter_group_duplicate_result", FALSE, envir = .GlobalEnv)
+    } else {
+      message("PASS - All filter groups are unique.")
+      assign("filter_group_duplicate_result", TRUE, envir = .GlobalEnv)
     }
   }
 }

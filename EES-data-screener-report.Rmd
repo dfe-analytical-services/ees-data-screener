@@ -52,6 +52,11 @@ data_comp_col(dataset)
 data_spaces(dataset)
 ```
 
+**Checking there are no duplicate rows in your file** `r pass_fail_image(duplicate_rows_result)`
+```{r duplicate_rows,echo=FALSE,comment=NA}
+duplicate_rows(dataset)
+```
+
 ## Time validation
  **Checking that the time_period is either 4 or 6 digits** `r pass_fail_image(time_period_result)`
 ```{r time_period, echo=FALSE,warning=FALSE,comment=NA}
@@ -73,6 +78,10 @@ time_identifier(dataset)
 time_identifier_mix(dataset)
 ```
 
+**Checking if there are at least 3 years of data in your file** `r pass_fail_image(three_years_result)`
+```{r three_years,echo=FALSE,comment=NA}
+three_years(dataset)
+```
 
 ## Geography validation
  **Checking that the geographic levels are valid** `r pass_fail_image(level_validity_result)`
@@ -88,6 +97,26 @@ geography_level_present(dataset)
  **Checking that the correct geography columns are completed for each of the levels in the data file** `r pass_fail_image(geography_level_completed_result)`
 ```{r geography_level_completed,echo=FALSE,warning=FALSE,comment=NA}
 geography_level_completed(dataset)
+```
+
+ **Checking that where one of region code or name are completed, the other also is** `r pass_fail_image(region_col_completed_result)`
+```{r region_col_completed,echo=FALSE,warning=FALSE,comment=NA}
+region_col_completed(dataset)
+```
+
+ **Checking that if present, the new_la_column is always a 9 digit code or a blank** `r pass_fail_image(new_la_code_result)`
+```{r new_la_code,echo=FALSE,warning=FALSE,comment=NA}
+new_la_code(dataset)
+```
+
+ **Checking that LA or Regional data are not mislabelled as National** `r pass_fail_image(incorrect_level_national_result)`
+```{r incorrect_level_national,echo=FALSE,warning=FALSE,comment=NA}
+incorrect_level_national(dataset)
+```
+
+ **Checking that LA data are not mislabelled as Regional** `r pass_fail_image(incorrect_level_regional_result)`
+```{r incorrect_level_regional,echo=FALSE,warning=FALSE,comment=NA}
+incorrect_level_regional(dataset)
 ```
 
 ## Filter validation
@@ -216,6 +245,16 @@ filter_group_match(dataset, metadata)
  **Checking that filter and filter group have been entered into the correct columns** `r pass_fail_image(filter_group_level_result)`
 ```{r filter_group_level,echo=FALSE,comment=NA}
 filter_group_level(dataset, metadata)
+```
+
+ **Checking that no filter groups are also filters** `r pass_fail_image(filter_group_not_filter_result)`
+```{r filter_group_not_filter,echo=FALSE,comment=NA}
+filter_group_not_filter(metadata)
+```
+
+ **Checking that no filter groups are duplicated** `r pass_fail_image(filter_group_duplicate_result)`
+```{r filter_group_duplicate,echo=FALSE,comment=NA}
+filter_group_duplicate(metadata)
 ```
 
 ## Indicator validation

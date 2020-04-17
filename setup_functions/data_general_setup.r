@@ -6,12 +6,14 @@
 data_general_setup <- function(data) {
   data_comp_col(data)
   data_spaces(data)
+  duplicate_rows(data)
 }
 
 data_general_results_function <- function() {
   assign("data_general_results", c(
     data_comp_col_result,
-    data_spaces_result
+    data_spaces_result,
+    duplicate_rows_result
   ),
   envir = .GlobalEnv
   )
@@ -58,5 +60,20 @@ data_spaces <- function(data) {
   } else {
     message("PASS - There are no 'Total' values in the observational units.")
     assign("data_spaces_result", TRUE, envir = .GlobalEnv)
+  }
+}
+
+# -------------------------------------
+# Checking datafile for duplicate rows across ob. units and filters
+
+duplicate_rows <- function(data) {
+  dupes <- suppressMessages(data %>% select(-present_indicators) %>% get_dupes())
+
+  if (nrow(dupes) > 0) {
+    message("FAIL - There are ", nrow(dupes), " duplicate rows in your data file.")
+    assign("duplicate_rows_result", FALSE, envir = .GlobalEnv)
+  } else {
+    message("PASS - there are no duplicate rows in your data file.")
+    assign("duplicate_rows_result", TRUE, envir = .GlobalEnv)
   }
 }
