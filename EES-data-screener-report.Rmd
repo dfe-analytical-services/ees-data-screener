@@ -234,6 +234,16 @@ indicator_unit_validation(metadata)
 indicator_unit(metadata)
 ```
 
+ **Checking that no filters have an indicator_dp value** `r pass_fail_image(indicator_dp_result)`
+```{r indicator_dp,echo=FALSE,comment=NA}
+indicator_dp(metadata)
+```
+
+ **Checking that indicator_dp is always numeric or blank** `r pass_fail_image(indicator_dp_numeric_result)`
+```{r indicator_dp_numeric,echo=FALSE,comment=NA}
+indicator_dp_numeric(metadata)
+```
+
 :::
 :::
 
