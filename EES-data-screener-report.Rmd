@@ -27,7 +27,7 @@ Tests passed: `r pass`
 <br>
 Tests failed: `r fail`
 <br>
-`r if(advisory>0) {paste("Recommendations: ",advisory," - please check the tests for recommended changes to your files.")}`
+`r if(advisory>0) {paste("Recommendations: ",advisory," - please check the tests for warnings about your files.")}`
 
 ::: {.tabset}
 
@@ -37,7 +37,7 @@ Tests failed: `r fail`
 <br><br>
 `r if(data_percent == "100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r data_percent` of tests passed on the data file.<br>
 `r if(data_advisory>0) {include_graphics("images/advisory.png")}`
-**`r if(data_advisory>0) {paste("Please check the recommended changes to your data file.")}`**
+**`r if(data_advisory>0) {paste("Please check the warnings on your data file.")}`**
 
 :::{.accordion}
 
@@ -161,7 +161,7 @@ null(dataset)
 <br><br>
 `r if(meta_percent=="100%"){knitr::include_graphics("images/checked.png")}else{knitr::include_graphics("images/cancel.png")}` `r meta_percent` of tests passed on the metadata file.<br>
 `r if(meta_advisory>0) {include_graphics("images/advisory.png")}` 
-**`r if(meta_advisory>0) {paste("Please check the recommended changes to your metadata file.")}`**
+**`r if(meta_advisory>0) {paste("Please check the warnings on your metadata file.")}`**
 
 ::: {.accordion}
 ## General validation
@@ -265,12 +265,22 @@ indicator_group(metadata)
 
  **Checking that all indicator units are valid** `r pass_fail_image(indicator_unit_validation_result)`
 ```{r indicator_unit_validation,warning=FALSE,echo=FALSE,comment=NA}
-indicator_unit_validation(metadata_utf16)
+indicator_unit_validation(metadata)
 ```
 
  **Checking that no filters have an indicator unit** `r pass_fail_image(indicator_unit_result)`
 ```{r indicator_unit,echo=FALSE,comment=NA}
 indicator_unit(metadata)
+```
+
+ **Checking that no filters have an indicator_dp value** `r pass_fail_image(indicator_dp_result)`
+```{r indicator_dp,echo=FALSE,comment=NA}
+indicator_dp(metadata)
+```
+
+ **Checking that indicator_dp is always numeric or blank** `r pass_fail_image(indicator_dp_numeric_result)`
+```{r indicator_dp_numeric,echo=FALSE,comment=NA}
+indicator_dp_numeric(metadata)
 ```
 
 :::

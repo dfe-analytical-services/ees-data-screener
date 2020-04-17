@@ -15,7 +15,7 @@ source("setup_functions/meta_filter_setup.r")
 
 # -------------------------------------
 # combining the functions to run against data
-screening_tests <- function(data, meta, meta_utf16) {
+screening_tests <- function(data, meta) {
   data_general_setup(data)
   data_geography_setup(data)
   data_time_setup(data)
@@ -25,7 +25,7 @@ screening_tests <- function(data, meta, meta_utf16) {
   meta_label_setup(meta)
   meta_variable_setup(data, meta)
   meta_filter_setup(data, meta)
-  meta_indicator_setup(data, meta, meta_utf16)
+  meta_indicator_setup(data, meta)
 }
 
 # -------------------------------------
@@ -35,12 +35,11 @@ mfilters <- filter(metadata, col_type == "Filter")
 dfilters <- select(dataset, mfilters$col_name)
 
 mindicators <- filter(metadata, col_type == "Indicator")
-mindicators_utf16 <- filter(metadata_utf16, col_type == "Indicator")
 
 present_indicators <- mindicators$col_name
 present_filters_indicators <- c(present_indicators, mfilters$col_name)
 
-present_indicatorunits <- mindicators_utf16$indicator_unit[!mindicators_utf16$indicator_unit == ""]
+present_indicatorunits <- mindicators$indicator_unit[!mindicators$indicator_unit == ""]
 number_present_indicatorunits <- length(unique(present_indicatorunits))
 
 valid_indicatorunits <- length(intersect(acceptable_indicatorunits, present_indicatorunits))
@@ -71,7 +70,7 @@ pass_fail_image <- function(input) {
 # -------------------------------------
 # running the tests and capturing the results
 
-screening_tests(dataset, metadata, metadata_utf16)
+screening_tests(dataset, metadata)
 
 data_filter_results_function()
 data_general_results_function()

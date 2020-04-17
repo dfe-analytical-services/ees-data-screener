@@ -4,7 +4,7 @@
 
 acceptable_time_identifiers <- c(
   "Spring term", "Autumn term", "Autumn and spring term", "Summer term",
-  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber",
+  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
   "Calendar year", "Calendar year Q1", "Calendar year Q2", "Calendar year Q3", "Calendar year Q4",
   "Financial year", "Financial year Q1", "Financial year Q2", "Financial year Q3", "Financial year Q4",
   "Academic year", "Academic year Q1", "Academic year Q2", "Academic year Q3", "Academic year Q4",
@@ -43,6 +43,6 @@ ward_required <- c("ward_code", "ward_name")
 MAT_required <- c("trust_id", "trust_name")
 sponsor_required <- c("sponsor_id", "sponsor_name")
 
-meta_cols <- c("col_name", "col_type", "label", "indicator_grouping", "indicator_unit", "filter_hint", "filter_grouping_column")
+meta_cols <- c("col_name", "col_type", "label", "indicator_grouping", "indicator_unit", "indicator_dp", "filter_hint", "filter_grouping_column")
 
 acceptable_indicatorunits <- c("£", "%", NA)

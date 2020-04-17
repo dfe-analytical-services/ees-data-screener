@@ -96,7 +96,6 @@ screening_results <- function() {
 
     assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, na = c("NA"), trim_ws = FALSE), envir = .GlobalEnv)
     assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
-    assign("metadata_utf16", read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
 
     prechecks(dataset, metadata)
 
@@ -109,7 +108,7 @@ screening_results <- function() {
     message("")
     message("Screening results breakdown:")
     message("")
-    screening_tests(dataset, metadata, metadata_utf16)
+    screening_tests(dataset, metadata)
     message("")
     message("Screening results at a glance:")
     message("")
@@ -144,7 +143,6 @@ screening_results <- function() {
 
     assign("dataset", read_csv(dataset_path, trim_ws = FALSE, guess_max = 999999, na = c("NA")), envir = .GlobalEnv)
     assign("metadata", read_csv(metadata_path, trim_ws = FALSE, guess_max = 999999), envir = .GlobalEnv)
-    assign("metadata_utf16", read.csv(metadata_path, stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
 
     prechecks(dataset, metadata)
 
@@ -157,7 +155,7 @@ screening_results <- function() {
     message("")
     message("Screening results breakdown:")
     message("")
-    screening_tests(dataset, metadata, metadata_utf16)
+    screening_tests(dataset, metadata)
     message("")
     message("Screening results at a glance:")
     message("")
@@ -202,7 +200,6 @@ screening_results <- function() {
 
         assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, na = c("NA"), trim_ws = FALSE), envir = .GlobalEnv)
         assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
-        assign("metadata_utf16", read.csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), stringsAsFactors = FALSE, encoding = "UTF-16"), envir = .GlobalEnv)
 
         prechecks(dataset, metadata)
 
