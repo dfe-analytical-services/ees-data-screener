@@ -197,6 +197,13 @@ geography_level_present <- function(data) {
 # Are the geography levels completed as expected
 
 geography_level_completed <- function(data) {
+  
+  if(geography_level_present_result == FALSE) {
+    message("FAIL - This test can't be run as the correct geographic columns aren't in the file.")
+    assign("geography_level_completed_result", FALSE, envir = .GlobalEnv)
+    
+  } else {
+  
   geography_level_completed_preresult <- c()
 
   if (any(is.na(data$country_name))) {
@@ -344,6 +351,7 @@ geography_level_completed <- function(data) {
     message("PASS - Your geographic columns are completed as expected.")
     assign("geography_level_completed_result", TRUE, envir = .GlobalEnv)
   }
+  }
 }
 
 # -------------------------------------
@@ -351,36 +359,45 @@ geography_level_completed <- function(data) {
 
 region_col_completed <- function(data) {
   
-  # THIS ISN'T APPLYING WHAT I INTENDED CORRECTLY
-  
-  # NA in the character columns are now "". Need to handle them
-  
-  
   region_col_completed_preresult <- c()
   
+  if (("region_code" %in% names(data)) && ("region_name" %in% names(data))) {
+  
   region_both_complete_check <- function(data) {
-    if (("region_code" %in% names(data)) && ("region_name" %in% names(data))) {
-      if (is.na(data[["region_code"]]) && !is.na(data[["region_name"]])) {
-        message("FAIL - You must include the region_code when there is a region_name.")
-        region_col_completed_preresult[["rcode_missing"]] <<- FALSE
+    
+      if (is.na(data[["region_code"]]) && !is.na(na_if(data[["region_name"]]))) {
+        region_col_completed_preresult[["region_code_missing"]] <<- FALSE
       }
-      if (is.na(data[["region_name"]]) && !is.na(data[["region_code"]])) {
-        message("FAIL - You must include the region_name when there is a region_code.")
-        region_col_completed_preresult[["rname_missing"]] <<- FALSE
+      if (is.na(na_if(data[["region_name"]])) && !is.na(data[["region_code"]])) {
+        region_col_completed_preresult[["region_name_missing"]] <<- FALSE
       }
     }
-  }
   
   apply(data, 1, region_both_complete_check)
   
   if (FALSE %in% region_col_completed_preresult) {
+    message("FAIL - Where you have one of region_name or region_code completed, the other should also be completed.")
     assign("region_col_completed_result", FALSE, envir = .GlobalEnv)
   } else {
     message("PASS - Your regional columns relate to each other as expected.")
     assign("region_col_completed_result", TRUE, envir = .GlobalEnv)
   }
-  
-}
+  } else {
+    if ("region_name" %in% names(data)) {
+      message("FAIL - Where you have region_name, you should also have region_code.")
+      assign("region_col_completed_result", FALSE, envir = .GlobalEnv)
+    } else {
+      if ("region_code" %in% names(data)) {
+        message("FAIL - Where you have region_code, you should also have region_name.")
+        assign("region_col_completed_result", FALSE, envir = .GlobalEnv)
+      } else {
+        message("IGNORE - there are no regional columns in the data to test.")
+        assign("region_col_completed_result", NA, envir = .GlobalEnv)
+      }
+    }
+  }
+} 
+
 
 # -------------------------------------
 # Is the new LA code always either 9 digits or blank?
@@ -390,7 +407,7 @@ new_la_code <- function(data) {
     new_la_length <- data
     new_la_length$code_length <- str_count(new_la_length$new_la_code)
 
-    if (((nrow(filter(new_la_length, code_length == 9)) + nrow(filter(new_la_length, is.na(code_length) ))) == nrow(new_la_length))) {
+    if ((nrow(filter(new_la_length, code_length == 9)) + nrow(filter(new_la_length, is.na(code_length)))) == nrow(new_la_length)) {
       message("FAIL - new_la_code must be either a 9 digit code or blank.")
       assign("new_la_code_result", FALSE, envir = .GlobalEnv)
     } else {
@@ -398,7 +415,7 @@ new_la_code <- function(data) {
       assign("new_la_code_result", TRUE, envir = .GlobalEnv)
     }
   } else {
-    message("IGNORE - You don't have a new_la_code column to validate.")
+    message("IGNORE - there is no new_la_code column to test.")
     assign("new_la_code_result", NA, envir = .GlobalEnv)
   }
 }
@@ -407,11 +424,9 @@ new_la_code <- function(data) {
 # Are any la or regional rows completed for national columns?
 
 incorrect_level_national <- function(data) {
-    national_rows <- filter(data, geographic_level == "National") 
+    national_rows <- na_if(filter(data, geographic_level == "National"),"")
     incorrect_level_national_preresult <- c()
 
-    # NA in the character columns are now "". Need to handle them
-    
     if(nrow(national_rows) == 0){
       incorrect_level_national_preresult <- NA
     } else {
@@ -443,10 +458,8 @@ incorrect_level_national <- function(data) {
 # -------------------------------------
 # Are any la rows completed for regional columns?
 
-# NA in the character columns are now "". Need to handle them
-
 incorrect_level_regional <- function(data) {
-  regional_rows <- filter(data, geographic_level == "Regional") 
+  regional_rows <- na_if(filter(data, geographic_level == "Regional"),"") 
   incorrect_level_regional_preresult <- c()
   
   if(nrow(regional_rows) == 0) {

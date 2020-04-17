@@ -32,7 +32,7 @@ acceptable_levels <- c(
 
 all_required <- c("country_code", "country_name")
 regional_required <- c("region_code", "region_name")
-la_required <- c("region_code", "region_name", "old_la_code", "new_la_code", "la_name")
+la_required <- c("old_la_code", "new_la_code", "la_name")
 rsc_required <- c("rsc_region_lead_name")
 pcon_required <- c("pcon_code", "pcon_name")
 lad_required <- c("lad_code", "lad_name")
