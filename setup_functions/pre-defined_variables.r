@@ -47,6 +47,6 @@ sponsor_required <- c("sponsor_id", "sponsor_name")
 # institution_required <- c("institution_id", "institution_id")
 # planning_area_required <- c("planning_area_name", "planning_area_code")
 
-meta_cols <- c("col_name", "col_type", "label", "indicator_grouping", "indicator_unit", "filter_hint", "filter_grouping_column")
+meta_cols <- c("col_name", "col_type", "label", "indicator_grouping", "indicator_unit", "indicator_dp", "filter_hint", "filter_grouping_column")
 
 acceptable_indicatorunits <- c("£", "%", NA)
