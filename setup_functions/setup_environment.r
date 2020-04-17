@@ -29,7 +29,7 @@ environment_setup <- function() {
   suppressWarnings(suppressMessages(library(dplyr)))
   suppressWarnings(suppressMessages(library(svDialogs)))
   suppressWarnings(suppressMessages(library(janitor)))
-  
+
 
   message("Your environment has successfully been setup, you can now run the screener.")
   message("")
@@ -236,7 +236,6 @@ screening_results <- function() {
       }
     }
   }
-  # not currently working, but should add at some point - rm(list = ls())
 }
 
 # -------------------------------------

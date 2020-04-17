@@ -59,27 +59,26 @@ no_data_symbols <- function(data) {
 # check for any NULL/Null/null values
 
 null <- function(data) {
-    if ("NULL" %in% unlist(data)) {
-      message("FAIL - There should be no NULL values in your file.")
+  if ("NULL" %in% unlist(data)) {
+    message("FAIL - There should be no NULL values in your file.")
+    assign("null_result", FALSE, envir = .GlobalEnv)
+  } else {
+    if ("Null" %in% unlist(data)) {
+      message("FAIL - There should be no Null values in your file.")
       assign("null_result", FALSE, envir = .GlobalEnv)
     } else {
-      if ("Null" %in% unlist(data)) {
-        message("FAIL - There should be no Null values in your file.")
+      if ("null" %in% unlist(data)) {
+        message("FAIL - There should be no null values in your file.")
         assign("null_result", FALSE, envir = .GlobalEnv)
       } else {
-        if ("null" %in% unlist(data)) {
-          message("FAIL - There should be no null values in your file.")
+        if (any(is.null(unlist(select(dataset, present_filters_indicators))))) {
+          message("FAIL - There should be no null values in your filters or indicators.")
           assign("null_result", FALSE, envir = .GlobalEnv)
         } else {
-          if (any(is.null(unlist(select(dataset, present_filters_indicators))))) {
-            message("FAIL - There should be no null values in your filters or indicators.")
-            assign("null_result", FALSE, envir = .GlobalEnv)
-          } else {
-            message("PASS - There are no null values in your file.")
-            assign("null_result", TRUE, envir = .GlobalEnv)
-          }
+          message("PASS - There are no null values in your file.")
+          assign("null_result", TRUE, envir = .GlobalEnv)
         }
       }
     }
   }
-
+}

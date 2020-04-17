@@ -68,8 +68,8 @@ data_spaces <- function(data) {
 
 duplicate_rows <- function(data) {
   dupes <- suppressMessages(data %>% select(-present_indicators) %>% get_dupes())
-  
-  if(nrow(dupes) > 0) {
+
+  if (nrow(dupes) > 0) {
     message("FAIL - There are ", nrow(dupes), " duplicate rows in your data file.")
     assign("duplicate_rows_result", FALSE, envir = .GlobalEnv)
   } else {
@@ -77,27 +77,3 @@ duplicate_rows <- function(data) {
     assign("duplicate_rows_result", TRUE, envir = .GlobalEnv)
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

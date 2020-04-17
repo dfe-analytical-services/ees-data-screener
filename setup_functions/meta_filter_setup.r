@@ -114,14 +114,12 @@ filter_group_level <- function(data, meta) {
 # Checking that filter groups are not filters
 
 filter_group_not_filter <- function(meta) {
-  
   if (nrow(drop_na(meta, filter_grouping_column)) == 0) {
     message("IGNORE - There are no filter groups present to test.")
     assign("filter_group_not_filter_result", NA, envir = .GlobalEnv)
   } else {
-  
-  filter_group_not_filter_preresult <- c()
-  
+    filter_group_not_filter_preresult <- c()
+
     for (i in drop_na(meta, filter_grouping_column)$filter_grouping_column) {
       if ((i %in% meta$col_name) == FALSE) {
         message("FAIL - ", i, " should not be in the col_type column if it is a filter grouping column.")
@@ -130,13 +128,13 @@ filter_group_not_filter <- function(meta) {
         filter_group_not_filter_preresult[i] <- TRUE
       }
     }
-  
-  if (FALSE %in% filter_group_not_filter_preresult) {
-    assign("filter_group_not_filter_result", FALSE, envir = .GlobalEnv)
-  } else {
-    message("PASS - Your filter groups are not in the col_name column.")
-    assign("filter_group_not_filter_result", TRUE, envir = .GlobalEnv)
-  }
+
+    if (FALSE %in% filter_group_not_filter_preresult) {
+      assign("filter_group_not_filter_result", FALSE, envir = .GlobalEnv)
+    } else {
+      message("PASS - Your filter groups are not in the col_name column.")
+      assign("filter_group_not_filter_result", TRUE, envir = .GlobalEnv)
+    }
   }
 }
 
