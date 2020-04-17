@@ -121,8 +121,8 @@ filter_group_not_filter <- function(meta) {
     filter_group_not_filter_preresult <- c()
 
     for (i in drop_na(meta, filter_grouping_column)$filter_grouping_column) {
-      if ((i %in% meta$col_name) == FALSE) {
-        message("FAIL - ", i, " should not be in the col_type column if it is a filter grouping column.")
+      if (i %in% meta$col_name) {
+        message("FAIL - ", i, " should not be in the col_name column if it is a filter grouping column.")
         filter_group_not_filter_preresult[i] <- FALSE
       } else {
         filter_group_not_filter_preresult[i] <- TRUE
