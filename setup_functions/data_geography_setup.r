@@ -53,9 +53,6 @@ level_validity <- function(data) {
 # Do we have the right columns for the geographic level
 
 geography_level_present <- function(data) {
-  
-  
-  
   geography_level_present_preresult <- c()
 
   for (i in all_required) {
@@ -206,8 +203,8 @@ geography_level_completed <- function(data) {
   } else {
     geography_level_completed_preresult <- c()
 
-    data <- na_if(data,"")
-    
+    data <- na_if(data, "")
+
     if (any(is.na(data$country_name))) {
       message("FAIL - The country_name column must be completed for all data.")
       geography_level_completed_preresult[["country_name"]] <- FALSE
@@ -363,12 +360,11 @@ region_col_completed <- function(data) {
   region_col_completed_preresult <- c()
 
   if (("region_code" %in% names(data)) && ("region_name" %in% names(data))) {
-    
     region_both_complete_check <- function(data) {
-      if (is.na(na_if(data[["region_code"]],"")) && !is.na(na_if(data[["region_name"]],""))) {
+      if (is.na(na_if(data[["region_code"]], "")) && !is.na(na_if(data[["region_name"]], ""))) {
         region_col_completed_preresult[["region_code_missing"]] <<- FALSE
       }
-      if (is.na(na_if(data[["region_name"]],"")) && !is.na(na_if(data[["region_code"]],""))) {
+      if (is.na(na_if(data[["region_name"]], "")) && !is.na(na_if(data[["region_code"]], ""))) {
         region_col_completed_preresult[["region_name_missing"]] <<- FALSE
       }
     }
