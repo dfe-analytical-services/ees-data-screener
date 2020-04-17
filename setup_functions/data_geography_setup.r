@@ -418,12 +418,10 @@ new_la_code <- function(data) {
 # Are any la or regional rows completed for national columns?
 
 incorrect_level_national <- function(data) {
-  national_rows <- na_if(filter(data, geographic_level == "National"), "")
-  incorrect_level_national_preresult <- c()
+  if ("National" %in% data$geographic_level) {
+    national_rows <- na_if(filter(data, geographic_level == "National"), "")
+    incorrect_level_national_preresult <- c()
 
-  if (nrow(national_rows) == 0) {
-    incorrect_level_national_preresult <- NA
-  } else {
     for (i in c(regional_required, la_required)) {
       if (i %in% names(national_rows)) {
         if (any(!is.na(national_rows[i]))) {
@@ -433,11 +431,7 @@ incorrect_level_national <- function(data) {
         }
       }
     }
-  }
-  if (NA %in% incorrect_level_national_preresult) {
-    message("IGNORE - There are no national level rows to test.")
-    assign("incorrect_level_national_result", NA, envir = .GlobalEnv)
-  } else {
+
     if (FALSE %in% incorrect_level_national_preresult) {
       message("FAIL - You have regional or LA data in your national rows, please double check your file.")
       assign("incorrect_level_national_result", FALSE, envir = .GlobalEnv)
@@ -445,6 +439,9 @@ incorrect_level_national <- function(data) {
       message("PASS - Your national rows do not have LA or regional data in them.")
       assign("incorrect_level_national_result", TRUE, envir = .GlobalEnv)
     }
+  } else {
+    message("IGNORE - There are no national level rows to test.")
+    assign("incorrect_level_national_result", NA, envir = .GlobalEnv)
   }
 }
 
@@ -453,12 +450,10 @@ incorrect_level_national <- function(data) {
 # Are any la rows completed for regional columns?
 
 incorrect_level_regional <- function(data) {
-  regional_rows <- na_if(filter(data, geographic_level == "Regional"), "")
-  incorrect_level_regional_preresult <- c()
+  if ("Regional" %in% data$geographic_level) {
+    regional_rows <- na_if(filter(data, geographic_level == "Regional"), "")
+    incorrect_level_regional_preresult <- c()
 
-  if (nrow(regional_rows) == 0) {
-    incorrect_level_regional_preresult <- NA
-  } else {
     for (i in la_required) {
       if (i %in% names(regional_rows)) {
         if (any(!is.na(regional_rows[i]))) {
@@ -468,13 +463,7 @@ incorrect_level_regional <- function(data) {
         }
       }
     }
-  }
 
-
-  if (NA %in% incorrect_level_regional_preresult) {
-    message("IGNORE - There are no regional level rows to test.")
-    assign("incorrect_level_regional_result", NA, envir = .GlobalEnv)
-  } else {
     if (FALSE %in% incorrect_level_regional_preresult) {
       message("FAIL - You have LA data in your regional rows, please double check your file.")
       assign("incorrect_level_regional_result", FALSE, envir = .GlobalEnv)
@@ -482,5 +471,8 @@ incorrect_level_regional <- function(data) {
       message("PASS - Your regional rows do not have LA data in them..")
       assign("incorrect_level_regional_result", TRUE, envir = .GlobalEnv)
     }
+  } else {
+    message("IGNORE - There are no regional level rows to test.")
+    assign("incorrect_level_regional_result", NA, envir = .GlobalEnv)
   }
 }
