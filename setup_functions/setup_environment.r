@@ -3,15 +3,27 @@
 # -------------------------------------
 # function to install/load the packages needed to run the screener
 environment_setup <- function() {
-  message("")
-  renv::restore()
-  message("")
+  #message("")
+  #renv::restore()
+  #message("")
 
-  suppressWarnings(suppressMessages(library(gitignore)))
-  suppressWarnings(suppressMessages(library(rmarkdown)))
-  suppressWarnings(suppressMessages(library(installr)))
-  suppressWarnings(suppressMessages(library(readr)))
-
+  if (!require(readr)) {
+    suppressWarnings(suppressMessages(install.packages("readr")))
+    suppressWarnings(suppressMessages(library(readr)))
+  }
+  if (!require(gitignore)) {
+    suppressWarnings(suppressMessages(install.packages("gitignore")))
+    suppressWarnings(suppressMessages(library(gitignore)))
+  } 
+  if (!require(rmarkdown)) {
+    suppressWarnings(suppressMessages(install.packages("rmarkdown")))
+    suppressWarnings(suppressMessages(library(rmarkdown)))
+  } 
+  if (!require(installr)) {
+    suppressWarnings(suppressMessages(install.packages("installr")))
+    suppressWarnings(suppressMessages(library(installr)))
+  } 
+  
   if (rmarkdown::pandoc_version() >= "2.7.3") {
     message("You already have version 2.7.3 or later of Pandoc installed.")
     message("")
@@ -22,15 +34,35 @@ environment_setup <- function() {
     install.pandoc()
   }
 
-  suppressWarnings(suppressMessages(library(govdown)))
-  suppressWarnings(suppressMessages(library(knitr)))
-  suppressWarnings(suppressMessages(library(tidyr)))
-  suppressWarnings(suppressMessages(library(stringr)))
-  suppressWarnings(suppressMessages(library(dplyr)))
-  suppressWarnings(suppressMessages(library(svDialogs)))
-  suppressWarnings(suppressMessages(library(janitor)))
-
-
+  if (!require(govdown)) {
+    suppressWarnings(suppressMessages(install.packages("govdown")))
+    suppressWarnings(suppressMessages(library(govdown)))
+  } 
+  if (!require(knitr)) {
+    suppressWarnings(suppressMessages(install.packages("knitr")))
+    suppressWarnings(suppressMessages(library(knitr)))
+  } 
+  if (!require(tidyr)) {
+    suppressWarnings(suppressMessages(install.packages("tidyr")))
+    suppressWarnings(suppressMessages(library(tidyr)))
+  } 
+  if (!require(dplyr)) {
+    suppressWarnings(suppressMessages(install.packages("dplyr")))
+    suppressWarnings(suppressMessages(library(dplyr)))
+  } 
+  if (!require(svDialogs)) {
+    suppressWarnings(suppressMessages(install.packages("svDialogs")))
+    suppressWarnings(suppressMessages(library(svDialogs)))
+  } 
+  if (!require(stringr)) {
+    suppressWarnings(suppressMessages(install.packages("stringr")))
+    suppressWarnings(suppressMessages(library(stringr)))
+  } 
+  if (!require(janitor)) {
+    suppressWarnings(suppressMessages(install.packages("janitor")))
+    suppressWarnings(suppressMessages(library(janitor)))
+  } 
+  
   message("Your environment has successfully been setup, you can now run the screener.")
   message("")
 }
