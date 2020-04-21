@@ -5,7 +5,7 @@
 environment_setup <- function() {
   #message("")
   #renv::restore()
-  #message("")
+  message("")
 
   if (!require(readr)) {
     suppressWarnings(suppressMessages(install.packages("readr")))
