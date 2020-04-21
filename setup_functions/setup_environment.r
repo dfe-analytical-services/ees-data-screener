@@ -5,7 +5,8 @@
 environment_setup <- function() {
   message("")
   message("The packages required for using the screener are now loading.")
-  message("If this is the first time you are using it then it may take a few minutes as they will need to install as well.")
+  message("")
+  message("If this is the first time you are setting up the environment, then it may take a few minutes as packages will need to install as well.")
   #renv::restore()
   message("")
 
@@ -27,7 +28,7 @@ environment_setup <- function() {
   } 
   
   if (rmarkdown::pandoc_version() >= "2.7.3") {
-    message("You already have version 2.7.3 or later of Pandoc installed.")
+    message("You have version 2.7.3 or later of Pandoc installed (this is good!).")
     message("")
   }
   else {
