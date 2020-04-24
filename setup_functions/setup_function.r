@@ -45,7 +45,7 @@ number_present_indicatorunits <- length(unique(present_indicatorunits))
 valid_indicatorunits <- length(intersect(acceptable_indicatorunits, present_indicatorunits))
 invalid_indicatorunits <- setdiff(unique(present_indicatorunits), acceptable_indicatorunits)
 
-filtered_filtergroups <- mfilters %>% drop_na(filter_grouping_column)
+filtered_filtergroups <- mfilters %>% filter(!is.na(filter_grouping_column))
 present_filtergroups <- c(filtered_filtergroups$filter_grouping_column)
 
 # -------------------------------------
