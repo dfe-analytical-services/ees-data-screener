@@ -94,5 +94,5 @@ The following will load the package, and then run through and check all relevant
 
 >`library(styler)` <br>
 >`styler::style_dir(filetype = c("r","rmd"),recursive = FALSE)` <br>
->`styler::style_dir(path = "setup_functions",filetype = "r",recursive = FALSE)`
+>`styler::style_dir(path = "setup_functions",filetype = "r",recursive = FALSE)` <br>
 >`styler::style_dir(path = "project_library",filetype = "r",recursive = FALSE)`
