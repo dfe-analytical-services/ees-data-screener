@@ -89,9 +89,8 @@ More information on govdown, a package used to format the output report in this 
 **StyleR** <br>
 
 The code in this project has been styled using the [StyleR package](https://styler.r-lib.org/).
-The following will install the package, and then run through and check all relevant code files in the project.
+The following will load the package, and then run through and check all relevant code files in the project.
 
->`install.packages("styler")` <br>
 >`library(styler)` <br>
 >`styler::style_dir(filetype = c("r","rmd"),recursive = FALSE)` <br>
 >`styler::style_dir(path = "setup_functions",filetype = "r",recursive = FALSE)`
