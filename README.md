@@ -69,6 +69,8 @@ You will need a version of pandoc that is 2.x.x or greater to run this project a
 
 **renv - Package Management** <br>
 
+Note that currently renv has been removed from the project as it ceased to function as intended. A temporary manual fix has been added to workaround this for the timebeing. If you have any issues please contact cameron.race@education.gov.uk.
+
 This project requires additional R packages. These are managed by [renv](https://rstudio.github.io/renv/articles/renv.html), and should automatically install within the project folder for you to use. If you have issues with the connection to CRAN when first running the screener, please see the proxy section for reseting your proxy settings and try again.
 
 **Proxy settings** <br>
