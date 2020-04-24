@@ -7,7 +7,7 @@ environment_setup <- function() {
   message("The packages required for using the screener are now loading.")
   message("")
   message("If this is the first time you are setting up the environment, then it may take a few minutes as packages will need to install as well.")
-  #renv::restore()
+  renv::restore()
   message("")
 
   if (!require(readr)) {
