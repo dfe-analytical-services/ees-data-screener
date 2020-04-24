@@ -1,4 +1,0 @@
-gi_available_templates
-                        Fetch available templates from gitignore.io
-gi_fetch_templates      Fetch gitignore template(s) from gitignore.io
-gi_write_gitignore      Append or create a .gitignore file

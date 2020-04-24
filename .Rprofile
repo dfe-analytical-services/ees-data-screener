@@ -1,1 +1,2 @@
-source("renv/activate.R")
+.libPaths("library/")
+source("setup")

@@ -6,25 +6,22 @@ environment_setup <- function() {
   message("")
   message("The packages required for using the screener are now loading.")
   message("")
-  message("If this is the first time you are setting up the environment, then it may take a few minutes as packages will need to install as well.")
-  renv::restore()
-  message("")
 
   if (!require(readr)) {
-    suppressPackageStartupMessages(install.packages("readr"))
-    suppressPackageStartupMessages(library(readr))
+    install.packages("readr")
+    library(readr)
   }
   if (!require(gitignore)) {
-    suppressPackageStartupMessages(install.packages("gitignore"))
-    suppressPackageStartupMessages(library(gitignore))
+    install.packages("gitignore")
+    library(gitignore)
   } 
   if (!require(rmarkdown)) {
-    suppressPackageStartupMessages(install.packages("rmarkdown"))
-    suppressPackageStartupMessages(library(rmarkdown))
+    install.packages("rmarkdown")
+    library(rmarkdown)
   } 
   if (!require(installr)) {
-    suppressPackageStartupMessages(install.packages("installr"))
-    suppressPackageStartupMessages(library(installr))
+    install.packages("installr")
+    library(installr)
   } 
   
   if (rmarkdown::pandoc_version() >= "2.7.3") {
@@ -38,35 +35,36 @@ environment_setup <- function() {
   }
 
   if (!require(govdown)) {
-    suppressPackageStartupMessages(install.packages("govdown"))
-    suppressPackageStartupMessages(library(govdown))
+    install.packages("govdown")
+    library(govdown)
   } 
   if (!require(knitr)) {
-    suppressPackageStartupMessages(install.packages("knitr"))
-    suppressPackageStartupMessages(library(knitr))
+    install.packages("knitr")
+    library(knitr)
   } 
   if (!require(tidyr)) {
-    suppressPackageStartupMessages(install.packages("tidyr"))
-    suppressPackageStartupMessages(library(tidyr))
+    install.packages("tidyr")
+    library(tidyr)
   } 
   if (!require(dplyr)) {
-    suppressPackageStartupMessages(install.packages("dplyr"))
-    suppressPackageStartupMessages(library(dplyr))
+    install.packages("dplyr")
+    library(dplyr)
   } 
   if (!require(svDialogs)) {
-    suppressPackageStartupMessages(install.packages("svDialogs"))
-    suppressPackageStartupMessages(library(svDialogs))
+    install.packages("svDialogs")
+    library(svDialogs)
   } 
   if (!require(stringr)) {
-    suppressPackageStartupMessages(install.packages("stringr"))
-    suppressPackageStartupMessages(library(stringr))
+    install.packages("stringr")
+    library(stringr)
   } 
   if (!require(janitor)) {
-    suppressPackageStartupMessages(install.packages("janitor"))
-    suppressPackageStartupMessages(library(janitor))
+    install.packages("janitor")
+    library(janitor)
   }
   
-  message("Your environment has successfully been setup, you can now run the screener.")
+  message("")
+  message("Assuming there are no errors above, your environment has successfully been setup, you can now run the screener.")
   message("")
 }
 
