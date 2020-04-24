@@ -25,9 +25,7 @@ environment_setup <- function() {
   } 
   
   if (rmarkdown::pandoc_version() >= "2.7.3") {
-    message("You have version 2.7.3 or later of Pandoc installed (this is good!).")
-    message("")
-  }
+    message("You have version 2.7.3 or later of Pandoc installed (this is good!).")  }
   else {
     message("Your version of Pandoc is out of date, the latest version will now download, please follow the instructions on the install wizard to continue.")
     message("")
@@ -41,10 +39,6 @@ environment_setup <- function() {
   if (!require(knitr)) {
     install.packages("knitr")
     library(knitr)
-  } 
-  if (!require(tidyr)) {
-    install.packages("tidyr")
-    library(tidyr)
   } 
   if (!require(dplyr)) {
     install.packages("dplyr")
