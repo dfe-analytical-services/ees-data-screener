@@ -3,7 +3,7 @@
 
 This is an R project developed to test underlying data and metadata files against the standards required for statistical publications from the Deparment for Education, and for use on it's new dissemination platform - [Explore Education Statistics](https://gss.civilservice.gov.uk/blog/how-we-listened-to-our-users-to-improve-our-education-statistics/). 
 
-[How to: Run the Data-screener on your machine](https://www.youtube.com/watch?v=D60UU5r_TrM&feature=youtu.be) is a walkthrough video that takes you through how to use this project on your own machine, starting from the pre-requisites referred to below, right through to the final output report.
+[How to: Run the Data-screener on your machine](https://www.youtube.com/watch?v=D60UU5r_TrM&feature=youtu.be) is a walkthrough video that takes you through how to use this project on your own machine, starting from the pre-requisites referred to below, right through to the final output report. Note that the video is slightly out of date, and you should refer to the below for the latest versions of software.
 
 To use this project and run the data screener yourself you will need to download the zip file to your downloads folder on your computer, unzip the folder and then open the R project file with RStudio. You can then save this folder wherever is most convenient across your machine, ideally on your c: drive. Do not save this in a shared drive or area, or you may run into difficulties during setup. If you've not used the screener for a while it is worth going back to the github repo to check for updates and download the latest version.
 
@@ -46,6 +46,10 @@ This folder contains the files that create all of the functions used in this pro
 
 This is the file that creates the .html report that is the output of the screener.
 
+**project_library** <br>
+
+This folder contains the packages required for the project, and is set as your library for the project on opening.
+
 **Updating and this project** <br>
 Most of the files in this project should be self-explanatory when looking around. The setup files contain the functions used for each test referred to and called by the .rmd file. 
 <br>
@@ -58,20 +62,14 @@ Hard-coded variables, such as acceptable time_identifiers, are defined in the en
 **R** <br>
 
 This project assumes a few prerequisites for those on DfE machines:
-- You have installed the latest version of R (3.5.3) and RStudio (1.1.463) from the software centre.
-- You have installed the latest version of RTools (34) from the software centre (note that this is a separate installation to the above one).
+- You have installed the latest version of R (3.6.3) and RStudio (1.2.5033) from the software centre.
+- You have installed the latest version of RTools (35) from the software centre (note that this is a separate installation to the above one).
 
 Once these are installed you should be good to go. It is possible that this will run on older versions of R/RStudio/RTools if you have them already, but this has not been tested.
 
 **Pandoc** <br>
 
 You will need a version of pandoc that is 2.x.x or greater to run this project and create the .html report. RStudio comes with an older version as standard. As such, the screener will automatically check if your version is up to date, and if it is not it will download this for you and start up the install wizard. If this happens, follow the instructions to complete the installation, restart as required and then try again. Whilst you do this, make sure to uncheck the ‘install for all users’ option during the install wizard, this will allow you to install it without the need for an admin password.
-
-**renv - Package Management** <br>
-
-Note that currently renv has been removed from the project as it ceased to function as intended. A temporary manual fix has been added to workaround this for the timebeing. If you have any issues please contact cameron.race@education.gov.uk.
-
-This project requires additional R packages. These are managed by [renv](https://rstudio.github.io/renv/articles/renv.html), and should automatically install within the project folder for you to use. If you have issues with the connection to CRAN when first running the screener, please see the proxy section for reseting your proxy settings and try again.
 
 **Proxy settings** <br>
 
