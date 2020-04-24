@@ -55,9 +55,20 @@ time_period <- function(data) {
         }
       }
 
-      if ((base_identifier %in% c("Spring term", "Autumn term", "Autumn and spring term")) == TRUE) {
+      if ((base_identifier %in% c("Spring term", "Autumn term", "Summer term")) == TRUE) {
         if ((nrow(filter(time_length, digits == 4)) == nrow(time_length)) == FALSE) {
           message("FAIL - the time period for terms must be a four digit number.")
+          message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
+          time_period_preresult <- FALSE
+        } else {
+          message("PASS - time period is the correct number of digits for the time_identifer.")
+          time_period_preresult <- TRUE
+        }
+      }
+      
+      if ((base_identifier %in% c("Autumn and spring term")) == TRUE) {
+        if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
+          message("FAIL - the time period for combined terms must be a six digit number.")
           message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
           time_period_preresult <- FALSE
         } else {
@@ -88,18 +99,7 @@ time_period <- function(data) {
         }
       }
 
-      if ((base_identifier %in% c("Calendar year Q1", "Calendar year Q2", "Calendar year Q3", "Calendar year Q4")) == TRUE) {
-        if ((nrow(filter(time_length, digits == 4)) == nrow(time_length)) == FALSE) {
-          message("FAIL - the time period for Calendar year must be a four digit number.")
-          message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
-          time_period_preresult <- FALSE
-        } else {
-          message("PASS - time period is the correct number of digits for the time_identifer.")
-          time_period_preresult <- TRUE
-        }
-      }
-
-      if ((base_identifier %in% c("Financial year")) == TRUE) {
+     if ((base_identifier %in% c("Financial year")) == TRUE) {
         if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
           message("FAIL - the time period for Financial year must be a six digit number.")
           message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
@@ -110,29 +110,7 @@ time_period <- function(data) {
         }
       }
 
-      if ((base_identifier %in% c("Financial year Q1", "Financial year Q2", "Financial year Q3", "Financial year Q4")) == TRUE) {
-        if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
-          message("FAIL - the time period for Financial year must be a six digit number.")
-          message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
-          time_period_preresult <- FALSE
-        } else {
-          message("PASS - time period is the correct number of digits for the time_identifer.")
-          time_period_preresult <- TRUE
-        }
-      }
-
-      if ((base_identifier %in% c("Academic year")) == TRUE) {
-        if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
-          message("FAIL - the time period for Academic year must be a six digit number.")
-          message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
-          time_period_preresult <- FALSE
-        } else {
-          message("PASS - time period is the correct number of digits for the time_identifer.")
-          time_period_preresult <- TRUE
-        }
-      }
-
-      if ((base_identifier %in% c("Academic year Q1", "Academic year Q2", "Academic year Q3", "Academic year Q4")) == TRUE) {
+     if ((base_identifier %in% c("Academic year")) == TRUE) {
         if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
           message("FAIL - the time period for Academic year must be a six digit number.")
           message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
@@ -144,17 +122,6 @@ time_period <- function(data) {
       }
 
       if ((base_identifier %in% c("Tax year")) == TRUE) {
-        if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
-          message("FAIL - the time period for Tax year must be a six digit number.")
-          message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
-          time_period_preresult <- FALSE
-        } else {
-          message("PASS - time period is the correct number of digits for the time_identifer.")
-          time_period_preresult <- TRUE
-        }
-      }
-
-      if ((base_identifier %in% c("Tax year Q1", "Tax year Q2", "Tax year Q3", "Tax year Q4")) == TRUE) {
         if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
           message("FAIL - the time period for Tax year must be a six digit number.")
           message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
@@ -243,8 +210,11 @@ time_identifier_mix <- function(data) {
   if ((base_identifier %in% c("Reporting year")) == TRUE) {
     lev <- c("Reporting year")
   }
-  if ((base_identifier %in% c("Spring term", "Autumn term", "Autumn and spring term")) == TRUE) {
-    lev <- c("Spring term", "Autumn term", "Autumn and spring term")
+  if ((base_identifier %in% c("Spring term", "Autumn term", "Summer term")) == TRUE) {
+    lev <- c("Spring term", "Autumn term", "Summer term")
+  }
+  if ((base_identifier %in% c("Autumn and spring term")) == TRUE) {
+    lev <- c("Autumn and spring term")
   }
   if ((base_identifier %in% c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")) == TRUE) {
     lev <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
@@ -252,26 +222,14 @@ time_identifier_mix <- function(data) {
   if ((base_identifier %in% c("Calendar year")) == TRUE) {
     lev <- c("Calendar year")
   }
-  if ((base_identifier %in% c("Calendar year Q1", "Calendar year Q2", "Calendar year Q3", "Calendar year Q4")) == TRUE) {
-    lev <- c("Calendar year Q1", "Calendar year Q2", "Calendar year Q3", "Calendar year Q4")
-  }
   if ((base_identifier %in% c("Financial year")) == TRUE) {
     lev <- c("Financial year")
-  }
-  if ((base_identifier %in% c("Financial year Q1", "Financial year Q2", "Financial year Q3", "Financial year Q4")) == TRUE) {
-    lev <- c("Financial year Q1", "Financial year Q2", "Financial year Q3", "Financial year Q4")
   }
   if ((base_identifier %in% c("Academic year")) == TRUE) {
     lev <- c("Academic year")
   }
-  if ((base_identifier %in% c("Academic year Q1", "Academic year Q2", "Academic year Q3", "Academic year Q4")) == TRUE) {
-    lev <- c("Academic year Q1", "Academic year Q2", "Academic year Q3", "Academic year Q4")
-  }
   if ((base_identifier %in% c("Tax year")) == TRUE) {
     lev <- c("Tax year")
-  }
-  if ((base_identifier %in% c("Tax year Q1", "Tax year Q2", "Tax year Q3", "Tax year Q4")) == TRUE) {
-    lev <- c("Tax year Q1", "Tax year Q2", "Tax year Q3", "Tax year Q4")
   }
 
   if (time_identifier_result == FALSE) {
