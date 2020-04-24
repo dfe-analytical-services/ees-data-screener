@@ -77,7 +77,7 @@ time_period <- function(data) {
         }
       }
 
-      if ((base_identifier %in% c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber")) == TRUE) {
+      if ((base_identifier %in% c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")) == TRUE) {
         if ((nrow(filter(time_length, digits == 4)) == nrow(time_length)) == FALSE) {
           message("FAIL - the time period for months must be a four digit number.")
           message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
