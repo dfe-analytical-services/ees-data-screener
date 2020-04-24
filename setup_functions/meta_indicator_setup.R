@@ -80,7 +80,6 @@ indicator_dp <- function(meta) {
 # indicator dp should be numeric
 
 indicator_dp_numeric <- function(meta) {
-  
   if (all(is.na(meta$indicator_dp))) {
     message("PASS - indicator_dp only contains blanks.")
     assign("indicator_dp_numeric_result", TRUE, envir = .GlobalEnv)

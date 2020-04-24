@@ -14,18 +14,19 @@ environment_setup <- function() {
   if (!require(gitignore)) {
     install.packages("gitignore")
     library(gitignore)
-  } 
+  }
   if (!require(rmarkdown)) {
     install.packages("rmarkdown")
     library(rmarkdown)
-  } 
+  }
   if (!require(installr)) {
     install.packages("installr")
     library(installr)
-  } 
-  
+  }
+
   if (rmarkdown::pandoc_version() >= "2.7.3") {
-    message("You have version 2.7.3 or later of Pandoc installed (this is good!).")  }
+    message("You have version 2.7.3 or later of Pandoc installed (this is good!).")
+  }
   else {
     message("Your version of Pandoc is out of date, the latest version will now download, please follow the instructions on the install wizard to continue.")
     message("")
@@ -35,28 +36,28 @@ environment_setup <- function() {
   if (!require(govdown)) {
     install.packages("govdown")
     library(govdown)
-  } 
+  }
   if (!require(knitr)) {
     install.packages("knitr")
     library(knitr)
-  } 
+  }
   if (!require(dplyr)) {
     install.packages("dplyr")
     library(dplyr)
-  } 
+  }
   if (!require(svDialogs)) {
     install.packages("svDialogs")
     library(svDialogs)
-  } 
+  }
   if (!require(stringr)) {
     install.packages("stringr")
     library(stringr)
-  } 
+  }
   if (!require(janitor)) {
     install.packages("janitor")
     library(janitor)
   }
-  
+
   message("")
   message("Assuming there are no errors above, your environment has successfully been setup, you can now run the screener.")
   message("")

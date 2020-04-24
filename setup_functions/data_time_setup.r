@@ -65,7 +65,7 @@ time_period <- function(data) {
           time_period_preresult <- TRUE
         }
       }
-      
+
       if ((base_identifier %in% c("Autumn and spring term")) == TRUE) {
         if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
           message("FAIL - the time period for combined terms must be a six digit number.")
@@ -99,7 +99,7 @@ time_period <- function(data) {
         }
       }
 
-     if ((base_identifier %in% c("Financial year")) == TRUE) {
+      if ((base_identifier %in% c("Financial year")) == TRUE) {
         if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
           message("FAIL - the time period for Financial year must be a six digit number.")
           message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
@@ -110,7 +110,7 @@ time_period <- function(data) {
         }
       }
 
-     if ((base_identifier %in% c("Academic year")) == TRUE) {
+      if ((base_identifier %in% c("Academic year")) == TRUE) {
         if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
           message("FAIL - the time period for Academic year must be a six digit number.")
           message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")

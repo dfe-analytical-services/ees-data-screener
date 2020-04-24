@@ -120,7 +120,9 @@ filter_group_not_filter <- function(meta) {
   } else {
     filter_group_not_filter_preresult <- c()
 
-    for (i in meta %>% filter(!is.na(filter_grouping_column)) %>% pull(filter_grouping_column)) {
+    for (i in meta %>%
+      filter(!is.na(filter_grouping_column)) %>%
+      pull(filter_grouping_column)) {
       if (i %in% meta$col_name) {
         message("FAIL - ", i, " should not be in the col_name column if it is a filter grouping column.")
         filter_group_not_filter_preresult[i] <- FALSE

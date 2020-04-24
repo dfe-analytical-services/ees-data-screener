@@ -5,7 +5,7 @@
 acceptable_time_identifiers <- c(
   "Spring term", "Autumn term", "Autumn and spring term", "Summer term",
   "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
-  "Calendar year","Financial year","Academic year","Tax year","Reporting year"
+  "Calendar year", "Financial year", "Academic year", "Tax year", "Reporting year"
 )
 
 acceptable_observational_units <- c(

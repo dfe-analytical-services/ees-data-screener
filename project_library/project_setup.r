@@ -3,9 +3,9 @@
 if (!require(here)) {
   install.packages("here")
   library(here)
-} 
+}
 
-project_library <- paste0(here(),"/project_library/library")
+project_library <- paste0(here(), "/project_library/library")
 
 .libPaths(project_library)
 
