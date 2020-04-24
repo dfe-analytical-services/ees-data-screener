@@ -3,7 +3,7 @@
 
 This is an R project developed to test underlying data and metadata files against the standards required for statistical publications from the Deparment for Education, and for use on it's new dissemination platform - [Explore Education Statistics](https://gss.civilservice.gov.uk/blog/how-we-listened-to-our-users-to-improve-our-education-statistics/). 
 
-[How to: Run the Data-screener on your machine](https://www.youtube.com/watch?v=D60UU5r_TrM&feature=youtu.be) is a walkthrough video that takes you through how to use this project on your own machine, starting from the pre-requisites referred to below, right through to the final output report. Note that the video is slightly out of date, and you should refer to the below for the latest versions of software.
+[How to: Run the Data-screener on your machine](https://www.youtube.com/watch?v=D60UU5r_TrM&feature=youtu.be) is a walkthrough video that takes you through how to use this project on your own machine, starting from the pre-requisites referred to below, right through to the final output report. **Note that the video is slightly out of date, and you should refer to the below for the latest versions of software.**
 
 To use this project and run the data screener yourself you will need to download the zip file to your downloads folder on your computer, unzip the folder and then open the R project file with RStudio. You can then save this folder wherever is most convenient across your machine, ideally on your c: drive. Do not save this in a shared drive or area, or you may run into difficulties during setup. If you've not used the screener for a while it is worth going back to the github repo to check for updates and download the latest version.
 
@@ -51,6 +51,7 @@ This is the file that creates the .html report that is the output of the screene
 This folder contains the packages required for the project, and is set as your library for the project on opening.
 
 **Updating and this project** <br>
+
 Most of the files in this project should be self-explanatory when looking around. The setup files contain the functions used for each test referred to and called by the .rmd file. 
 
 <br>
