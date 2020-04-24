@@ -55,7 +55,6 @@ Most of the files in this project should be self-explanatory when looking around
 <br>
 Hard-coded variables, such as acceptable time_identifiers, are defined in the environment_setup script. If you're looking at a function and can't work out where a variable is from, also check the function_setup file as this contains a number of variables based on the data being screened that are reused across functions.
 
-
 <br>
 
 ### **Packages and proxy**
@@ -94,3 +93,4 @@ The following will load the package, and then run through and check all relevant
 >`library(styler)` <br>
 >`styler::style_dir(filetype = c("r","rmd"),recursive = FALSE)` <br>
 >`styler::style_dir(path = "setup_functions",filetype = "r",recursive = FALSE)`
+>`styler::style_dir(path = "project_library",filetype = "r",recursive = FALSE)`
