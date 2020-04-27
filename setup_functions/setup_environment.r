@@ -59,7 +59,7 @@ environment_setup <- function() {
   }
 
   message("")
-  message("Assuming there are no errors above, your environment has successfully been setup, you can now run the screener.")
+  message("Assuming there are no errors above and pandoc is up to date; your environment has successfully been setup, you can now run the screener.")
   message("")
 }
 
@@ -67,6 +67,33 @@ environment_setup <- function() {
 # pre-check function
 
 prechecks <- function(data, meta) {
+  if (your_data_file == your_meta_file) {
+    if (str_detect(your_data_file, " ")) {
+      stop(
+        message(""),
+        message("You have spaces in file name for both your data and metadata file. Please remove these before trying to screen the file again."),
+        message("")
+      )
+    }
+  } else {
+    if (str_detect(your_data_file, " ")) {
+      stop(
+        message(""),
+        message("You have spaces in file name of your data file. Please remove these before trying to screen the file again."),
+        message("Please also check your metadata file name and remove spaces from that too."),
+        message("")
+      )
+    } else {
+      if (str_detect(your_meta_file, " ")) {
+        stop(
+          message(""),
+          message("You have spaces in file name of your metadata file. Please remove these before trying to screen the file again."),
+          message("")
+        )
+      }
+    }
+  }
+
   for (i in c("geographic_level", "time_period", "time_identifier", "country_code", "country_name")) {
     if (i %in% names(data)) {
 
