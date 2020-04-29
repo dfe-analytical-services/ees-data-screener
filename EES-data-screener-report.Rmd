@@ -52,7 +52,7 @@ data_comp_col(dataset)
 data_spaces(dataset)
 ```
 
-**Checking there are no duplicate rows in your file** `r pass_fail_image(duplicate_rows_result)`
+**Checking there are no duplicate rows in your file (looking at observational units and filters)** `r pass_fail_image(duplicate_rows_result)`
 ```{r duplicate_rows,echo=FALSE,comment=NA}
 duplicate_rows(dataset)
 ```

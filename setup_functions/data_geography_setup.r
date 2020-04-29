@@ -199,7 +199,7 @@ geography_level_present <- function(data) {
     if ("Advisory" %in% geography_level_present_preresult) {
       assign("geography_level_present_result", "Advisory", envir = .GlobalEnv)
     } else {
-      message("PASS - Your geographic columns are valid.")
+      message("PASS - Your geographic columns are present as expected.")
       assign("geography_level_present_result", TRUE, envir = .GlobalEnv)
     }
   }
@@ -246,7 +246,7 @@ geography_level_completed <- function(data) {
         geography_level_completed_preresult[["old_la_code"]] <- FALSE
       }
       if (any(is.na(LA$new_la_code))) {
-        message("ADVISORY - The old_la_code column must be completed for all local authority data.")
+        message("ADVISORY - The new_la_code column should be completed for all local authority data where possible.")
         geography_level_completed_preresult[["new_la_code"]] <- "Advisory"
       }
       if (any(is.na(LA$la_name))) {
@@ -496,7 +496,7 @@ incorrect_level_regional <- function(data) {
       message("FAIL - You have LA data in your regional rows, please double check your file.")
       assign("incorrect_level_regional_result", FALSE, envir = .GlobalEnv)
     } else {
-      message("PASS - Your regional rows do not have LA data in them..")
+      message("PASS - Your regional rows do not have LA data in them.")
       assign("incorrect_level_regional_result", TRUE, envir = .GlobalEnv)
     }
   } else {

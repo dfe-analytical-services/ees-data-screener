@@ -36,8 +36,9 @@ dfilters <- select(dataset, mfilters$col_name)
 
 mindicators <- filter(metadata, col_type == "Indicator")
 
-present_indicators <- mindicators$col_name
-present_filters_indicators <- c(present_indicators, mfilters$col_name)
+present_indicators <- intersect(mindicators$col_name,names(dataset))
+present_filters <- intersect(mfilters$col_name,names(dataset))
+present_filters_indicators <- c(present_indicators, present_filters)
 
 present_indicatorunits <- mindicators$indicator_unit[!mindicators$indicator_unit == ""]
 number_present_indicatorunits <- length(unique(present_indicatorunits))

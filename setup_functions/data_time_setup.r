@@ -251,12 +251,12 @@ time_identifier_mix <- function(data) {
 
 three_years <- function(data) {
   if (length(unique(data$time_period)) < 3) {
-    message("ADVISORY - Your file contains fewer than 3 years.")
+    message("ADVISORY - Your file contains fewer than 3 years of data.")
     message("Where it exists, you should include at least 3 years of data in your file.")
     message("This is to meet the upcoming change in accessibility legislation.")
     assign("three_years_result", "Advisory", envir = .GlobalEnv)
   } else {
-    message("PASS - Your file contains at 3 years or more years of data.")
+    message("PASS - Your file contains 3 years or more years of data.")
     assign("three_years_result", TRUE, envir = .GlobalEnv)
   }
 }

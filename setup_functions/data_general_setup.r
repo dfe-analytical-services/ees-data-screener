@@ -58,7 +58,7 @@ data_spaces <- function(data) {
   if (FALSE %in% data_spaces_preresult) {
     assign("data_spaces_result", FALSE, envir = .GlobalEnv)
   } else {
-    message("PASS - There are no 'Total' values in the observational units.")
+    message("PASS - There are no spaces in the variable names in the data file.")
     assign("data_spaces_result", TRUE, envir = .GlobalEnv)
   }
 }
