@@ -64,7 +64,7 @@ Hard-coded variables, such as acceptable time_identifiers, are defined in the en
 **R** <br>
 
 This project assumes a few prerequisites for those on DfE machines:
-- You have installed the latest version of R (3.6.3) and RStudio (1.2.5033) from the software centre.
+- You have installed the latest version of R (3.6.2) and RStudio (1.2.5033) from the software centre.
 - You have installed the latest version of RTools (35) from the software centre (note that this is a separate installation to the above one).
 
 Once these are installed you should be good to go. It is possible that this will run on older versions of R/RStudio/RTools if you have them already, but this has not been tested.
