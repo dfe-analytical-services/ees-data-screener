@@ -1,6 +1,9 @@
 # -------------------------------------
 ### SETTING UP THE ENVIRONMENT
 # -------------------------------------
+
+# This script is horrible and should definitely be refactored at some point...
+
 # function to install/load the packages needed to run the screener
 environment_setup <- function() {
   message("")
@@ -138,7 +141,8 @@ screening_results <- function() {
   user_input <- svDialogs::dlg_list(c(
     "My files are saved in the data_metadata folder and I want to type the name.",
     "I want to select my data and meta data files separately using file explorer.",
-    "I want to screen all files in the data_metadata folder."
+    "I want to screen all files in the data_metadata folder.",
+    "I want to only run tests in the console."
   ),
   preselect = NULL,
   title = "Select how you would like to use the screener by entering the number next to your desired method below.",
@@ -288,6 +292,45 @@ screening_results <- function() {
       }
     }
   }
+
+if (user_input == "I want to only run tests in the console.") {
+    assign("your_data_file", dlg_input(message = "Enter the name of your data file:", default = NULL, gui = .GUI)$res, envir = .GlobalEnv)
+    assign("your_meta_file", your_data_file, envir = .GlobalEnv)
+
+    assign("dataset", read_csv(paste("data_metadata/", your_data_file, ".csv", sep = ""), guess_max = 999999, na = c("NA"), trim_ws = FALSE), envir = .GlobalEnv)
+    assign("metadata", read_csv(paste("data_metadata/", your_meta_file, ".meta.csv", sep = ""), guess_max = 999999, trim_ws = FALSE), envir = .GlobalEnv)
+
+    prechecks(dataset, metadata)
+
+    message("")
+    message("Screening results breakdown:")
+    message("")
+    source("setup_functions/setup_function.r")
+    message("")
+    message("Screening results at a glance:")
+    message("")
+    message(Sys.time(), " screening of ", your_data_file, " files.")
+    message("")
+    message(total_percent, " of tests passed.")
+    message("Number of applicable tests: ", sum(pass, fail))
+    message("Tests passed: ", pass)
+    message("Tests failed: ", fail)
+    message("")
+    if (advisory > 0) {
+      message("Number of recommendations: ", advisory, " - please check the tests for recommended changes.")
+      message("")
+    }
+    message("Your report has been saved in the /reports folder.")
+
+    if (total_percent == "100%") {
+      message("")
+      message("Your data file has passed the screening and may be uploaded.")
+    } else {
+      message("")
+      message("Please check the report as your files have not passed the screening.")
+    }
+  }
+
 }
 
 # -------------------------------------

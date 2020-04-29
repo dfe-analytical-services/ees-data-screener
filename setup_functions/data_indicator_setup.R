@@ -71,7 +71,7 @@ null <- function(data) {
         message("FAIL - There should be no null values in your file.")
         assign("null_result", FALSE, envir = .GlobalEnv)
       } else {
-        if (any(is.null(unlist(select(dataset, present_filters_indicators))))) {
+        if (any(is.null(unlist(select(dataset, all_of(present_filters_indicators)))))) {
           message("FAIL - There should be no null values in your filters or indicators.")
           assign("null_result", FALSE, envir = .GlobalEnv)
         } else {
