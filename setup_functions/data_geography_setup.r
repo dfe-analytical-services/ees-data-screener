@@ -98,9 +98,9 @@ geography_level_present <- function(data) {
     for (i in rsc_required) {
       if ((i %in% names(data)) == FALSE) {
         message("FAIL - ", i, " must be present for RSC region level data.")
-        geography_levels_preresult[i] <- FALSE
+        geography_level_present_preresult[i] <- FALSE
       } else {
-        geography_levels_preresult[i] <- TRUE
+        geography_level_present_preresult[i] <- TRUE
       }
     }
   }
@@ -254,12 +254,12 @@ geography_level_completed <- function(data) {
         geography_level_completed_preresult[["la_name"]] <- FALSE
       }
       if (any(is.na(LA$region_name))) {
-        message("FAIL - The region_name column must be completed for all LA data.")
-        geography_level_completed_preresult[["region_name_la"]] <- FALSE
+        message("ADVISORY - The region_name column should be completed for all LA data.")
+        geography_level_completed_preresult[["region_name_la"]] <- "Advisory"
       }
       if (any(is.na(LA$region_code))) {
-        message("FAIL - The region_code column must be completed for all LA data.")
-        geography_level_completed_preresult[["region_code_la"]] <- FALSE
+        message("ADVISORY - The region_code column should be completed for all LA data.")
+        geography_level_completed_preresult[["region_code_la"]] <- "Advisory"
       }
     }
 
