@@ -56,8 +56,8 @@ time_period <- function(data) {
       }
 
       if ((base_identifier %in% c("Spring term", "Autumn term", "Summer term")) == TRUE) {
-        if ((nrow(filter(time_length, digits == 4)) == nrow(time_length)) == FALSE) {
-          message("FAIL - the time period for terms must be a four digit number.")
+        if ((nrow(filter(time_length, digits == 6)) == nrow(time_length)) == FALSE) {
+          message("FAIL - the time period for terms must be a six digit number.")
           message("Guidance - https://rsconnect/rsc/stats-production-guidance/ud.html#list_of_allowable_time_values.")
           time_period_preresult <- FALSE
         } else {
