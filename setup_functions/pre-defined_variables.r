@@ -47,4 +47,4 @@ sponsor_required <- c("sponsor_id", "sponsor_name")
 
 meta_cols <- c("col_name", "col_type", "label", "indicator_grouping", "indicator_unit", "indicator_dp", "filter_hint", "filter_grouping_column")
 
-acceptable_indicatorunits <- c("£", "%", NA)
+acceptable_indicatorunits <- c("£", "%", "pp", NA)
