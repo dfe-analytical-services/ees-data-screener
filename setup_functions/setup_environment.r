@@ -8,7 +8,7 @@
 environment_setup <- function() {
   
   if (TRUE) {
-    stop("You should not use this project to screen your data files anymore. Please contact explore.statistics@education.gov.uk if you are unsure of how to screen your files.)
+    stop("You should not use this project to screen your data files anymore. Please contact explore.statistics@education.gov.uk if you are unsure of how to screen your files.")
   }
 
   message("")
