@@ -1,7 +1,10 @@
 # **EES-Data-Screener**
+
+# **IMPORTANT - THIS PROJECT IS NOW NO LONGER THE ROUTE YOU SHOULD USE TO SCREEN DATA FILES. FOR MORE INFORMATION SEE OUR [GUIDANCE](https://rsconnect/rsc/stats-production-guidance/ud.html#how_to_check_against_the_standards) OR CONTACT EXPLORE.STATISTICS@EDUCATION.GOV.UK.**
+
 **How to use this project** <br>
 
-This is an R project developed to test underlying data and metadata files against the standards required for statistical publications from the Deparment for Education, and for use on it's new dissemination platform - [Explore Education Statistics](https://gss.civilservice.gov.uk/blog/how-we-listened-to-our-users-to-improve-our-education-statistics/). 
+This is an R project that used to be used to test underlying data and metadata files against the standards required for statistical publications from the Deparment for Education, and for use on it's new dissemination platform - [Explore Education Statistics](https://gss.civilservice.gov.uk/blog/how-we-listened-to-our-users-to-improve-our-education-statistics/). 
 
 [How to: Run the Data-screener on your machine](https://www.youtube.com/watch?v=D60UU5r_TrM&feature=youtu.be) is a walkthrough video that takes you through how to use this project on your own machine, starting from the pre-requisites referred to below, right through to the final output report. **Note that the video is slightly out of date, and you should refer to the below for the latest versions of software.**
 
