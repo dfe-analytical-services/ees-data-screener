@@ -6,6 +6,11 @@
 
 # function to install/load the packages needed to run the screener
 environment_setup <- function() {
+  
+  if (TRUE) {
+    stop("You should not use this project to screen your data files anymore. Please contact explore.statistics@education.gov.uk if you are unsure of how to screen your files.)
+  }
+
   message("")
   message("The packages required for using the screener are now loading.")
   message("")
