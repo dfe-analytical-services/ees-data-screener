@@ -1,6 +1,6 @@
 # **EES-Data-Screener**
 
-# **IMPORTANT - THIS PROJECT IS NOW NO LONGER THE ROUTE YOU SHOULD USE TO SCREEN DATA FILES. FOR MORE INFORMATION SEE OUR [GUIDANCE](https://rsconnect/rsc/stats-production-guidance/ud.html#how_to_check_against_the_standards) OR CONTACT EXPLORE.STATISTICS@EDUCATION.GOV.UK.**
+# **IMPORTANT - THIS PROJECT IS NOW NO LONGER THE ROUTE YOU SHOULD USE TO SCREEN DATA FILES. FOR MORE INFORMATION SEE OUR [ANALYSTS' GUIDE](https://dfe-analytical-services.github.io/analysts-guide/statistics-production/ud.html#how-to-check-against-these-standards) OR CONTACT EXPLORE.STATISTICS@EDUCATION.GOV.UK.**
 
 **How to use this project** <br>
 
